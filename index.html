@@ -1311,9 +1311,159 @@
         margin-top: 8px;
       }
     }
-  </style>
+      <!-- ✅ Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Rubik', sans-serif;
+      direction: rtl;
+    }
+
+    /* 🔁 Top Running Bar */
+    .top-bar {
+      height: 30px;
+      background-color: black;
+      color: white;
+      font-size: 10px;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .top-bar .scrolling-text {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll 20s linear infinite;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* ✅ Main Nav Bar */
+    .main-nav {
+      height: 75px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 14px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .cta {
+      border: 1px solid black;
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 13px;
+    }
+
+    /* ✅ Hamburger Menu for Mobile */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      width: 20px;
+      height: 2px;
+      background: black;
+    }
+
+    @media (max-width: 768px) {
+      .top-bar {
+        height: 20px;
+      }
+
+      .main-nav {
+        flex-direction: row-reverse;
+      }
+
+      .menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 75px;
+        right: 0;
+        background: white;
+        width: 100%;
+        border-top: 1px solid #eee;
+      }
+
+      .menu.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+  </style
+    
 </head>
 <body>
+  <!-- 🔁 Top Bar -->
+  <div class="top-bar">
+    <div class="scrolling-text">
+      גם כשמשקיעים בחו״ל - הלב תמיד בישראל!     גם כשמשקיעים בחו״ל - הלב תמיד בישראל!     גם כשמשקיעים בחו״ל - הלב תמיד בישראל!
+    </div>
+  </div>
+
+  <!-- ✅ Main Navigation -->
+  <header class="main-nav">
+    <div class="logo">Capital Partners</div>
+
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <nav class="menu" id="menu">
+      <a href="#">אודות</a>
+      <a href="#">אסטרטגיית השקעה</a>
+      <a href="#">פורטפוליו נכסים</a>
+      <a href="#">תובנות שוק</a>
+      <a href="#">פרוייקטים בשיווק</a>
+      <a href="#">יצירת קשר</a>
+      <a href="#" class="cta">קביעת פגישה</a>
+    </nav>
+  </header>
+
+  <!-- ⬇️ Main Content Placeholder -->
+  <main style="padding: 40px;">
+    <h1>תוכן הדף</h1>
+    <p>פה יופיע התוכן שלך...</p>
+  </main>
   <!-- Gallery Section -->
   <div class="gallery-wrapper">
     <div class="gallery-container">
@@ -1987,6 +2137,12 @@ pointHoverRadius: function(context) {
     document.getElementById("mapPopup").classList.remove("show");
   }
 </script>
+      <!-- ✅ JS -->
+  <script>
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("active");
+    }
+  </script>
 
 
 </body>
