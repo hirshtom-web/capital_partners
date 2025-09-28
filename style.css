@@ -23,6 +23,204 @@
       --primary-light: #b99ff3;
     }
 
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* --- TOP BAR --- */
+  .top-bar {
+    background: #000; /* black background for contrast */
+    color: #fff;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+  }
+
+  /* smaller height on mobile */
+  @media (max-width: 600px) {
+    .top-bar {
+      height: 20px;
+      line-height: 20px;
+      font-size: 10px;
+    }
+  }
+
+  .marquee-wrapper {
+    display: inline-block;
+    padding-left: 100%; /* start outside on the right */
+    animation: marquee 30s linear infinite; /* 1.5 speed tweak */
+  }
+
+  /* The marquee keyframe for right-to-left infinite scroll */
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .marquee-text {
+    display: inline-block;
+    margin-left: 50px;
+  }
+
+  /* --- MENU BAR --- */
+  .menu-bar {
+    background: #fff;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ccc;
+    direction: rtl;
+    position: relative;
+  }
+
+  /* LOGO */
+  .logo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #000;
+    margin-left: auto; /* push logo to the left side */
+  }
+
+  /* MENU LIST */
+  .menu {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .menu li {
+    display: inline-block;
+  }
+
+  .menu li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    line-height: 75px;
+    cursor: pointer;
+  }
+
+  /* The rightmost "קביעת פגישה" button */
+  .book-btn {
+    border: 1px solid #000;
+    border-radius: 9999px;
+    padding: 8px 15px;
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    margin-left: 15px;
+  }
+
+  /* Put the book button all the way right */
+  .menu-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-right: auto; /* push menu to the right side */
+  }
+
+  /* MOBILE STYLES */
+  @media (max-width: 768px) {
+    .menu-bar {
+      height: 50px;
+      padding: 0 10px;
+    }
+
+    .logo {
+      font-size: 10px;
+      margin-left: auto;
+    }
+
+    /* Hide menu by default */
+    .menu-container {
+      display: none;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background: white;
+      width: 200px;
+      flex-direction: column;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      z-index: 10;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.15);
+    }
+
+    .menu-container.show {
+      display: flex;
+    }
+
+    .menu {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .menu li a {
+      line-height: normal;
+      padding: 8px 15px;
+      display: block;
+    }
+
+    .book-btn {
+      margin-left: 0;
+      margin-top: 10px;
+    }
+
+    /* Hamburger button */
+    .hamburger {
+      display: block;
+      cursor: pointer;
+      margin-right: 10px;
+      width: 25px;
+      height: 20px;
+      position: relative;
+    }
+
+    .hamburger span {
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      background: #000;
+      border-radius: 2px;
+      left: 0;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger span:nth-child(1) {
+      top: 0;
+    }
+
+    .hamburger span:nth-child(2) {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .hamburger span:nth-child(3) {
+      bottom: 0;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .hamburger {
+      display: none;
+    }
+
     body {
       font-family: 'Rubik', sans-serif;
       direction: rtl;
