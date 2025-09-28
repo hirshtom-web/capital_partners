@@ -1311,10 +1311,7 @@
         margin-top: 8px;
       }
     }
-      <!-- ✅ Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
-
-  <style>
+      <style>
     * {
       box-sizing: border-box;
       margin: 0;
@@ -1329,19 +1326,24 @@
     /* 🔁 Top Running Bar */
     .top-bar {
       height: 30px;
-      background-color: black;
+      background: linear-gradient(to left, #ff69b4, #8e44ad); /* pink to purple */
       color: white;
       font-size: 10px;
       font-weight: bold;
       white-space: nowrap;
       overflow: hidden;
       position: relative;
+      margin: 0;
     }
 
     .top-bar .scrolling-text {
       display: inline-block;
       padding-left: 100%;
       animation: scroll 20s linear infinite;
+    }
+
+    .top-bar .scrolling-text span {
+      padding-left: 50px; /* 50px space between texts */
     }
 
     @keyframes scroll {
@@ -1364,6 +1366,12 @@
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
       font-size: 15px;
+    }
+
+    .menu-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
 
     .menu {
@@ -1417,6 +1425,7 @@
         background: white;
         width: 100%;
         border-top: 1px solid #eee;
+        padding: 10px 0;
       }
 
       .menu.active {
@@ -1425,45 +1434,53 @@
 
       .hamburger {
         display: flex;
+        margin-left: 10px;
+      }
+
+      .menu-container {
+        flex-direction: row-reverse;
       }
     }
   </style
     
 </head>
 <body>
-  <!-- 🔁 Top Bar -->
+   <!-- 🔁 Top Bar -->
   <div class="top-bar">
     <div class="scrolling-text">
-      גם כשמשקיעים בחו״ל - הלב תמיד בישראל!     גם כשמשקיעים בחו״ל - הלב תמיד בישראל!     גם כשמשקיעים בחו״ל - הלב תמיד בישראל!
+      <span>גם כשמשקיעים בחו״ל - הלב תמיד בישראל!</span>
+      <span>גם כשמשקיעים בחו״ל - הלב תמיד בישראל!</span>
+      <span>גם כשמשקיעים בחו״ל - הלב תמיד בישראל!</span>
     </div>
   </div>
 
   <!-- ✅ Main Navigation -->
   <header class="main-nav">
+    <!-- Logo on Left Now -->
     <div class="logo">Capital Partners</div>
 
-    <div class="hamburger" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+    <!-- Menu + Button on Right -->
+    <div class="menu-container">
+      <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
 
-    <nav class="menu" id="menu">
-      <a href="#">אודות</a>
-      <a href="#">אסטרטגיית השקעה</a>
-      <a href="#">פורטפוליו נכסים</a>
-      <a href="#">תובנות שוק</a>
-      <a href="#">פרוייקטים בשיווק</a>
-      <a href="#">יצירת קשר</a>
-      <a href="#" class="cta">קביעת פגישה</a>
-    </nav>
+      <nav class="menu" id="menu">
+        <a href="#">אודות</a>
+        <a href="#">אסטרטגיית השקעה</a>
+        <a href="#">פורטפוליו נכסים</a>
+        <a href="#">תובנות שוק</a>
+        <a href="#">פרוייקטים בשיווק</a>
+        <a href="#">יצירת קשר</a>
+        <a href="#" class="cta">קביעת פגישה</a>
+      </nav>
+    </div>
   </header>
 
   <!-- ⬇️ Main Content Placeholder -->
   <main style="padding: 40px;">
-    <h1>תוכן הדף</h1>
-    <p>פה יופיע התוכן שלך...</p>
-  </main>
   <!-- Gallery Section -->
   <div class="gallery-wrapper">
     <div class="gallery-container">
@@ -1898,6 +1915,8 @@
         });
       }
     });
+      
+  </main>
   </script>
   <!-- Chart.js & JS Scripts -->
   <script>
