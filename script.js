@@ -1,24 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // === Hamburger Toggle ===
-  const hamburger = document.querySelector('.hamburger');
-  const menuContainer = document.querySelector('.menu-container');
-
-  if (hamburger && menuContainer) {
-    hamburger.addEventListener('click', () => {
-      const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-      hamburger.setAttribute('aria-expanded', String(!isExpanded));
-      menuContainer.classList.toggle('show');
-    });
-
-    hamburger.addEventListener('keydown', e => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        hamburger.click();
-      }
-    });
-  }
-
-  // === Animate Graph Bars ===
+  // === Animate Bars ===
   const chartHeight = document.querySelector('.graph-chart')?.offsetHeight || 0;
   document.querySelectorAll('.graph-bar').forEach(bar => {
     const percent = parseFloat(bar.getAttribute('data-height'));
@@ -26,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     bar.style.height = pixelHeight + 'px';
   });
 
-  // === Shorten Bar Labels on Mobile ===
+  // === Shorten bar labels on mobile ===
   if (window.innerWidth <= 600) {
     document.querySelectorAll('.graph-bar-label').forEach(label => {
       const shortLabel = label.getAttribute('data-label-mobile');
@@ -36,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // === Chart.js Initialization ===
+  // === Chart.js Setup ===
   const canvas = document.getElementById('performanceChart');
   if (canvas) {
     const ctx = canvas.getContext('2d');
@@ -52,31 +33,35 @@ document.addEventListener('DOMContentLoaded', () => {
           {
             label: 'צמיחה שנתית',
             data: actualData,
-            borderColor: (ctx) => {
-              const { chartArea, ctx: context } = ctx.chart;
+            borderColor: function (context) {
+              const { ctx, chartArea } = context.chart;
               if (!chartArea) return '#7474e8';
-              const gradient = context.createLinearGradient(chartArea.left, 0, chartArea.right, 0);
+              const gradient = ctx.createLinearGradient(chartArea.left, 0, chartArea.right, 0);
               gradient.addColorStop(0, '#7474e8');
               gradient.addColorStop(1, '#a758db');
               return gradient;
             },
             tension: 0.35,
             fill: true,
-            backgroundColor: (ctx) => {
-              const { chartArea, ctx: context } = ctx.chart;
+            backgroundColor: function (context) {
+              const { ctx, chartArea } = context.chart;
               if (!chartArea) return 'rgba(116, 116, 232, 0.5)';
-              const gradient = context.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+              const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
               gradient.addColorStop(0, 'rgba(116, 116, 232, 0.5)');
               gradient.addColorStop(1, 'rgba(116, 116, 232, 0)');
               return gradient;
             },
             borderWidth: 3,
-            pointRadius: (ctx) => ctx.dataIndex === 0 ? 0 : (window.innerWidth <= 600 ? 4.5 : 6),
-            pointHoverRadius: (ctx) => ctx.dataIndex === 0 ? 0 : (window.innerWidth <= 600 ? 6.5 : 9),
-            pointBackgroundColor: (ctx) => {
-              const { chartArea, ctx: context } = ctx.chart;
+            pointRadius: function (context) {
+              return context.dataIndex === 0 ? 0 : (window.innerWidth <= 600 ? 4.5 : 6);
+            },
+            pointHoverRadius: function (context) {
+              return context.dataIndex === 0 ? 0 : (window.innerWidth <= 600 ? 6.5 : 9);
+            },
+            pointBackgroundColor: function (context) {
+              const { ctx, chartArea } = context.chart;
               if (!chartArea) return '#7474e8';
-              const gradient = context.createLinearGradient(chartArea.left, 0, chartArea.right, 0);
+              const gradient = ctx.createLinearGradient(chartArea.left, 0, chartArea.right, 0);
               gradient.addColorStop(0, '#7474e8');
               gradient.addColorStop(1, '#a758db');
               return gradient;
@@ -89,10 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
             label: 'תחזית',
             data: forecastData,
             borderColor: '#ED1566',
-            backgroundColor: (ctx) => {
-              const { chartArea, ctx: context } = ctx.chart;
+            backgroundColor: function (context) {
+              const { ctx, chartArea } = context.chart;
               if (!chartArea) return 'rgba(237, 21, 102, 0.3)';
-              const gradient = context.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+              const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
               gradient.addColorStop(0, 'rgba(237, 21, 102, 0.3)');
               gradient.addColorStop(1, 'rgba(237, 21, 102, 0)');
               return gradient;
@@ -101,8 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
             tension: 0.3,
             fill: true,
             borderWidth: 2,
-            pointRadius: (ctx) => ctx.dataIndex === labels.length - 2 ? 0 : (window.innerWidth <= 600 ? 4.5 : 6),
-            pointHoverRadius: (ctx) => ctx.dataIndex === labels.length - 2 ? 0 : (window.innerWidth <= 600 ? 6.5 : 8),
+            pointRadius: function (context) {
+              return context.dataIndex === labels.length - 2 ? 0 : (window.innerWidth <= 600 ? 4.5 : 6);
+            },
+            pointHoverRadius: function (context) {
+              return context.dataIndex === labels.length - 2 ? 0 : (window.innerWidth <= 600 ? 6.5 : 8);
+            },
             pointBackgroundColor: '#ED1566',
             pointBorderColor: '#fff',
             pointBorderWidth: 2,
@@ -132,15 +121,15 @@ document.addEventListener('DOMContentLoaded', () => {
             boxPadding: 6,
             displayColors: false,
             callbacks: {
-              label: function(ctx) {
-                if (ctx.dataset.label === 'תחזית' && ctx.dataIndex === labels.length - 2) return null;
-                if (ctx.dataIndex === 0 && ctx.dataset.label === 'צמיחה שנתית') {
+              label: function (context) {
+                if (context.dataset.label === 'תחזית' && context.dataIndex === labels.length - 2) return null;
+                if (context.dataIndex === 0 && context.dataset.label === 'צמיחה שנתית') {
                   return `שיעור צמיחה: ${actualData[1]}%`;
                 }
-                return `שיעור צמיחה: ${ctx.formattedValue}%`;
+                return `שיעור צמיחה: ${context.formattedValue}%`;
               },
-              title: function(ctx) {
-                return `שנה: ${ctx[0].label}`;
+              title: function (context) {
+                return `שנה: ${context[0].label}`;
               }
             },
             titleFont: {
@@ -155,8 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         scales: {
           x: {
+            offset: false,
             ticks: {
-              callback: (value, index) => {
+              callback: function (value, index) {
                 if (window.innerWidth <= 600) {
                   const mobileYears = ['2015', '2017', '2019', '2021', '2023', '2025'];
                   return mobileYears.includes(labels[index]) ? labels[index] : '';
@@ -176,7 +166,12 @@ document.addEventListener('DOMContentLoaded', () => {
             max: 15,
             ticks: {
               stepSize: 2.5,
-              callback: (value) => window.innerWidth <= 600 && ![5, 10, 15].includes(value) ? '' : value + '%',
+              callback: function (value) {
+                if (window.innerWidth <= 600) {
+                  return [5, 10, 15].includes(value) ? value + '%' : '';
+                }
+                return value + '%';
+              },
               font: {
                 size: () => window.innerWidth <= 600 ? 8 : 12
               }
@@ -227,14 +222,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // === Feather Icons ===
-  if (typeof feather !== 'undefined') feather.replace();
+  // === Initialize Feather Icons ===
+  if (window.feather) {
+    feather.replace();
+  }
 });
 
 // === Map Popup Functions ===
 function openMapPopup() {
   document.getElementById("mapPopup")?.classList.add("show");
 }
+
 function closeMapPopup() {
   document.getElementById("mapPopup")?.classList.remove("show");
 }
+});
