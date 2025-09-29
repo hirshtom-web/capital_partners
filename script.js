@@ -1,4 +1,6 @@
-    document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
+  // Your JS code here
+});
       const chartHeight = document.querySelector('.graph-chart').offsetHeight;
 
       // Animate bars
