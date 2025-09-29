@@ -1,4 +1,3 @@
-<script>
 document.addEventListener('DOMContentLoaded', () => {
   // === Hamburger Toggle ===
   const hamburger = document.querySelector('.hamburger');
@@ -239,4 +238,3 @@ function openMapPopup() {
 function closeMapPopup() {
   document.getElementById("mapPopup")?.classList.remove("show");
 }
-</script>
