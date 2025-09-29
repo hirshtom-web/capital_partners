@@ -250,3 +250,24 @@ function closeMapPopup() {
   document.getElementById("mapPopup").classList.remove("show");
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  const animateOnScroll = (element, callback) => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          callback(entry.target);
+          observer.unobserve(entry.target);  // stop observing after animation triggered
+        }
+      });
+    });
+    observer.observe(element);
+  };
+
+  // Example for your loading effect elements
+  document.querySelectorAll('.loading-effect').forEach(el => {
+    animateOnScroll(el, (element) => {
+      // Run your animation logic here, e.g. add a class:
+      element.classList.add('animate');
+    });
+  });
+});
