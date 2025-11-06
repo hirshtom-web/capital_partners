@@ -277,4 +277,222 @@ document.addEventListener('DOMContentLoaded', () => {
     nav.classList.toggle('active');
     el.classList.toggle('active');
   }
+   
+feather.replace();
 
+/* -------------------- DROPDOWN TOGGLE (FIXED) -------------------- */
+document.querySelectorAll('.dropdown').forEach(drop => {
+  drop.addEventListener('click', (e) => {
+    // If clicked inside dropdown-content, don’t toggle
+    if (e.target.closest('.dropdown-content')) return;
+
+    e.stopPropagation();
+    const isActive = drop.classList.contains('active');
+    // Close all
+    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+    // Open current if it wasn’t active
+    if (!isActive) drop.classList.add('active');
+  });
+});
+
+// Prevent dropdown closing when clicking inside
+document.querySelectorAll('.dropdown-content').forEach(menu => {
+  menu.addEventListener('click', e => e.stopPropagation());
+});
+
+// Close dropdowns when clicking anywhere else
+document.addEventListener('click', () => {
+  document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+});
+
+/* -------------------- FILTER LOGIC -------------------- */
+const activeFiltersContainer = document.querySelector('.active-filters');
+const propertyCards = document.querySelectorAll('.property-card');
+const clearBtn = document.querySelector('.clear-filters-btn');
+
+const selectedFilters = {
+  city: [],
+  price: [],
+  type: [],
+  status: []
+};
+
+function applyFilters() {
+  const searchTerm = document.querySelector('#search-bar')?.value.toLowerCase() || '';
+
+  propertyCards.forEach(card => {
+    let show = true;
+    const projectName = card.querySelector('.project-name').textContent.toLowerCase();
+
+    // Search
+    if (searchTerm && !projectName.includes(searchTerm)) show = false;
+
+    // City filter
+    if (show && selectedFilters.city.length > 0) {
+      const city = card.querySelector('.project-name').textContent;
+      show = selectedFilters.city.some(f => city.includes(f));
+    }
+
+    // Type filter
+    if (show && selectedFilters.type.length > 0) {
+      const type = card.querySelector('.project-name').textContent;
+      show = selectedFilters.type.some(f => type.includes(f));
+    }
+
+    // Status filter
+    if (show && selectedFilters.status.length > 0) {
+      const status = card.querySelector('.status-tag').textContent.trim();
+      show = selectedFilters.status.includes(status);
+    }
+
+    // Price filter
+    if (show && selectedFilters.price.length > 0) {
+      const priceText = card.querySelector('.price').textContent.replace(/[^0-9]/g, '');
+      const price = parseInt(priceText, 10);
+      show = selectedFilters.price.some(range => {
+        if (range === '0-2M') return price <= 2000000;
+        if (range === '2-4M') return price > 2000000 && price <= 4000000;
+        if (range === '4M+') return price > 4000000;
+      });
+    }
+
+    card.style.display = show ? '' : 'none';
+  });
+}
+
+function updateFilterBarState() {
+  const filtersBar = document.querySelector('.filters-bar');
+  const hasTags = activeFiltersContainer.children.length > 0;
+  filtersBar.classList.toggle('has-tags', hasTags);
+}
+
+/* -------------------- CHECKBOX CHANGE -------------------- */
+document.querySelectorAll('.dropdown-content input').forEach(input => {
+  input.addEventListener('change', () => {
+    const filterType = input.closest('.dropdown').dataset.filter;
+    const value = input.value;
+
+    if (input.checked) {
+      if (!selectedFilters[filterType].includes(value)) {
+        selectedFilters[filterType].push(value);
+        const tag = document.createElement('div');
+        tag.className = 'filter-tag';
+        tag.dataset.value = value;
+        tag.dataset.filter = filterType;
+        tag.innerHTML = `${value} <button>×</button>`;
+        activeFiltersContainer.appendChild(tag);
+      }
+    } else {
+      selectedFilters[filterType] = selectedFilters[filterType].filter(v => v !== value);
+      document.querySelector(`.filter-tag[data-value="${value}"]`)?.remove();
+    }
+
+    applyFilters();
+    updateFilterBarState();
+    updateClearButtonVisibility();
+  });
+});
+
+/* -------------------- REMOVE TAG -------------------- */
+activeFiltersContainer.addEventListener('click', e => {
+  if (e.target.tagName === 'BUTTON') {
+    const tag = e.target.closest('.filter-tag');
+    const value = tag.dataset.value;
+    const filterType = tag.dataset.filter;
+
+    selectedFilters[filterType] = selectedFilters[filterType].filter(v => v !== value);
+    document.querySelector(`.dropdown-content input[value="${value}"]`).checked = false;
+    tag.remove();
+    applyFilters();
+    updateFilterBarState();
+    updateClearButtonVisibility();
+  }
+});
+
+/* -------------------- CLEAR ALL FILTERS -------------------- */
+function updateClearButtonVisibility() {
+  const hasFilters = Object.values(selectedFilters).some(arr => arr.length > 0);
+  clearBtn.style.display = hasFilters ? 'inline-block' : 'none';
+}
+
+clearBtn.addEventListener('click', () => {
+  Object.keys(selectedFilters).forEach(key => selectedFilters[key] = []);
+  document.querySelectorAll('.dropdown-content input').forEach(i => (i.checked = false));
+  document.querySelectorAll('.filter-tag').forEach(tag => tag.remove());
+  applyFilters();
+  updateFilterBarState();
+  updateClearButtonVisibility();
+});
+
+/* -------------------- SEARCH -------------------- */
+const searchInput = document.querySelector('#search-bar');
+if (searchInput) {
+  searchInput.addEventListener('input', applyFilters);
+}
+
+/* -------------------- SLIDER ARROWS -------------------- */
+document.querySelectorAll('.slider-container').forEach(container => {
+  const imgs = container.querySelectorAll('.slider-images img');
+  let currentIndex = 0;
+
+  const leftArrow = document.createElement('div');
+  const rightArrow = document.createElement('div');
+  leftArrow.className = 'slider-arrow left';
+  rightArrow.className = 'slider-arrow right';
+  leftArrow.innerHTML = `<i data-feather="chevron-left"></i>`;
+  rightArrow.innerHTML = `<i data-feather="chevron-right"></i>`;
+  container.append(leftArrow, rightArrow);
+
+  function showSlide(index) {
+    imgs.forEach((img, i) => img.classList.toggle('active', i === index));
+  }
+
+  showSlide(currentIndex);
+
+  leftArrow.addEventListener('click', e => {
+    e.stopPropagation();
+    currentIndex = (currentIndex - 1 + imgs.length) % imgs.length;
+    showSlide(currentIndex);
+  });
+  rightArrow.addEventListener('click', e => {
+    e.stopPropagation();
+    currentIndex = (currentIndex + 1) % imgs.length;
+    showSlide(currentIndex);
+  });
+});
+
+/* -------------------- MAP INIT -------------------- */
+function initMap() {
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 32.0853, lng: 34.7818 },
+    zoom: 12,
+  });
+}
+window.onload = initMap;
+
+/* -------------------- MAP / GRID VIEW TOGGLE -------------------- */
+const mapSection = document.getElementById('map');
+const gridWrapper = document.querySelector('.property-grid-wrapper');
+const viewButtons = document.querySelectorAll('.view-toggle button');
+
+viewButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    viewButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const mode = btn.dataset.view;
+
+    if (mode === 'map') {
+      mapSection.style.display = 'block';
+      gridWrapper.style.display = 'none';
+    } else if (mode === 'grid') {
+      mapSection.style.display = 'none';
+      gridWrapper.style.display = 'block';
+    } else {
+      mapSection.style.display = 'block';
+      gridWrapper.style.display = 'block';
+    }
+  });
+});
+
+/* -------------------- REFRESH FEATHER ICONS -------------------- */
+feather.replace();
