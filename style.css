@@ -210,4 +210,7 @@
     .nav-icon {
       display: none;
     }
+      .alert {
+    font-size: 10px;
+      }
   }
