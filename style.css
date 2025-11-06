@@ -226,7 +226,7 @@ header {
   }
 /* Full background image */
 .background-image {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -238,7 +238,7 @@ header {
 
 /* Title container */
 .title-container {
-  position: fixed;
+  position: relative;
   top: 300px;
   left: 50%;
   transform: translateX(-50%);
