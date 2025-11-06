@@ -248,7 +248,7 @@ header {
   transform: translateX(-50%);  /* horizontal centering */
   z-index: 5;           /* above background */
   text-align: center;
-  color: white;         /* optional for contrast */
+  color: #130328;
 }
 
 
