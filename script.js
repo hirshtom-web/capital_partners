@@ -496,3 +496,23 @@ viewButtons.forEach(btn => {
 
 /* -------------------- REFRESH FEATHER ICONS -------------------- */
 feather.replace();
+
+// include.js
+function loadHTML(selector, file) {
+  fetch(file)
+    .then(response => response.text())
+    .then(data => {
+      document.querySelector(selector).innerHTML = data;
+    })
+    .catch(err => console.error('Error loading', file, err));
+}
+
+// Load shared sections
+loadHTML("#header", "header.html");
+loadHTML("#footer", "footer.html");
+  function toggleMenu(el) {
+    const nav = document.getElementById('nav-menu');
+    nav.classList.toggle('active');
+    el.classList.toggle('active');
+  }
+
