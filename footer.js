@@ -84,3 +84,15 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(err => console.error('Error loading footer:', err));
 });
+console.log('Fetching footer...');
+fetch('footer.html')
+  .then(response => {
+    console.log('Response status:', response.status);
+    return response.text();
+  })
+  .then(data => {
+    console.log('Footer HTML loaded:', data);
+    document.getElementById('footer').innerHTML = data;
+  })
+  .catch(err => console.error('Error loading footer:', err));
+
