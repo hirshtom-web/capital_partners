@@ -1,4 +1,8 @@
- {
+html, body, header, nav {
+  direction: ltr !important;
+  text-align: left;
+}
+{
       box-sizing: border-box;
     }
 
