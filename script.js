@@ -271,3 +271,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+  function toggleMenu(el) {
+    const nav = document.getElementById('nav-menu');
+    nav.classList.toggle('active');
+    el.classList.toggle('active');
+  }
+
