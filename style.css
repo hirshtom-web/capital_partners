@@ -139,6 +139,7 @@ header {
 
   .btn-bubble:hover {
     box-shadow: 0 2px 8px rgba(99, 39, 229, 0.3);
+    background-color:  #6327e5;
   }
 
   /* MOBILE MENU TOGGLE */
