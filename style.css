@@ -234,7 +234,7 @@ header {
   height: 100%; /* or 800px if fixed height */
   object-fit: cover;
   z-index: -1;
-  opacity: 0.1;
+  opacity: 0.15;
 }
 .hero-section {
   position: relative;
@@ -243,7 +243,7 @@ header {
 
 .title-container {
   position: absolute;
-  top: 450px;          /* vertical position */
+  top: 400px;          /* vertical position */
   left: 50%;           /* center horizontally */
   transform: translateX(-50%);  /* horizontal centering */
   z-index: 5;           /* above background */
