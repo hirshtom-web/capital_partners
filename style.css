@@ -139,6 +139,7 @@
     cursor: pointer;
     width: 18px;
     height: 12px;
+    margin-top: -3px;
   }
 
   .menu-toggle span {
