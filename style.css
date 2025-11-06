@@ -226,24 +226,27 @@ header {
   }
 /* Full background image */
 .background-image {
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 800px;
+  height: 100%; /* or 800px if fixed height */
   object-fit: cover;
   z-index: -1;
-  opacity: 0.1;
+}
+.hero-section {
+  position: relative;
+  height: 800px; /* same as background image */
 }
 
 /* Title container */
 .title-container {
-  position: relative;
-  top: 300px;
+  position: absolute;
+  top: 50%;  /* center vertically */
   left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
+  transform: translate(-50%, -50%);
   z-index: 5;
+  text-align: center;
 }
 
 .title-container .title {
