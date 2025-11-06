@@ -13,3 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => console.error("Error loading header:", err));
 });
 
+function toggleMenu(element) {
+  const nav = document.getElementById('nav-menu');
+  nav.classList.toggle('active');
+  element.classList.toggle('active'); // rotates hamburger into X
+}
