@@ -18,3 +18,11 @@ function toggleMenu(element) {
   nav.classList.toggle('active');
   element.classList.toggle('active'); // rotates hamburger into X
 }
+document.querySelectorAll('a.nav-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    if (this.href === window.location.href) {
+      e.preventDefault(); // Prevent reload/jump
+      console.log('Already on this page!');
+    }
+  });
+});
