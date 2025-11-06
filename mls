@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  
+</head>
+<body>
+  <div class="container">
+<div class="filters-bar">
+  <div class="dropdown" data-filter="city">עיר / מדינה <i data-feather="chevron-down"></i>
+    <div class="dropdown-content">
+      <label><input type="checkbox" value="תל אביב"> תל אביב</label>
+      <label><input type="checkbox" value="הרצליה"> הרצליה</label>
+      <label><input type="checkbox" value="ירושלים"> ירושלים</label>
+    </div>
+  </div>
+
+  <div class="dropdown" data-filter="price">מחיר <i data-feather="chevron-down"></i>
+    
+    <div class="dropdown-content">
+      <label><input type="checkbox" value="0-2M"> עד ₪2 מיליון</label>
+      <label><input type="checkbox" value="2-4M"> ₪2–4 מיליון</label>
+      <label><input type="checkbox" value="4M+"> מעל ₪4 מיליון</label>
+    </div>
+  </div>
+
+  <div class="dropdown" data-filter="type">סוג נכס <i data-feather="chevron-down"></i>
+    <div class="dropdown-content">
+      <label><input type="checkbox" value="דירה"> דירה</label>
+      <label><input type="checkbox" value="דופלקס"> דופלקס</label>
+      <label><input type="checkbox" value="פנטהאוז"> פנטהאוז</label>
+    </div>
+  </div>
+
+  <div class="dropdown" data-filter="status">סטטוס <i data-feather="chevron-down"></i>
+    <div class="dropdown-content">
+      <label><input type="checkbox" value="פעיל"> פעיל</label>
+      <label><input type="checkbox" value="בקרוב"> בקרוב</label>
+      <label><input type="checkbox" value="נמכר"> נמכר</label>
+    </div>
+  </div>
+  
+<button class="clear-filters-btn" style="display:none;">נקה הכל ✖</button>
+
+  <div class="view-toggle">
+  <button data-view="map" title="Map Only"><i data-feather="map"></i></button>
+  <button data-view="both" class="active" title="Map + Grid"><i data-feather="layout"></i></button>
+  <button data-view="grid" title="Grid Only"><i data-feather="grid"></i></button>
+</div>
+
+  <!-- ✅ Moved here -->
+  <div class="filters-tags-inline active-filters"></div>
+
+<div class="search-wrapper">
+  <input type="text" id="search-bar" placeholder="חיפוש לפי שם פרויקט..." />
+  <i data-feather="search"></i>
+</div>
+
+</div>
+
+
+<div class="main-content">
+  <!-- Map Section -->
+  <div id="map"></div>
+
+  <!-- Property Grid Section -->
+  <div class="property-grid-wrapper map-layout">
+    <div class="property-grid">
+
+      <!-- Mercedes-Benz Place -->
+      <div class="property-card">
+        <div class="slider-container">
+          <div class="slider-images">
+            <img src="https://static.wixstatic.com/media/1799ca_2d9be9135f7c432ca2072a252fbda6c9~mv2.jpg" class="active" />
+            <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" />
+          </div>
+          <div class="status-tag">Last Chance</div>
+          <div class="property-info">
+            <div class="project-name">Mercedes-Benz Place</div>
+            <div class="price">$1,200,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hub Miami -->
+      <div class="property-card">
+        <div class="slider-container">
+          <div class="slider-images">
+            <img src="https://static.wixstatic.com/media/1799ca_edd479bd24fa4e80ba5472144fbb1ea9~mv2.jpg" class="active" />
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267" />
+          </div>
+          <div class="status-tag">Shovel Ready!</div>
+          <div class="property-info">
+            <div class="project-name">Hub Miami</div>
+            <div class="price">$900,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dolce & Gabbana Residences -->
+      <div class="property-card">
+        <div class="slider-container">
+          <div class="slider-images">
+            <img src="https://static.wixstatic.com/media/1799ca_6a6371ac3a9f4d2f9e1c14394f0f8b3d~mv2.jpg" class="active" />
+            <img src="https://images.unsplash.com/photo-1560448204-2b6ef5d7e8ce" />
+          </div>
+          <div class="status-tag">Coming Soon</div>
+          <div class="property-info">
+            <div class="project-name">Dolce &amp; Gabbana</div>
+            <div class="price">$2,950,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Casa Bella -->
+      <div class="property-card">
+        <div class="slider-container">
+          <div class="slider-images">
+            <img src="https://static.wixstatic.com/media/1799ca_9c239b8b5f014f3db432b6923d813a1d~mv2.jpg" class="active" />
+            <img src="https://images.unsplash.com/photo-1580584127490-123a7f0431f2" />
+          </div>
+          <div class="status-tag">Last Chance</div>
+          <div class="property-info">
+            <div class="project-name">Casa Bella</div>
+            <div class="price">$1,100,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- One Park Tower -->
+      <div class="property-card">
+        <div class="slider-container">
+          <div class="slider-images">
+            <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6" class="active" />
+            <img src="https://images.unsplash.com/photo-1549921296-3f70c6a0a8c1" />
+          </div>
+          <div class="status-tag">In Progress</div>
+          <div class="property-info">
+            <div class="project-name">One Park Tower</div>
+            <div class="price">$980,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jem Residences -->
+      <div class="property-card">
+        <div class="slider-container">
+          <div class="slider-images">
+            <img src="https://static.wixstatic.com/media/1799ca_710d6b07b99a4d44aec9360313f8f420~mv2.jpg" class="active" />
+            <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" />
+          </div>
+          <div class="status-tag">Super Hot</div>
+          <div class="property-info">
+            <div class="project-name">Jem Residences</div>
+            <div class="price">$550,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Villa Miami -->
+      <div class="property-card">
+        <div class="slider-container">
+          <div class="slider-images">
+            <img src="https://images.unsplash.com/photo-1572120360610-d971b9b78825" class="active" />
+            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae" />
+          </div>
+          <div class="status-tag">Last Chance</div>
+          <div class="property-info">
+            <div class="project-name">Villa Miami</div>
+            <div class="price">$1,750,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- The Bentley Tower -->
+      <div class="property-card">
+        <div class="slider-container">
+          <div class="slider-images">
+            <img src="https://images.unsplash.com/photo-1580584127490-123a7f0431f2" class="active" />
+            <img src="https://images.unsplash.com/photo-1560448204-2b6ef5d7e8ce" />
+          </div>
+          <div class="status-tag">New Launch</div>
+          <div class="property-info">
+            <div class="project-name">Bentley Tower</div>
+            <div class="price">$1,900,000</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>
