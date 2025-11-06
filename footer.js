@@ -1,86 +1,86 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // ---------- Footer mobile toggle ----------
-  const columns = document.querySelectorAll('.footer-column');
+  // Load footer first
+  fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+      const footerDiv = document.getElementById('footer');
+      footerDiv.innerHTML = data;
 
-  function setupMobile() {
-    const isMobile = window.innerWidth <= 900;
-    columns.forEach(col => {
-      const title = col.querySelector('h4');
-      const list = col.querySelector('ul');
+      // ---------- Footer mobile toggle ----------
+      const columns = footerDiv.querySelectorAll('.footer-column');
 
-      if (!isMobile) {
-        // Desktop: reset
-        col.classList.remove('active', 'collapsed');
-        list.style.display = 'block';
-        title.onclick = null;
-        return;
+      function setupMobile() {
+        const isMobile = window.innerWidth <= 900;
+        columns.forEach(col => {
+          const title = col.querySelector('h4');
+          const list = col.querySelector('ul');
+
+          if (!isMobile) {
+            col.classList.remove('active', 'collapsed');
+            list.style.display = 'block';
+            title.onclick = null;
+            return;
+          }
+
+          col.classList.add('collapsed');
+          list.style.display = 'none';
+
+          title.onclick = () => {
+            const isActive = col.classList.contains('active');
+            col.classList.toggle('active', !isActive);
+            list.style.display = !isActive ? 'block' : 'none';
+          };
+        });
       }
 
-      // Mobile: collapsed by default
-      col.classList.add('collapsed');
-      list.style.display = 'none';
+      setupMobile();
+      window.addEventListener('resize', setupMobile);
 
-      title.onclick = () => {
-        const isActive = col.classList.contains('active');
-        col.classList.toggle('active', !isActive);
-        list.style.display = !isActive ? 'block' : 'none';
-      };
-    });
-  }
+      // ---------- Country selector popup ----------
+      const selector = document.getElementById('countrySelector');
+      const popup = document.getElementById('countryPopup');
 
-  setupMobile();
-  window.addEventListener('resize', setupMobile);
+      if (selector && popup) {
+        selector.addEventListener('click', (e) => {
+          e.stopPropagation();
+          popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+        });
 
-  // ---------- Country selector popup ----------
-  const selector = document.getElementById('countrySelector');
-  const popup = document.getElementById('countryPopup');
+        document.querySelectorAll('.country-option').forEach(option => {
+          option.addEventListener('click', () => {
+            const img = option.querySelector('img')?.src;
+            const name = option.textContent.trim();
+            if (img) selector.querySelector('img').src = img;
+            const link = selector.querySelector('.country-link');
+            if (link) link.textContent = name;
+            popup.style.display = 'none';
+          });
+        });
+      }
 
-  if (selector && popup) {
-    selector.addEventListener('click', (e) => {
-      e.stopPropagation();
-      popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
-    });
+      // ---------- Privacy popup toggle ----------
+      const privacyTrigger = document.getElementById('privacyTrigger');
+      const privacyPopup = document.getElementById('privacyPopup');
 
-    document.querySelectorAll('.country-option').forEach(option => {
-      option.addEventListener('click', (e) => {
-        const img = option.querySelector('img')?.src;
-        const name = option.textContent.trim();
-        if (img) selector.querySelector('img').src = img;
-        const link = selector.querySelector('.country-link');
-        if (link) link.textContent = name;
-        popup.style.display = 'none';
+      if (privacyTrigger && privacyPopup) {
+        privacyTrigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          privacyPopup.style.display = privacyPopup.style.display === 'block' ? 'none' : 'block';
+        });
+
+        document.getElementById('savePrivacy')?.addEventListener('click', () => {
+          const selected = document.querySelector('input[name="privacy"]:checked');
+          if (selected) alert(`Your preference: ${selected.value}`);
+          privacyPopup.style.display = 'none';
+        });
+      }
+
+      // ---------- Close popups when clicking outside ----------
+      document.addEventListener('click', () => {
+        if (popup) popup.style.display = 'none';
+        if (privacyPopup) privacyPopup.style.display = 'none';
       });
-    });
-  }
 
-  // ---------- Privacy popup toggle ----------
-  const privacyTrigger = document.getElementById('privacyTrigger');
-  const privacyPopup = document.getElementById('privacyPopup');
-
-  if (privacyTrigger && privacyPopup) {
-    privacyTrigger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      privacyPopup.style.display = privacyPopup.style.display === 'block' ? 'none' : 'block';
-    });
-
-    document.getElementById('savePrivacy')?.addEventListener('click', () => {
-      const selected = document.querySelector('input[name="privacy"]:checked');
-      if (selected) alert(`Your preference: ${selected.value}`);
-      privacyPopup.style.display = 'none';
-    });
-  }
-
-  // ---------- Close popups when clicking outside ----------
-  document.addEventListener('click', () => {
-    if (popup) popup.style.display = 'none';
-    if (privacyPopup) privacyPopup.style.display = 'none';
-  });
+    })
+    .catch(err => console.error('Error loading footer:', err));
 });
-
-fetch('footer.html')
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById('footer').innerHTML = data;
-  })
-  .catch(err => console.error('Error loading footer:', err));
-
