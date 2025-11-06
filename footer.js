@@ -76,3 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (privacyPopup) privacyPopup.style.display = 'none';
   });
 });
+
+fetch('footer.html')
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById('footer').innerHTML = data;
+  })
+  .catch(err => console.error('Error loading footer:', err));
+
