@@ -2655,3 +2655,6 @@ body {
       .btn-bubble { max-width: 50px; justify-content: center; text-align: center; }
       .nav-icon { display: none; }
     }
+
+  body { background-color: pink; }
+
