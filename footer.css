@@ -1,8 +1,18 @@
+/* ======================== GENERAL BODY ======================== */
 body {
   font-family: 'Rubik', sans-serif;
   background-color: #130328;
-  margin: 50px 100px;
   color: #fff;
+  margin: 50px 100px;
+}
+
+/* ======================== FOOTER ======================== */
+#footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
 }
 
 .footer-section {
@@ -14,14 +24,61 @@ body {
   gap: 15px;
 }
 
-/* Country Selector */
-.flag {
-  width: 21px;
-  height: 13px;
-  border-radius: 2px;
-  object-fit: cover;
+/* Top part of the footer - columns */
+.footer-top {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  padding: 0;
 }
 
+.footer-column h4 {
+  font-weight: 500;
+  font-size: 12px;
+  margin-bottom: 10px;
+  position: relative;
+  cursor: default;
+}
+
+.footer-column ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-column li {
+  margin-bottom: 6px;
+}
+
+.footer-column a {
+  color: #dbdbdb;
+  text-decoration: none;
+  font-size: 12px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s;
+}
+
+.footer-column a:hover {
+  color: #fff;
+}
+
+/* Hiring bubble */
+.hiring-bubble {
+  background-color: #6327e5;
+  color: #fff;
+  font-size: 7px;
+  font-weight: 400;
+  padding: 2px 4px;
+  border-radius: 4px;
+  margin-left: 5px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* ======================== COUNTRY SELECTOR ======================== */
 .country-selector {
   position: relative;
   display: inline-flex;
@@ -36,7 +93,6 @@ body {
   margin-left: 8px;
 }
 
-/* Popup for country selection */
 .country-popup {
   display: none;
   position: absolute;
@@ -73,29 +129,7 @@ body {
   border-radius: 2px;
 }
 
-/* Social Icons */
-.social-icons a {
-  margin-right: 10px;
-  margin-top: 6px;
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-}
-
-.social-icons a img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  filter: brightness(0) invert(1); /* makes icons white */
-  transition: transform 0.2s;
-}
-
-.social-icons a:hover img {
-  transform: scale(1.1);
-}
-
-/* Privacy Section */
+/* ======================== PRIVACY ======================== */
 .privacy {
   display: flex;
   align-items: center;
@@ -161,123 +195,55 @@ body {
   background-color: #6a3fd1;
 }
 
-/* Copyright */
+/* ======================== SOCIAL ICONS ======================== */
+.social-icons a {
+  margin-right: 10px;
+  margin-top: 6px;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+}
+
+.social-icons a img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0) invert(1);
+  transition: transform 0.2s;
+}
+
+.social-icons a:hover img {
+  transform: scale(1.1);
+}
+
+/* ======================== COPYRIGHT ======================== */
 .copyright {
   font-size: 12px;
   color: #fff;
+  margin-top: 15px;
 }
 
-/* Fade animation for popups */
+/* ======================== ANIMATIONS ======================== */
 @keyframes fadeIn {
-  from {opacity: 0; transform: translateY(10px);}
-  to {opacity: 1; transform: translateY(0);}
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== MOBILE RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .footer-section {
-    flex-direction: column;
-    align-items: flex-start;
+/* ======================== MOBILE RESPONSIVE ======================== */
+@media (max-width: 900px) {
+  .footer-top {
+    grid-template-columns: 1fr;
     gap: 10px;
   }
 
-  .social-icons {
-    margin-top: 5px;
-  }
-
-  .privacy {
-    margin-left: 0;
-  }
-
-  .country-selector {
+  .footer-column h4 {
+    cursor: pointer;
+    padding-right: 20px;
+    position: relative;
     margin-bottom: 5px;
   }
 
-  .copyright {
-    margin-top: 5px;
-  }
-body {
-  font-family: 'Rubik', sans-serif;
-  background-color: transparent;
-  margin: 20px 20px;
-  }
-    }
-body {
-  font-family: 'Rubik', sans-serif;
-  background: transparent;
-  color: #fff;
-  margin: 100px 100px;
-}
-footer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.footer-top {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 20px;
-  padding: 0px;
-}
-.footer-column h4 {
-  font-weight: 500;
-  font-size: 12px;
-  margin-bottom: 10px;
-  position: relative;
-  cursor: default;
-}
-.footer-column ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.footer-column li {
-  margin-bottom: 6px;
-}
-.footer-column a {
-  color: #dbdbdb;
-  text-decoration: none;
-  font-size: 12px;
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: color 0.2s;
-}
-.footer-column a:hover {
-  color: #fff;
-}
-  /* Bubble visible on all devices */
-.hiring-bubble {
-  background-color: #6327e5; /* pink */
-  color: #fff;
-  font-size: 7px;
-  font-weight: 400;
-  padding: 2px 4px;
-  border-radius: 4px;
-  margin-left: 5px;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-
-/* ===== Mobile collapsible styles ===== */
-@media (max-width: 900px) {
-  /* Stack columns vertically and reduce gap */
-  .footer-top {
-    grid-template-columns: 1fr;
-    gap: 10px; /* smaller gap for mobile */
-  }
-
-  /* Footer column titles */
-  .footer-column h4 {
-    cursor: pointer;
-    padding-right: 20px; /* space for arrow */
-    position: relative; /* needed for arrow positioning */
-    margin-bottom: 5px; /* optional: reduce space under title */
-  }
-
-  /* Arrow for collapsible columns */
   .footer-column h4::after {
     content: '▾';
     position: absolute;
@@ -290,10 +256,9 @@ footer {
     transform: rotate(180deg);
   }
 
-  /* Footer lists */
   .footer-column ul {
-    display: none; /* collapsed by default */
-    margin: 0 0 2px 0; /* reduced bottom margin */
+    display: none;
+    margin: 0 0 2px 0;
     padding: 0;
   }
 
@@ -301,20 +266,15 @@ footer {
     display: block;
   }
 
-  /* Reduce spacing between list items */
   .footer-column li {
-    margin-bottom: 2px; /* compact spacing */
+    margin-bottom: 2px;
   }
 
-  /* Body margin adjustment for mobile */
+  .footer-column a {
+    font-size: 10px;
+  }
+
   body {
     margin: 20px;
   }
-  .footer-column a {
-  font-size: 10px;
 }
-    .footer-column h4::after {
-    font-size: 10px;
-      margin-bottom: 10px;
-  }
-  }
