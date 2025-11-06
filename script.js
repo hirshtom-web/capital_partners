@@ -515,4 +515,56 @@ loadHTML("#footer", "footer.html");
     nav.classList.toggle('active');
     el.classList.toggle('active');
   }
+// include.js
+function loadHTML(selector, file, callback) {
+  fetch(file)
+    .then(response => response.text())
+    .then(data => {
+      document.querySelector(selector).innerHTML = data;
+      if (callback) callback(); // run callback after load
+    })
+    .catch(err => console.error('Error loading', file, err));
+}
+
+// Load shared sections
+loadHTML("#header", "header.html", () => {
+  console.log("Header loaded");
+
+  // Re-run feather icons for the newly added HTML
+  feather.replace();
+
+  // Reattach menu toggle (now that it's actually in the DOM)
+  const menuToggle = document.querySelector('.menu-toggle');
+  if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      const nav = document.getElementById('nav-menu');
+      nav.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+    });
+  }
+
+  // Dropdowns inside header
+  document.querySelectorAll('.dropdown').forEach(drop => {
+    drop.addEventListener('click', e => {
+      if (e.target.closest('.dropdown-content')) return;
+      e.stopPropagation();
+      const isActive = drop.classList.contains('active');
+      document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+      if (!isActive) drop.classList.add('active');
+    });
+  });
+
+  document.querySelectorAll('.dropdown-content').forEach(menu => {
+    menu.addEventListener('click', e => e.stopPropagation());
+  });
+
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+  });
+});
+
+loadHTML("#footer", "footer.html", () => {
+  console.log("Footer loaded");
+  feather.replace();
+});
 
