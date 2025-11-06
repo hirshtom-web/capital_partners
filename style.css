@@ -55,21 +55,29 @@
     font-size: 18px;
   }
 
-  /* HEADER */
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #fff;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;      /* ✅ ensures vertical centering */
+  padding: 14px 24px;       /* slightly taller padding helps alignment */
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  line-height: 1;           /* removes any unexpected vertical spacing */
+}
 
-  .logo img {
-    height: 20px;
-  }
+.logo {
+  display: flex;
+  align-items: center;      /* ✅ vertically center the image inside logo container */
+}
+
+.logo img {
+  height: 24px;             /* slightly taller for balance with text */
+  display: block;           /* removes baseline gap */
+}
+
 
   /* NAVIGATION */
   nav {
