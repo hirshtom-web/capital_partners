@@ -26,3 +26,13 @@ document.querySelectorAll('a.nav-link').forEach(link => {
     }
   });
 });
+// Prevent default jump for all links with href="#"
+document.addEventListener('DOMContentLoaded', () => {
+  const links = document.querySelectorAll('a[href="#"]');
+  links.forEach(link => {
+    link.addEventListener('click', function(event) {
+      event.preventDefault(); // stops the jump
+    });
+  });
+});
+
