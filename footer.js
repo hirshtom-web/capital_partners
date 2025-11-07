@@ -1,13 +1,19 @@
+<script>
 document.addEventListener('DOMContentLoaded', () => {
-  const footerDiv = document.querySelector('footer');
+  const columns = document.querySelectorAll('.footer-column');
+  const selector = document.getElementById('countrySelector');
+  const popup = document.getElementById('countryPopup');
+  const privacyTrigger = document.getElementById('privacyTrigger');
+  const privacyPopup = document.getElementById('privacyPopup');
+  const savePrivacy = document.getElementById('savePrivacy');
 
-  // ---------- Footer mobile toggle ----------
-  const columns = footerDiv.querySelectorAll('.footer-column');
+  // ---------- Mobile collapsible setup ----------
   function setupMobile() {
     const isMobile = window.innerWidth <= 900;
     columns.forEach(col => {
       const title = col.querySelector('h4');
       const list = col.querySelector('ul');
+
       if (!title || !list) return;
 
       if (!isMobile) {
@@ -19,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       col.classList.add('collapsed');
       list.style.display = 'none';
-
       title.onclick = () => {
         const isActive = col.classList.contains('active');
         col.classList.toggle('active', !isActive);
@@ -32,9 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', setupMobile);
 
   // ---------- Country selector popup ----------
-  const selector = document.getElementById('countrySelector');
-  const popup = document.getElementById('countryPopup');
-
   if (selector && popup) {
     selector.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -45,29 +47,29 @@ document.addEventListener('DOMContentLoaded', () => {
       option.addEventListener('click', () => {
         const img = option.querySelector('img')?.src;
         const name = option.textContent.trim();
-        if (img) selector.querySelector('img').src = img;
-        const link = selector.querySelector('.country-link');
-        if (link) link.textContent = name;
+        if (img && selector.querySelector('img')) {
+          selector.querySelector('img').src = img;
+        }
+        selector.querySelector('.country-link').textContent = name;
         popup.style.display = 'none';
       });
     });
   }
 
   // ---------- Privacy popup toggle ----------
-  const privacyTrigger = document.getElementById('privacyTrigger');
-  const privacyPopup = document.getElementById('privacyPopup');
-
   if (privacyTrigger && privacyPopup) {
     privacyTrigger.addEventListener('click', (e) => {
       e.stopPropagation();
       privacyPopup.style.display = privacyPopup.style.display === 'block' ? 'none' : 'block';
     });
 
-    document.getElementById('savePrivacy')?.addEventListener('click', () => {
-      const selected = document.querySelector('input[name="privacy"]:checked');
-      if (selected) alert(`Your preference: ${selected.value}`);
-      privacyPopup.style.display = 'none';
-    });
+    if (savePrivacy) {
+      savePrivacy.addEventListener('click', () => {
+        const selected = document.querySelector('input[name="privacy"]:checked');
+        if (selected) alert(`Your preference: ${selected.value}`);
+        privacyPopup.style.display = 'none';
+      });
+    }
   }
 
   // ---------- Close popups when clicking outside ----------
@@ -76,3 +78,4 @@ document.addEventListener('DOMContentLoaded', () => {
     if (privacyPopup) privacyPopup.style.display = 'none';
   });
 });
+</script>
