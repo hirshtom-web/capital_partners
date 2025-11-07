@@ -1,7 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Load footer first
-  fetch('footer.html')
-    .then(response => response.text())
+  console.log('Fetching footer...');
+
+  fetch('../footer.html') // adjust this if footer.html is in root, use './footer.html'
+    .then(response => {
+      console.log('Response status:', response.status);
+      return response.text();
+    })
     .then(data => {
       const footerDiv = document.getElementById('footer');
       footerDiv.innerHTML = data;
@@ -14,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
         columns.forEach(col => {
           const title = col.querySelector('h4');
           const list = col.querySelector('ul');
+
+          if (!title || !list) return;
 
           if (!isMobile) {
             col.classList.remove('active', 'collapsed');
@@ -80,18 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (popup) popup.style.display = 'none';
         if (privacyPopup) privacyPopup.style.display = 'none';
       });
-
     })
     .catch(err => console.error('Error loading footer:', err));
 });
-console.log('Fetching footer...');
-fetch('footer.html')
-  .then(response => {
-    console.log('Response status:', response.status);
-    return response.text();
-  })
-  .then(data => {
-    console.log('Footer HTML loaded:', data);
-    document.getElementById('footer').innerHTML = data;
-  })
-  .catch(err => console.error('Error loading footer:', err));
