@@ -5,6 +5,7 @@ body {
   color: #fff;
   margin: 0; /* or smaller value */
   padding: 50px 100px; /* optional, if you want spacing inside body */
+   margin-top: 100px;
 }
 
 /* ======================== FOOTER ======================== */
