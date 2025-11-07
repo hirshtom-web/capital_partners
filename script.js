@@ -40,3 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('DOMContentLoaded', () => {
   document.body.classList.add('loaded');
 });
+
+document.querySelectorAll('nav a[href="#"]').forEach(link => {
+  link.addEventListener('click', e => e.preventDefault());
+});
+
