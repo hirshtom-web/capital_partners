@@ -36,3 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// JS to trigger fade-in
+window.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.add('loaded');
+});
