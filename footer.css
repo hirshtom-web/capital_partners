@@ -8,13 +8,14 @@ body {
 }
 
 /* ======================== FOOTER ======================== */
-#footer {
+/* Footer */
+footer {
+  background-color: #130328; /* dark purple */
+  color: #fff;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 10;
+  padding: 40px 20px; /* optional spacing */
 }
+
 
 .footer-section {
   border-top: 1px solid #ccc;
