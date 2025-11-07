@@ -3,12 +3,13 @@ body {
   font-family: 'Rubik', sans-serif;
   background-color: #130328;
   color: #fff;
-  margin: 50px 100px;
+  margin: 0; /* or smaller value */
+  padding: 50px 100px; /* optional, if you want spacing inside body */
 }
 
 /* ======================== FOOTER ======================== */
 #footer {
-  width: 100%;
+  width: 95%;
   display: flex;
   flex-direction: column;
   position: relative;
