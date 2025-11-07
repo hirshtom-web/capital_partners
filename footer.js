@@ -95,4 +95,3 @@ fetch('footer.html')
     document.getElementById('footer').innerHTML = data;
   })
   .catch(err => console.error('Error loading footer:', err));
-
