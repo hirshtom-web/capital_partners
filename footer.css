@@ -197,6 +197,7 @@ footer {
   margin-bottom: 10px;
   position: relative;
   cursor: default;
+  color: #fff; 
 }
 
 .footer-column ul {
@@ -271,4 +272,7 @@ footer {
   .footer-column a {
     font-size: 10px;
   }
+  footer {
+  padding: 10px 10px;
+}
 }
