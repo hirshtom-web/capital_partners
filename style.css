@@ -361,6 +361,7 @@ header {
 .trusted-section {
   position: relative;
   margin-top: 100px; 
+  margin-bottom: 100px; 
   width: 100%;
   text-align: center;
   z-index: 3;
