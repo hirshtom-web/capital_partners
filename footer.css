@@ -1,95 +1,41 @@
-/* ======================== GENERAL BODY ======================== */
-* {
-  box-sizing: border-box; /* include padding in width calculations */
-}
-
 body {
   font-family: 'Rubik', sans-serif;
-  background-color: #130328;
+  background: #130328;
+  padding: 100px 100px;
   color: #fff;
   margin: 0;
-  padding: 50px 5%; /* instead of 100px, use percentage */
+  box-sizing: border-box;
 }
 
-/* ======================== FOOTER ======================== */
-/* Footer */
+/* Footer Wrapper */
 footer {
-  background-color: #130328; /* dark purple */
-  color: #fff;
   width: 100%;
-  padding: 40px 20px; /* optional spacing */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
+/* Top Section (6 Columns) */
+.footer-top {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  width: 100%;
+  padding: 0 0 30px 0;
+  box-sizing: border-box;
+}
 
+/* Bottom Section (buttons, privacy, etc.) */
 .footer-section {
-  border-top: 1px solid #ccc;
+  border-top: 0.25px solid #9999;
   padding: 20px 0;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 15px;
-}
-
-/* Top part of the footer - columns */
-.footer-top {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
-  padding: 0;
-}
-
-.footer-column h4 {
-  font-weight: 500;
-  font-size: 12px;
-  margin-bottom: 10px;
-  position: relative;
-  cursor: default;
-}
-
-.footer-column ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.footer-column li {
-  margin-bottom: 6px;
-}
-
-.footer-column a {
-  color: #dbdbdb;
-  text-decoration: none;
-  font-size: 12px;
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: color 0.2s;
-}
-
-.footer-column a:hover {
-  color: #fff;
-}
-
-/* Hiring bubble */
-.hiring-bubble {
-  background-color: #6327e5;
-  color: #fff;
-  font-size: 7px;
-  font-weight: 400;
-  padding: 2px 4px;
-  border-radius: 4px;
-  margin-left: 5px;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-/* ======================== COUNTRY SELECTOR ======================== */
-.country-selector {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 50px;
 }
 
 /* Country Selector */
@@ -100,6 +46,21 @@ footer {
   object-fit: cover;
 }
 
+.country-selector {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.country-link {
+  font-size: 12px;
+  color: #fff;
+  text-decoration: none;
+  margin-left: 8px;
+}
+
+/* Popup for country selection */
 .country-popup {
   display: none;
   position: absolute;
@@ -136,7 +97,29 @@ footer {
   border-radius: 2px;
 }
 
-/* ======================== PRIVACY ======================== */
+/* Social Icons */
+.social-icons a {
+  margin-right: 10px;
+  margin-top: 6px;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+}
+
+.social-icons a img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0) invert(1);
+  transition: transform 0.2s;
+}
+
+.social-icons a:hover img {
+  transform: scale(1.1);
+}
+
+/* Privacy Section */
 .privacy {
   display: flex;
   align-items: center;
@@ -202,55 +185,77 @@ footer {
   background-color: #6a3fd1;
 }
 
-/* ======================== SOCIAL ICONS ======================== */
-.social-icons a {
-  margin-right: 10px;
-  margin-top: 6px;
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-}
-
-.social-icons a img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  filter: brightness(0) invert(1);
-  transition: transform 0.2s;
-}
-
-.social-icons a:hover img {
-  transform: scale(1.1);
-}
-
-/* ======================== COPYRIGHT ======================== */
+/* Copyright */
 .copyright {
   font-size: 12px;
   color: #fff;
-  margin-top: 15px;
 }
 
-/* ======================== ANIMATIONS ======================== */
+/* Fade animation */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {opacity: 0; transform: translateY(10px);}
+  to {opacity: 1; transform: translateY(0);}
 }
 
-/* ======================== MOBILE RESPONSIVE ======================== */
+/* Footer Columns */
+.footer-column h4 {
+  font-weight: 500;
+  font-size: 12px;
+  margin-bottom: 10px;
+  position: relative;
+  cursor: default;
+}
+
+.footer-column ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-column li {
+  margin-bottom: 6px;
+}
+
+.footer-column a {
+  color: #dbdbdb;
+  text-decoration: none;
+  font-size: 12px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s;
+}
+
+.footer-column a:hover {
+  color: #fff;
+}
+
+/* Bubble */
+.hiring-bubble {
+  background-color: #6327e5;
+  color: #fff;
+  font-size: 7px;
+  font-weight: 400;
+  padding: 2px 4px;
+  border-radius: 4px;
+  margin-left: 5px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Mobile */
 @media (max-width: 900px) {
   .footer-top {
     grid-template-columns: 1fr;
     gap: 10px;
   }
-
   .footer-column h4 {
     cursor: pointer;
     padding-right: 20px;
     position: relative;
     margin-bottom: 5px;
   }
-
   .footer-column h4::after {
     content: '▾';
     position: absolute;
@@ -258,30 +263,19 @@ footer {
     font-size: 12px;
     transition: transform 0.3s;
   }
-
   .footer-column.active h4::after {
     transform: rotate(180deg);
   }
-
   .footer-column ul {
     display: none;
-    margin: 0 0 2px 0;
-    padding: 0;
   }
-
   .footer-column.active ul {
     display: block;
   }
-
-  .footer-column li {
-    margin-bottom: 2px;
+  body {
+    padding: 20px;
   }
-
   .footer-column a {
     font-size: 10px;
-  }
-
-  body {
-    margin: 20px;
   }
 }
