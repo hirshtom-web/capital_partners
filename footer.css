@@ -1,18 +1,11 @@
-body {
-  font-family: 'Rubik', sans-serif;
-  background: #130328;
-  padding: 100px 100px;
-  color: #fff;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 /* Footer Wrapper */
 footer {
   width: 100%;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  background: #130328;
+  padding: 100px 100px;
 }
 
 /* Top Section (6 Columns) */
