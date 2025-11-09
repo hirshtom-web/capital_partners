@@ -36,25 +36,90 @@
 </div>
   
   <header>
-<div class="logo">
-  <a href="https://hirshtom-web.github.io/capital_partners/">
-    <img src="https://static.wixstatic.com/shapes/1799ca_f9630561313e4b2d9933265603bc6a0c.svg" alt="Logo">
-  </a>
+<!-- ALERT -->
+<div class="alert">
+  <span class="material-symbols-outlined">trending_up</span>
+  <span>2026’s fastest-growing real estate platform. <a href="#" class="learn-more">Learn more</a></span>
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">×</span>
 </div>
 
+<!-- HEADER -->
+<header>
+  <div class="logo"><img src="https://static.wixstatic.com/shapes/1799ca_f9630561313e4b2d9933265603bc6a0c.svg" alt="Logo"></div>
 
   <div class="menu-toggle" onclick="toggleMenu(this)">
-    <span></span>
-    <span></span>
+    <span></span><span></span>
   </div>
 
+  <!-- DESKTOP NAV -->
   <nav id="nav-menu">
-    <a href="https://hirshtom-web.github.io/capital_partners/mls.html"><span class="nav-icon"></span>Buy</a>
-    <a href="#"><span class="nav-icon"></span>Manage</a>
-    <a href="#"><span class="nav-icon"></span>Services</a>
-    <a href="#"><span class="nav-icon"></span>Developers</a>
-    <a href="#"><span class="nav-icon"></span>Company</a>
-    <a href="#" style="color:#a734af;"><span class="nav-icon"></span>Call Now</a>
-    <a href="#" class="btn-bubble"><span class="nav-icon"></span>Let's go!</a>
+    <!-- BUY -->
+    <div class="buy">
+      <a href="#">Buy</a>
+      <div class="submenu">
+        <div class="submenu-inner">
+          <div class="submenu-left">
+            <a href="#"><div class="submenu-item"><div><div class="submenu-title">Residential</div><div class="submenu-subtitle">Buy your dream home</div></div><span class="material-symbols-outlined submenu-icon">home</span></div></a>
+            <a href="#"><div class="submenu-item"><div><div class="submenu-title">Commercial</div><div class="submenu-subtitle">Office & Retail Spaces</div></div><span class="material-symbols-outlined submenu-icon">apartment</span></div></a>
+            <a href="#"><div class="submenu-item"><div><div class="submenu-title">Luxury</div><div class="submenu-subtitle">High-end Properties</div></div><span class="material-symbols-outlined submenu-icon">diamond</span></div></a>
+            <a href="#"><div class="submenu-item"><div><div class="submenu-title">Property Mgmt</div><div class="submenu-subtitle">Manage your assets</div></div><span class="material-symbols-outlined submenu-icon">folder_shared</span></div></a>
+            <a href="#"><div class="submenu-item"><div><div class="submenu-title">Tenant Portal</div><div class="submenu-subtitle">Access anytime</div></div><span class="material-symbols-outlined submenu-icon">key</span></div></a>
+            <a href="#"><div class="submenu-item"><div><div class="submenu-title">Reports</div><div class="submenu-subtitle">Track performance</div></div><span class="material-symbols-outlined submenu-icon">bar_chart</span></div></a>
+            <a href="#"><div class="submenu-item"><div><div class="submenu-title">Residential</div><div class="submenu-subtitle">Buy your dream home</div></div><span class="material-symbols-outlined submenu-icon">home</span></div></a>
+          
+          </div>
+          <div class="submenu-right map-container">
+            <div id="map"></div>
+            <div class="tooltip" id="tooltip"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MANAGE -->
+    <div class="manage">
+      <a href="#">Manage</a>
+      <div class="submenu">
+        <div class="submenu-inner">
+          <div class="submenu-left">
+            <a href="#"><div class="submenu-item"><div><div class="submenu-title">Property Mgmt</div><div class="submenu-subtitle">Manage your assets</div></div><span class="material-symbols-outlined submenu-icon">folder_shared</span></div></a>
+            <a href="#"><div class="submenu-item"><div><div class="submenu-title">Tenant Portal</div><div class="submenu-subtitle">Access anytime</div></div><span class="material-symbols-outlined submenu-icon">key</span></div></a>
+            <a href="#"><div class="submenu-item"><div><div class="submenu-title">Reports</div><div class="submenu-subtitle">Track performance</div></div><span class="material-symbols-outlined submenu-icon">bar_chart</span></div></a>
+          </div>
+          <div class="submenu-right media-box">
+            <video src="https://www.w3schools.com/html/mov_bbb.mp4" autoplay muted loop playsinline></video>
+            <div class="media-text">
+              <h4>Portfolio Insights</h4>
+              <p>Track your property performance in real time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="services">
+      <a href="#">Services</a>
+      <div class="submenu">
+        <div class="submenu-inner">
+          <div class="submenu-left">
+            <a href="#"><div class="submenu-item"><div><div class="submenu-title">Consulting</div><div class="submenu-subtitle">Professional advice</div></div><span class="material-symbols-outlined submenu-icon">business_center</span></div></a>
+            <a href="#"><div class="submenu-item"><div><div class="submenu-title">Valuation</div><div class="submenu-subtitle">Property appraisals</div></div><span class="material-symbols-outlined submenu-icon">straighten</span></div></a>
+            <a href="#"><div class="submenu-item"><div><div class="submenu-title">Marketing</div><div class="submenu-subtitle">Promote your property</div></div><span class="material-symbols-outlined submenu-icon">campaign</span></div></a>
+          </div>
+          <div class="submenu-right media-box">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600" alt="Service" />
+            <div class="media-text">
+              <h4>Expert Services</h4>
+              <p>Tailored strategies for your success.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div><a href="#">Developers</a></div>
+    <div><a href="#">Company</a></div>
+    <div><a href="#" class="btn-bubble">Let's go!</a></div>
   </nav>
 </header>
