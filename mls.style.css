@@ -2,28 +2,33 @@ html, body, header, nav {
   direction: ltr !important;
   text-align: left;
 }
-{
-      box-sizing: border-box;
-    }
 
-    body {
-      font-family: 'Rubik', sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: #f9f9f9;
-      color: #333;
-      direction: ltr;
-    }
+/* Fix invalid orphan block */
+* {
+  box-sizing: border-box;
+}
 
-    .container {
-      max-width: 1300px;
-      margin: 0 auto;
-    }
+body {
+  font-family: 'Rubik', sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #f9f9f9;
+  color: #333;
+  direction: ltr;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* ---------- VIEW TOGGLE ---------- */
 .view-toggle {
   display: flex;
   gap: 10px;
   margin: 12px 0;
 }
+
 .view-toggle button {
   background: #fff;
   border: 1px solid #ddd;
@@ -35,36 +40,39 @@ html, body, header, nav {
   justify-content: center;
   transition: all 0.3s;
 }
+
 .view-toggle button.active {
   border-color: #ff1c7c;
   color: #ff1c7c;
 }
+
 .view-toggle button:hover {
   background: #ffe6f0;
   border-color: #ff1c7c;
 }
 
-    /* MAIN CONTENT: MAP + GRID */
-    .main-content {
-      display: flex;
-      gap: 20px;
-      margin-top: 20px;
-      flex-wrap: wrap;
-    }
+/* ---------- MAIN CONTENT LAYOUT ---------- */
+.main-content {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
 
-    /* MAP */
-    #map {
-      flex: 1;
-      min-height: 600px;
-      border-radius: 16px;
-      background: #e5e5e5; /* placeholder for map */
-    }
+/* MAP */
+#map {
+  flex: 1;
+  min-height: 600px;
+  border-radius: 16px;
+  background: #e5e5e5; /* placeholder */
+}
 
-    /* GRID WRAPPER */
-    .property-grid-wrapper {
-      flex: 1;
-    }
+/* GRID WRAPPER */
+.property-grid-wrapper {
+  flex: 1;
+}
 
+/* ---------- FILTER BAR ---------- */
 .filters-bar {
   background: #fff;
   padding: 10px 16px;
@@ -75,9 +83,11 @@ html, body, header, nav {
   flex-wrap: nowrap;
   gap: 8px;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  z-index: 10;
 }
 
+/* Scrollable tags inside filter bar */
 .filters-bar .filters-tags-inline {
   display: flex;
   align-items: center;
@@ -86,23 +96,31 @@ html, body, header, nav {
   overflow-x: auto;
   scrollbar-width: none;
 }
+
 .filters-bar .filters-tags-inline::-webkit-scrollbar {
   display: none;
 }
-    /* Fix dropdowns clipping inside the filter bar */
-.filters-bar {
-  position: relative;
-  overflow: visible; /* allow dropdowns to extend outside */
-  z-index: 10;
-}
 
-/* Make sure dropdowns appear above the bar */
+/* Dropdowns */
 .dropdown {
   position: relative;
+  background: #f7f7f7;
+  border-radius: 999px;
+  padding: 0 14px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 13px;
   z-index: 20;
 }
 
-/* Raise the dropdown content even more */
+.dropdown svg {
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+}
+
 .dropdown-content {
   position: absolute;
   top: calc(100% + 6px);
@@ -114,9 +132,20 @@ html, body, header, nav {
   padding: 10px;
   font-size: 13px;
   min-width: 180px;
+  display: none;
 }
 
+.dropdown.active .dropdown-content {
+  display: block;
+}
 
+.dropdown-content label {
+  display: block;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+/* Search */
 .search-wrapper {
   flex: 1;
   position: relative;
@@ -130,67 +159,24 @@ html, body, header, nav {
   transition: flex-basis 0.3s ease;
 }
 
+.search-wrapper input {
+  border: none;
+  background: transparent;
+  flex: 1;
+  outline: none;
+  font-size: 14px;
+  direction: rtl;
+}
 
-    .search-wrapper input {
-      border: none;
-      background: transparent;
-      flex: 1;
-      outline: none;
-      font-size: 14px;
-      direction: rtl;
-    }
+.search-wrapper i {
+  position: absolute;
+  left: 14px;
+  stroke: #ff1c7c;
+  width: 18px;
+  height: 18px;
+}
 
-    .search-wrapper i {
-      position: absolute;
-      left: 14px;
-      stroke: #ff1c7c;
-      width: 18px;
-      height: 18px;
-    }
-
-    .dropdown {
-      position: relative;
-      background: #f7f7f7;
-      border-radius: 999px;
-      padding: 0 14px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      font-size: 13px;
-    }
-
-    .dropdown svg {
-      width: 14px;
-      height: 14px;
-      margin-right: 5px;
-    }
-
-    .dropdown-content {
-      position: absolute;
-      top: 45px;
-      right: 0;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      display: none;
-      z-index: 10;
-      padding: 10px;
-      font-size: 13px;
-      min-width: 180px;
-    }
-
-    .dropdown.active .dropdown-content {
-      display: block;
-    }
-
-    .dropdown-content label {
-      display: block;
-      margin-bottom: 6px;
-      cursor: pointer;
-    }
-
-/* ACTIVE FILTER TAGS INSIDE THE BAR */
+/* Active filters tags */
 .active-filters {
   display: flex;
   align-items: center;
@@ -199,7 +185,6 @@ html, body, header, nav {
   max-width: 45%;
 }
 
-/* make sure tags look clean */
 .filter-tag {
   display: flex;
   align-items: center;
@@ -222,26 +207,8 @@ html, body, header, nav {
   line-height: 1;
 }
 
-/* FLEX behavior in the filter bar */
-.filters-bar {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.search-wrapper {
-  flex: 1; /* takes remaining space */
-  min-width: 160px;
-  transition: flex-basis 0.3s ease;
-}
-
-/* When tags exist, shrink search bar smoothly */
-.filters-bar.has-tags .search-wrapper {
-  flex: 0 1 250px;
-}
-
-    .clear-filters-btn {
+/* Clear filters */
+.clear-filters-btn {
   background: none;
   border: 1px solid #ff1c7c;
   color: #ff1c7c;
@@ -252,103 +219,116 @@ html, body, header, nav {
   transition: all 0.3s;
   margin-top: 10px;
 }
+
 .clear-filters-btn:hover {
   background: #ff1c7c;
   color: white;
 }
 
+/* ---------- PROPERTY GRID ---------- */
+.property-grid {
+  display: grid;
+  gap: 24px;
+  margin-top: 2px;
+  transition: grid-template-columns 0.3s ease;
+}
 
-    /* PROPERTY GRID */
-    .property-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      margin-top: 2px;
-    }
+/* Default: 50/50 view (Split) */
+.main-content:not(.map-only):not(.grid-only) .property-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
 
-    /* Fix: When map is open, show 2 cards per row but keep card width same as 4 per row */
-    .property-grid-wrapper.map-layout .property-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+/* Grid Only (No Map) — full width, 4 columns */
+.main-content.grid-only .property-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
 
-    /* PROPERTY CARD */
-    .property-card {
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      transition: transform 0.25s;
-      cursor: pointer;
-      width: 100%;
-    }
+/* Map Only (grid hidden anyway) */
+.main-content.map-only .property-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
 
-    .property-card:hover {
-      transform: translateY(-4px);
-    }
+/* ---------- PROPERTY CARD ---------- */
+.property-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.25s;
+  cursor: pointer;
+  width: 100%;
+}
 
-    .slider-container {
-      position: relative;
-      width: 100%;
-      padding-top: 66.66%;
-    }
+.property-card:hover {
+  transform: translateY(-4px);
+}
 
-    .slider-images {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
+/* Image slider */
+.slider-container {
+  position: relative;
+  width: 100%;
+  padding-top: 66.66%;
+}
 
-    .slider-images img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: opacity 0.4s;
-      opacity: 0;
-    }
+.slider-images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
-    .slider-images img.active {
-      opacity: 1;
-    }
+.slider-images img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s;
+  opacity: 0;
+}
 
-    .property-info {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      padding: 12px 16px;
-      background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
-      color: white;
-      font-size: 14px;
-    }
+.slider-images img.active {
+  opacity: 1;
+}
 
-    .property-info .project-name {
-      font-weight: 600;
-      margin-bottom: 3px;
-      font-size: 15px;
-    }
+.property-info {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 12px 16px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+  color: white;
+  font-size: 14px;
+}
 
-    .property-info .price {
-      font-size: 13px;
-    }
+.property-info .project-name {
+  font-weight: 600;
+  margin-bottom: 3px;
+  font-size: 15px;
+}
 
-    .status-tag {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      padding: 6px 10px;
-      border-radius: 10px;
-      font-size: 11px;
-      font-weight: 600;
-      color: #fff;
-      background: #8b8fff;
-    }
+.property-info .price {
+  font-size: 13px;
+}
 
-    .status-last-chance {
-      background: #ffc56e;
-      color: #222;
-    }
+.status-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  background: #8b8fff;
+}
+
+.status-last-chance {
+  background: #ffc56e;
+  color: #222;
+}
+
+/* ---------- SLIDER ARROWS ---------- */
 .slider-arrow {
   position: absolute;
   top: 50%;
@@ -373,23 +353,36 @@ html, body, header, nav {
   background: rgba(0, 0, 0, 0.6);
 }
 
+.slider-arrow.left { left: 10px; }
+.slider-arrow.right { right: 10px; }
 
-.slider-arrow.left {
-  left: 10px;
-}
-
-.slider-arrow.right {
-  right: 10px;
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1200px) {
+  .main-content.grid-only .property-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 900px) {
   #map,
   .property-grid-wrapper {
-    flex: 1 1 100%;  /* full width on mobile */
+    flex: 1 1 100%;
+  }
+
+  .property-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filters-bar {
+    flex-wrap: wrap;
+  }
+
+  .dropdown {
+    flex: 1 1 48%;
+    justify-content: center;
   }
 }
 
-/* Mobile: always show arrows */
 @media (max-width: 768px) {
   .slider-arrow {
     display: block;
@@ -397,39 +390,18 @@ html, body, header, nav {
     font-size: 20px;
     padding: 6px;
   }
+
+  .property-info {
+    font-size: 12px;
+  }
+
+  .project-name {
+    font-size: 13px;
+  }
 }
 
-    /* RESPONSIVE */
-    @media (max-width: 1200px) {
-      .property-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    @media (max-width: 900px) {
-      .property-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .filters-bar {
-        flex-wrap: wrap;
-      }
-      .dropdown {
-        flex: 1 1 48%;
-        justify-content: center;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .property-info {
-        font-size: 12px;
-      }
-      .project-name {
-        font-size: 13px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .property-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+@media (max-width: 600px) {
+  .property-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
