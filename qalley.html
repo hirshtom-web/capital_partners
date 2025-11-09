@@ -293,7 +293,7 @@
     p { font-size: 1rem; }
     .icon { font-size: 32px; }
     .material-symbols-outlined { font-size: 1.3rem; padding: 6px; border-radius: 8px; }
-    .bottom-nav, .right-controls { padding: 20px; gap: 12px; }
+    .bottom-nav, .right-controls { padding: 20px; gap: 12px; bottom: 55px; }
     .number { font-size: 3rem; right: 20px; }
     .layout.three-squares,
     .layout.four-long,
@@ -501,87 +501,135 @@
 
   <div class="hint">← → or use menu</div>
 </div>
-
+  
 <script>
-  const slides = document.querySelectorAll('.slide');
-  let current = 0;
+/* ------------------------------
+   Qalley Pitch Deck - JS Logic
+--------------------------------*/
 
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.remove('active', 'prev', 'next');
-      if (i === index) slide.classList.add('active');
-      else if (i < index) slide.classList.add('prev');
-      else slide.classList.add('next');
-    });
-  }
+// === SLIDE NAVIGATION ===
+const slides = document.querySelectorAll('.slide');
+let current = 0;
 
-  document.getElementById('next').onclick = () => {
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active', 'prev', 'next');
+    if (i === index) slide.classList.add('active');
+    else if (i < index) slide.classList.add('prev');
+    else slide.classList.add('next');
+  });
+}
+
+// --- Button Navigation ---
+document.getElementById('next').onclick = () => {
+  current = (current + 1) % slides.length;
+  showSlide(current);
+};
+document.getElementById('prev').onclick = () => {
+  current = (current - 1 + slides.length) % slides.length;
+  showSlide(current);
+};
+
+// --- Keyboard Navigation ---
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') {
     current = (current + 1) % slides.length;
     showSlide(current);
-  };
-  document.getElementById('prev').onclick = () => {
+  } else if (e.key === 'ArrowLeft') {
     current = (current - 1 + slides.length) % slides.length;
     showSlide(current);
+  }
+});
+
+// --- Slide Menu ---
+const menuBtn = document.getElementById('menuBtn');
+const slideList = document.getElementById('slideList');
+menuBtn.onclick = () => slideList.classList.toggle('active');
+
+slideList.querySelectorAll('li').forEach(item => {
+  item.onclick = () => {
+    current = parseInt(item.dataset.index);
+    showSlide(current);
+    slideList.classList.remove('active');
   };
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight') {
-      current = (current + 1) % slides.length;
-      showSlide(current);
-    } else if (e.key === 'ArrowLeft') {
-      current = (current - 1 + slides.length) % slides.length;
-      showSlide(current);
-    }
-  });
+});
 
-  const menuBtn = document.getElementById('menuBtn');
-  const slideList = document.getElementById('slideList');
-  menuBtn.onclick = () => slideList.classList.toggle('active');
+// --- Notes Button (placeholder) ---
+const notesBtn = document.getElementById('notesBtn');
+notesBtn.onclick = () => alert("📝 This could open a notes panel!");
 
-  slideList.querySelectorAll('li').forEach(item => {
-    item.onclick = () => {
-      current = parseInt(item.dataset.index);
-      showSlide(current);
-      slideList.classList.remove('active');
-    };
-  });
+// Initialize first slide
+showSlide(current);
 
-  const notesBtn = document.getElementById('notesBtn');
-  notesBtn.onclick = () => alert("📝 This could open a notes panel!");
 
-  showSlide(current);
-</script>
-  <script>
-  const fullText = "Quality Deals in the Alley";
-  const typingEl = document.getElementById("typing");
-  const alleyEl = document.getElementById("alley");
+/* ------------------------------
+   TYPEWRITER EFFECT (Cover)
+--------------------------------*/
+const fullText = "Quality Deals in the Alley";
+const typingEl = document.getElementById("typing");
+const alleyEl = document.getElementById("alley");
+let i = 0;
 
-  let i = 0;
-
-  // 1. Typewriter effect
-  function typeText() {
-    if (i < fullText.length) {
-      typingEl.textContent += fullText[i];
-      i++;
-      setTimeout(typeText, 100);
-    } else {
-      setTimeout(deleteText, 1000); // wait 1s then delete
-    }
+function typeText() {
+  if (i < fullText.length) {
+    typingEl.textContent += fullText[i];
+    i++;
+    setTimeout(typeText, 100);
+  } else {
+    setTimeout(deleteText, 1000); // wait 1s then delete
   }
+}
 
-  // 2. Delete everything except first Q
-  function deleteText() {
-    let currentText = typingEl.textContent;
-    if (currentText.length > 1) {
-      typingEl.textContent = currentText.slice(0, -1);
-      setTimeout(deleteText, 50);
-    } else {
-      // 3. Show "Alley" sliding back to form "Qalley"
-      alleyEl.classList.add("show");
-    }
+function deleteText() {
+  let currentText = typingEl.textContent;
+  if (currentText.length > 1) {
+    typingEl.textContent = currentText.slice(0, -1);
+    setTimeout(deleteText, 50);
+  } else {
+    alleyEl.classList.add("show"); // reveal “Alley”
   }
+}
 
-  typeText();
+typeText();
+
+
+/* ------------------------------
+   SWIPE GESTURE SUPPORT (Mobile)
+--------------------------------*/
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+document.addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleGesture();
+});
+
+function handleGesture() {
+  const threshold = 50; // min swipe distance
+  if (touchEndX < touchStartX - threshold) {
+    // Swipe left → next
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  } else if (touchEndX > touchStartX + threshold) {
+    // Swipe right → previous
+    current = (current - 1 + slides.length) % slides.length;
+    showSlide(current);
+  }
+}
+
+// Prevent accidental vertical scrolling during horizontal swipe
+document.addEventListener('touchmove', e => {
+  const dx = Math.abs(e.changedTouches[0].screenX - touchStartX);
+  const dy = Math.abs(e.changedTouches[0].screenY - (e.changedTouches[0].screenY || 0));
+  if (dx > dy) e.preventDefault();
+}, { passive: false });
+
 </script>
+
 
 </body>
 </html>
