@@ -336,7 +336,7 @@ header {
 .new2 { left: 40%; top: 25%; width: auto; height: 60px; --float-x:-5px; --float-y:9px; z-index:3; }
 .new3 { left: 10%; top: 70%; width: 70px; height: auto; --float-x:5px; --float-y:8px; z-index:4; }
 .new4 { left: 20%; top: 55%; width: 100px; height: auto; --float-x:-6px; --float-y:10px; z-index:2; }
-.new5 { left: 25%; top: 90%; width: 65px; height: auto; --float-x:4px; --float-y:7px; z-index:1; }
+.new5 { left: 30%; top: 10%; width: 65px; height: auto; --float-x:4px; --float-y:7px; z-index:1; }
 .new6 { left: 75%; top: 20%; width: 80px; height: auto; --float-x:-7px; --float-y:11px; z-index:5; }
 .new7 { left: 34.5%; top: 3%; width:140px; height: auto; --float-x:6px; --float-y:10px; z-index:6; }
 
