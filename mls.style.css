@@ -64,8 +64,8 @@ body {
   flex: 1;
   min-height: 600px;
   border-radius: 16px;
-  overflow: hidden;       /* clips internal iframe content */
-  background: #e5e5e5;    /* placeholder before map loads */
+  overflow: hidden;  /* important for rounded corners */
+  background: #e5e5e5;
 }
 
 #map iframe {
