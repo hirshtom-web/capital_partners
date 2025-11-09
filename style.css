@@ -1,9 +1,10 @@
-  body {
-    font-family: 'Rubik', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: transparent;
-  }
+body {
+  background-color: #fff; /* match your hero background or main color */
+  font-family: 'Rubik', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 
   /* ALERT BAR */
   .alert {
@@ -139,6 +140,7 @@ header {
 
   .btn-bubble:hover {
     box-shadow: 0 2px 8px rgba(99, 39, 229, 0.3);
+    background-color:  #6327e5;
   }
 
   /* MOBILE MENU TOGGLE */
@@ -226,25 +228,30 @@ header {
   }
 /* Full background image */
 .background-image {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 800px;
+  height: 100%; /* or 800px if fixed height */
   object-fit: cover;
   z-index: -1;
-  opacity: 0.1;
+  opacity: 0.15;
+}
+.hero-section {
+  position: relative;
+  height: 800px; /* same as background image */
 }
 
-/* Title container */
 .title-container {
-  position: fixed;
-  top: 300px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: absolute;
+  top: 400px;          /* vertical position */
+  left: 50%;           /* center horizontally */
+  transform: translateX(-50%);  /* horizontal centering */
+  z-index: 5;           /* above background */
   text-align: center;
-  z-index: 5;
+  color: #130328;
 }
+
 
 .title-container .title {
   font-size: 42px;
@@ -353,7 +360,8 @@ header {
 /* Trusted by section */
 .trusted-section {
   position: relative;
-  margin-top: 200px; 
+  margin-top: 100px; 
+  margin-bottom: 100px; 
   width: 100%;
   text-align: center;
   z-index: 3;
