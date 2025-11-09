@@ -333,7 +333,7 @@ header {
 
 /* New 7 images */
 .new1 { left: 150%; top: 130%; width: 1120px; height: auto; --float-x:6px; --float-y:10px; z-index:2; }
-.new2 { left: 40%; top: 25%; width: 100px; height: auto; --float-x:-5px; --float-y:9px; z-index:3; }
+.new2 { left: 40%; top: 25%; width: auto; height: 60px; --float-x:-5px; --float-y:9px; z-index:3; }
 .new3 { left: 10%; top: 70%; width: 70px; height: auto; --float-x:5px; --float-y:8px; z-index:4; }
 .new4 { left: 20%; top: 55%; width: 100px; height: auto; --float-x:-6px; --float-y:10px; z-index:2; }
 .new5 { left: 25%; top: 90%; width: 65px; height: auto; --float-x:4px; --float-y:7px; z-index:1; }
