@@ -1,9 +1,9 @@
+/* ---------------- BASE STYLES ---------------- */
 html, body, header, nav {
   direction: ltr !important;
   text-align: left;
 }
 
-/* Fix invalid orphan block */
 * {
   box-sizing: border-box;
 }
@@ -22,7 +22,7 @@ body {
   margin: 0 auto;
 }
 
-/* ---------- VIEW TOGGLE ---------- */
+/* ---------------- VIEW TOGGLE ---------------- */
 .view-toggle {
   display: flex;
   gap: 10px;
@@ -51,7 +51,7 @@ body {
   border-color: #ff1c7c;
 }
 
-/* ---------- MAIN CONTENT LAYOUT ---------- */
+/* ---------------- MAIN CONTENT ---------------- */
 .main-content {
   display: flex;
   gap: 20px;
@@ -59,12 +59,12 @@ body {
   flex-wrap: wrap;
 }
 
-/* MAP */
+/* Map */
 #map {
   flex: 1;
   min-height: 600px;
   border-radius: 16px;
-  overflow: hidden;  /* important for rounded corners */
+  overflow: hidden;
   background: #e5e5e5;
 }
 
@@ -73,15 +73,30 @@ body {
   height: 100%;
   border: 0;
   display: block;
+  border-radius: 16px;
 }
 
+/* View toggles for grid/map */
+.main-content.grid-only .property-grid-wrapper {
+  display: block;
+  width: 100%;
+}
 
-/* GRID WRAPPER */
+.main-content.map-only .property-grid-wrapper {
+  display: none;
+}
+
+.property-grid-wrapper.map-layout {
+  width: 50%;
+  float: right;
+}
+
+/* Grid wrapper */
 .property-grid-wrapper {
   flex: 1;
 }
 
-/* ---------- FILTER BAR ---------- */
+/* ---------------- FILTER BAR ---------------- */
 .filters-bar {
   background: #fff;
   padding: 10px 16px;
@@ -234,7 +249,7 @@ body {
   color: white;
 }
 
-/* ---------- PROPERTY GRID ---------- */
+/* ---------------- PROPERTY GRID ---------------- */
 .property-grid {
   display: grid;
   gap: 24px;
@@ -257,7 +272,7 @@ body {
   grid-template-columns: repeat(2, 1fr);
 }
 
-/* ---------- PROPERTY CARD ---------- */
+/* ---------------- PROPERTY CARD ---------------- */
 .property-card {
   position: relative;
   border-radius: 16px;
@@ -337,7 +352,7 @@ body {
   color: #222;
 }
 
-/* ---------- SLIDER ARROWS ---------- */
+/* ---------------- SLIDER ARROWS ---------------- */
 .slider-arrow {
   position: absolute;
   top: 50%;
@@ -365,7 +380,7 @@ body {
 .slider-arrow.left { left: 10px; }
 .slider-arrow.right { right: 10px; }
 
-/* ---------- RESPONSIVE ---------- */
+/* ---------------- RESPONSIVE ---------------- */
 @media (max-width: 1200px) {
   .main-content.grid-only .property-grid {
     grid-template-columns: repeat(3, 1fr);
