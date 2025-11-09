@@ -382,6 +382,13 @@ html, body, header, nav {
   right: 10px;
 }
 
+@media (max-width: 900px) {
+  #map,
+  .property-grid-wrapper {
+    flex: 1 1 100%;  /* full width on mobile */
+  }
+}
+
 /* Mobile: always show arrows */
 @media (max-width: 768px) {
   .slider-arrow {
