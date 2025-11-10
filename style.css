@@ -44,9 +44,6 @@ a {
   text-decoration: underline;
 }
 
-/* ===============================
-   HEADER & LOGO
-================================== */
 /* ================= HEADER ================= */
 header {
   background: #1e0949;
@@ -58,75 +55,49 @@ header {
 
 /* Inner container */
 .header-inner {
-  max-width: 1300px;         /* content max width */
-  margin: 0 auto;            /* center horizontally */
-  padding: 10px 20px;        /* spacing inside container */
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 /* Logo */
-.logo img {
-  height: 50px;
-  filter: brightness(100%);
-}
+.logo img { height: 50px; }
 
-/* Navigation (desktop) */
-nav {
-  display: flex;
-  gap: 30px;
-  align-items: center;
-}
-
-nav > div {
-  position: relative;
-}
-
-nav > div > a {
-  color: #ffffff;
-  font-weight: 500;
-  font-size: 12px;
-  padding: 10px 0;
-  transition: color 0.3s;
-}
-
-nav > div:hover > a {
-  color: #bda3ff;
-}
-
-/* Button inside header */
-.btn-bubble {
-  background: linear-gradient(90deg, #a400f5, #7b00f8);
-  color: #fff;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 500;
-  padding: 10px 20px;
-  transition: all 0.3s;
-  white-space: nowrap; /* prevent wrapping */
-}
-
-/* Container for nav + button (right side) */
+/* Right side: nav + CTA */
 .header-right {
   display: flex;
   align-items: center;
-  gap: 20px; /* spacing between nav and button */
+  gap: 30px;
 }
 
-/* Responsive: smaller screens */
-@media (max-width: 480px) {
+/* Navigation (desktop) */
+nav { display: flex; gap: 30px; align-items: center; }
+
+/* CTA button */
+.btn-bubble { /* your existing styles */ }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
   .header-inner {
-    padding: 10px 15px;      /* smaller padding on mobile */
+    max-width: none;
+    padding: 10px 0;
+    width: 100%;
   }
-  .logo img {
-    height: 40px;            /* smaller logo on mobile */
-  }
-  nav {
-    gap: 15px; /* reduce gap for mobile */
-  }
+  .logo,
+  .menu-toggle { padding: 0 15px; }
+
+  nav > div { display: none; }
+  .menu-toggle { display: flex; }
+  .mobile-menu { display: flex; }
 }
 
+@media (max-width: 480px) {
+  .header-inner { padding: 10px 0; }
+  .logo img { height: 40px; }
+}
 
 /* ----- SUBMENU (DESKTOP) ----- */
 .submenu {
