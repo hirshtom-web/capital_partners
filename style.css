@@ -1,14 +1,21 @@
 /* ===============================
    GLOBAL
 ================================== */
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
   margin: 0;
   background: #1e0949;
   color: #fff;
 }
-a { color: inherit; text-decoration: none; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
 /* ===============================
    ALERT BAR
@@ -27,8 +34,16 @@ a { color: inherit; text-decoration: none; }
   gap: 6px;
   z-index: 1001;
 }
-.alert .material-symbols-outlined { font-size: 14px; vertical-align: middle; }
-.alert a.learn-more { color: #fff; text-decoration: underline; }
+
+.alert .material-symbols-outlined {
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.alert a.learn-more {
+  color: #fff;
+  text-decoration: underline;
+}
 
 /* ===============================
    HEADER & LOGO
@@ -39,12 +54,16 @@ header {
   align-items: center;
   padding: 14px 40px;
   background: #1e0949;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
-.logo img { height: 50px; filter: brightness(100%); }
+
+.logo img {
+  height: 50px;
+  filter: brightness(100%);
+}
 
 /* ===============================
    NAVIGATION (DESKTOP)
@@ -54,6 +73,7 @@ nav {
   gap: 30px;
   align-items: center;
 }
+
 nav > div > a {
   color: #fff;
   font-weight: 500;
@@ -61,7 +81,10 @@ nav > div > a {
   padding: 10px 0;
   transition: color 0.3s;
 }
-nav > div:hover > a { color: #bda3ff; }
+
+nav > div:hover > a {
+  color: #bda3ff;
+}
 
 /* ----- SUBMENU (DESKTOP) ----- */
 .submenu {
@@ -71,20 +94,22 @@ nav > div:hover > a { color: #bda3ff; }
   width: 100%;
   background: #1e0949;
   border-radius: 0 0 20px 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transform: translateY(10px);
-  transition: opacity .25s, transform .25s;
+  transition: opacity 0.25s, transform 0.25s;
   z-index: 999;
 }
+
 nav > div:hover .submenu {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
   transform: translateY(0);
 }
+
 .submenu-inner {
   max-width: 1300px;
   margin: auto;
@@ -92,40 +117,47 @@ nav > div:hover .submenu {
   display: flex;
   gap: 25px;
 }
+
 .submenu-left {
   flex: 1;
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
 }
+
 .submenu-left a {
   flex: 1 1 calc(33.333% - 18px);
   min-width: 200px;
 }
+
 .submenu-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 18px 20px;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 14px;
-  transition: all .3s;
+  transition: all 0.3s;
 }
+
 .submenu-item:hover {
-  background: rgba(163,52,175,0.2);
+  background: rgba(163, 52, 175, 0.2);
   transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(163,52,175,0.4);
+  box-shadow: 0 4px 12px rgba(163, 52, 175, 0.4);
 }
+
 .submenu-title {
   font-weight: 600;
   font-size: 15px;
   color: #fff;
 }
+
 .submenu-subtitle {
   font-size: 11px;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255, 255, 255, 0.6);
   margin-top: 3px;
 }
+
 .submenu-icon {
   width: 36px;
   height: 36px;
@@ -136,15 +168,16 @@ nav > div:hover .submenu {
   align-items: center;
   justify-content: center;
   font-size: 16px;
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
+
 .submenu-right {
   width: 320px;
   flex-shrink: 0;
   border-radius: 16px;
   padding: 20px;
   color: #fff;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -161,10 +194,11 @@ nav > div:hover .submenu {
   border-radius: 999px;
   font-size: 12px;
   font-weight: 500;
-  transition: all .3s;
+  transition: all 0.3s;
 }
+
 .btn-bubble:hover {
-  box-shadow: 0 2px 8px rgba(255,255,255,0.3);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
   transform: translateY(-1px);
 }
 
@@ -180,6 +214,7 @@ nav > div:hover .submenu {
   cursor: pointer;
   z-index: 1100;
 }
+
 .menu-toggle span {
   background: #fff;
   height: 2px;
@@ -187,9 +222,18 @@ nav > div:hover .submenu {
   border-radius: 2px;
   transition: all 0.3s ease;
 }
-.menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
-.menu-toggle.active span:nth-child(2) { opacity: 0; }
-.menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
 
 .mobile-menu {
   display: none;
@@ -201,14 +245,22 @@ nav > div:hover .submenu {
   right: 0;
   width: 100%;
   z-index: 999;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
   max-height: 0;
   transition: max-height 0.35s ease, padding 0.35s ease;
   padding-top: 0;
 }
-.mobile-menu.active { max-height: 100vh; padding-top: 30px; }
-.mobile-menu li { border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+.mobile-menu.active {
+  max-height: 100vh;
+  padding-top: 30px;
+}
+
+.mobile-menu li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .mobile-menu > li > a {
   display: flex;
   justify-content: space-between;
@@ -218,34 +270,45 @@ nav > div:hover .submenu {
   font-weight: 500;
   color: #fff;
 }
+
 .mobile-menu .arrow {
   font-family: 'Material Symbols Outlined';
   font-size: 14px;
   color: #bda3ff;
   transition: transform 0.3s;
 }
-.mobile-menu .expanded > a .arrow { transform: rotate(180deg); }
+
+.mobile-menu .expanded > a .arrow {
+  transform: rotate(180deg);
+}
+
 .mobile-menu .submenu {
   max-height: 0;
   overflow: hidden;
-  background: rgba(255,255,255,0.05);
-  border-top: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   transition: max-height 0.35s ease;
 }
-.mobile-menu .expanded .submenu { max-height: 500px; }
+
+.mobile-menu .expanded .submenu {
+  max-height: 500px;
+}
+
 .mobile-menu .submenu li a {
   display: flex;
   align-items: center;
   padding: 10px 30px;
   font-size: 12px;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
+
 .mobile-menu .submenu-icon {
   font-family: 'Material Symbols Outlined';
   font-size: 15px;
   margin-right: 10px;
   color: #bda3ff;
 }
+
 .mobile-menu .btn-bubble {
   width: 100px;
   margin: 40px auto;
@@ -264,6 +327,7 @@ nav > div:hover .submenu {
   overflow: hidden;
   position: relative;
 }
+
 .submenu-right.map-container .state {
   fill: rgba(99, 39, 229, 0.5);
   stroke: #fff;
@@ -271,6 +335,7 @@ nav > div:hover .submenu {
   cursor: pointer;
   transition: fill 0.25s, stroke 0.25s, stroke-width 0.25s, transform 0.25s;
 }
+
 .submenu-right.map-container .state:hover {
   fill: #a734af;
   stroke: #6327e5;
@@ -278,6 +343,7 @@ nav > div:hover .submenu {
   transform: scale(1.02);
   filter: drop-shadow(0 3px 4px rgba(99, 39, 229, 0.3));
 }
+
 .submenu-right.map-container .tooltip {
   position: absolute;
   background: rgba(99, 39, 229, 0.95);
@@ -295,7 +361,13 @@ nav > div:hover .submenu {
    RESPONSIVE
 ================================== */
 @media (max-width: 768px) {
-  nav > div { display: none; }
-  .menu-toggle { display: flex; }
-  .mobile-menu { display: flex; }
+  nav > div {
+    display: none;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+  .mobile-menu {
+    display: flex;
+  }
 }
