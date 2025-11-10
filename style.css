@@ -1,7 +1,3 @@
-<style>
-/* ===============================
-   GLOBAL
-================================== */
 * { box-sizing: border-box; }
 body {
   font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
@@ -554,4 +550,3 @@ nav > div.services .submenu-right{background:rgba(163,52,175,.08);}
   nav > div { display: none; }
   .menu-toggle { display: flex; }
 }
-</style>
