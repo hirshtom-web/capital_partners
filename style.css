@@ -48,17 +48,16 @@ a {
 /* ===============================
    HEADER & LOGO
 ================================== */
-/* HEADER */
+/* ================= HEADER ================= */
 header {
-  width: 100%;               /* full viewport width */
-  background: #1e0949;       /* full-width background */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: #1e0949;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-/* Inner container to center content */
+/* Inner container */
 .header-inner {
   max-width: 1300px;         /* content max width */
   margin: 0 auto;            /* center horizontally */
@@ -74,15 +73,19 @@ header {
   filter: brightness(100%);
 }
 
-/* NAVIGATION (DESKTOP) */
+/* Navigation (desktop) */
 nav {
   display: flex;
   gap: 30px;
   align-items: center;
 }
 
+nav > div {
+  position: relative;
+}
+
 nav > div > a {
-  color: #fff;
+  color: #ffffff;
   font-weight: 500;
   font-size: 13px;
   padding: 10px 0;
@@ -93,7 +96,26 @@ nav > div:hover > a {
   color: #bda3ff;
 }
 
-/* RESPONSIVE: smaller screens */
+/* Button inside header */
+.btn-bubble {
+  background: linear-gradient(90deg, #a400f5, #7b00f8);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 10px 20px;
+  transition: all 0.3s;
+  white-space: nowrap; /* prevent wrapping */
+}
+
+/* Container for nav + button (right side) */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* spacing between nav and button */
+}
+
+/* Responsive: smaller screens */
 @media (max-width: 480px) {
   .header-inner {
     padding: 10px 15px;      /* smaller padding on mobile */
@@ -101,7 +123,11 @@ nav > div:hover > a {
   .logo img {
     height: 40px;            /* smaller logo on mobile */
   }
+  nav {
+    gap: 15px; /* reduce gap for mobile */
+  }
 }
+
 
 /* ----- SUBMENU (DESKTOP) ----- */
 .submenu {
