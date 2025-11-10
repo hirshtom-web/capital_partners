@@ -73,3 +73,10 @@ document.querySelectorAll('nav a[href="#"]').forEach(link => {
       document.getElementById(panelId).classList.add('active');
     });
   });
+const toggleBtn = document.getElementById('menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+
+toggleBtn.addEventListener('click', () => {
+  toggleBtn.classList.toggle('active');
+  mobileMenu.classList.toggle('active');
+});
