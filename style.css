@@ -48,26 +48,33 @@ a {
 /* ===============================
    HEADER & LOGO
 ================================== */
+/* HEADER */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 40px;
-  background: #1e0949;
+  width: 100%;               /* full viewport width */
+  background: #1e0949;       /* full-width background */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
+/* Inner container to center content */
+.header-inner {
+  max-width: 1300px;         /* content max width */
+  margin: 0 auto;            /* center horizontally */
+  padding: 14px 40px;        /* spacing inside container */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo */
 .logo img {
   height: 50px;
   filter: brightness(100%);
 }
 
-/* ===============================
-   NAVIGATION (DESKTOP)
-================================== */
+/* NAVIGATION (DESKTOP) */
 nav {
   display: flex;
   gap: 30px;
@@ -84,6 +91,16 @@ nav > div > a {
 
 nav > div:hover > a {
   color: #bda3ff;
+}
+
+/* RESPONSIVE: smaller screens */
+@media (max-width: 480px) {
+  .header-inner {
+    padding: 10px 15px;      /* smaller padding on mobile */
+  }
+  .logo img {
+    height: 40px;            /* smaller logo on mobile */
+  }
 }
 
 /* ----- SUBMENU (DESKTOP) ----- */
