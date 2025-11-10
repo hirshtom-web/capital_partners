@@ -61,7 +61,7 @@ header {
 .header-inner {
   max-width: 1300px;         /* content max width */
   margin: 0 auto;            /* center horizontally */
-  padding: 14px 40px;        /* spacing inside container */
+  padding: 10px 20px;        /* spacing inside container */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -87,7 +87,7 @@ nav > div {
 nav > div > a {
   color: #ffffff;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 12px;
   padding: 10px 0;
   transition: color 0.3s;
 }
