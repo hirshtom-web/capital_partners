@@ -159,6 +159,22 @@ nav > div:hover .submenu {
 }
 
 /* ===============================
+   MOBILE
+================================== */
+@media (max-width: 768px) {
+  .re-row {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .re-phrase,
+  .re-other {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+}
+/* ===============================
    MAP (submenu-right) – unchanged
 ================================== */
 .submenu-right.map-container #map { width:100%; max-width:360px; aspect-ratio:16/10; border-radius:12px; overflow:hidden; position:relative; }
