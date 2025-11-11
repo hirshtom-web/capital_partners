@@ -65,7 +65,7 @@ header {
 }
 
 /* LOGO */
-.logo img {
+.main-logo img {
   height: 50px;
   filter: brightness(100%);
 }
@@ -220,7 +220,7 @@ nav > div > a:focus,
   /* show hamburger */
   .menu-toggle { display: flex; }
 
-  .logo img { height: 40px; }
+  .main-logo img { height: 40px; }
 
   /* Mobile submenu adjustments for touch-friendly height */
   .mobile-menu > li > a {
@@ -230,7 +230,7 @@ nav > div > a:focus,
 
 @media (max-width: 480px) {
   .header-inner { padding: 10px 10px; }
-  .logo img { height: 36px; }
+  .main-logo img { height: 36px; }
 }
 
 /* ===============================
