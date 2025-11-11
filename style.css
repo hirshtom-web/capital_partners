@@ -391,9 +391,6 @@ h1 .line { display:block; }
   .machine-svg{width:40px;}
 }
 
-/* ===============================
-   TRUSTED SECTION – unchanged
-================================== */
 /* ==================================
    TRUSTED SECTION
 ================================== */
@@ -452,7 +449,7 @@ h1 .line { display:block; }
 }
 
 .logo {
-  height: 50px;
+  height: 100px;
   object-fit: contain;
   flex-shrink: 0;
   filter: brightness(0) saturate(100%) invert(98%) sepia(6%) saturate(276%) hue-rotate(324deg) brightness(106%) contrast(100%);
@@ -478,7 +475,7 @@ h1 .line { display:block; }
     animation: scrollLogos 25s linear infinite;
   }
   .logo {
-    height: 40px;
+    height: 80px;
   }
   .logo-slider::before,
   .logo-slider::after {
@@ -496,7 +493,7 @@ h1 .line { display:block; }
     animation: scrollLogos 30s linear infinite;
   }
   .logo {
-    height: 30px;
+    height: 60px;
   }
   .logo-slider::before,
   .logo-slider::after {
