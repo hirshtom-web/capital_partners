@@ -307,6 +307,7 @@ nav > div:hover .submenu {
   display: flex;
   justify-content: center; /* centers horizontally */
   margin-top: 30px;       /* optional spacing */
+  margin-bottom: 30px;       /* optional spacing */
 }
 
 /* Your existing button */
