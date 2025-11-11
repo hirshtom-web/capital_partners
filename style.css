@@ -490,7 +490,7 @@ h1 .line { display:block; }
 .re-container-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch; /* stretch instead of center to avoid extra height */
   gap: 18px;
   text-align: center;
   width: 100%;
@@ -510,8 +510,8 @@ h1 .line { display:block; }
 .re-row {
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-wrap: wrap; /* ✅ allows wrapping on mobile */
+  align-items: flex-start; /* fix extra height on mobile */
+  flex-wrap: wrap; /* allows wrapping */
   gap: 10px;
   width: 100%;
   overflow: hidden;
@@ -531,6 +531,8 @@ h1 .line { display:block; }
   white-space: nowrap;
   cursor: pointer;
   transition: all 0.2s ease;
+  max-width: 100%; /* prevent item from overflowing */
+  box-sizing: border-box;
 }
 
 .re-phrase:hover {
@@ -545,15 +547,22 @@ h1 .line { display:block; }
   font-style: italic;
   font-size: 13px;
   white-space: nowrap;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* ===============================
    MOBILE ADJUSTMENTS
 ================================== */
 @media (max-width: 768px) {
+  .re-container-wrapper {
+    gap: 12px; /* reduce vertical spacing */
+  }
+
   .re-row {
-    flex-wrap: wrap; /* ✅ force wrapping */
+    flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-start; /* ensures rows don't stretch vertically */
     gap: 8px;
   }
 
@@ -565,8 +574,13 @@ h1 .line { display:block; }
 }
 
 @media (max-width: 480px) {
+  .re-container-wrapper {
+    gap: 8px;
+  }
+
   .re-row {
     gap: 6px;
+    align-items: flex-start;
   }
 
   .re-phrase,
