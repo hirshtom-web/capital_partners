@@ -1,4 +1,139 @@
 /* ===============================
+   GLOBAL
+================================== */
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
+  margin: 0;
+  background: #1e0949;
+  color: #fff;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===============================
+   ALERT BAR
+================================== */
+.alert {
+  padding: 8px 25px;
+  background: linear-gradient(90deg, #ffb0b0, #6d00ef);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  z-index: 1001;
+}
+.alert .material-symbols-outlined {
+  font-size: 14px;
+  vertical-align: middle;
+}
+.alert a.learn-more {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* ===============================
+   HEADER
+================================== */
+header {
+  background: #1e0949;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;                     /* full width */
+}
+
+/* Inner flex container */
+.header-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 12px 20px;              /* desktop padding */
+  display: flex;
+  justify-content: space-between;  /* logo left <---> right side */
+  align-items: center;
+  width: 100%;
+}
+
+/* LOGO */
+.logo img {
+  height: 50px;
+  filter: brightness(100%);
+}
+
+/* RIGHT SIDE: nav + CTA */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 30px;                       /* space between nav items and CTA */
+}
+
+/* NAVIGATION (desktop) */
+nav {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+nav > div > a {
+  color: #fff;
+  font-weight: 500;
+  font-size: 12px;
+  padding: 10px 0;
+  transition: color 0.3s;
+}
+nav > div:hover > a {
+  color: #bda3ff;
+}
+
+/* CTA BUTTON */
+.btn-bubble {
+  background: linear-gradient(90deg, #a400f5, #7b00f8);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 10px 20px;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+.btn-bubble:hover {
+  box-shadow: 0 2px 8px rgba(255,255,255,0.3);
+  transform: translateY(-1px);
+}
+
+/* HAMBURGER */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  cursor: pointer;
+  z-index: 1100;
+}
+.menu-toggle span {
+  background: #fff;
+  height: 2px;
+  width: 100%;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+
+
+/* ===============================
    BUTTONS (global) – unchanged
 ================================== */
 /* Wrap the button in a container */
