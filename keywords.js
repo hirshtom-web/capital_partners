@@ -30,44 +30,31 @@ const shuffled = shuffleArray([...keywords]);
 const container = document.getElementById("re-container");
 container.innerHTML = "";
 
-// Row building logic
-for (let i = 0; i < shuffled.length; i += 3) {
-  const row = document.createElement("div");
-  row.className = "re-row";
-
-  // First row: only 3 items
-  if (i === 0) {
-    for (let j = 0; j < 3 && j < shuffled.length; j++) {
-      const item = document.createElement("div");
-      item.className = "re-phrase";
-      item.textContent = shuffled[j];
-      row.appendChild(item);
-    }
-  } else {
-    // Next rows: 3 + "It's something else..." + 1 frameless keyword
-    for (let j = i; j < i + 3 && j < shuffled.length; j++) {
-      const item = document.createElement("div");
-      item.className = "re-phrase";
-      item.textContent = shuffled[j];
-      row.appendChild(item);
-    }
-
-    // Add frameless “It’s something else...”
-    const other = document.createElement("div");
-    other.className = "re-other";
-    other.textContent = "It's something else...";
-    row.appendChild(other);
-
-    // Add one more frameless keyword if exists
-    if (i + 3 < shuffled.length) {
-      const extra = document.createElement("div");
-      extra.className = "re-other";
-      extra.textContent = shuffled[i + 3];
-      row.appendChild(extra);
-    }
-
-    i++;
-  }
-
-  container.appendChild(row);
+// ---- ROW 1: first 3 keywords ----
+const row1 = document.createElement("div");
+row1.className = "re-row";
+for (let i = 0; i < 3; i++) {
+  const item = document.createElement("div");
+  item.className = "re-phrase";
+  item.textContent = shuffled[i];
+  row1.appendChild(item);
 }
+container.appendChild(row1);
+
+// ---- ROW 2: next 3 keywords + “It’s something else...” (frameless) ----
+const row2 = document.createElement("div");
+row2.className = "re-row";
+for (let i = 3; i < 6; i++) {
+  const item = document.createElement("div");
+  item.className = "re-phrase";
+  item.textContent = shuffled[i];
+  row2.appendChild(item);
+}
+
+// Add the frameless text
+const other = document.createElement("div");
+other.className = "re-other";
+other.textContent = "It's something else...";
+row2.appendChild(other);
+
+container.appendChild(row2);
