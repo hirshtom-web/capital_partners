@@ -57,7 +57,7 @@ header {
 .header-inner {
   max-width: 1300px;
   margin: 0 auto;
-  padding: 12px 20px;              /* desktop padding */
+  padding: 12px 10px;              /* desktop padding */
   display: flex;
   justify-content: space-between;  /* logo left <---> right side */
   align-items: center;
@@ -211,7 +211,7 @@ nav > div > a:focus,
   /* FULL-WIDTH HEADER */
   .header-inner {
     max-width: none;
-    padding: 12px 15px;          /* tiny side padding for tap safety */
+    padding: 12px 10px;          /* tiny side padding for tap safety */
     width: 100%;
   }
 
