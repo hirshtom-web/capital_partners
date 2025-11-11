@@ -1,51 +1,47 @@
+
 const keywords = [
-  "I'm looking for a new condo",
-  "I want to refinance my home",
-  "Looking for investment property",
-  "Need a vacation home",
-  "Searching for a townhouse",
-  "Want to sell my house",
-  "Buying first home",
-  "Interested in luxury real estate",
-  "Looking for rental property",
-  "Need commercial property",
-  "Looking for waterfront property",
-  "Seeking fixer-upper",
-  "Need mortgage advice",
-  "Looking for a plot of land",
-  "Interested in new developments",
-  "Want a retirement home",
-  "Looking for a duplex",
-  "Need property management",
-  "Seeking vacation rental",
-  "Looking for a historic home"
+  "Buying a new home",
+  "Looking for a condo",
+  "Refinancing my mortgage",
+  "Selling my property",
+  "Finding a real estate agent",
+  "Investing in rental homes",
+  "Luxury properties",
+  "First-time home buyer",
+  "Commercial real estate",
+  "Property valuation",
+  "Down payment help",
+  "Moving to a new area",
+  "Retirement homes",
+  "Vacation rentals",
+  "Off-market listings",
+  "Real estate investment",
+  "Fix & flip",
+  "Foreclosure deals",
+  "Home renovation",
+  "Mortgage pre-approval"
 ];
 
-function shuffleArray(array) {
-  return array.sort(() => Math.random() - 0.5);
-}
+const container = document.getElementById("re-container");
+const itemsPerRow = 3;
 
-function loadKeywords() {
-  const container = document.getElementById("re-container");
-  container.innerHTML = ""; // clear previous content
+for (let i = 0; i < keywords.length; i += itemsPerRow) {
+  const row = document.createElement("div");
+  row.className = "re-row";
 
-  // Shuffle the keywords
-  const shuffled = shuffleArray([...keywords]);
-
-  // Pick first 6 random keywords
-  const firstSix = shuffled.slice(0, 6);
-
-  // Add the "It's something else..." phrase as 7th
-  firstSix.push("It's something else...");
-
-  // Create and append all 7 items
-  firstSix.forEach(keyword => {
+  // Add 3 keywords
+  for (let j = i; j < i + itemsPerRow && j < keywords.length; j++) {
     const div = document.createElement("div");
     div.className = "re-phrase";
-    div.textContent = keyword;
-    container.appendChild(div);
-  });
-}
+    div.textContent = keywords[j];
+    row.appendChild(div);
+  }
 
-// Run on page load
-window.addEventListener("DOMContentLoaded", loadKeywords);
+  // Add "It's something else..." to the SAME row
+  const other = document.createElement("div");
+  other.className = "re-other";
+  other.textContent = "It's something else...";
+  row.appendChild(other);
+
+  container.appendChild(row);
+}
