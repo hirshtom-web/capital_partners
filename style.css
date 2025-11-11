@@ -344,3 +344,39 @@ h1 .line { display:block; }
   .logo-track{gap:20px;animation:scrollLogos 30s linear infinite;}
   .logo-track .logo{height:30px;}
 }
+/* ===============================
+   Keywords SECTION
+================================== */
+  .re-container-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .re-container {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .re-phrase {
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 8px 12px;
+    background: transparent;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .re-other {
+    margin-top: 10px;
+    font-style: italic;
+    color: white;
+    font-size: 12px;
+  }
