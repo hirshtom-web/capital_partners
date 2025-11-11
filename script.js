@@ -94,3 +94,9 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+const toggle = document.querySelector('.menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+
+toggle.addEventListener('click', () => {
+  mobileMenu.classList.toggle('open');
+});
