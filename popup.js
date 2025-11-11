@@ -1,22 +1,21 @@
-// Select popup and trigger button
 const popup = document.getElementById('popup');
-const trigger = document.querySelector('.main-btn-bubble');
-const closeBtn = document.getElementById('popup-close');
+const openBtn = document.getElementById('openPopup');
+const closeBtn = document.getElementById('closePopup');
 
-// Show popup when button clicked
-trigger.addEventListener('click', function(e) {
-  e.preventDefault(); // prevent default anchor behavior
+// Open popup
+openBtn.addEventListener('click', (e) => {
+  e.preventDefault();
   popup.style.display = 'flex';
 });
 
-// Hide popup when clicking outside the card
-popup.addEventListener('click', function(e) {
+// Close popup
+closeBtn.addEventListener('click', () => {
+  popup.style.display = 'none';
+});
+
+// Close when clicking outside popup-card
+popup.addEventListener('click', (e) => {
   if (e.target === popup) {
     popup.style.display = 'none';
   }
-});
-
-// Hide popup when clicking the close button
-closeBtn.addEventListener('click', function() {
-  popup.style.display = 'none';
 });
