@@ -27,12 +27,15 @@ function shuffleArray(array) {
 
 function loadKeywords() {
   const container = document.getElementById("re-container");
-  container.innerHTML = ""; // clear previous
+  container.innerHTML = ""; // clear previous content
 
+  // Shuffle the keywords
   const shuffled = shuffleArray([...keywords]);
-  const firstSix = shuffled.slice(0, 6); // first 6 random keywords
 
-  // Add "It's something else..." as the 7th item
+  // Pick first 6 random keywords
+  const firstSix = shuffled.slice(0, 6);
+
+  // Add the "It's something else..." phrase as 7th
   firstSix.push("It's something else...");
 
   // Create and append all 7 items
