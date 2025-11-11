@@ -1,0 +1,89 @@
+/* ===============================
+   GLOBAL (Mobile)
+================================== */
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* prevent side scroll */
+}
+
+body {
+  background: #1e0949;
+  color: #fff;
+  font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===============================
+   KEYWORDS (Mobile)
+================================== */
+.re-container-wrapper {
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.re-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.re-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.re-phrase {
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 6px 12px;
+  background: transparent;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  white-space: nowrap;
+  flex: 0 1 auto; /* variable width */
+}
+
+.re-other {
+  border: none;
+  padding: 6px 12px;
+  color: white;
+  font-style: italic;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+/* ===============================
+   TRUSTED SECTION (Mobile)
+================================== */
+.trusted-section {
+  width: 100%;
+  padding: 40px 15px;
+  box-sizing: border-box;
+}
+
+.trusted-text {
+  font-size: 16px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.logo-track {
+  gap: 30px;
+  animation: scrollLogos 25s linear infinite;
+}
+
+.logo-track .logo {
+  height: 40px;
+  max-width: 100%;
+}
