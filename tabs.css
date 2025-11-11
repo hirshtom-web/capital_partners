@@ -11,6 +11,13 @@
     margin: 0 auto 50px;
     padding: 50px 35px;
   }
+.h3 {
+  font-size: 15px;
+    color: #444;
+    max-width: 500px;
+    margin: 0 auto 35px;
+    line-height: 1.6;
+} 
 
   /* Headings */
   .content-card h1 {
