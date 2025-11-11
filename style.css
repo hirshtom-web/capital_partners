@@ -487,11 +487,14 @@ h1 .line { display:block; }
 /* ===============================
    Keywords SECTION
 ================================== */
+/* ===============================
+   KEYWORDS SECTION FIXED
+================================== */
 .re-container-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: stretch; /* stretch instead of center to avoid extra height */
-  gap: 18px;
+  align-items: center; /* center everything */
+  gap: 12px;
   text-align: center;
   width: 100%;
   overflow-x: hidden;
@@ -502,7 +505,7 @@ h1 .line { display:block; }
 .re-container {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
   width: 100%;
 }
 
@@ -510,82 +513,60 @@ h1 .line { display:block; }
 .re-row {
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* fix extra height on mobile */
-  flex-wrap: wrap; /* allows wrapping */
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
   width: 100%;
-  overflow: hidden;
-  box-sizing: border-box;
 }
 
 /* Keyword items */
-.re-phrase {
-  display: inline-block;
-  border: 1px solid white;
+.re-phrase,
+.re-other {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 auto;   /* prevent stretching */
   border-radius: 8px;
-  padding: 8px 16px;
-  background: transparent;
-  color: white;
+  padding: 6px 12px;
   font-family: Arial, sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   white-space: nowrap;
   cursor: pointer;
-  transition: all 0.2s ease;
-  max-width: 100%; /* prevent item from overflowing */
   box-sizing: border-box;
+  max-width: 100%;
+  transition: all 0.2s ease;
+}
+
+.re-phrase {
+  border: 1px solid white;
+  background: transparent;
+  color: white;
 }
 
 .re-phrase:hover {
   background: rgba(255,255,255,0.1);
 }
 
-/* Frameless “It’s something else...” */
 .re-other {
   border: none;
-  padding: 8px 16px;
-  color: white;
   font-style: italic;
-  font-size: 13px;
-  white-space: nowrap;
-  max-width: 100%;
-  box-sizing: border-box;
+  color: white;
 }
 
 /* ===============================
    MOBILE ADJUSTMENTS
 ================================== */
 @media (max-width: 768px) {
-  .re-container-wrapper {
-    gap: 12px; /* reduce vertical spacing */
-  }
-
-  .re-row {
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start; /* ensures rows don't stretch vertically */
-    gap: 8px;
-  }
-
   .re-phrase,
   .re-other {
     font-size: 11px;
-    padding: 6px 12px;
+    padding: 5px 10px;
   }
 }
 
 @media (max-width: 480px) {
-  .re-container-wrapper {
-    gap: 8px;
-  }
-
-  .re-row {
-    gap: 6px;
-    align-items: flex-start;
-  }
-
   .re-phrase,
   .re-other {
     font-size: 10px;
-    padding: 5px 10px;
+    padding: 4px 8px;
   }
 }
