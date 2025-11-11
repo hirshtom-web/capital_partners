@@ -1,36 +1,38 @@
-* ================= POP-UP BACKDROP ================= */
+/* ================= POP-UP BACKDROP ================= */
 .popup-backdrop {
-  position: fixed;
+  position: fixed;             /* overlay everything */
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 50px;
-  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5); /* semi-transparent dark overlay */
+  display: none;               /* hidden by default */
+  justify-content: center;     
+  align-items: center;         /* center vertically & horizontally */
+  z-index: 1000;               /* on top of everything */
+  padding: 20px;               /* optional padding for small screens */
 }
 
 /* ================= POP-UP CARD ================= */
 .popup-card {
   background: #fff;
   border-radius: 16px;
-  width: 450px;
-  max-width: 90%;
+  width: 90%;
+  max-width: 450px;
   min-height: 440px;
-  padding: 40px;
+  padding: 30px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  position: relative;          /* for inner elements positioning */
 }
 
 /* ================= LOGO ================= */
 .popup-card img {
   height: 40px;
-  width: auto; /* maintain aspect ratio */
+  width: auto;                 /* maintain aspect ratio */
   margin-bottom: 10px;
 }
 
@@ -39,7 +41,6 @@
   font-size: 24px;
   color: #000;
   margin-bottom: 20px;
-  text-align: center;
 }
 
 /* ================= TEXT ================= */
@@ -47,7 +48,6 @@
   font-size: 12px;
   line-height: 1.5;
   color: #666;
-  text-align: center;
   margin-bottom: 40px;
 }
 
@@ -69,8 +69,7 @@
   display: flex;
   align-items: center; /* vertically center text with checkbox */
   gap: 8px;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  margin: 10px 0 20px 0;
   color: #000;
 }
 
@@ -79,7 +78,7 @@
   height: 16px;
   vertical-align: middle;
   margin: 0;
-  transform: translateY(1px); /* fine tune to align with text baseline */
+  transform: translateY(1px); /* fine-tune alignment */
 }
 
 /* ================= SUBMIT BUTTON ================= */
@@ -94,6 +93,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s;
+  margin-top: 10px;
 }
 
 .popup-card button:hover {
@@ -104,15 +104,16 @@
 .popup-footer {
   font-size: 10px;
   color: #999;
-  text-align: center;
   margin-top: 20px;
 }
 
 /* ================= RESPONSIVE ================= */
-@media (max-width: 400px){
+@media (max-width: 400px) {
   .popup-card {
     padding: 20px;
+    min-height: auto;
   }
+
   .popup-card input {
     height: 28px;
   }
