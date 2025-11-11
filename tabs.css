@@ -1,11 +1,18 @@
 .section-wrapper {
-    width: 100%;      /* take full width */
-    max-width: 100%;  /* remove any max width constraints */
-    margin: 0;        /* remove automatic centering */
-    padding: 60px 20px; /* optional padding */
-    border-radius: 0; /* optional, remove if you want true edge-to-edge */
-    box-sizing: border-box; /* ensure padding doesn’t exceed width */
+    width: 100%;
+    max-width: 100%; /* remove the 80% limit */
+    margin: 0;       /* remove auto centering */
+    padding: 20px;   /* optional: adjust padding for mobile */
+    border-radius: 0; /* optional: remove rounded corners on mobile */
 }
+
+@media (max-width: 600px) {
+    .section-wrapper {
+        padding: 15px; /* smaller padding for mobile */
+        border-radius: 0; /* optional */
+    }
+}
+
 
 /* Container */
   .content-card {
@@ -218,13 +225,6 @@
     }
   }
 
-  .section-wrapper {
-    background-color: #fafafa;
-    border-radius: 40px;
-    max-width: 80%;
-    margin: 0 auto 60px;
-    padding: 60px 40px;
-  }
 
   h1 {
     font-size: 40px;
