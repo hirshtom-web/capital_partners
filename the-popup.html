@@ -1,185 +1,24 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Capital Partners – Clients</title>
+<script>
+// Select popup and trigger button
+const popup = document.getElementById('popup');
+const trigger = document.querySelector('.main-btn-bubble');
+const closeBtn = document.getElementById('popup-close');
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+// Show popup when button clicked
+trigger.addEventListener('click', function(e) {
+  e.preventDefault(); // prevent default anchor behavior
+  popup.style.display = 'flex';
+});
 
-<style>
-* { box-sizing: border-box; }
-
-body {
-  font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
-  margin: 0;
-  background: #1e0949;
-  color: #fff;
-}
-
-a { text-decoration: none; color: inherit; }
-
-/* ================= POP-UP BACKDROP ================= */
-.popup-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 50px;
-  z-index: 1000;
-}
-
-/* ================= POP-UP CARD ================= */
-.popup-card {
-  background: #fff;
-  border-radius: 16px;
-  width: 450px;
-  max-width: 90%;
-  min-height: 440px;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-}
-
-/* ================= LOGO ================= */
-.popup-card img {
-  height: 40px;
-  width: auto; /* maintain aspect ratio */
-  margin-bottom: 10px;
-}
-
-/* ================= TITLE ================= */
-.popup-card h1 {
-  font-size: 24px;
-  color: #000;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-/* ================= TEXT ================= */
-.popup-text {
-  font-size: 12px;
-  line-height: 1.5;
-  color: #666;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-/* ================= INPUTS ================= */
-.popup-card input {
-  width: 100%;
-  height: 40px;
-  background: #fafafa;
-  border: 0.2px solid #dddddd;
-  border-radius: 8px;
-  padding: 0 10px;
-  margin-bottom: 15px;
-  font-size: 12px;
-}
-
-/* ================= CHECKBOX ================= */
-.popup-card label {
-  font-size: 12px;
-  display: flex;
-  align-items: center; /* vertically center text with checkbox */
-  gap: 8px;
-  margin-bottom: 20px;
-  margin-top: 10px;
-  color: #000;
-}
-
-.popup-card input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  vertical-align: middle;
-  margin: 0;
-  transform: translateY(1px); /* fine tune to align with text baseline */
-}
-
-/* ================= SUBMIT BUTTON ================= */
-.popup-card button {
-  width: 150px;
-  background: #000;
-  color: #fff;
-  border: none;
-  border-radius: 20px;
-  padding: 10px 0;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.popup-card button:hover {
-  background: #999;
-}
-
-/* ================= FOOTER ================= */
-.popup-footer {
-  font-size: 10px;
-  color: #999;
-  text-align: center;
-  margin-top: 20px;
-}
-
-/* ================= RESPONSIVE ================= */
-@media (max-width: 400px){
-  .popup-card {
-    padding: 20px;
+// Hide popup when clicking outside the card
+popup.addEventListener('click', function(e) {
+  if (e.target === popup) {
+    popup.style.display = 'none';
   }
-  .popup-card input {
-    height: 28px;
-  }
-}
-</style>
-</head>
-<body>
+});
 
-<div id="popup" class="popup-backdrop" style="display: none;">
-  <div class="popup-card">
-    <!-- Close button -->
-    <button id="popup-close" style="position:absolute; top:10px; right:10px; background:none; border:none; font-size:20px; cursor:pointer;">×</button>
-
-    <!-- LOGO -->
-    <img src="https://static.wixstatic.com/media/1799ca_37b1880cb94f44da8635db99b0631442~mv2.png" alt="Logo" />
-
-    <!-- TITLE -->
-    <h1>Get Expert Guidance</h1>
-
-    <!-- TEXT -->
-    <div class="popup-text">
-      Drop your name and number, and we’ll get back to you promptly with expert guidance and answers.
-    </div>
-
-    <!-- INPUTS -->
-    <input type="text" placeholder="Full Name" />
-    <input type="email" placeholder="Email Address" />
-    <input type="tel" placeholder="Phone Number" />
-
-    <!-- CHECKBOX -->
-    <label>
-      <input type="checkbox" />
-      I approve the terms and conditions
-    </label>
-
-    <!-- SUBMIT BUTTON -->
-    <button>Submit</button>
-
-    <!-- FOOTER -->
-    <div class="popup-footer">
-      © 2025 All rights reserved.
-    </div>
-  </div>
-</div>
-
-
-</body>
-</html>
+// Hide popup when clicking the close button
+closeBtn.addEventListener('click', function() {
+  popup.style.display = 'none';
+});
+</script>
