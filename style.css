@@ -375,16 +375,16 @@ h1 .line { display:block; }
   gap: 14px;
 }
 
-/* Each row (3 + 1 items) */
+/* Each row */
 .re-row {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
-  gap: 14px; /* consistent spacing */
+  gap: 14px;
 }
 
-/* Keywords */
+/* Keyword items */
 .re-phrase {
   display: inline-block;
   border: 1px solid white;
@@ -398,14 +398,12 @@ h1 .line { display:block; }
   cursor: pointer;
   transition: all 0.2s;
 }
-
 .re-phrase:hover {
   background: rgba(255,255,255,0.1);
 }
 
-/* Frameless option */
+/* Frameless ones */
 .re-other {
-  display: inline-block;
   border: none;
   padding: 8px 16px;
   color: white;
@@ -413,5 +411,23 @@ h1 .line { display:block; }
   font-size: 12px;
   white-space: nowrap;
 }
+
+/* ===============================
+   MOBILE
+================================== */
+@media (max-width: 768px) {
+  .re-row {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .re-phrase,
+  .re-other {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+}
+
 
 
