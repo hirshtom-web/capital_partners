@@ -1,8 +1,12 @@
 .section-wrapper {
-  width: 100%;
-  background-color: #ffffff; /* full white background */
-  padding: 0px 0; /* space above and below all sections */
+    width: 100%;      /* take full width */
+    max-width: 100%;  /* remove any max width constraints */
+    margin: 0;        /* remove automatic centering */
+    padding: 60px 20px; /* optional padding */
+    border-radius: 0; /* optional, remove if you want true edge-to-edge */
+    box-sizing: border-box; /* ensure padding doesn’t exceed width */
 }
+
 /* Container */
   .content-card {
     background-color: #f8f8f8;
