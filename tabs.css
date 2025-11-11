@@ -1,4 +1,9 @@
-  /* Container */
+.section-wrapper {
+  width: 100%;
+  background-color: #ffffff; /* full white background */
+  padding: 0px 0; /* space above and below all sections */
+}
+/* Container */
   .content-card {
     background-color: #f8f8f8;
     border-radius: 35px;
