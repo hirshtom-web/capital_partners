@@ -457,10 +457,10 @@ h1 .line { display:block; }
 
 @keyframes scrollLogos {
   0% {
-    transform: translateX(0);
+    transform: translateX(100%); /* start fully offscreen right */
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-100%); /* end fully offscreen left */
   }
 }
 
