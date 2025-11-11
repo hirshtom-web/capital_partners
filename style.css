@@ -365,18 +365,28 @@ h1 .line { display:block; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 18px;
   text-align: center;
 }
 
 .re-container {
-  display: grid;
-  grid-template-columns: repeat(3, max-content); /* 3 items per row */
-  gap: 15px;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
+/* Each row (3 + 1 items) */
+.re-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 14px; /* consistent spacing */
+}
+
+/* Keywords */
 .re-phrase {
+  display: inline-block;
   border: 1px solid white;
   border-radius: 8px;
   padding: 8px 16px;
@@ -393,12 +403,15 @@ h1 .line { display:block; }
   background: rgba(255,255,255,0.1);
 }
 
+/* Frameless option */
 .re-other {
-  border: none; /* frameless */
+  display: inline-block;
+  border: none;
   padding: 8px 16px;
   color: white;
   font-style: italic;
   font-size: 12px;
   white-space: nowrap;
 }
+
 
