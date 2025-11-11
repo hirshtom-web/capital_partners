@@ -372,7 +372,7 @@ h1 .line { display:block; }
 .re-container {
   display: grid;
   grid-template-columns: repeat(3, max-content); /* 3 items per row */
-  gap: 15px; /* equal spacing between buttons */
+  gap: 15px;
   justify-content: center;
 }
 
@@ -388,6 +388,17 @@ h1 .line { display:block; }
   cursor: pointer;
   transition: all 0.2s;
 }
+
 .re-phrase:hover {
   background: rgba(255,255,255,0.1);
 }
+
+.re-other {
+  border: none; /* frameless */
+  padding: 8px 16px;
+  color: white;
+  font-style: italic;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
