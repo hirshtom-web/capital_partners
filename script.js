@@ -80,3 +80,17 @@ toggleBtn.addEventListener('click', () => {
   toggleBtn.classList.toggle('active');
   mobileMenu.classList.toggle('active');
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  // select all footer columns on mobile
+  const footerColumns = document.querySelectorAll(".footer-column");
+
+  footerColumns.forEach(column => {
+    const header = column.querySelector("h4");
+    header.addEventListener("click", () => {
+      // toggle 'active' class
+      column.classList.toggle("active");
+    });
+  });
+});
+
