@@ -67,7 +67,8 @@ header {
 /* LOGO */
 .main-logo img {
   height: 50px;
-  filter: brightness(100%);
+  max-width: 150px; /* or whatever width you want */
+  width: auto;       /* preserve aspect ratio */
 }
 
 /* RIGHT SIDE: nav + CTA */
