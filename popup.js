@@ -1,4 +1,3 @@
-<script>
 // Select popup and trigger button
 const popup = document.getElementById('popup');
 const trigger = document.querySelector('.main-btn-bubble');
@@ -21,4 +20,3 @@ popup.addEventListener('click', function(e) {
 closeBtn.addEventListener('click', function() {
   popup.style.display = 'none';
 });
-</script>
