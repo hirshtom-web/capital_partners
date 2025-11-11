@@ -302,12 +302,26 @@ nav > div:hover .submenu {
 /* ===============================
    BUTTONS (global) – unchanged
 ================================== */
+/* Wrap the button in a container */
+.button-wrapper {
+  display: flex;
+  justify-content: center; /* centers horizontally */
+  margin-top: 30px;       /* optional spacing */
+}
+
+/* Your existing button */
 .main-btn-bubble {
   background: linear-gradient(90deg,#b577c8,#a062d0);
-  color:#fff; border-radius:999px; font-size:12px; font-weight:500;
-  padding:10px 30px; transition:all .3s; margin-top:30px;
+  color: #fff;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 10px 30px;
+  transition: all 0.3s;
 }
-.main-btn-bubble:hover { box-shadow:0 2px 8px rgba(255,255,255,.2); }
+.main-btn-bubble:hover {
+  box-shadow: 0 2px 8px rgba(255,255,255,0.2);
+}
 
 /* ===============================
    HERO SECTION – unchanged
