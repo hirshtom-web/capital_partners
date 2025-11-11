@@ -422,27 +422,25 @@ h1 .line { display:block; }
 
 .logo-slider {
   width: 100%;
-  position: relative; /* Needed for the fade overlays */
+  position: relative;
   overflow: hidden;
 }
 
-/* Fading overlays */
+/* fading edges */
 .logo-slider::before,
 .logo-slider::after {
   content: "";
   position: absolute;
   top: 0;
-  width: 100px; /* adjust fade width */
+  width: 100px;
   height: 100%;
   z-index: 2;
   pointer-events: none;
 }
-
 .logo-slider::before {
   left: 0;
   background: linear-gradient(to right, #1e0949 0%, transparent 100%);
 }
-
 .logo-slider::after {
   right: 0;
   background: linear-gradient(to left, #1e0949 0%, transparent 100%);
@@ -462,51 +460,29 @@ h1 .line { display:block; }
   filter: brightness(0) saturate(100%) invert(98%) sepia(6%) saturate(276%) hue-rotate(324deg) brightness(106%) contrast(100%);
 }
 
+/* seamless animation */
 @keyframes scrollLogos {
-  0% {
-    transform: translateX(100%); /* start fully offscreen right */
-  }
-  100% {
-    transform: translateX(-100%); /* end fully offscreen left */
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* scroll half because we duplicated logos */
 }
 
 /* Responsive tweaks */
 @media (max-width: 768px) {
-  .trusted-text {
-    font-size: 16px;
-    margin-bottom: 25px;
-  }
-  .logo-track {
-    gap: 30px;
-    animation: scrollLogos 25s linear infinite;
-  }
-  .logo {
-    height: 80px;
-  }
+  .trusted-text { font-size: 16px; margin-bottom: 25px; }
+  .logo-track { gap: 30px; animation: scrollLogos 25s linear infinite; }
+  .logo { height: 80px; }
   .logo-slider::before,
-  .logo-slider::after {
-    width: 60px;
-  }
+  .logo-slider::after { width: 60px; }
 }
 
 @media (max-width: 480px) {
-  .trusted-text {
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-  .logo-track {
-    gap: 20px;
-    animation: scrollLogos 30s linear infinite;
-  }
-  .logo {
-    height: 60px;
-  }
+  .trusted-text { font-size: 14px; margin-bottom: 20px; }
+  .logo-track { gap: 20px; animation: scrollLogos 30s linear infinite; }
+  .logo { height: 60px; }
   .logo-slider::before,
-  .logo-slider::after {
-    width: 40px;
-  }
+  .logo-slider::after { width: 40px; }
 }
+
 
 /* ===============================
    Keywords SECTION
