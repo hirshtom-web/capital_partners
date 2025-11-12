@@ -3,6 +3,12 @@ html, body, header, nav {
   direction: ltr !important;
   text-align: left;
 }
+html, body {
+  background: #f9f9f9 !important;
+  margin: 0;
+  padding: 0;
+}
+
 
 * {
   box-sizing: border-box;
