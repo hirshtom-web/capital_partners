@@ -166,6 +166,18 @@
   <li><a href="#" class="btn-bubble">Let's go!</a></li>
 </ul>
 
+      <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const header = document.getElementById("header");
+
+    // Check if this is the home page
+    const isHome = window.location.pathname === "/" || window.location.pathname.endsWith("index.html");
+
+    // Apply background color
+    header.style.backgroundColor = isHome ? "#1e0949" : "#ffffff";
+  });
+</script>
+
 
 </header>
 
