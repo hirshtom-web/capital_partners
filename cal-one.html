@@ -15,17 +15,17 @@
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       margin: 0;
-      padding: 20px;
+      padding: 40px;
       background-color: #fff;
       color: #1e0949;
     }
 
     .container {
       display: flex;
-      gap: 40px;
+      gap: 20px;
       max-width: 1200px;
       margin: auto;
-      align-items: stretch;
+      align-items: flex-start;
       flex-wrap: wrap;
     }
 
@@ -36,6 +36,7 @@
       padding: 30px;
       display: flex;
       flex-direction: column;
+      align-items: center;
     }
 
     h2 {
@@ -58,7 +59,7 @@
       display: flex;
       flex-direction: column;
       flex: 1 1 220px;
-      max-width: 220px;
+      max-width: 300px;
     }
 
     .input-group input {
@@ -153,19 +154,6 @@
       color: #fff;
     }
 
-    #resultsHighlight {
-      background-color: #d0e8ff;
-      border-radius: 12px;
-      padding: 20px;
-      margin-top: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      color: #1e0949;
-      font-size: 18px;
-      font-weight: 500;
-    }
-
     .switch {
       position: relative;
       display: inline-block;
@@ -209,6 +197,46 @@
       transform: translateX(30px);
     }
 
+    /* RESULTS STYLING (NOW ON RIGHT) */
+    #resultsContainer {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 5px 10px;
+      border-radius: 8px;
+    }
+
+    .result-net {
+      background-color: #d0e8ff;
+      font-weight: 600;
+    }
+
+   .result-row {
+  display: flex;
+  justify-content: space-between; /* pushes first item left, last item right */
+  width: 180%;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.result-row span:first-child {
+  text-align: left; /* label stays left */
+}
+
+.result-row span:last-child {
+  text-align: right; /* value stays right */
+  min-width: 150px;   /* optional, ensures enough space */
+}
+
+
     @media (max-width: 900px) {
       .container {
         flex-direction: column;
@@ -218,7 +246,7 @@
       }
       form {
         flex-direction: column;
-        align-items: stretch;
+        align-items: center;
       }
       .input-group {
         max-width: 100%;
@@ -239,7 +267,7 @@
 <body>
 
 <div class="container">
-  <!-- LEFT SIDE -->
+  <!-- LEFT SIDE (INPUTS ONLY) -->
   <div class="left">
     <h2>Rental Property Investment Calculator</h2>
     <form id="reCalcForm">
@@ -324,15 +352,30 @@
           Calculate
         </button>
       </div>
+
     </form>
   </div>
 
-  <!-- RIGHT SIDE -->
+  <!-- RIGHT SIDE (RESULTS) -->
   <div class="right">
     <h2>Results</h2>
-    <div id="resultsHighlight">
-      <div><strong>Monthly Cash Flow:</strong> <span id="monthlyCashFlow">$0</span></div>
-      <div><strong>Annual Cash Flow:</strong> <span id="annualCashFlow">$0</span></div>
+    <div id="resultsContainer">
+      <div class="result-row">
+        <span>Rent</span>
+        <span id="rentResult">$0</span>
+      </div>
+      <div class="result-row">
+        <span>Expenses</span>
+        <span id="expensesResult">$0</span>
+      </div>
+      <div class="result-row result-net">
+        <span>Net</span>
+        <span id="netResult">$0</span>
+      </div>
+      <div class="result-row">
+        <span>Cash-on-Cash</span>
+        <span id="cocResult">0%</span>
+      </div>
     </div>
   </div>
 </div>
@@ -341,7 +384,6 @@
 const purchaseInput = document.getElementById('purchasePrice');
 const cashInput = document.getElementById('cashInvestment');
 const mortgageInput = document.getElementById('mortgageAmount');
-const toggleBtn = document.getElementById('additionalCriteriaToggle');
 const additionalCriteria = document.getElementById('additionalCriteria');
 const cashFinancingToggle = document.getElementById('cashFinancingToggle');
 
@@ -360,49 +402,55 @@ updateMortgage();
 // Toggle ALL CASH / FINANCING
 cashFinancingToggle.addEventListener('change', () => {
   if (cashFinancingToggle.checked) {
-    // FINANCING
     additionalCriteria.style.display = 'flex';
   } else {
-    // ALL CASH
     additionalCriteria.style.display = 'none';
     mortgageInput.value = 0;
   }
 });
 
-// Calculate cash flow
+// Format number with thousand separators
+function formatMoney(num) {
+  return "$" + num.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+// Calculate metrics
 document.getElementById('calculateBtn').addEventListener('click', () => {
   const rent = parseFloat(document.getElementById('rent').value || 0);
   const hoa = parseFloat(document.getElementById('hoa').value || 0);
   const tax = parseFloat(document.getElementById('tax').value || 0) / 12;
+  const insurance = parseFloat(document.getElementById('insurance').value || 0) / 12;
+  const managementRate = parseFloat(document.getElementById('management').value || 0) / 100;
+  const vacancyRate = parseFloat(document.getElementById('vacancy').value || 0) / 100;
+  const other = parseFloat(document.getElementById('otherExpenses').value || 0) / 12;
+  const cashInvestment = parseFloat(document.getElementById('cashInvestment').value || 0);
 
-  let monthlyCashFlow = 0;
-
+  // Mortgage calculation
+  let mortgagePayment = 0;
   if (additionalCriteria.style.display === 'flex') {
     const P = parseFloat(mortgageInput.value || 0);
     const r = parseFloat(document.getElementById('mortgageRate').value || 0) / 100 / 12;
     const n = parseFloat(document.getElementById('mortgageTerm').value || 30) * 12;
 
-    let mortgagePayment = 0;
     if (P > 0 && r > 0 && n > 0) {
       mortgagePayment = (P * r * Math.pow(1+r, n)) / (Math.pow(1+r, n) - 1);
     }
-
-    const insurance = parseFloat(document.getElementById('insurance').value || 0) / 12;
-    const managementRate = parseFloat(document.getElementById('management').value || 0) / 100;
-    const vacancyRate = parseFloat(document.getElementById('vacancy').value || 0) / 100;
-    const other = parseFloat(document.getElementById('otherExpenses').value || 0) / 12;
-
-    const effectiveRent = rent * (1 - vacancyRate);
-    const managementFee = effectiveRent * managementRate;
-    const monthlyExpenses = mortgagePayment + hoa + insurance + tax + managementFee + other;
-    monthlyCashFlow = effectiveRent - monthlyExpenses;
-
-  } else {
-    monthlyCashFlow = rent - hoa - tax;
   }
 
-  document.getElementById('monthlyCashFlow').textContent = `$${monthlyCashFlow.toFixed(2)}`;
-  document.getElementById('annualCashFlow').textContent = `$${(monthlyCashFlow*12).toFixed(2)}`;
+  // Effective rent after vacancy
+  const effectiveRent = rent * (1 - vacancyRate);
+  const managementFee = effectiveRent * managementRate;
+  const totalExpenses = mortgagePayment + hoa + insurance + tax + managementFee + other;
+  const netIncome = effectiveRent - totalExpenses;
+
+  // Cash-on-cash return
+  const cashOnCash = cashInvestment > 0 ? (netIncome * 12 / cashInvestment * 100) : 0;
+
+  // Update results
+  document.getElementById('rentResult').textContent = formatMoney(effectiveRent);
+  document.getElementById('expensesResult').textContent = formatMoney(totalExpenses);
+  document.getElementById('netResult').textContent = formatMoney(netIncome);
+  document.getElementById('cocResult').textContent = cashOnCash.toFixed(2) + "%";
 });
 </script>
 
