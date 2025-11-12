@@ -14,6 +14,22 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch(err => console.error("Error loading header:", err));
   }
+  
+// =========================
+// Load Trusted By Section
+// =========================
+const trustedContainer = document.getElementById("trusted-by");
+if (trustedContainer) {
+  fetch("https://hirshtom-web.github.io/capital_partners/trusted-by.html")
+    .then(response => {
+      if (!response.ok) throw new Error("Trusted By section not found");
+      return response.text();
+    })
+    .then(html => {
+      trustedContainer.innerHTML = html;
+    })
+    .catch(err => console.error("Error loading Trusted By section:", err));
+}
 
   // =========================
   // Load property slide
