@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trusted Section</title>
+<style>
+  /* ---------- GLOBAL ---------- */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #f5f5f5; }
+
+  /* ---------- TRUSTED SECTION ---------- */
+  .trusted-section {
+    width: 100%;
+    background: #1e0949;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .trusted-text {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  /* ---------- LOGO SLIDER ---------- */
+  .logo-slider {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .logo-slider::before,
+  .logo-slider::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .logo-slider::before {
+    left: 0;
+    background: linear-gradient(to right, #1e0949 0%, transparent 100%);
+  }
+
+  .logo-slider::after {
+    right: 0;
+    background: linear-gradient(to left, #1e0949 0%, transparent 100%);
+  }
+
+  .logo-track {
+    display: flex;
+    width: calc(200%);
+    animation: scrollLogos 20s linear infinite;
+  }
+
+  .logo-track img {
+    height: 60px;
+    margin-right: 30px;
+    flex-shrink: 0;
+    object-fit: contain;
+    filter: brightness(0) saturate(100%) invert(98%) sepia(6%) saturate(276%) hue-rotate(324deg) brightness(106%) contrast(100%);
+  }
+
+  @keyframes scrollLogos {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 768px) {
+    .trusted-text { font-size: 20px; margin-bottom: 25px; }
+    .logo-track { animation: scrollLogos 25s linear infinite; }
+    .logo-track img { height: 50px; margin-right: 20px; }
+    .logo-slider::before,
+    .logo-slider::after { width: 60px; }
+  }
+
+  @media (max-width: 480px) {
+    .trusted-text { font-size: 16px; margin-bottom: 20px; }
+    .logo-track { animation: scrollLogos 30s linear infinite; }
+    .logo-track img { height: 40px; margin-right: 15px; }
+    .logo-slider::before,
+    .logo-slider::after { width: 40px; }
+  }
+</style>
+</head>
+<body>
+
+  <section class="trusted-section">
+    <div class="trusted-text">Trusted By Leading Brands</div>
+
+    <div class="logo-slider">
+      <div class="logo-track">
+        <!-- Original logos -->
+        <img src="https://static.wixstatic.com/shapes/1799ca_4b2858a58b5b405bb60e148ccc8cedb1.svg" alt="Logo 1" class="logo">
+        <img src="https://static.wixstatic.com/shapes/1799ca_67f9643d5c1d4d1dac09b1e179d1073f.svg" alt="Logo 2" class="logo">
+        <img src="https://static.wixstatic.com/shapes/1799ca_02bb32970c0c4077920b3bad2b2256ad.svg" alt="Logo 3" class="logo">
+        <img src="https://static.wixstatic.com/shapes/1799ca_10c76a6ab5c0473599f3fa4f9524decf.svg" alt="Logo 4" class="logo">
+        <img src="https://static.wixstatic.com/shapes/1799ca_ca28f6eda03d49a9a8835662ce4ede3e.svg" alt="Logo 5" class="logo">
+        <img src="https://static.wixstatic.com/shapes/1799ca_3c8594ef0f114a3fa4cb3dd951210457.svg" alt="Logo 6" class="logo">
+        <!-- Duplicate logos for seamless scroll -->
+        <img src="https://static.wixstatic.com/shapes/1799ca_4b2858a58b5b405bb60e148ccc8cedb1.svg" alt="Logo 1" class="logo">
+        <img src="https://static.wixstatic.com/shapes/1799ca_67f9643d5c1d4d1dac09b1e179d1073f.svg" alt="Logo 2" class="logo">
+        <img src="https://static.wixstatic.com/shapes/1799ca_02bb32970c0c4077920b3bad2b2256ad.svg" alt="Logo 3" class="logo">
+        <img src="https://static.wixstatic.com/shapes/1799ca_10c76a6ab5c0473599f3fa4f9524decf.svg" alt="Logo 4" class="logo">
+        <img src="https://static.wixstatic.com/shapes/1799ca_ca28f6eda03d49a9a8835662ce4ede3e.svg" alt="Logo 5" class="logo">
+        <img src="https://static.wixstatic.com/shapes/1799ca_3c8594ef0f114a3fa4cb3dd951210457.svg" alt="Logo 6" class="logo">
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
