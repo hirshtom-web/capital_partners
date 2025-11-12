@@ -68,14 +68,13 @@ html, body {
    TOGGLE BUTTONS
 ================================== */
 .uni-toggle-wrapper {
-  display: flex;
-  justify-content: center;
-  gap: 8px; /* space between buttons */
-  background-color: #f0f0f0; /* gray background */
-  border-radius: 50px;
-  padding: 8px; /* vertical padding */
-  margin: 0 5px 40px; /* 5px left/right margins, 40px bottom */
-  flex-wrap: wrap;
+    display: inline-flex;
+    background-color: #eaeaea;
+    border-radius: 45px;
+    padding: 5px;
+    margin-bottom: 35px;
+    gap: 6px;
+    flex-wrap: wrap;
 }
 
 .uni-toggle-btn {
