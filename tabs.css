@@ -15,15 +15,19 @@ html, body {
   color: #fff;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* ===============================
+   SECTION AREA
+================================== */
+.uni-section-shell {
+  background-color: #fff;
+  color: #111;
+  padding: 80px 0;
 }
 
 /* ===============================
-   SECTION WRAPPER
+   CONTENT TILE
 ================================== */
-.section-wrapper {
+.uni-content-tile {
   width: 100%;
   background-color: #fafafa;
   border-radius: 40px;
@@ -34,7 +38,7 @@ a {
 }
 
 @media (max-width: 800px) {
-  .section-wrapper {
+  .uni-content-tile {
     max-width: 100%;
     border-radius: 0;
     margin: 0;
@@ -45,27 +49,25 @@ a {
 /* ===============================
    HEADINGS & TEXT
 ================================== */
-.section-wrapper > h3 {
+.uni-heading-xl {
   font-size: 28px;
   font-weight: 600;
   margin-bottom: 15px;
   line-height: 1.4;
   color: #111;
-  text-align: center;
 }
 
-.section-wrapper .subtitle {
+.uni-subtitle {
   font-size: 18px;
   color: #333;
   margin-bottom: 35px;
   line-height: 1.6;
-  text-align: center;
 }
 
 /* ===============================
    TOGGLE BUTTONS
 ================================== */
-.toggle-wrapper {
+.uni-toggle-wrapper {
   display: flex;
   justify-content: center;
   background-color: #f0f0f0;
@@ -76,7 +78,7 @@ a {
   flex-wrap: wrap;
 }
 
-.toggle-btn {
+.uni-toggle-btn {
   border: none;
   background-color: #f0f0f0;
   color: #000;
@@ -89,15 +91,15 @@ a {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.toggle-btn.active {
+.uni-toggle-btn.active {
   background-color: #fff;
   box-shadow: 0 3px 8px rgba(0,0,0,0.12);
 }
 
 /* ===============================
-   TAB CONTENT
+   PANELS (Tab Content)
 ================================== */
-.tab-content {
+.uni-panel {
   display: none;
   background: #f8f8f8;
   border-radius: 18px;
@@ -109,30 +111,31 @@ a {
   animation: fadeUp 0.4s ease;
 }
 
-.tab-content.active {
+.uni-panel.active {
   display: block;
 }
 
-.tab-inner {
+/* Two-column layout */
+.uni-panel-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 38px;
-  flex-wrap: nowrap; /* Stay side-by-side on desktop */
+  flex-wrap: nowrap;
 }
 
-.tab-text {
+.uni-panel-text {
   flex: 1 1 60%;
 }
 
-.tab-image {
+.uni-panel-image {
   flex: 1 1 35%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.tab-image img {
+.uni-panel-image img {
   width: 100%;
   max-width: 380px;
   border-radius: 18px;
@@ -140,9 +143,9 @@ a {
 }
 
 /* ===============================
-   TAB INNER TEXT STYLES
+   PANEL TEXT STYLES
 ================================== */
-.tab-content h3 {
+.uni-panel h3 {
   font-size: 24px;
   line-height: 1.4;
   font-weight: 600;
@@ -150,7 +153,7 @@ a {
   margin-bottom: 15px;
 }
 
-.tab-content p {
+.uni-panel p {
   font-size: 16px;
   color: #444;
   margin-bottom: 25px;
@@ -160,13 +163,13 @@ a {
 /* ===============================
    LIST STYLES
 ================================== */
-ul {
+.uni-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-ul li {
+.uni-list li {
   margin-bottom: 13px;
   font-size: 15px;
   display: flex;
@@ -175,7 +178,7 @@ ul li {
   line-height: 1.6;
 }
 
-ul li img {
+.uni-list li img {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
@@ -194,36 +197,36 @@ ul li img {
    RESPONSIVE
 ================================== */
 @media (max-width: 900px) {
-  .tab-inner {
+  .uni-panel-inner {
     flex-direction: column;
     align-items: center;
   }
 
-  .tab-text,
-  .tab-image {
+  .uni-panel-text,
+  .uni-panel-image {
     flex: 1 1 100%;
   }
 
-  .tab-image img {
+  .uni-panel-image img {
     max-width: 100%;
   }
 }
 
 @media (max-width: 600px) {
-  .section-wrapper h3 {
+  .uni-heading-xl {
     font-size: 22px;
   }
 
-  .toggle-btn {
+  .uni-toggle-btn {
     font-size: 14px;
     padding: 8px 16px;
   }
 
-  .tab-content {
+  .uni-panel {
     padding: 25px 20px;
   }
 
-  ul li img {
+  .uni-list li img {
     width: 18px;
     height: 18px;
   }
