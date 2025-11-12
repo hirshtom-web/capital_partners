@@ -1,5 +1,11 @@
+.section-area {
+  background-color: #fff; /* or any color */
+  padding: 80px 0; /* optional vertical space */
+}
+
+
 /* ===============================
-   GLOBAL STYLES
+   GLOBAL
 ================================== */
 * {
   box-sizing: border-box;
@@ -11,7 +17,7 @@ html, body {
   overflow-x: hidden;
   width: 100%;
   font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
-  background: #1e0949;
+  background: #fff;
   color: #fff;
 }
 
@@ -21,21 +27,21 @@ a {
 }
 
 /* ===============================
-   MAIN CONTAINER WRAPPER
+   SECTION WRAPPER
 ================================== */
-.uni-section-shell {
+.section-wrapper {
   width: 100%;
   background-color: #fafafa;
   border-radius: 40px;
   max-width: 1200px;
   margin: 0 auto 60px;
   padding: 60px 40px;
+  text-align: center;
 }
 
 @media (max-width: 800px) {
-  .uni-section-shell {
+  .section-wrapper {
     max-width: 100%;
-    width: 100%;
     border-radius: 0;
     margin: 0;
     padding: 30px 15px;
@@ -43,104 +49,40 @@ a {
 }
 
 /* ===============================
-   CONTENT CARD
-================================== */
-.uni-content-tile {
-  background-color: #f8f8f8;
-  border-radius: 35px;
-  max-width: 85%;
-  margin: 0 auto 50px;
-  padding: 50px 35px;
-  color: #111;
-}
-
-@media (max-width: 600px) {
-  .uni-content-tile {
-    border-radius: 22px;
-    padding: 28px 15px;
-    max-width: 100%;
-  }
-}
-
-/* ===============================
    HEADINGS & TEXT
 ================================== */
-.uni-heading-xl {
-  font-size: 40px;
+.section-wrapper > h3 {
+  font-size: 28px;
   font-weight: 600;
-  margin-bottom: 20px;
-  line-height: 1.2;
+  margin-bottom: 15px;
+  line-height: 1.4;
   color: #111;
   text-align: center;
 }
 
-.uni-heading-sm {
-  font-size: 15px;
-  color: #444;
-  max-width: 500px;
-  margin: 0 auto 25px;
-  line-height: 1.6;
-  text-align: center;
-}
-
-.uni-subtitle {
+.section-wrapper .subtitle {
   font-size: 18px;
   color: #333;
-  max-width: 700px;
-  margin: 0 auto 40px;
+  margin-bottom: 35px;
   line-height: 1.6;
   text-align: center;
-}
-
-.uni-highlight-bar,
-.uni-highlight-underline {
-  position: relative;
-  display: inline-block;
-  padding: 0 4px;
-}
-
-.uni-highlight-bar::after,
-.uni-highlight-underline::after {
-  content: "";
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  height: 12px;
-  width: 100%;
-  background: linear-gradient(to right, #c0abef, #c0abef);
-  z-index: -1;
 }
 
 /* ===============================
-   SWITCH / TOGGLE BUTTONS
+   TOGGLE BUTTONS
 ================================== */
-.uni-toggle-container {
+.toggle-wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center; /* center horizontally */
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 35px;
-}
-
-.uni-toggle-title {
-  font-size: 18px;
-  color: #111;
-  text-align: center;
-  font-weight: 600;
-}
-
-.uni-toggle-wrapper {
-  display: inline-flex;
   justify-content: center;
   background-color: #f0f0f0;
   border-radius: 50px;
   padding: 5px;
-  gap: 6px;
+  margin: 0 auto 40px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
-.uni-toggle-btn {
+.toggle-btn {
   border: none;
   background-color: #f0f0f0;
   color: #000;
@@ -153,81 +95,84 @@ a {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.uni-toggle-btn.active {
+.toggle-btn.active {
   background-color: #fff;
   box-shadow: 0 3px 8px rgba(0,0,0,0.12);
 }
 
 /* ===============================
-   PANEL CONTENT
+   TAB CONTENT
 ================================== */
-.uni-panel {
+.tab-content {
   display: none;
   background: #f8f8f8;
   border-radius: 18px;
   max-width: 92%;
   margin: 0 auto;
-  padding: 28px 35px;
-  line-height: 1.8;
-  text-align: left;
+  padding: 40px 35px;
   color: #111;
-  animation: uniFadeUp 0.4s ease;
+  text-align: left;
+  animation: fadeUp 0.4s ease;
 }
 
-.uni-panel.active {
+.tab-content.active {
   display: block;
 }
 
-.uni-panel-inner {
+.tab-inner {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 38px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* Stay side-by-side on desktop */
 }
 
-.uni-panel-text {
+.tab-text {
   flex: 1 1 60%;
 }
 
-.uni-panel-image {
+.tab-image {
   flex: 1 1 35%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.uni-panel-image img {
+.tab-image img {
   width: 100%;
   max-width: 380px;
   border-radius: 18px;
   object-fit: cover;
 }
 
-.uni-panel h3 {
+/* ===============================
+   TAB INNER TEXT STYLES
+================================== */
+.tab-content h3 {
   font-size: 24px;
-  line-height: 1.5;
-  font-weight: 500;
+  line-height: 1.4;
+  font-weight: 600;
   color: #111;
   margin-bottom: 15px;
 }
 
-.uni-panel p {
-  font-size: 15px;
+.tab-content p {
+  font-size: 16px;
   color: #444;
   margin-bottom: 25px;
+  line-height: 1.7;
 }
 
 /* ===============================
-   LISTS
+   LIST STYLES
 ================================== */
-.uni-list {
+ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.uni-list li {
+ul li {
   margin-bottom: 13px;
   font-size: 15px;
   display: flex;
@@ -236,7 +181,7 @@ a {
   line-height: 1.6;
 }
 
-.uni-list li img {
+ul li img {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
@@ -246,46 +191,45 @@ a {
 /* ===============================
    ANIMATIONS
 ================================== */
-@keyframes uniFadeUp {
+@keyframes fadeUp {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 /* ===============================
-   RESPONSIVE ADJUSTMENTS
+   RESPONSIVE
 ================================== */
-@media (max-width: 800px) {
-  .uni-panel-inner {
+@media (max-width: 900px) {
+  .tab-inner {
     flex-direction: column;
     align-items: center;
   }
 
-  .uni-panel-text,
-  .uni-panel-image {
+  .tab-text,
+  .tab-image {
     flex: 1 1 100%;
   }
 
-  .uni-panel-image img {
+  .tab-image img {
     max-width: 100%;
   }
 }
 
 @media (max-width: 600px) {
-  .uni-heading-xl {
-    font-size: 26px;
+  .section-wrapper h3 {
+    font-size: 22px;
   }
 
-  .uni-toggle-btn {
-    font-size: 13px;
+  .toggle-btn {
+    font-size: 14px;
     padding: 8px 16px;
   }
 
-  .uni-panel {
-    padding: 20px;
-    max-width: 100%;
+  .tab-content {
+    padding: 25px 20px;
   }
 
-  .uni-list li img {
+  ul li img {
     width: 18px;
     height: 18px;
   }
