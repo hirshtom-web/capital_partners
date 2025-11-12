@@ -254,7 +254,7 @@ footer {
     content: '▾';
     position: absolute;
     right: 0;
-    font-size: 12px;
+    font-size: 14px;
     transition: transform 0.3s;
   }
   .footer-column.active h4::after {
@@ -270,7 +270,7 @@ footer {
     padding: 20px;
   }
   .footer-column a {
-    font-size: 10px;
+    font-size: 12px;
   }
   footer {
   padding: 10px 10px;
