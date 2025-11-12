@@ -20,11 +20,26 @@ body {
 
 /* ---------- SECTION TITLE ---------- */
 .property-title {
-    color: #1e0949;
-    font-size: 24px;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 40px;
+    color: #1e0949;          /* Dark blue text */
+    font-size: 24px;       /* Desktop font size */
+    font-weight: 600;      /* Semi-bold */
+    text-align: center;    /* Centered horizontally */
+    margin-bottom: 40px;   /* Space below the text */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .property-title { 
+        font-size: 20px; 
+        margin-bottom: 25px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .property-title { 
+        font-size: 16px; 
+        margin-bottom: 20px; 
+    }
 }
 
 /* ---------- SLIDER ---------- */
@@ -116,11 +131,6 @@ body {
 @media (max-width: 900px) {
   .property-section {
     padding: 40px 10px;
-  }
-
-  .property-title {
-    font-size: 22px;
-    margin-bottom: 20px;
   }
 
   .property-slider {
