@@ -12,6 +12,24 @@ body {
   min-height: 100vh;
 }
 
+/* ---------- SECTION WRAPPER ---------- */
+.property-section {
+  background-color: #fff;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+/* ---------- SECTION TITLE ---------- */
+.property-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e0949; /* your dark blue brand color */
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ---------- SLIDER ---------- */
 .property-slider {
   display: flex;
   align-items: center;
@@ -20,7 +38,7 @@ body {
   scroll-behavior: smooth;
   padding-bottom: 10px;
   scroll-snap-type: x mandatory;
-  margin-top: 60px; /* moves it below the dark blue section */
+  justify-content: flex-start;
 }
 
 .property-card {
@@ -32,7 +50,7 @@ body {
   scroll-snap-align: center;
 }
 
-/* Image area */
+/* ---------- IMAGE AREA ---------- */
 .property-img {
   position: relative;
   width: 100%;
@@ -52,7 +70,7 @@ body {
   transform: scale(1.05);
 }
 
-/* Status badge */
+/* ---------- STATUS BADGES ---------- */
 .status-badge {
   position: absolute;
   top: 8px;
@@ -65,14 +83,13 @@ body {
   color: #333;
 }
 
-/* Status tone colors */
 .status-new        { background-color: #EAF2FF; color: #2662D9; }
 .status-hot        { background-color: #FFECEC; color: #D72638; }
 .status-almost     { background-color: #FFF5E1; color: #C47A00; }
 .status-last       { background-color: #EAFCEC; color: #1E8A1D; }
 .status-coming     { background-color: #F0EAFD; color: #6A38A6; }
 
-/* Text area below image */
+/* ---------- TEXT INFO ---------- */
 .property-info {
   display: flex;
   justify-content: space-between;
@@ -81,8 +98,8 @@ body {
 }
 
 .property-location {
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 13px;
+  font-weight: 500;
   color: #000;
 }
 
@@ -92,15 +109,20 @@ body {
   color: #555;
 }
 
-/* Hide scrollbar on WebKit */
+/* Hide scrollbar */
 .property-slider::-webkit-scrollbar {
   display: none;
 }
 
-/* -------- Responsive Styles -------- */
+/* ---------- RESPONSIVE ---------- */
 @media (max-width: 900px) {
-  body {
-    padding: 0;
+  .property-section {
+    padding: 40px 10px;
+  }
+
+  .property-title {
+    font-size: 22px;
+    margin-bottom: 20px;
   }
 
   .property-slider {
@@ -116,7 +138,6 @@ body {
 
   .property-img {
     height: 220px;
-    border-radius: 10px;
   }
 
   .property-info {
@@ -128,89 +149,82 @@ body {
     font-size: 13px;
   }
 }
-
-/* Even tighter layout for small phones (320–375px) */
-@media (max-width: 480px) {
-  .property-card {
-    flex: 0 0 90%;
-  }
-
-  .property-img {
-    height: 200px;
-  }
-}
 </style>
 </head>
 <body>
 
-<div class="property-slider">
-  <div class="property-card">
-    <div class="property-img">
-      <img src="https://static.wixstatic.com/media/1799ca_2d9be9135f7c432ca2072a252fbda6c9~mv2.jpg" alt="Mercedes-Benz Place">
-      <div class="status-badge status-new">New</div>
-    </div>
-    <div class="property-info">
-      <div class="property-location">Miami, FL</div>
-      <div class="property-date">Q2 2027</div>
-    </div>
-  </div>
+<!-- PROPERTY SECTION WITH TITLE -->
+<div class="property-section">
+  <h2 class="property-title">Featured Developments</h2>
 
-  <div class="property-card">
-    <div class="property-img">
-      <img src="https://static.wixstatic.com/media/1799ca_edd479bd24fa4e80ba5472144fbb1ea9~mv2.jpg" alt="Hub Miami">
-      <div class="status-badge status-hot">Hot</div>
+  <div class="property-slider">
+    <div class="property-card">
+      <div class="property-img">
+        <img src="https://static.wixstatic.com/media/1799ca_2d9be9135f7c432ca2072a252fbda6c9~mv2.jpg" alt="Mercedes-Benz Place">
+        <div class="status-badge status-new">New</div>
+      </div>
+      <div class="property-info">
+        <div class="property-location">Miami, FL</div>
+        <div class="property-date">Q2 2027</div>
+      </div>
     </div>
-    <div class="property-info">
-      <div class="property-location">Austin, TX</div>
-      <div class="property-date">Q3 2027</div>
-    </div>
-  </div>
 
-  <div class="property-card">
-    <div class="property-img">
-      <img src="https://static.wixstatic.com/media/1799ca_6a6371ac3a9f4d2f9e1c14394f0f8b3d~mv2.jpg" alt="Dolce & Gabbana">
-      <div class="status-badge status-almost">Almost Ready</div>
+    <div class="property-card">
+      <div class="property-img">
+        <img src="https://static.wixstatic.com/media/1799ca_edd479bd24fa4e80ba5472144fbb1ea9~mv2.jpg" alt="Hub Miami">
+        <div class="status-badge status-hot">Hot</div>
+      </div>
+      <div class="property-info">
+        <div class="property-location">Austin, TX</div>
+        <div class="property-date">Q3 2027</div>
+      </div>
     </div>
-    <div class="property-info">
-      <div class="property-location">Orlando, FL</div>
-      <div class="property-date">Q4 2027</div>
-    </div>
-  </div>
 
-  <div class="property-card">
-    <div class="property-img">
-      <img src="https://static.wixstatic.com/media/1799ca_9c239b8b5f014f3db432b6923d813a1d~mv2.jpg" alt="Casa Bella">
-      <div class="status-badge status-last">Last Chance</div>
+    <div class="property-card">
+      <div class="property-img">
+        <img src="https://static.wixstatic.com/media/1799ca_6a6371ac3a9f4d2f9e1c14394f0f8b3d~mv2.jpg" alt="Dolce & Gabbana">
+        <div class="status-badge status-almost">Almost Ready</div>
+      </div>
+      <div class="property-info">
+        <div class="property-location">Orlando, FL</div>
+        <div class="property-date">Q4 2027</div>
+      </div>
     </div>
-    <div class="property-info">
-      <div class="property-location">Phoenix, AZ</div>
-      <div class="property-date">Q1 2028</div>
-    </div>
-  </div>
 
-  <div class="property-card">
-    <div class="property-img">
-      <img src="https://static.wixstatic.com/media/1799ca_710d6b07b99a4d44aec9360313f8f420~mv2.jpg" alt="Jem Residences">
-      <div class="status-badge status-coming">Coming Soon</div>
+    <div class="property-card">
+      <div class="property-img">
+        <img src="https://static.wixstatic.com/media/1799ca_9c239b8b5f014f3db432b6923d813a1d~mv2.jpg" alt="Casa Bella">
+        <div class="status-badge status-last">Last Chance</div>
+      </div>
+      <div class="property-info">
+        <div class="property-location">Phoenix, AZ</div>
+        <div class="property-date">Q1 2028</div>
+      </div>
     </div>
-    <div class="property-info">
-      <div class="property-location">Charlotte, NC</div>
-      <div class="property-date">Q2 2028</div>
-    </div>
-  </div>
 
-  <div class="property-card">
-    <div class="property-img">
-      <img src="https://static.wixstatic.com/media/1799ca_e95287a3f0d24e0d8c5b573bdd653cd7~mv2.jpg" alt="Villa Miami">
-      <div class="status-badge status-featured">Featured</div>
+    <div class="property-card">
+      <div class="property-img">
+        <img src="https://static.wixstatic.com/media/1799ca_710d6b07b99a4d44aec9360313f8f420~mv2.jpg" alt="Jem Residences">
+        <div class="status-badge status-coming">Coming Soon</div>
+      </div>
+      <div class="property-info">
+        <div class="property-location">Charlotte, NC</div>
+        <div class="property-date">Q2 2028</div>
+      </div>
     </div>
-    <div class="property-info">
-      <div class="property-location">Los Angeles, CA</div>
-      <div class="property-date">Q3 2028</div>
+
+    <div class="property-card">
+      <div class="property-img">
+        <img src="https://static.wixstatic.com/media/1799ca_e95287a3f0d24e0d8c5b573bdd653cd7~mv2.jpg" alt="Villa Miami">
+        <div class="status-badge status-featured">Featured</div>
+      </div>
+      <div class="property-info">
+        <div class="property-location">Los Angeles, CA</div>
+        <div class="property-date">Q3 2028</div>
+      </div>
     </div>
   </div>
 </div>
-
 
 </body>
 </html>
