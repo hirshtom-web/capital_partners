@@ -1,9 +1,3 @@
-.section-area {
-  background-color: #fff; /* or any color */
-  padding: 80px 0; /* optional vertical space */
-}
-
-
 /* ===============================
    GLOBAL
 ================================== */
@@ -17,7 +11,7 @@ html, body {
   overflow-x: hidden;
   width: 100%;
   font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
-  background: #fff;
+  background: #1e0949;
   color: #fff;
 }
 
