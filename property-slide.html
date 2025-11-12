@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Property Slider</title>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Rubik', sans-serif;
+  background: #fff;
+  margin: 0;
+  padding: 40px;
+}
+
+.property-slider {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.property-card {
+  flex: 0 0 330px;
+  background: transparent;
+  border-radius: 12px;
+  position: relative;
+  transition: transform 0.25s ease;
+  scroll-snap-align: center;
+}
+
+/* Image area */
+.property-img {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.property-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.property-card:hover .property-img img {
+  transform: scale(1.05);
+}
+
+/* Status badge */
+.status-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 11px;
+  font-weight: 400;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background-color: #eee;
+  color: #333;
+}
+
+/* Status tone colors */
+.status-new        { background-color: #EAF2FF; color: #2662D9; }
+.status-hot        { background-color: #FFECEC; color: #D72638; }
+.status-almost     { background-color: #FFF5E1; color: #C47A00; }
+.status-last       { background-color: #EAFCEC; color: #1E8A1D; }
+.status-coming     { background-color: #F0EAFD; color: #6A38A6; }
+
+/* Text area below image */
+.property-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 6px;
+}
+
+.property-location {
+  font-size: 12px;
+  font-weight: 400;
+  color: #000;
+}
+
+.property-date {
+  font-size: 12px;
+  font-weight: 400;
+  color: #555;
+}
+
+/* Hide scrollbar on WebKit */
+.property-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* -------- Responsive Styles -------- */
+@media (max-width: 900px) {
+  body {
+    padding: 0;
+  }
+
+  .property-slider {
+    gap: 12px;
+    padding: 20px 0;
+  }
+
+  .property-card {
+    flex: 0 0 85%;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .property-img {
+    height: 220px;
+    border-radius: 10px;
+  }
+
+  .property-info {
+    padding: 6px 6px 0;
+  }
+
+  .property-location,
+  .property-date {
+    font-size: 13px;
+  }
+}
+
+/* Even tighter layout for small phones (320–375px) */
+@media (max-width: 480px) {
+  .property-card {
+    flex: 0 0 90%;
+  }
+
+  .property-img {
+    height: 200px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="property-slider">
+  <div class="property-card">
+    <div class="property-img">
+      <img src="https://picsum.photos/400/300?random=1" alt="property">
+      <div class="status-badge status-new">New</div>
+    </div>
+    <div class="property-info">
+      <div class="property-location">Miami, FL</div>
+      <div class="property-date">Q2 2027</div>
+    </div>
+  </div>
+
+  <div class="property-card">
+    <div class="property-img">
+      <img src="https://picsum.photos/400/300?random=2" alt="property">
+      <div class="status-badge status-hot">Hot</div>
+    </div>
+    <div class="property-info">
+      <div class="property-location">Austin, TX</div>
+      <div class="property-date">Q3 2027</div>
+    </div>
+  </div>
+
+  <div class="property-card">
+    <div class="property-img">
+      <img src="https://picsum.photos/400/300?random=3" alt="property">
+      <div class="status-badge status-almost">Almost Ready</div>
+    </div>
+    <div class="property-info">
+      <div class="property-location">Orlando, FL</div>
+      <div class="property-date">Q4 2027</div>
+    </div>
+  </div>
+
+  <div class="property-card">
+    <div class="property-img">
+      <img src="https://picsum.photos/400/300?random=4" alt="property">
+      <div class="status-badge status-last">Last Chance</div>
+    </div>
+    <div class="property-info">
+      <div class="property-location">Phoenix, AZ</div>
+      <div class="property-date">Q1 2028</div>
+    </div>
+  </div>
+
+  <div class="property-card">
+    <div class="property-img">
+      <img src="https://picsum.photos/400/300?random=5" alt="property">
+      <div class="status-badge status-coming">Coming Soon</div>
+    </div>
+    <div class="property-info">
+      <div class="property-location">Charlotte, NC</div>
+      <div class="property-date">Q2 2028</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
