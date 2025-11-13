@@ -45,7 +45,7 @@ a {
    HEADER
 ================================== */
 header {
-  background: #1e0949;
+  background: transparnt;
   border-bottom: 1px solid rgba(255,255,255,0.1);
   position: sticky;
   top: 0;
@@ -85,7 +85,7 @@ nav {
   align-items: center;
 }
 nav > div > a {
-  color: #fff;
+  color: auto
   font-weight: 500;
   font-size: 12px;
   padding: 10px 0;
