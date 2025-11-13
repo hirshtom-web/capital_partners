@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(html => {
           container.innerHTML = html;
+
+          // If this is the TABS section, re-init tab logic after it's loaded
+          if (id === "tabs") initTabs();
         })
         .catch(err => console.error(err));
     }
@@ -28,8 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "Trusted By section not found"
   );
   loadHTML("property-slide", "property-slide.html", "Property slide not found");
-  
-  // <-- NEW: Load footer dynamically -->
+  loadHTML("tabs", "tabs.html", "Tabs not found"); // ✅ NEW: load your tabs dynamically
   loadHTML("footer", "footer.html", "Footer not found");
 
   // =========================
@@ -64,40 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // =========================
-  // Tabs
-  // =========================
-  const buttons = document.querySelectorAll(".toggle-btn");
-  const tabs = document.querySelectorAll(".tab-content");
-  buttons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      buttons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      const tabId = btn.dataset.tab;
-      tabs.forEach(tab => tab.classList.remove("active"));
-      const activeTab = document.getElementById(tabId);
-      if (activeTab) activeTab.classList.add("active");
-    });
-  });
-
-  // =========================
-  // Panels
-  // =========================
-  const switchBtns = document.querySelectorAll(".switch-btn");
-  const panels = document.querySelectorAll(".panel");
-  switchBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      switchBtns.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      const panelId = btn.dataset.panel;
-      panels.forEach(p => p.classList.remove("active"));
-      const activePanel = document.getElementById(panelId);
-      if (activePanel) activePanel.classList.add("active");
-    });
-  });
-
-  // =========================
   // Footer Accordion (Mobile)
   // =========================
   const footerColumns = document.querySelectorAll(".footer-column");
@@ -115,6 +83,28 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   document.body.classList.add("loaded");
 });
+
+// =========================
+// Tabs Logic (Reusable)
+// =========================
+function initTabs() {
+  const buttons = document.querySelectorAll(".uni-toggle-btn");
+  const panels = document.querySelectorAll(".uni-panel");
+
+  if (buttons.length && panels.length) {
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        panels.forEach(p => p.classList.remove("active"));
+        const target = btn.dataset.tab;
+        const activePanel = document.getElementById(target);
+        if (activePanel) activePanel.classList.add("active");
+      });
+    });
+  }
+}
 
 // =========================
 // Optional: toggle menu rotation
