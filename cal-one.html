@@ -296,29 +296,40 @@ input:checked + .slider:before {
 @media (max-width: 900px) {
   body {
     padding: 20px 10px;
+    margin: 0;
+    overflow-x: hidden; /* prevent horizontal scroll */
   }
 
   .container {
     flex-direction: column;
-    margin: 0 auto;
-    padding: 0 10px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .left, .right {
     width: 100%;
+    padding: 20px; /* smaller padding to prevent overflow */
+    box-sizing: border-box;
   }
 
   form {
     width: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   .input-group {
     flex: 1 1 100%;
     max-width: 100%;
+    min-width: 0; /* allow shrinking on small screens */
   }
 
   #resultsContainer {
     width: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   .hidden-criteria {
@@ -328,6 +339,7 @@ input:checked + .slider:before {
 
   .toggle-section {
     flex-direction: column;
+    align-items: flex-start; /* better for small screens */
   }
 
   .bottom-row {
@@ -336,14 +348,22 @@ input:checked + .slider:before {
 
   .calc-buttons {
     gap: 10px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
   }
 }
 
-/* Prevent mobile input zoom on fields */
+
 input, select, textarea {
   font-size: 16px;
 }
-</style>
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 
 
 
