@@ -492,17 +492,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const privacyPopup = document.getElementById('privacyPopup');
   const savePrivacy = document.getElementById('savePrivacy');
 
-  // Country Selector Popup
   if (selector && popup) {
     selector.addEventListener('click', e => {
-      e.stopPropagation(); // prevent triggering document click
+      e.stopPropagation();
       popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
     });
-
-    // Prevent closing when clicking inside popup
     popup.addEventListener('click', e => e.stopPropagation());
 
-    // Selecting a country
     document.querySelectorAll('.country-option').forEach(option => {
       option.addEventListener('click', () => {
         const img = option.querySelector('img')?.src;
@@ -514,13 +510,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Privacy Popup
   if (privacyTrigger && privacyPopup) {
     privacyTrigger.addEventListener('click', e => {
       e.stopPropagation();
       privacyPopup.style.display = privacyPopup.style.display === 'block' ? 'none' : 'block';
     });
-
     privacyPopup.addEventListener('click', e => e.stopPropagation());
 
     if (savePrivacy) {
