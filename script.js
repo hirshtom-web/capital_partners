@@ -1,67 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
   // =========================
-  // Load header
+  // Helper: Load external HTML
   // =========================
-  const headerContainer = document.getElementById("header");
-  if (headerContainer) {
-    fetch("header.html")
-      .then(response => {
-        if (!response.ok) throw new Error("Header not found");
-        return response.text();
-      })
-      .then(html => {
-        headerContainer.innerHTML = html;
-      })
-      .catch(err => console.error("Error loading header:", err));
-  }
+  const loadHTML = (id, url, errorMsg) => {
+    const container = document.getElementById(id);
+    if (container) {
+      fetch(url)
+        .then(response => {
+          if (!response.ok) throw new Error(errorMsg);
+          return response.text();
+        })
+        .then(html => {
+          container.innerHTML = html;
+        })
+        .catch(err => console.error(err));
+    }
+  };
 
   // =========================
-  // Load main section
+  // Load Sections
   // =========================
-  const mainContainer = document.getElementById("main-section");
-  if (mainContainer) {
-    fetch("main-section.html") // ✅ likely correct file
-      .then(response => {
-        if (!response.ok) throw new Error("Main section not found");
-        return response.text();
-      })
-      .then(html => {
-        mainContainer.innerHTML = html;
-      })
-      .catch(err => console.error("Error loading main section:", err));
-  }
-
-  // =========================
-  // Load Trusted By Section
-  // =========================
-  const trustedContainer = document.getElementById("trusted-by");
-  if (trustedContainer) {
-    fetch("https://hirshtom-web.github.io/capital_partners/trusted-by.html")
-      .then(response => {
-        if (!response.ok) throw new Error("Trusted By section not found");
-        return response.text();
-      })
-      .then(html => {
-        trustedContainer.innerHTML = html;
-      })
-      .catch(err => console.error("Error loading Trusted By section:", err));
-  }
-
-  // =========================
-  // Load Property Slide
-  // =========================
-  const propertySlideContainer = document.getElementById("property-slide");
-  if (propertySlideContainer) {
-    fetch("property-slide.html")
-      .then(response => {
-        if (!response.ok) throw new Error("Property slide not found");
-        return response.text();
-      })
-      .then(html => {
-        propertySlideContainer.innerHTML = html;
-      })
-      .catch(err => console.error("Error loading property slide:", err));
-  }
+  loadHTML("header", "header.html", "Header not found");
+  loadHTML("main-section", "main-section.html", "Main section not found");
+  loadHTML(
+    "trusted-by",
+    "https://hirshtom-web.github.io/capital_partners/trusted-by.html",
+    "Trusted By section not found"
+  );
+  loadHTML("property-slide", "property-slide.html", "Property slide not found");
 
   // =========================
   // Toggle Mobile Menu
