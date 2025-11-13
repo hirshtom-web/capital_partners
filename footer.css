@@ -238,41 +238,51 @@ footer {
   vertical-align: middle;
 }
 
-/* Mobile */
+/* Mobile Footer Adjustments */
 @media (max-width: 900px) {
+  footer {
+    padding: 10px 10px;
+  }
+
   .footer-top {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* stack columns vertically */
     gap: 10px;
   }
+
+  .footer-column {
+    margin-bottom: 10px; /* spacing between categories */
+  }
+
   .footer-column h4 {
-    cursor: pointer;
-    padding-right: 20px;
-    position: relative;
-    margin-bottom: 5px;
+    font-weight: 600;        /* slightly bolder */
+    font-size: 13px;         /* slightly bigger than links */
+    margin-bottom: 5px;      /* spacing before links */
+    cursor: default;
+    position: static;        /* remove absolute positioning/arrow */
+    padding: 0;
   }
-  .footer-column h4::after {
-    content: '▾';
-    position: absolute;
-    right: 0;
-    font-size: 14px;
-    transition: transform 0.3s;
-  }
-  .footer-column.active h4::after {
-    transform: rotate(180deg);
-  }
+
   .footer-column ul {
-    display: none;
+    display: block;          /* show links directly */
+    margin: 0;
+    padding: 0;
+    gap: 2px;                /* spacing between links */
   }
-  .footer-column.active ul {
-    display: block;
+
+  .footer-column li {
+    margin-bottom: 8px;      /* 2px more than default */
+    margin-left: 10px;       /* spacing from title */
   }
-  body {
-    padding: 20px;
-  }
+
   .footer-column a {
     font-size: 12px;
+    color: #dbdbdb;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 2px;      /* spacing between links */
   }
-  footer {
-  padding: 10px 10px;
-}
+
+  .footer-column a:hover {
+    color: #fff;
+  }
 }
