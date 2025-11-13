@@ -14,38 +14,41 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch(err => console.error("Error loading header:", err));
   }
+
+  // =========================
   // Load main section
   // =========================
-  const headerContainer = document.getElementById("main-section");
-  if (headerContainer) {
-    fetch("header.html")
+  const mainContainer = document.getElementById("main-section");
+  if (mainContainer) {
+    fetch("main-section.html") // ✅ likely correct file
       .then(response => {
         if (!response.ok) throw new Error("Main section not found");
         return response.text();
       })
       .then(html => {
-        headerContainer.innerHTML = html;
+        mainContainer.innerHTML = html;
       })
-      .catch(err => console.error("Error loading main-section:", err));
-  }  
-// =========================
-// Load Trusted By Section
-// =========================
-const trustedContainer = document.getElementById("trusted-by");
-if (trustedContainer) {
-  fetch("https://hirshtom-web.github.io/capital_partners/trusted-by.html")
-    .then(response => {
-      if (!response.ok) throw new Error("Trusted By section not found");
-      return response.text();
-    })
-    .then(html => {
-      trustedContainer.innerHTML = html;
-    })
-    .catch(err => console.error("Error loading Trusted By section:", err));
-}
+      .catch(err => console.error("Error loading main section:", err));
+  }
 
   // =========================
-  // Load property slide
+  // Load Trusted By Section
+  // =========================
+  const trustedContainer = document.getElementById("trusted-by");
+  if (trustedContainer) {
+    fetch("https://hirshtom-web.github.io/capital_partners/trusted-by.html")
+      .then(response => {
+        if (!response.ok) throw new Error("Trusted By section not found");
+        return response.text();
+      })
+      .then(html => {
+        trustedContainer.innerHTML = html;
+      })
+      .catch(err => console.error("Error loading Trusted By section:", err));
+  }
+
+  // =========================
+  // Load Property Slide
   // =========================
   const propertySlideContainer = document.getElementById("property-slide");
   if (propertySlideContainer) {
@@ -61,7 +64,7 @@ if (trustedContainer) {
   }
 
   // =========================
-  // Toggle mobile menu
+  // Toggle Mobile Menu
   // =========================
   const toggleBtn = document.getElementById("menu-toggle");
   const mobileMenu = document.getElementById("mobile-menu");
@@ -73,12 +76,15 @@ if (trustedContainer) {
   }
 
   // =========================
-  // Prevent default link jumps
+  // Prevent Default Link Jumps
   // =========================
   document.querySelectorAll('a[href="#"]').forEach(link => {
     link.addEventListener("click", e => e.preventDefault());
   });
 
+  // =========================
+  // Prevent reload on same-page nav links
+  // =========================
   document.querySelectorAll("a.nav-link").forEach(link => {
     link.addEventListener("click", function (e) {
       if (this.href === window.location.href) {
@@ -123,7 +129,7 @@ if (trustedContainer) {
   });
 
   // =========================
-  // Footer accordion for mobile
+  // Footer Accordion (Mobile)
   // =========================
   const footerColumns = document.querySelectorAll(".footer-column");
   footerColumns.forEach(column => {
