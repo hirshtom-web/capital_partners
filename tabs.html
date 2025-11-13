@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
-  <title>tabs</title>
+  <title>Tabs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Google Fonts -->
@@ -27,8 +27,7 @@
 </head>
 
 <style>
-   
-   /* ===============================
+/* ===============================
    GLOBAL
 ================================== */
 * {
@@ -41,7 +40,7 @@ html, body {
   overflow-x: hidden;
   width: 100%;
   font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
-  background: #1e0949;
+  background: #1e0949; /* Keep your dark background */
   color: #fff;
 }
 
@@ -49,8 +48,8 @@ html, body {
    SECTION AREA
 ================================== */
 .uni-section-shell {
-  background-color: #fff;
-  color: #111;
+  background-color: transparent; /* Fixed: now inherits dark background */
+  color: #fff;
   padding: 80px 0;
 }
 
@@ -65,6 +64,7 @@ html, body {
   margin: 0 auto 60px;
   padding: 60px 40px;
   text-align: center;
+  color: #111;
 }
 
 @media (max-width: 800px) {
@@ -98,13 +98,13 @@ html, body {
    TOGGLE BUTTONS
 ================================== */
 .uni-toggle-wrapper {
-    display: inline-flex;
-    background-color: #f0f0f0;
-    border-radius: 45px;
-    padding: 5px;
-    margin-bottom: 35px;
-    gap: 6px;
-    flex-wrap: wrap;
+  display: inline-flex;
+  background-color: #f0f0f0;
+  border-radius: 45px;
+  padding: 5px;
+  margin-bottom: 35px;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
 .uni-toggle-btn {
@@ -260,8 +260,8 @@ html, body {
     height: 18px;
   }
 }
- </style>
-</head>
+</style>
+
 <body>
   
 <div class="uni-section-shell">
@@ -324,25 +324,26 @@ html, body {
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const newToggleButtons = document.querySelectorAll('.uni-toggle-btn');
-  const newPanels = document.querySelectorAll('.uni-panel');
+  const toggleButtons = document.querySelectorAll('.uni-toggle-btn');
+  const panels = document.querySelectorAll('.uni-panel');
 
-  newToggleButtons.forEach(button => {
+  toggleButtons.forEach(button => {
     button.addEventListener('click', () => {
       // Remove active from all buttons
-      newToggleButtons.forEach(btn => btn.classList.remove('active'));
+      toggleButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
 
       // Hide all panels
-      newPanels.forEach(panel => panel.classList.remove('active'));
+      panels.forEach(panel => panel.classList.remove('active'));
 
       // Show the selected panel
       const target = button.dataset.tab;
-      const panel = document.getElementById(target);
-      if (panel) panel.classList.add('active');
+      const activePanel = document.getElementById(target);
+      if (activePanel) activePanel.classList.add('active');
     });
   });
 });
 </script>
+
 </body>
 </html>
