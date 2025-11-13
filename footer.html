@@ -26,8 +26,8 @@
   <script src="script.js" defer></script>
   <script src="footer.js" defer></script>
 
-</head>
-  /* Footer Wrapper */
+ <style>
+    /* ===== Footer CSS ===== */
 footer {
   width: 100%;
   display: flex;
@@ -315,8 +315,11 @@ footer {
     color: #fff;
   }
 }
+ </style>
 </head>
 <body>
+  
+  <footer>
   
   <div class="footer-container">
   <div class="footer-top" dir="ltr">
@@ -476,59 +479,58 @@ footer {
       &copy; 2026 Qalley.com
     </div>
   </div>
-</body> 
+    
+</footer>
 
-
-   <script src="transition.js" defer></script>
+  <script src="transition.js" defer></script>
 
   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const selector = document.getElementById('countrySelector');
+      const popup = document.getElementById('countryPopup');
+      const privacyTrigger = document.getElementById('privacyTrigger');
+      const privacyPopup = document.getElementById('privacyPopup');
+      const savePrivacy = document.getElementById('savePrivacy');
 
-  document.addEventListener('DOMContentLoaded', () => {
-  const selector = document.getElementById('countrySelector');
-  const popup = document.getElementById('countryPopup');
-  const privacyTrigger = document.getElementById('privacyTrigger');
-  const privacyPopup = document.getElementById('privacyPopup');
-  const savePrivacy = document.getElementById('savePrivacy');
+      if (selector && popup) {
+        selector.addEventListener('click', e => {
+          e.stopPropagation();
+          popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+        });
+        popup.addEventListener('click', e => e.stopPropagation());
 
-  if (selector && popup) {
-    selector.addEventListener('click', e => {
-      e.stopPropagation();
-      popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
-    });
-    popup.addEventListener('click', e => e.stopPropagation());
+        document.querySelectorAll('.country-option').forEach(option => {
+          option.addEventListener('click', () => {
+            const img = option.querySelector('img')?.src;
+            const name = option.textContent.trim();
+            selector.querySelector('img').src = img;
+            selector.querySelector('.country-link').textContent = name;
+            popup.style.display = 'none';
+          });
+        });
+      }
 
-    document.querySelectorAll('.country-option').forEach(option => {
-      option.addEventListener('click', () => {
-        const img = option.querySelector('img')?.src;
-        const name = option.textContent.trim();
-        selector.querySelector('img').src = img;
-        selector.querySelector('.country-link').textContent = name;
-        popup.style.display = 'none';
+      if (privacyTrigger && privacyPopup) {
+        privacyTrigger.addEventListener('click', e => {
+          e.stopPropagation();
+          privacyPopup.style.display = privacyPopup.style.display === 'block' ? 'none' : 'block';
+        });
+        privacyPopup.addEventListener('click', e => e.stopPropagation());
+
+        if (savePrivacy) {
+          savePrivacy.addEventListener('click', () => {
+            const selected = document.querySelector('input[name="privacy"]:checked');
+            if (selected) alert(`Your preference: ${selected.value}`);
+            privacyPopup.style.display = 'none';
+          });
+        }
+      }
+
+      document.addEventListener('click', () => {
+        if (popup) popup.style.display = 'none';
+        if (privacyPopup) privacyPopup.style.display = 'none';
       });
     });
-  }
-
-  if (privacyTrigger && privacyPopup) {
-    privacyTrigger.addEventListener('click', e => {
-      e.stopPropagation();
-      privacyPopup.style.display = privacyPopup.style.display === 'block' ? 'none' : 'block';
-    });
-    privacyPopup.addEventListener('click', e => e.stopPropagation());
-
-    if (savePrivacy) {
-      savePrivacy.addEventListener('click', () => {
-        const selected = document.querySelector('input[name="privacy"]:checked');
-        if (selected) alert(`Your preference: ${selected.value}`);
-        privacyPopup.style.display = 'none';
-      });
-    }
-  }
-
-  // Close all popups when clicking outside
-  document.addEventListener('click', () => {
-    if (popup) popup.style.display = 'none';
-    if (privacyPopup) privacyPopup.style.display = 'none';
-  });
-});
-</script>
+  </script>
+</body>
 </html>
