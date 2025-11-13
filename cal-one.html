@@ -86,9 +86,10 @@ form {
   -moz-appearance: textfield;
 }
 
-.input-group input:focus {
-  background-color: #ffffff;
-  box-shadow: 0 0 0 1.5px #1e0949;
+.input-group {
+  flex: 1 1 calc(50% - 20px); /* two items per row with gap */
+  max-width: calc(50% - 20px);
+  min-width: 200px;
 }
 
 .input-label {
@@ -134,8 +135,10 @@ form {
   width: 100%;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: center;
+  justify-content: flex-start; /* aligns items nicely to left */
   margin-top: 10px;
+  /* prevent horizontal overflow */
+  overflow: visible;
 }
 
 /* ---------- FORM BUTTONS ---------- */
@@ -337,9 +340,16 @@ input:checked + .slider:before {
   }
 
   .hidden-criteria {
-    flex-direction: column;
+    flex-direction: column; /* stack vertically on mobile */
     gap: 15px;
   }
+
+  .input-group {
+    flex: 1 1 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
 
   .toggle-section {
     flex-direction: column;
@@ -366,6 +376,9 @@ input, select, textarea {
 }
 *, *::before, *::after {
   box-sizing: border-box;
+}
+#additionalCriteria {
+  transition: all 0.3s ease;
 }
 
 
