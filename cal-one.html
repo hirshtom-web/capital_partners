@@ -129,16 +129,18 @@ form {
   font-weight: 500;
   cursor: pointer;
 }
+.hidden-criteria.visible {
+  display: flex; /* flex layout active */
+}
 
 .hidden-criteria {
-  display: none;
-  width: 100%;
+  display: none;           /* initially hidden */
+  flex-direction: row;     /* desktop default */
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: flex-start; /* aligns items nicely to left */
+  justify-content: flex-start;
+  width: 100%;
   margin-top: 10px;
-  /* prevent horizontal overflow */
-  overflow: visible;
 }
 
 /* ---------- FORM BUTTONS ---------- */
@@ -341,17 +343,16 @@ form {
   }
 
   .hidden-criteria {
-    flex-direction: column !important; /* stack vertically */
-    width: 100%;                        /* full width */
+    flex-direction: column !important; /* vertical stack on mobile */
+    width: 100%;
     gap: 15px;
-    overflow: hidden;                   /* prevent any horizontal scroll */
   }
 
   .input-group {
-    flex: 1 1 100%; /* each input takes full width */
+    flex: 1 1 100%;  /* full width inputs */
     max-width: 100%;
     min-width: 0;
-  }
+  
 
 
   .toggle-section {
@@ -604,6 +605,14 @@ calcButtons.forEach(btn => {
     console.log(`Switched to ${btn.textContent} calculator`);
   });
 });
+  cashFinancingToggle.addEventListener('change', () => {
+  if (cashFinancingToggle.checked) {
+    additionalCriteria.classList.add('visible');
+  } else {
+    additionalCriteria.classList.remove('visible');
+  }
+});
+
 
 </script>
 
