@@ -3,322 +3,306 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Qalley Pitch Deck</title>
+<title>Qalley Pitch Deck - Updated Design</title>
 
-<!-- Google Fonts: Rubik -->
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- Material Symbols -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400;700" />
 
+<style>
+:root {
+  --primary: #6327e5;
+  --accent: #a734af;
+  --bg: #fdfcff;
+  --bg-light: #f8f2ff;
+  --text-dark: #1a0b2e;
+  --text-muted: #555;
+  --card-bg: #fff;
+  --shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
 
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.deck {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* --- SLIDES --- */
+.slide {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: linear-gradient(135deg, var(--bg) 0%, var(--bg-light) 60%, rgba(167,52,175,0.08) 100%);
+  transition: all 0.8s ease;
+  opacity: 0;
+}
+.slide.active { left: 0; opacity: 1; z-index: 2; }
+.slide.prev { left: -100%; }
+.slide.next { left: 100%; }
+
+/* --- HEADINGS --- */
+h1 {
+  font-size: 3.2rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2rem;
+  margin: 0 0 1rem 0;
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+p {
+  color: var(--text-muted);
+  max-width: 700px;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+/* --- NUMBER --- */
+.number {
+  position: absolute;
+  top: 25px;
+  right: 50px;
+  font-size: 4rem;
+  font-weight: 700;
+  color: rgba(99, 39, 229, 0.06);
+}
+
+/* --- LAYOUTS --- */
+.layout {
+  display: grid;
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.layout.three-squares { grid-template-columns: repeat(3, 1fr); }
+.layout.four-long { grid-template-columns: repeat(4, 1fr); }
+.layout.two-wide { grid-template-columns: 2fr 1fr; }
+
+.box {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s;
+}
+.box:hover { transform: translateY(-3px); }
+
+.box img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.chart {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: conic-gradient(var(--primary) 0 40%, var(--accent) 40% 70%, #ffcd4d 70% 100%);
+}
+
+.bar-chart {
+  width: 100%;
+  height: 140px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #ffcd4d, var(--accent), var(--primary));
+}
+
+/* --- ICON --- */
+.icon {
+  font-family: 'Material Symbols Outlined';
+  font-size: 40px;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+/* --- CONTROLS --- */
+.material-symbols-outlined {
+  font-size: 1.8rem;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 12px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.material-symbols-outlined:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+}
+
+.bottom-nav {
+  position: absolute;
+  bottom: 25px;
+  left: 40px;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  z-index: 10;
+}
+
+.right-controls {
+  position: absolute;
+  bottom: 25px;
+  right: 40px;
+  display: flex;
+  gap: 18px;
+  z-index: 20;
+}
+
+/* --- SLIDE MENU --- */
+.slide-list {
+  position: absolute;
+  bottom: 70px;
+  right: 40px;
+  background: #fff;
+  border: 1px solid rgba(99,39,229,0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transform: scale(0.95) translateY(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  min-width: 240px;
+  z-index: 30;
+}
+.slide-list.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translateY(0);
+}
+.slide-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+.slide-list li {
+  padding: 12px 20px;
+  cursor: pointer;
+  color: #333;
+  transition: background 0.3s;
+  font-weight: 500;
+}
+.slide-list li:hover { background: rgba(99,39,229,0.1); }
+
+/* --- FACE --- */
+.face {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 20px 0;
+  border: 4px solid var(--primary);
+}
+.face img { width: 100%; height: 100%; object-fit: cover; }
+
+/* --- TITLE + ANIMATION --- */
+.slide-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#qalley {
+  font-size: 3.2rem;
+  color: var(--primary);
+  display: flex;
+  gap: 10px;
+  overflow: hidden;
+  position: relative;
+}
+#alley {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 1s ease;
+}
+#alley.show { opacity: 1; transform: translateX(0); }
+
+.quote {
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  max-width: 700px;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .slide { padding: 60px 40px; }
+  h1 { font-size: 2.8rem; }
+  h2 { font-size: 1.8rem; }
+  p { font-size: 1.05rem; }
+  .layout.three-squares { grid-template-columns: repeat(2, 1fr); }
+  .layout.four-long { grid-template-columns: repeat(2, 1fr); }
+  .layout.two-wide { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .slide { padding: 40px 20px; }
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.5rem; }
+  p { font-size: 1rem; }
+  .layout.three-squares,
+  .layout.four-long,
+  .layout.two-wide { grid-template-columns: 1fr; }
+  .bottom-nav, .right-controls { bottom: 55px; gap: 12px; }
+  .number { font-size: 3rem; right: 20px; }
+}
+</style>
 </head>
 <body>
-  <style>
-  :root {
-    --purple-main: #6327e5;
-    --purple-accent: #a734af;
-    --cream: #fdfcff;
-    --light-lavender: #f8f2ff;
-    --text-dark: #1a0b2e;
-  }
-
-  * { box-sizing: border-box; }
-
-  body {
-    margin: 0;
-    font-family: 'Rubik', sans-serif;
-    overflow: hidden;
-    background: var(--cream);
-  }
-
-  .deck {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  /* --- SLIDES --- */
-  .slide {
-    position: absolute;
-    top: 0;
-    left: 100%;
-    width: 100%;
-    height: 100%;
-    padding: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    background: linear-gradient(135deg, var(--cream) 0%, var(--light-lavender) 60%, rgba(167,52,175,0.12) 100%);
-    transition: all 0.8s ease;
-    opacity: 0;
-  }
-  .slide.active { left: 0; opacity: 1; z-index: 2; }
-  .slide.prev { left: -100%; }
-  .slide.next { left: 100%; }
-
-  /* --- HEADINGS --- */
-  h1 {
-    font-size: 3.5rem;
-    margin: 0 0 0.5rem 0;
-    color: var(--purple-main);
-  }
-
-  h2 {
-    font-size: 2rem;
-    margin: 0 0 1.5rem 0;
-    color: var(--text-dark);
-  }
-
-  p {
-    color: #333;
-    max-width: 700px;
-    line-height: 1.6;
-    font-size: 1.2rem;
-  }
-
-  .number {
-    position: absolute;
-    top: 25px;
-    right: 50px;
-    font-size: 5rem;
-    font-weight: 700;
-    color: rgba(99, 39, 229, 0.06);
-  }
-
-  /* --- LAYOUTS --- */
-  .layout {
-    display: grid;
-    gap: 24px;
-    margin-top: 40px;
-  }
-
-  .layout.three-squares { grid-template-columns: repeat(3, 1fr); }
-  .layout.four-long { grid-template-columns: repeat(4, 1fr); }
-  .layout.two-wide { grid-template-columns: 2fr 1fr; }
-
-  .box {
-    background: rgba(255,255,255,0.75);
-    border-radius: 20px;
-    padding: 24px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .box img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 16px;
-  }
-
-  .chart {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: conic-gradient(var(--purple-main) 0 40%, var(--purple-accent) 40% 70%, #ffcd4d 70% 100%);
-  }
-
-  .bar-chart {
-    width: 100%;
-    height: 140px;
-    border-radius: 12px;
-    background: linear-gradient(90deg, #ffcd4d, #a734af, var(--purple-main));
-  }
-
-  .icon {
-    font-family: 'Material Symbols Outlined';
-    font-size: 40px;
-    color: var(--purple-main);
-    margin-bottom: 10px;
-  }
-
-  /* --- CONTROLS --- */
-  .material-symbols-outlined {
-    font-size: 1.8rem;
-    background: var(--purple-main);
-    color: #fff;
-    border-radius: 12px;
-    padding: 10px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-  }
-  .material-symbols-outlined:hover {
-    background: var(--purple-accent);
-    transform: translateY(-2px);
-  }
-
-  .bottom-nav {
-    position: absolute;
-    bottom: 25px;
-    left: 40px;
-    display: flex;
-    gap: 18px;
-    align-items: center;
-    z-index: 10;
-    padding: 40px;
-  }
-
-  .right-controls {
-    position: absolute;
-    bottom: 25px;
-    right: 40px;
-    display: flex;
-    gap: 18px;
-    z-index: 20;
-    padding: 40px;
-  }
-
-  /* --- SLIDE MENU --- */
-  .slide-list {
-    position: absolute;
-    bottom: 70px;
-    right: 40px;
-    background: #fff;
-    border: 1px solid rgba(99,39,229,0.1);
-    backdrop-filter: blur(12px);
-    border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    overflow: hidden;
-    transform: scale(0.95) translateY(10px);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    min-width: 240px;
-    z-index: 30;
-  }
-  .slide-list.active {
-    opacity: 1;
-    visibility: visible;
-    transform: scale(1) translateY(0);
-  }
-  .slide-list ul {
-    list-style: none;
-    margin: 0;
-    padding: 10px 0;
-  }
-  .slide-list li {
-    padding: 12px 20px;
-    cursor: pointer;
-    color: #333;
-    transition: background 0.3s;
-    font-weight: 500;
-  }
-  .slide-list li:hover {
-    background: rgba(99,39,229,0.1);
-  }
-
-  /* --- HINT --- */
-  .hint {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.9rem;
-    color: #777;
-  }
-
-  /* --- FACE --- */
-  .face {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 20px 0;
-    border: 4px solid var(--purple-main);
-  }
-  .face img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* --- TITLE + ANIMATION --- */
-  .slide-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  #qalley {
-    font-size: 3.5rem;
-    color: var(--purple-main);
-    display: flex;
-    gap: 10px;
-    overflow: hidden;
-    position: relative;
-  }
-
-  #alley {
-    opacity: 0;
-    transform: translateX(50px);
-    transition: all 1s ease;
-  }
-
-  #alley.show {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .quote {
-    font-style: italic;
-    font-size: 1.3rem;
-    color: #555;
-    max-width: 700px;
-    margin-top: 10px;
-    line-height: 1.5;
-  }
-
-  /* --- RESPONSIVE --- */
-  @media (max-width: 1024px) {
-    .slide { padding: 60px 40px; }
-    h1 { font-size: 3rem; }
-    h2 { font-size: 1.8rem; }
-    p { font-size: 1.1rem; }
-    .icon { font-size: 36px; }
-    .material-symbols-outlined { font-size: 1.5rem; padding: 8px; }
-    .layout.three-squares { grid-template-columns: repeat(2, 1fr); }
-    .layout.four-long { grid-template-columns: repeat(2, 1fr); }
-    .layout.two-wide { grid-template-columns: 1fr; }
-  }
-
-  @media (max-width: 600px) {
-    .slide { padding: 40px 20px; }
-    h1 { font-size: 2.2rem; }
-    h2 { font-size: 1.5rem; }
-    p { font-size: 1rem; }
-    .icon { font-size: 32px; }
-    .material-symbols-outlined { font-size: 1.3rem; padding: 6px; border-radius: 8px; }
-    .bottom-nav, .right-controls { padding: 20px; gap: 12px; bottom: 55px; }
-    .number { font-size: 3rem; right: 20px; }
-    .layout.three-squares,
-    .layout.four-long,
-    .layout.two-wide { grid-template-columns: 1fr; }
-  }
-</style>
-
 
 <div class="deck">
-
-<!-- Slide 1: Cover -->
-<section class="slide active">
-  <div class="slide-header">
-    <h1 id="qalley">
-      <span id="typing"></span><span id="alley">alley</span>
-    </h1>
-  </div>
-
-  <h2>The Queen of the Alley</h2>
-  <p>“The difference between $1M and $200M+ could be just one smart move—the right insight, the right timing, the right execution.”</p>
-
-  <div class="face">
-    <img src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?w=300&h=300&fit=crop" alt="Founder Photo">
-  </div>
-</section>
+  <!-- Slide 1: Cover -->
+  <section class="slide active">
+    <div class="slide-header">
+      <h1 id="qalley">
+        <span id="typing"></span><span id="alley">alley</span>
+      </h1>
+    </div>
+    <h2>The Queen of the Alley</h2>
+    <p>“The difference between $1M and $200M+ could be just one smart move—the right insight, the right timing, the right execution.”</p>
+    <div class="face">
+      <img src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?w=300&h=300&fit=crop" alt="Founder Photo">
+    </div>
+  </section>
 
   <!-- Slide 2: Problem -->
   <section class="slide">
@@ -348,129 +332,43 @@
     <h2>Market Opportunity</h2>
     <div class="bar-chart"></div>
   </section>
-  
-<!-- Slide 5: Key Stats -->
-<section class="slide">
-  <div class="number">5</div>
-  <h2>Key Stats: U.S. Residential Real Estate</h2>
-  <div class="layout three-squares">
-    <div class="box">
-      <span class="icon">house</span>
-      <h3>Total Market Value</h3>
-      <p>$110.8 Trillion (2025)</p>
-    </div>
-    <div class="box">
-      <span class="icon">swap_horiz</span>
-      <h3>Annual Transaction Value</h3>
-      <p>$1.49 Trillion</p>
-    </div>
-    <div class="box">
-      <span class="icon">trending_up</span>
-      <h3>Growth Rate (CAGR)</h3>
-      <p>≈3.55% / yr</p>
-    </div>
-  </div>
 
-  <div class="layout two-wide" style="margin-top: 30px;">
-    <div class="box">
-      <h3>Median Home Price</h3>
-      <div class="bar-chart" style="height:120px;"></div>
-      <p>$396,900 (Jan 2025)</p>
-    </div>
-    <div class="box">
-      <h3>Market Insights</h3>
-      <p>Residential real estate is enormous, with modest annual growth, creating opportunities for niche strategies, efficiencies, and technology disruption.</p>
-    </div>
-  </div>
-</section>
-
-  <!-- Slide 6: Product & Tech -->
+  <!-- Slide 5: Key Stats -->
   <section class="slide">
-    <div class="number">6</div>
-    <h2>Product & Technology</h2>
-    <div class="layout two-wide">
-      <div class="box"><p>Product Screenshot / Flow</p></div>
-      <div class="box"><p>Key Features</p></div>
-    </div>
-  </section>
-
-  <!-- Slide 6: Business Model -->
-  <section class="slide">
-    <div class="number">6</div>
-    <h2>Business Model</h2>
+    <div class="number">5</div>
+    <h2>Key Stats: U.S. Residential Real Estate</h2>
     <div class="layout three-squares">
-      <div class="box"><p>Revenue Stream 1</p></div>
-      <div class="box"><p>Revenue Stream 2</p></div>
-      <div class="box"><p>Revenue Stream 3</p></div>
+      <div class="box">
+        <span class="icon">house</span>
+        <h3>Total Market Value</h3>
+        <p>$110.8 Trillion (2025)</p>
+      </div>
+      <div class="box">
+        <span class="icon">swap_horiz</span>
+        <h3>Annual Transaction Value</h3>
+        <p>$1.49 Trillion</p>
+      </div>
+      <div class="box">
+        <span class="icon">trending_up</span>
+        <h3>Growth Rate (CAGR)</h3>
+        <p>≈3.55% / yr</p>
+      </div>
+    </div>
+
+    <div class="layout two-wide" style="margin-top: 30px;">
+      <div class="box">
+        <h3>Median Home Price</h3>
+        <div class="bar-chart" style="height:120px;"></div>
+        <p>$396,900 (Jan 2025)</p>
+      </div>
+      <div class="box">
+        <h3>Market Insights</h3>
+        <p>Residential real estate is enormous, with modest annual growth, creating opportunities for niche strategies, efficiencies, and technology disruption.</p>
+      </div>
     </div>
   </section>
 
-  <!-- Slide 7: Traction -->
-  <section class="slide">
-    <div class="number">7</div>
-    <h2>Traction</h2>
-    <div class="chart"></div>
-  </section>
-
-  <!-- Slide 8: Go-To-Market -->
-  <section class="slide">
-    <div class="number">8</div>
-    <h2>Go-To-Market</h2>
-    <div class="layout three-squares">
-      <div class="box"><p>Channel 1</p></div>
-      <div class="box"><p>Channel 2</p></div>
-      <div class="box"><p>Channel 3</p></div>
-    </div>
-  </section>
-
-  <!-- Slide 9: Competition -->
-  <section class="slide">
-    <div class="number">9</div>
-    <h2>Competition & Differentiation</h2>
-    <div class="layout four-long">
-      <div class="box"><p>Competitor 1</p></div>
-      <div class="box"><p>Competitor 2</p></div>
-      <div class="box"><p>Competitor 3</p></div>
-      <div class="box"><p>Competitor 4</p></div>
-    </div>
-  </section>
-
-  <!-- Slide 10: Team -->
-  <section class="slide">
-    <div class="number">10</div>
-    <h2>Team</h2>
-    <div class="layout three-squares">
-      <div class="box"><p>Founder</p></div>
-      <div class="box"><p>Co-founder</p></div>
-      <div class="box"><p>Advisor</p></div>
-    </div>
-  </section>
-
-  <!-- Slide 11: Financials -->
-  <section class="slide">
-    <div class="number">11</div>
-    <h2>Financials</h2>
-    <div class="bar-chart"></div>
-  </section>
-
-  <!-- Slide 12: Funding Ask -->
-  <section class="slide">
-    <div class="number">12</div>
-    <h2>Funding Ask</h2>
-    <div class="layout two-wide">
-      <div class="box"><p>Use of Funds</p></div>
-      <div class="box"><p>Current Round</p></div>
-    </div>
-  </section>
-
-  <!-- Slide 13: Vision -->
-  <section class="slide">
-    <div class="number">13</div>
-    <h2>Vision & Closing</h2>
-    <p>Our long-term vision and call to action.</p>
-  </section>
-
-  <!-- Navigation -->
+  <!-- Navigation & Controls -->
   <div class="bottom-nav">
     <span class="material-symbols-outlined" id="prev">arrow_circle_left</span>
     <span class="material-symbols-outlined" id="next">arrow_circle_right</span>
@@ -487,27 +385,22 @@
       <li data-index="1">2. Problem</li>
       <li data-index="2">3. Solution</li>
       <li data-index="3">4. Market Opportunity</li>
-      <li data-index="4">5. Product & Tech</li>
-      <li data-index="5">6. Business Model</li>
-      <li data-index="6">7. Traction</li>
-      <li data-index="7">8. Go-To-Market</li>
-      <li data-index="8">9. Competition</li>
-      <li data-index="9">10. Team</li>
-      <li data-index="10">11. Financials</li>
-      <li data-index="11">12. Funding Ask</li>
-      <li data-index="12">13. Vision</li>
+      <li data-index="4">5. Key Stats</li>
+      <li data-index="5">6. Product & Tech</li>
+      <li data-index="6">7. Business Model</li>
+      <li data-index="7">8. Traction</li>
+      <li data-index="8">9. Go-To-Market</li>
+      <li data-index="9">10. Competition</li>
+      <li data-index="10">11. Team</li>
+      <li data-index="11">12. Financials</li>
+      <li data-index="12">13. Funding Ask</li>
+      <li data-index="13">14. Vision</li>
     </ul>
   </div>
-
-  <div class="hint">← → or use menu</div>
 </div>
-  
-<script>
-/* ------------------------------
-   Qalley Pitch Deck - JS Logic
---------------------------------*/
 
-// === SLIDE NAVIGATION ===
+<script>
+/* --- SLIDE LOGIC --- */
 const slides = document.querySelectorAll('.slide');
 let current = 0;
 
@@ -520,116 +413,58 @@ function showSlide(index) {
   });
 }
 
-// --- Button Navigation ---
-document.getElementById('next').onclick = () => {
-  current = (current + 1) % slides.length;
-  showSlide(current);
-};
-document.getElementById('prev').onclick = () => {
-  current = (current - 1 + slides.length) % slides.length;
-  showSlide(current);
-};
-
-// --- Keyboard Navigation ---
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight') {
-    current = (current + 1) % slides.length;
-    showSlide(current);
-  } else if (e.key === 'ArrowLeft') {
-    current = (current - 1 + slides.length) % slides.length;
-    showSlide(current);
-  }
+document.getElementById('next').onclick = () => { current = (current + 1) % slides.length; showSlide(current); };
+document.getElementById('prev').onclick = () => { current = (current - 1 + slides.length) % slides.length; showSlide(current); };
+document.addEventListener('keydown', e => { 
+  if(e.key==='ArrowRight') current=(current+1)%slides.length; 
+  if(e.key==='ArrowLeft') current=(current-1+slides.length)%slides.length; 
+  showSlide(current); 
 });
 
-// --- Slide Menu ---
 const menuBtn = document.getElementById('menuBtn');
 const slideList = document.getElementById('slideList');
 menuBtn.onclick = () => slideList.classList.toggle('active');
 
 slideList.querySelectorAll('li').forEach(item => {
-  item.onclick = () => {
-    current = parseInt(item.dataset.index);
-    showSlide(current);
-    slideList.classList.remove('active');
-  };
+  item.onclick = () => { current=parseInt(item.dataset.index); showSlide(current); slideList.classList.remove('active'); };
 });
 
-// --- Notes Button (placeholder) ---
 const notesBtn = document.getElementById('notesBtn');
-notesBtn.onclick = () => alert("📝 This could open a notes panel!");
+notesBtn.onclick = () => alert("📝 Notes placeholder");
 
-// Initialize first slide
 showSlide(current);
 
-
-/* ------------------------------
-   TYPEWRITER EFFECT (Cover)
---------------------------------*/
+/* --- TYPEWRITER --- */
 const fullText = "Quality Deals in the Alley";
 const typingEl = document.getElementById("typing");
 const alleyEl = document.getElementById("alley");
 let i = 0;
 
 function typeText() {
-  if (i < fullText.length) {
-    typingEl.textContent += fullText[i];
-    i++;
-    setTimeout(typeText, 100);
-  } else {
-    setTimeout(deleteText, 1000); // wait 1s then delete
-  }
+  if(i<fullText.length){ typingEl.textContent+=fullText[i]; i++; setTimeout(typeText,100); } 
+  else { setTimeout(deleteText,1000); }
 }
-
-function deleteText() {
-  let currentText = typingEl.textContent;
-  if (currentText.length > 1) {
-    typingEl.textContent = currentText.slice(0, -1);
-    setTimeout(deleteText, 50);
-  } else {
-    alleyEl.classList.add("show"); // reveal “Alley”
-  }
+function deleteText(){
+  let txt=typingEl.textContent;
+  if(txt.length>1){ typingEl.textContent=txt.slice(0,-1); setTimeout(deleteText,50); } 
+  else { alleyEl.classList.add("show"); }
 }
-
 typeText();
 
-
-/* ------------------------------
-   SWIPE GESTURE SUPPORT (Mobile)
---------------------------------*/
-let touchStartX = 0;
-let touchEndX = 0;
-
-document.addEventListener('touchstart', e => {
-  touchStartX = e.changedTouches[0].screenX;
-});
-
-document.addEventListener('touchend', e => {
-  touchEndX = e.changedTouches[0].screenX;
-  handleGesture();
-});
-
-function handleGesture() {
-  const threshold = 50; // min swipe distance
-  if (touchEndX < touchStartX - threshold) {
-    // Swipe left → next
-    current = (current + 1) % slides.length;
-    showSlide(current);
-  } else if (touchEndX > touchStartX + threshold) {
-    // Swipe right → previous
-    current = (current - 1 + slides.length) % slides.length;
-    showSlide(current);
-  }
+/* --- SWIPE SUPPORT --- */
+let touchStartX=0, touchEndX=0;
+document.addEventListener('touchstart',e=>{ touchStartX=e.changedTouches[0].screenX; });
+document.addEventListener('touchend',e=>{ touchEndX=e.changedTouches[0].screenX; handleGesture(); });
+function handleGesture(){ 
+  if(touchEndX<touchStartX-50){ current=(current+1)%slides.length; showSlide(current); } 
+  else if(touchEndX>touchStartX+50){ current=(current-1+slides.length)%slides.length; showSlide(current); } 
 }
-
-// Prevent accidental vertical scrolling during horizontal swipe
-document.addEventListener('touchmove', e => {
-  const dx = Math.abs(e.changedTouches[0].screenX - touchStartX);
-  const dy = Math.abs(e.changedTouches[0].screenY - (e.changedTouches[0].screenY || 0));
-  if (dx > dy) e.preventDefault();
-}, { passive: false });
-
+document.addEventListener('touchmove',e=>{
+  const dx=Math.abs(e.changedTouches[0].screenX-touchStartX);
+  const dy=Math.abs(e.changedTouches[0].screenY-(e.changedTouches[0].screenY||0));
+  if(dx>dy) e.preventDefault();
+},{passive:false});
 </script>
-
 
 </body>
 </html>
