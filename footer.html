@@ -483,7 +483,19 @@ footer {
 </footer>
 
   <script src="transition.js" defer></script>
+<script>
+  selector.addEventListener('click', e => {
+  e.preventDefault(); // Prevent the default <a> behavior
+  e.stopPropagation(); // Prevent the click from bubbling up
+  popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+});
 
+privacyTrigger.addEventListener('click', e => {
+  e.preventDefault();
+  e.stopPropagation();
+  privacyPopup.style.display = privacyPopup.style.display === 'block' ? 'none' : 'block';
+});
+</script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const selector = document.getElementById('countrySelector');
