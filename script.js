@@ -14,7 +14,20 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch(err => console.error("Error loading header:", err));
   }
-  
+  // Load main section
+  // =========================
+  const headerContainer = document.getElementById("main-section");
+  if (headerContainer) {
+    fetch("header.html")
+      .then(response => {
+        if (!response.ok) throw new Error("Main section not found");
+        return response.text();
+      })
+      .then(html => {
+        headerContainer.innerHTML = html;
+      })
+      .catch(err => console.error("Error loading main-section:", err));
+  }  
 // =========================
 // Load Trusted By Section
 // =========================
