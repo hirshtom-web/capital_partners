@@ -374,6 +374,7 @@ h1 {
   font-size:100px;
   text-align:center;
   position:relative;
+   background: #1e0949;
 }
 h1 .line { display:block; }
 .ai-powered {
@@ -381,6 +382,7 @@ h1 .line { display:block; }
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   font-weight:700;
+   background: #1e0949;
 }
 .machine-svg {
   position:absolute;
@@ -388,6 +390,7 @@ h1 .line { display:block; }
   right:22%;
   width:100px;
   height:auto;
+   background: #1e0949;
 }
 @media (max-width:768px){
   h1{font-size:48px;line-height:1.1;}
@@ -511,6 +514,7 @@ h1 .line { display:block; }
   overflow-x: hidden;
   padding: 0 15px;
   box-sizing: border-box;
+   background: #1e0949;
 }
 
 .re-container {
