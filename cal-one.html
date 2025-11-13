@@ -397,7 +397,8 @@ input, select, textarea {
   </style>
 </head>
 <body>
-  
+
+  <body class="cal-one">
   <div id="header"></div>
   
 <!-- CALCULATOR SELECTION SECTION -->
@@ -617,6 +618,21 @@ calcButtons.forEach(btn => {
   } else {
     additionalCriteria.classList.remove('visible');
   }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Wait until the header is loaded by your include.js
+  const observer = new MutationObserver(() => {
+    const header = document.querySelector("header");
+    if (header) {
+      header.classList.remove("header-dark");
+      header.classList.add("header-light");
+      observer.disconnect();
+    }
+  });
+
+  // Watch for new elements being added
+  observer.observe(document.body, { childList: true, subtree: true });
 });
 
 
