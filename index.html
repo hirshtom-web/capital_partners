@@ -182,56 +182,66 @@
 <script src="popup.js" defer></script>
 <script src="transition.js" defer></script>
 
-     // =========================
-// Preloader fade-out
-// =========================
-window.addEventListener("load", () => {
-  const preloader = document.getElementById("preloader");
-  if (preloader) {
-    preloader.classList.add("fade-out");
-    setTimeout(() => preloader.remove(), 600);
-  }
-});
-
 // =========================
 // Helper: Load external HTML with fade-in
 // =========================
 const loadHTML = (id, url, errorMsg) => {
   const container = document.getElementById(id);
-  if (container) {
-    // Start hidden to prevent layout jumps
-    container.style.opacity = "0";
-    container.style.transition = "opacity 0.6s ease";
+  if (!container) return Promise.resolve(); // if no container, skip safely
 
-    fetch(url)
-      .then(response => {
-        if (!response.ok) throw new Error(errorMsg);
-        return response.text();
-      })
-      .then(html => {
-        container.innerHTML = html;
-        // Use requestAnimationFrame to ensure browser registers opacity change
-        requestAnimationFrame(() => {
-          container.style.opacity = "1";
-        });
-      })
-      .catch(err => console.error(err));
-  }
+  container.style.opacity = "0";
+  container.style.transition = "opacity 0.6s ease";
+
+  return fetch(url)
+    .then(response => {
+      if (!response.ok) throw new Error(errorMsg);
+      return response.text();
+    })
+    .then(html => {
+      container.innerHTML = html;
+      requestAnimationFrame(() => {
+        container.style.opacity = "1";
+      });
+    })
+    .catch(err => console.error(err));
 };
 
 // =========================
-// Load site sections dynamically
+// Load sections and handle preloader
 // =========================
 document.addEventListener("DOMContentLoaded", () => {
-  loadHTML("header", "header.html", "Header not found");
-  loadHTML("main-section", "main-section.html", "Main section not found");
-  loadHTML(
-    "trusted-by",
-    "https://hirshtom-web.github.io/capital_partners/trusted-by.html",
-    "Trusted By section not found"
-  );
-  loadHTML("property-slide", "property-slide.html", "Property slide not found");
+  const preloader = document.getElementById("preloader");
+
+  // Start timer (for minimum preloader duration)
+  const MIN_TIME = 800; // ms
+  const start = performance.now();
+
+  // Load all sections (returns promises)
+  const loads = [
+    loadHTML("header", "header.html", "Header not found"),
+    loadHTML("main-section", "main-section.html", "Main section not found"),
+    loadHTML(
+      "trusted-by",
+      "https://hirshtom-web.github.io/capital_partners/trusted-by.html",
+      "Trusted By section not found"
+    ),
+    loadHTML("property-slide", "property-slide.html", "Property slide not found")
+  ];
+
+  // Wait for all sections to finish loading
+  Promise.allSettled(loads).then(() => {
+    const elapsed = performance.now() - start;
+    const delay = Math.max(0, MIN_TIME - elapsed);
+
+    setTimeout(() => {
+      if (preloader) {
+        preloader.classList.add("fade-out");
+        setTimeout(() => preloader.remove(), 600);
+      }
+    }, delay);
+  });
 });
+
 
 </body>
 </html>
