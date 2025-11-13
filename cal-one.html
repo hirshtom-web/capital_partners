@@ -321,11 +321,12 @@ input:checked + .slider:before {
     box-sizing: border-box;
   }
 
-  form {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
+form {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
 
   .input-group {
     flex: 1 1 100%;
@@ -340,12 +341,14 @@ input:checked + .slider:before {
   }
 
   .hidden-criteria {
-    flex-direction: column; /* stack vertically on mobile */
+    flex-direction: column !important; /* stack vertically */
+    width: 100%;                        /* full width */
     gap: 15px;
+    overflow: hidden;                   /* prevent any horizontal scroll */
   }
 
   .input-group {
-    flex: 1 1 100%;
+    flex: 1 1 100%; /* each input takes full width */
     max-width: 100%;
     min-width: 0;
   }
