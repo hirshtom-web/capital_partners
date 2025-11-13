@@ -26,7 +26,7 @@
   <script src="script.js" defer></script>
 </head>
 
-<body>
+<style>
    
    /* ===============================
    GLOBAL
@@ -260,8 +260,10 @@ html, body {
     height: 18px;
   }
 }
-</body>
-
+ </style>
+</head>
+<body>
+  
 <div class="uni-section-shell">
   <div class="uni-content-tile">
     <h3 class="uni-heading-xl">
@@ -320,7 +322,7 @@ html, body {
   </div>
 </div>
 
-
+<script>
 document.addEventListener('DOMContentLoaded', () => {
   const newToggleButtons = document.querySelectorAll('.uni-toggle-btn');
   const newPanels = document.querySelectorAll('.uni-panel');
@@ -341,3 +343,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+</script>
+</body>
+</html>
