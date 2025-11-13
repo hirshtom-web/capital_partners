@@ -129,19 +129,25 @@ form {
   font-weight: 500;
   cursor: pointer;
 }
-.hidden-criteria.visible {
-  display: flex; /* flex layout active */
-}
-
 .hidden-criteria {
   display: none;           /* initially hidden */
   flex-direction: row;     /* desktop default */
-  flex-wrap: wrap;
+  flex-wrap: wrap;         /* allow wrapping */
   gap: 20px;
   justify-content: flex-start;
   width: 100%;
-  margin-top: 10px;
+  box-sizing: border-box;  /* important */
 }
+
+.hidden-criteria.visible {
+  display: flex;
+}
+
+.hidden-criteria .input-group {
+  flex: 1 1 200px; /* grow/shrink, base width 200px */
+  min-width: 0;    /* key fix to allow shrinking below 200px if needed */
+}
+
 
 /* ---------- FORM BUTTONS ---------- */
 button:not(.calc-btn) {
@@ -343,16 +349,16 @@ form {
   }
 
   .hidden-criteria {
-    flex-direction: column !important; /* vertical stack on mobile */
+    flex-direction: column !important;
     width: 100%;
     gap: 15px;
   }
 
-  .input-group {
-    flex: 1 1 100%;  /* full width inputs */
+  .hidden-criteria .input-group {
+    flex: 1 1 100%;
     max-width: 100%;
     min-width: 0;
-  
+  }
 
 
   .toggle-section {
