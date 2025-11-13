@@ -492,14 +492,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const privacyPopup = document.getElementById('privacyPopup');
   const savePrivacy = document.getElementById('savePrivacy');
 
+  // Country selector
   if (selector && popup) {
     selector.addEventListener('click', e => {
       e.stopPropagation();
       popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
     });
     popup.addEventListener('click', e => e.stopPropagation());
-
-    selector.querySelector('.country-link')?.addEventListener('click', e => e.preventDefault());
 
     document.querySelectorAll('.country-option').forEach(option => {
       option.addEventListener('click', () => {
@@ -512,6 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Privacy popup
   if (privacyTrigger && privacyPopup) {
     privacyTrigger.addEventListener('click', e => {
       e.stopPropagation();
@@ -528,12 +528,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Close all popups when clicking outside
+  // Close popups when clicking outside
   document.addEventListener('click', () => {
     if (popup) popup.style.display = 'none';
     if (privacyPopup) privacyPopup.style.display = 'none';
   });
 });
+
 
 </script>
 
