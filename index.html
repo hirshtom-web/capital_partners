@@ -35,8 +35,47 @@
   <script src="popup.js" defer></script>
 
 </head>  
+  <style>
 
-<body>
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #1e0949;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.6s ease;
+}
+
+#preloader.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader {
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(255,255,255,0.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+#header, #main-section, #trusted-by, #property-slide {
+  min-height: 200px; /* Adjust per section */
+  background: rgba(255,255,255,0.03);
+}
+
+    </style>
+   
+   <body>
 
 <div id="preloader">
 <div class="loader"></div>
@@ -142,6 +181,57 @@
 <!-- JS at the bottom -->
 <script src="popup.js" defer></script>
 <script src="transition.js" defer></script>
+
+     // =========================
+// Preloader fade-out
+// =========================
+window.addEventListener("load", () => {
+  const preloader = document.getElementById("preloader");
+  if (preloader) {
+    preloader.classList.add("fade-out");
+    setTimeout(() => preloader.remove(), 600);
+  }
+});
+
+// =========================
+// Helper: Load external HTML with fade-in
+// =========================
+const loadHTML = (id, url, errorMsg) => {
+  const container = document.getElementById(id);
+  if (container) {
+    // Start hidden to prevent layout jumps
+    container.style.opacity = "0";
+    container.style.transition = "opacity 0.6s ease";
+
+    fetch(url)
+      .then(response => {
+        if (!response.ok) throw new Error(errorMsg);
+        return response.text();
+      })
+      .then(html => {
+        container.innerHTML = html;
+        // Use requestAnimationFrame to ensure browser registers opacity change
+        requestAnimationFrame(() => {
+          container.style.opacity = "1";
+        });
+      })
+      .catch(err => console.error(err));
+  }
+};
+
+// =========================
+// Load site sections dynamically
+// =========================
+document.addEventListener("DOMContentLoaded", () => {
+  loadHTML("header", "header.html", "Header not found");
+  loadHTML("main-section", "main-section.html", "Main section not found");
+  loadHTML(
+    "trusted-by",
+    "https://hirshtom-web.github.io/capital_partners/trusted-by.html",
+    "Trusted By section not found"
+  );
+  loadHTML("property-slide", "property-slide.html", "Property slide not found");
+});
 
 </body>
 </html>
