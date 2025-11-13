@@ -28,6 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
     "Trusted By section not found"
   );
   loadHTML("property-slide", "property-slide.html", "Property slide not found");
+  
+  // <-- NEW: Load footer dynamically -->
+  loadHTML("footer", "footer.html", "Footer not found");
 
   // =========================
   // Toggle Mobile Menu
