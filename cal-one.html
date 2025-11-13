@@ -11,260 +11,357 @@
   <!-- Material Icons -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-  <style>
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      margin: 0;
-      padding: 40px;
-      background-color: #fff;
-      color: #1e0949;
-    }
+<style>
+/* ---------- BASE STYLES ---------- */
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  margin: 0;
+  padding: 40px;
+  background-color: #fff;
+  color: #1e0949;
+  -webkit-text-size-adjust: 100%; /* prevent mobile zoom on input */
+}
 
-    .container {
-      display: flex;
-      gap: 20px;
-      max-width: 1200px;
-      margin: auto;
-      align-items: flex-start;
-      flex-wrap: wrap;
-    }
-
-    .left, .right {
-      flex: 1;
-      background-color: #fef7f2;
-      border-radius: 18px;
-      padding: 30px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 36px;
-      font-weight: 700;
-    }
-
-    form {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-      flex: 1;
-    }
-
-    .input-group {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      flex: 1 1 220px;
-      max-width: 300px;
-    }
-
-    .input-group input {
-      width: 100%;
-      height: 60px;
-      padding: 12px;
-      font-size: 14px;
-      border-radius: 8px;
-      border: none;
-      background-color: #fff;
-      color: #000;
-      outline: none;
-      box-sizing: border-box;
-      transition: all 0.2s ease;
-      -moz-appearance: textfield;
-    }
-
-    .input-group input:focus {
-      background-color: #ffffff;
-      box-shadow: 0 0 0 1.5px #1e0949;
-    }
-
-    .input-label {
-      position: absolute;
-      top: 10px;
-      left: 12px;
-      font-size: 9px;
-      letter-spacing: 0.5px;
-      color: #999;
-      text-transform: uppercase;
-      pointer-events: none;
-    }
-
-    .bottom-row {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      width: 100%;
-      margin-top: 20px;
-      gap: 15px;
-    }
-
-    .toggle-section {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 10px;
-      width: 100%;
-    }
-
-    .toggle-section label {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-weight: 500;
-      cursor: pointer;
-    }
-
-    .hidden-criteria {
-      display: none;
-      width: 100%;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-      margin-top: 10px;
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-      font-size: 16px;
-      background-color: #1e0949;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    button:hover {
-      background-color: #3c1e7c;
-    }
-
-    .material-symbols-outlined.calc-icon {
-      font-size: 24px;
-      color: #fff;
-    }
-
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 60px;
-      height: 30px;
-    }
-
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-      cursor: pointer;
-    }
-
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: #ccc;
-      transition: 0.4s;
-      border-radius: 30px;
-    }
-
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 24px;
-      width: 24px;
-      left: 3px;
-      bottom: 3px;
-      background-color: white;
-      transition: 0.4s;
-      border-radius: 50%;
-    }
-
-    input:checked + .slider {
-      background-color: #1e0949;
-    }
-
-    input:checked + .slider:before {
-      transform: translateX(30px);
-    }
-
-    /* RESULTS STYLING (NOW ON RIGHT) */
-    #resultsContainer {
-      margin-top: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .result-row {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      padding: 5px 10px;
-      border-radius: 8px;
-    }
-
-    .result-net {
-      background-color: #d0e8ff;
-      font-weight: 600;
-    }
-
-   .result-row {
+.container {
   display: flex;
-  justify-content: space-between; /* pushes first item left, last item right */
-  width: 180%;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.left, .right {
+  flex: 1;
+  background-color: #fef7f2;
+  border-radius: 18px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* ---------- FORM STYLING ---------- */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 40%;
+  max-width: 400px;
+  min-width: 200px;
+}
+
+.input-group input {
+  width: 100%;
+  height: 60px;
+  padding: 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  background-color: #fff;
+  color: #000;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  -moz-appearance: textfield;
+}
+
+.input-group input:focus {
+  background-color: #ffffff;
+  box-shadow: 0 0 0 1.5px #1e0949;
+}
+
+.input-label {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  color: #999;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.bottom-row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  margin-top: 20px;
+  gap: 15px;
+}
+
+.toggle-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.toggle-section label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.hidden-criteria {
+  display: none;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* ---------- FORM BUTTONS ---------- */
+button:not(.calc-btn) {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  background-color: #1e0949;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+button:hover {
+  background-color: #3c1e7c;
+}
+
+.material-symbols-outlined.calc-icon {
+  font-size: 24px;
+  color: #fff;
+}
+
+/* ---------- TOGGLE SWITCH ---------- */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #1e0949;
+}
+
+input:checked + .slider:before {
+  transform: translateX(30px);
+}
+
+/* ---------- RESULTS ---------- */
+#resultsContainer {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: stretch;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between; /* label left, value right */
+  align-items: center;            /* vertically centers text */
+  width: 100%;
   padding: 5px 10px;
   border-radius: 8px;
 }
 
+.result-net {
+  background-color: #d0e8ff;
+  font-weight: 600;
+  height: 50px;        /* example taller height */
+  display: flex;
+  align-items: center; /* vertical center */
+  justify-content: space-between; /* keeps left/right spacing inside */
+  padding: 0 10px;    /* optional: spacing inside */
+  border-radius: 8px;
+}
+
+
 .result-row span:first-child {
-  text-align: left; /* label stays left */
+  text-align: left;
 }
 
 .result-row span:last-child {
-  text-align: right; /* value stays right */
-  min-width: 150px;   /* optional, ensures enough space */
+  text-align: right;
+  min-width: 150px;
+}
+
+/* ---------- CALCULATOR BUTTONS ---------- */
+.calc-selector {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.calc-selector h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #1e0949;
+}
+
+.calc-buttons {
+  display: flex;
+  flex-wrap: nowrap;                /* keep horizontal scrolling */
+  overflow-x: auto;
+  gap: 10px;
+  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch; /* smooth scrolling iOS */
+  
+  justify-content: center;          /* center all buttons horizontally */
+  align-items: center;              /* center vertically */
 }
 
 
-    @media (max-width: 900px) {
-      .container {
-        flex-direction: column;
-      }
-      .left, .right {
-        width: 100%;
-      }
-      form {
-        flex-direction: column;
-        align-items: center;
-      }
-      .input-group {
-        max-width: 100%;
-      }
-      .hidden-criteria {
-        flex-direction: column;
-        gap: 15px;
-      }
-      .toggle-section {
-        flex-direction: column;
-      }
-      .bottom-row {
-        gap: 10px;
-      }
-    }
+.calc-btn {
+  background-color: #fef7f2;
+  color: #1e0949;
+  border: 1px solid #1e0949;
+  border-radius: 25px;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex: 0 0 auto;           /* prevent shrinking */
+}
+
+.calc-btn:hover,
+.calc-btn.active {
+  background-color: #1e0949;
+  color: #fff;
+}
+
+/* ---------- MEDIA QUERIES ---------- */
+@media (max-width: 900px) {
+  body {
+    padding: 20px 10px;
+  }
+
+  .container {
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  .left, .right {
+    width: 100%;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  .input-group {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  #resultsContainer {
+    width: 100%;
+  }
+
+  .hidden-criteria {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .toggle-section {
+    flex-direction: column;
+  }
+
+  .bottom-row {
+    gap: 10px;
+  }
+
+  .calc-buttons {
+    gap: 10px;
+  }
+}
+
+/* Prevent mobile input zoom on fields */
+input, select, textarea {
+  font-size: 16px;
+}
+</style>
+
+
+
   </style>
 </head>
 <body>
+<!-- CALCULATOR SELECTION SECTION -->
+<div class="calc-selector">
+  <h1>Choose Your Calculator</h1>
+  <div class="calc-buttons">
+    <button class="calc-btn active">Rental</button>
+    <button class="calc-btn">Mortgage</button>
+    <button class="calc-btn">Refinance</button>
+    <button class="calc-btn">Investment</button>
+    <button class="calc-btn">Pre-Construction</button>
+    <button class="calc-btn">Cap Rate</button>
+  </div>
+</div>
 
 <div class="container">
   <!-- LEFT SIDE (INPUTS ONLY) -->
@@ -452,6 +549,19 @@ document.getElementById('calculateBtn').addEventListener('click', () => {
   document.getElementById('netResult').textContent = formatMoney(netIncome);
   document.getElementById('cocResult').textContent = cashOnCash.toFixed(2) + "%";
 });
+
+  // Handle calculator button selection
+const calcButtons = document.querySelectorAll('.calc-btn');
+calcButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    calcButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // You could later load a different calculator here based on btn.textContent
+    console.log(`Switched to ${btn.textContent} calculator`);
+  });
+});
+
 </script>
 
 </body>
