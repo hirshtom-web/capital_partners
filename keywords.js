@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!container) return; // safety check
   container.innerHTML = "";
 
+  // Function to create a row
   function createRow(start, end, extra) {
     const row = document.createElement("div");
     row.className = "re-row";
@@ -56,33 +57,34 @@ document.addEventListener("DOMContentLoaded", () => {
   // ================== KEYWORD CLICK TRIGGER ==================
   container.addEventListener("click", (e) => {
     if (e.target.classList.contains("re-phrase") || e.target.classList.contains("re-other")) {
-      // Open your existing popup
-      const popup = document.getElementById("popup");
-      if (!popup) return;
+      const keyword = e.target.textContent;
 
-      popup.style.display = "flex";       // make visible
-      popup.style.opacity = "1";          // optional smooth fade if your CSS supports it
+      // Option 1: Open chat-up.html in a new tab
+      // window.open("chat-up.html", "_blank");
 
-      // Optional: focus the first input inside popup
-      const firstInput = popup.querySelector("input");
-      if (firstInput) firstInput.focus();
+      // Option 2: Load chat-up.html into a popup div
+      fetch("chat-up.html")
+        .then(res => res.text())
+        .then(html => {
+          const popupDiv = document.createElement("div");
+          popupDiv.innerHTML = html;
+          popupDiv.style.position = "fixed";
+          popupDiv.style.top = "0";
+          popupDiv.style.left = "0";
+          popupDiv.style.width = "100%";
+          popupDiv.style.height = "100%";
+          popupDiv.style.background = "rgba(0,0,0,0.5)";
+          popupDiv.style.zIndex = "9999";
+          popupDiv.style.display = "flex";
+          popupDiv.style.justifyContent = "center";
+          popupDiv.style.alignItems = "center";
+          document.body.appendChild(popupDiv);
+
+          // Optional: close on backdrop click
+          popupDiv.addEventListener("click", (ev) => {
+            if(ev.target === popupDiv) popupDiv.remove();
+          });
+        });
     }
   });
-
-  // Optional: close popup button
-  const closeBtn = document.getElementById("closePopup");
-  if(closeBtn) {
-    closeBtn.addEventListener("click", () => {
-      const popup = document.getElementById("popup");
-      popup.style.display = "none";
-    });
-  }
-
-  // Optional: click outside popup to close
-  const popupBackdrop = document.getElementById("popup");
-  if(popupBackdrop) {
-    popupBackdrop.addEventListener("click", (ev) => {
-      if(ev.target === popupBackdrop) popupBackdrop.style.display = "none";
-    });
-  }
 });
