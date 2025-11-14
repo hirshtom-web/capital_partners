@@ -53,7 +53,7 @@ nav {
   align-items: center;
 }
 nav > div > a {
-  color: auto
+  color: inherit; /* or whatever color you want */
   font-weight: 500;
   font-size: 12px;
   padding: 10px 0;
