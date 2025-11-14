@@ -1,4 +1,3 @@
-<script>
 document.addEventListener("DOMContentLoaded", () => {
   const preloader = document.getElementById("preloader");
   const MIN_TIME = 800; // minimum preloader display
@@ -11,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
     {id: "property-slide", url: "property-slide.html"}
   ];
 
-  // Helper to fetch HTML and fade in
   const loadSection = ({id, url}) => {
     const container = document.getElementById(id);
     if (!container) return Promise.resolve();
@@ -33,20 +31,24 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch(err => console.error(err));
   };
 
-  // Load all sections
   const allLoads = sections.map(loadSection);
 
-  // Wait for all sections + minimum preloader time
   Promise.allSettled(allLoads).then(() => {
     const elapsed = performance.now() - startTime;
     const remaining = Math.max(0, MIN_TIME - elapsed);
 
     setTimeout(() => {
+      if (!preloader) return;
+
       preloader.classList.add("fade-out");
-      // remove after CSS transition
-      preloader.addEventListener("transitionend", () => preloader.remove());
+
+      // Remove preloader after transition, or after 700ms as a backup
+      const removePreloader = () => {
+        if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+      };
+
+      preloader.addEventListener("transitionend", removePreloader);
+      setTimeout(removePreloader, 700); // fallback in case transitionend doesn't fire
     }, remaining);
   });
 });
-</script>
-
