@@ -334,9 +334,8 @@
 </footer>
 
 <!-- JS at the bottom -->
-<script src="popup.js" defer></script>
-<script src="transition.js" defer></script>
- <script   document.addEventListener("DOMContentLoaded", () => {
+<script>
+document.addEventListener("DOMContentLoaded", () => {
   const preloader = document.getElementById("preloader");
   const MIN_TIME = 800; // Minimum preloader display
   const startTime = performance.now();
@@ -397,7 +396,8 @@
       setTimeout(() => preloader?.remove(), 5000);
     });
 });
-   </script>
+</script>
+
 
 </body>
 </html>
