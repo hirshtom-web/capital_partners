@@ -76,7 +76,7 @@ nav > div:hover > a { color: #bda3ff; }
   top: 70px;
   left: 0;
   width: 100%;
-  background: linear-gradient(to bottom, #fff, rgba(99,39,229,0.1));
+  background: #1e0949;
   border-radius: 0 0 20px 20px;
   box-shadow: 0 8px 20px rgba(0,0,0,.08);
   opacity: 0;
