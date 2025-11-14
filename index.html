@@ -3,18 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <title>Capital Partners</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=trending_up" />
-
+  
   <!-- CSS -->
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="mls.style.css">
-
-  <!-- JS Scripts -->
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="tabs.css">
+  <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="desktop.css" media="(min-width:769px)">
+  <link rel="stylesheet" href="mobile.css" media="(max-width:768px)">
+  
+  
+  <!-- JS Scripts (deferred so page loads first) -->
   <script src="js/include.js" defer></script>
   <script src="js/ui.js" defer></script>
   <script src="js/charts.js" defer></script>
@@ -24,159 +28,280 @@
   <script src="js/map.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://unpkg.com/feather-icons"></script>
+  <script src="script.js" defer></script>
+  <script src="footer.js" defer></script>
+  <script src="tabs.js" defer></script>
+  <script src="keywords.js" defer></script>
+  <script src="popup.js" defer></script>
+
 </head>  
-
-<style>
-  /* Reset default margins/padding */
-  html, body {
-    margin: 0;
-    padding: 0;
-    background-color: #1e0949;
-    color: #fff;
-    font-family: 'Rubik', sans-serif;
-  }
-
-  /* Ensure all top-level sections inherit the dark background */
-  #header,
-  #main-section,
-  #trusted-by,
-  #property-slide,
-  #tabs,
-  #footer,
-  #popup-container,
-  #button-wrapper,
-  .re-container-wrapper {
-    background-color: #1e0949;
-    color: white;
-  }
-
-  #main-section {
-    width: 100%;
-    padding: 50px 20px; /* optional spacing */
-  }
-
-  /* Preloader styles */
-  #preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #1e0949;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    transition: opacity 0.6s ease;
-  }
-
-  #preloader.fade-out {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .loader {
-    width: 60px;
-    height: 60px;
-    border: 5px solid rgba(255,255,255,0.2);
-    border-top-color: #fff;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-
-  /* Optional: remove margins from headings loaded dynamically */
-  h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-  }
-
-</style>
 
 <body>
 
-  <div id="preloader">
-    <div class="loader"></div>
-  </div>
+<div id="header"></div>
 
-  <div id="header"></div>
-  <div id="main-section"></div>
-
+<h1>
+  <span class="line">The #1</span>
+  <span class="line ai-powered">AI-Powered</span>
+  <span class="line">Real Estate</span>
+  <img class="machine-svg" src="https://static.wixstatic.com/shapes/1799ca_ee5fbb36429542dc9e650afd9901f578.svg" alt="Machine">
+</h1>
+  
+<!-- BUTTON TO OPEN POPUP -->
 <div class="button-wrapper">
   <a href="#" id="openPopup" class="main-btn-bubble">Get Started</a>
 </div>
 
-<!-- Container to load popup -->
-<div id="popup-container"></div>
+<!-- POPUP (initially hidden) -->
+<div class="popup-backdrop" id="popup">
+  <div class="popup-card">
+    <img src="https://static.wixstatic.com/media/1799ca_37b1880cb94f44da8635db99b0631442~mv2.png" alt="Logo">
+    <h1>Get Expert Guidance</h1>
+    <div class="popup-text">
+      Drop your name and number, and we’ll get back to you promptly.
+    </div>
+    <input type="text" placeholder="Full Name">
+    <input type="email" placeholder="Email Address">
+    <input type="tel" placeholder="Phone Number">
+    <label><input type="checkbox"> I approve the terms and conditions</label>
+    <button id="closePopup">Submit</button>
+    <div class="popup-footer">© 2025 All rights reserved.</div>
+  </div>
+</div>
+  
+<div class="re-container-wrapper">
+  <div class="re-container" id="re-container"></div>
+</div>
 
-  <div id="trusted-by"></div>
-  <div id="property-slide"></div>
-  <div id="tabs"></div>
-  <div id="footer"></div>
+<div id="trusted-by"></div>
 
-  <!-- JS at the bottom -->
-  <script src="keywords.js" defer></script>
-  <script src="popup.js" defer></script>
-  <script src="transition.js" defer></script>
-  <script>
-    // Helper: Load external HTML with fade-in
-    const loadHTML = (id, url, errorMsg) => {
-      const container = document.getElementById(id);
-      if (!container) return Promise.resolve(); // skip if no container
+<div id="property-slide"></div>
 
-      container.style.opacity = "0";
-      container.style.transition = "opacity 0.6s ease";
+<div class="uni-section-shell">
+  <div class="uni-content-tile">
+    <h3 class="uni-heading-xl">
+      Perfect for investors<br> Excellent for home buyers
+    </h3>
+    <p class="uni-subtitle">Good things come to those who wait</p>
 
-      return fetch(url)
-        .then(response => {
-          if (!response.ok) throw new Error(errorMsg);
-          return response.text();
-        })
-        .then(html => {
-          container.innerHTML = html;
-          requestAnimationFrame(() => {
-            container.style.opacity = "1";
-          });
-        })
-        .catch(err => console.error(err));
-    };
+    <div class="uni-toggle-wrapper">
+      <button class="uni-toggle-btn active" data-tab="investors">Investors</button>
+      <button class="uni-toggle-btn" data-tab="homebuyers">Homebuyers</button>
+      <button class="uni-toggle-btn" data-tab="developers">Developers</button>
+    </div>
 
-    // Load sections and handle preloader
-    document.addEventListener("DOMContentLoaded", () => {
-      const preloader = document.getElementById("preloader");
-      const MIN_TIME = 800; // minimum preloader duration
-      const start = performance.now();
+    <!-- Panels -->
+    <div class="uni-panel active" id="investors">
+      <div class="uni-panel-inner">
+        <div class="uni-panel-text">
+          <h3>Why Capital Partners Real Estate is Great for Investors</h3>
+          <p>Investing with Capital Partners Real Estate opens doors to smart, profitable opportunities...</p>
+          <ul class="uni-list">
+            <li><img src="https://static.wixstatic.com/shapes/1799ca_ce0b06d466af4174b1e55bcdf5ffba0e.svg">High potential for strong ROI</li>
+            <li><img src="https://static.wixstatic.com/shapes/1799ca_ce0b06d466af4174b1e55bcdf5ffba0e.svg">Diversified property portfolios</li>
+            <li><img src="https://static.wixstatic.com/shapes/1799ca_ce0b06d466af4174b1e55bcdf5ffba0e.svg">Expert market analysis and guidance</li>
+            <li><img src="https://static.wixstatic.com/shapes/1799ca_ce0b06d466af4174b1e55bcdf5ffba0e.svg">Transparent reporting and communication</li>
+          </ul>
+        </div>
+        <div class="uni-panel-image">
+          <img src="https://static.wixstatic.com/media/1799ca_5612e730c7834e63a1c15aa6098c692c~mv2.webp" alt="Investors">
+        </div>
+      </div>
+    </div>
 
-      const loads = [
-        loadHTML("header", "header.html", "Header not found"),
-        loadHTML("main-section", "main-section.html", "Main section not found"),
-        loadHTML("trusted-by", "https://hirshtom-web.github.io/capital_partners/trusted-by.html", "Trusted By section not found"),
-        loadHTML("property-slide", "property-slide.html", "Property slide not found")
-      ];
+    <div class="uni-panel" id="homebuyers">
+      <div class="uni-panel-inner">
+        <div class="uni-panel-text">
+          <h3>Your Dream Home Starts Here</h3>
+          <p>At Capital Partners Real Estate, we help homeowners find the perfect place...</p>
+        </div>
+        <div class="uni-panel-image">
+          <img src="https://static.wixstatic.com/media/1799ca_5612e730c7834e63a1c15aa6098c692c~mv2.webp" alt="Homebuyers">
+        </div>
+      </div>
+    </div>
 
-      Promise.allSettled(loads).then(() => {
-        const elapsed = performance.now() - start;
-        const delay = Math.max(0, MIN_TIME - elapsed);
+    <div class="uni-panel" id="developers">
+      <div class="uni-panel-inner">
+        <div class="uni-panel-text">
+          <h3>For Developers</h3>
+          <p>We partner with developers to bring projects to life...</p>
+        </div>
+        <div class="uni-panel-image">
+          <img src="https://static.wixstatic.com/media/1799ca_5612e730c7834e63a1c15aa6098c692c~mv2.webp" alt="Developers">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        setTimeout(() => {
-          if (preloader) {
-            preloader.classList.add("fade-out");
-            setTimeout(() => preloader.remove(), 600);
-          }
-        }, delay);
-      });
-    });
 
-    // Load the combined popup file
-  fetch("popup.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("popup-container").innerHTML = html;
-    })
-    .catch(err => console.error("Failed to load popup:", err));
-  </script>
+  <footer>
+  <div class="footer-container">
+  <div class="footer-top" dir="ltr">
+    <!-- Column 1 -->
+    <div class="footer-column">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Leadership Team</a></li>
+        <li><a href="#">Mission & Vision</a></li>
+        <li><a href="#">Values & Culture</a></li>
+        <li><a href="#">Why Choose Us</a></li>
+<li>
+  <a href="#">Careers <span class="hiring-bubble">Hiring</span></a>
+</li>
+
+        <li><a href="#">Testimonials / Client Stories</a></li>
+        <li><a href="#">Press / Media</a></li>
+        <li><a href="#">Services & Solutions</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="footer-column">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Services Overview</a></li>
+        <li><a href="#">Real Estate Investments</a></li>
+        <li><a href="#">Property Management</a></li>
+        <li><a href="#">Commercial Real Estate</a></li>
+        <li><a href="#">Residential Real Estate</a></li>
+        <li><a href="#">Portfolio Management</a></li>
+        <li><a href="#">Asset Management</a></li>
+        <li><a href="#">Investment Strategies</a></li>
+        <li><a href="#">Wealth Management</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="footer-column">
+      <h4>Properties</h4>
+      <ul>
+        <li><a href="#">Current Listings</a></li>
+        <li><a href="#">Featured Properties</a></li>
+        <li><a href="#">Investment Opportunities</a></li>
+        <li><a href="#">Sold Properties</a></li>
+        <li><a href="#">Property Search</a></li>
+        <li><a href="#">Market Insights</a></li>
+        <li><a href="#">Resources & Insights</a></li>
+        <li><a href="#">Blog / News</a></li>
+        <li><a href="#">Market Reports</a></li>
+        <li><a href="#">Case Studies</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 4 -->
+    <div class="footer-column">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Investment Guides</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Glossary / Terms</a></li>
+        <li><a href="#">Tools & Calculators</a></li>
+        <li><a href="#">eBooks / Downloads</a></li>
+        <li><a href="#">Webinars & Events</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 5 -->
+    <div class="footer-column">
+      <h4>Markets</h4>
+      <ul>
+        <li><a href="#">Locations / Offices</a></li>
+        <li><a href="#">Careers Inquiry</a></li>
+        <li><a href="#">Feedback / Suggestions</a></li>
+        <li><a href="#">Legal & Policies</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Disclaimer</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">Investor Relations</a></li>
+        <li><a href="#">Extras / Engagement</a></li>
+        <li><a href="#">Newsletter Signup</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 6 -->
+    <div class="footer-column">
+      <h4>Community</h4>
+      <ul>
+        <li><a href="#">Community / Social Impact</a></li>
+        <li><a href="#">Advisory Services</a></li>
+        <li><a href="#">Properties & Listings</a></li>
+        <li><a href="#">Whitepapers</a></li>
+        <li><a href="#">Contact & Support</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Request a Consultation</a></li>
+        <li><a href="#">Schedule a Meeting</a></li>
+        <li><a href="#">Customer Support</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="footer-section">
+    <!-- Country Selector with Popup -->
+    <div class="country-selector" id="countrySelector">
+      <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="US Flag" class="flag">
+      <a href="#" class="country-link">United States</a>
+
+      <div class="country-popup" id="countryPopup">
+        <div class="country-option"><img src="https://flagcdn.com/fr.svg"> France</div>
+        <div class="country-option"><img src="https://flagcdn.com/de.svg"> Germany</div>
+        <div class="country-option"><img src="https://flagcdn.com/es.svg"> Spain</div>
+        <div class="country-option"><img src="https://flagcdn.com/gb.svg"> United Kingdom</div>
+        <div class="country-option"><img src="https://flagcdn.com/us.svg"> United States</div>
+        <div class="country-option"><img src="https://flagcdn.com/il.svg"> Israel</div>
+        <div class="country-option"><img src="https://flagcdn.com/br.svg"> Brazil</div>
+        <div class="country-option"><img src="https://flagcdn.com/bh.svg"> Bahrain</div>
+      </div>
+    </div>
+
+    <!-- Random Icon Links -->
+   <div class="social-icons">
+    <a href="#"><img src="https://static.wixstatic.com/shapes/1799ca_b556d80b24914ef681525a1075914147.svg" alt="Facebook"></a>
+    <a href="#"><img src="https://static.wixstatic.com/shapes/1799ca_b556d80b24914ef681525a1075914147.svg" alt="Google"></a>
+    <a href="#"><img src="https://static.wixstatic.com/shapes/1799ca_b556d80b24914ef681525a1075914147.svg" alt="Microsoft"></a>
+    <a href="#"><img src="https://static.wixstatic.com/shapes/1799ca_b556d80b24914ef681525a1075914147.svg" alt="Amazon"></a>
+    <a href="#"><img src="https://static.wixstatic.com/shapes/1799ca_b556d80b24914ef681525a1075914147.svg" alt="Netflix"></a>
+  </div>
+<!-- Privacy -->
+<div class="privacy" id="privacyTrigger">
+  Your Privacy Choice
+  <img
+    src="https://static.wixstatic.com/shapes/1799ca_0e1adb5097e24e51983392548c7a0b60.svg"
+    alt="Privacy Icon"
+    class="privacy-icon"
+  >
+
+  <!-- Privacy Popup -->
+  <div class="privacy-popup" id="privacyPopup">
+    <h4>Privacy Settings</h4>
+    <label class="privacy-option">
+      <input type="radio" name="privacy" value="accept"> Accept All
+    </label>
+    <label class="privacy-option">
+      <input type="radio" name="privacy" value="reject"> Reject All
+    </label>
+    <label class="privacy-option">
+      <input type="radio" name="privacy" value="custom"> Customize
+    </label>
+    <button id="savePrivacy">Save Preferences</button>
+  </div>
+</div>
+
+<!-- Copyright -->
+<div class="copyright">
+  &copy; 2026 Qalley.com
+</div>
+
+</footer>
+
+<!-- JS at the bottom -->
+<script src="popup.js" defer></script>
+<script src="transition.js" defer></script>
 
 </body>
 </html>
