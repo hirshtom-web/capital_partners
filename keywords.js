@@ -1,7 +1,7 @@
 <!-- ================= KEYWORDS ================= -->
 <div id="re-container"></div>
 
-<!-- ================= CHAT POPUP (from before) ================= -->
+<!-- ================= CHAT POPUP ================= -->
 <div class="chat-backdrop" id="chatBackdrop">
   <div class="chat-card">
     <img src="your-logo.png" alt="Logo" class="chat-logo">
@@ -40,34 +40,41 @@ document.addEventListener("DOMContentLoaded", () => {
     "Looking for real estate partnerships"
   ];
 
+  // Shuffle keywords
   function shuffleArray(array) {
     return array.sort(() => Math.random() - 0.5);
   }
-
   const shuffled = shuffleArray([...keywords]);
+
   const container = document.getElementById("re-container");
   if (!container) return;
   container.innerHTML = "";
 
-  function createRow(start, end, extra) {
-    const row = document.createElement("div");
-    row.className = "re-row";
-    for (let i = start; i < end; i++) {
-      const item = document.createElement("div");
-      item.className = "re-phrase";
-      item.textContent = shuffled[i];
-      row.appendChild(item);
-    }
-    if(extra) row.appendChild(extra);
-    container.appendChild(row);
+  // ROW 1
+  const row1 = document.createElement("div");
+  row1.className = "re-row";
+  for (let i = 0; i < 3; i++) {
+    const item = document.createElement("div");
+    item.className = "re-phrase";
+    item.textContent = shuffled[i];
+    row1.appendChild(item);
   }
+  container.appendChild(row1);
 
-  // ROWS
-  createRow(0, 3);
+  // ROW 2
+  const row2 = document.createElement("div");
+  row2.className = "re-row";
+  for (let i = 3; i < 6; i++) {
+    const item = document.createElement("div");
+    item.className = "re-phrase";
+    item.textContent = shuffled[i];
+    row2.appendChild(item);
+  }
   const other = document.createElement("div");
   other.className = "re-other";
   other.textContent = "It's something else...";
-  createRow(3, 6, other);
+  row2.appendChild(other);
+  container.appendChild(row2);
 
   // ================= CHAT LOGIC =================
   const chatBackdrop = document.getElementById('chatBackdrop');
