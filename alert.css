@@ -1,0 +1,22 @@
+.alert {
+  padding: 8px 25px;
+  background: linear-gradient(90deg, #ffb0b0, #6d00ef);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  z-index: 1001;
+}
+.alert .material-symbols-outlined {
+  font-size: 14px;
+  vertical-align: middle;
+}
+.alert a.learn-more {
+  color: #fff;
+  text-decoration: underline;
+}
