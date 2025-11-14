@@ -1,3 +1,10 @@
+body {
+  margin: 0; /* remove default margin */
+  background-color: #1e0949; /* match your main section or choose a page-wide color */
+  color: white; /* default text color */
+  font-family: 'Rubik', sans-serif; /* optional */
+}
+
 .main-section {
   background-color: #1e0949; /* dark blue background */
   color: white;              /* makes text visible */
