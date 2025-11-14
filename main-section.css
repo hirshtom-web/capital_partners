@@ -1,11 +1,3 @@
-/* Global Styles */
-body {
-  margin: 0; /* remove default margin */
-  background-color: #1e0949; /* page-wide background */
-  color: white; /* default text color */
-  font-family: 'Rubik', sans-serif;
-}
-
 /* Main Section */
 .main-section {
   background-color: #1e0949;
