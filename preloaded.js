@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const preloader = document.getElementById("preloader");
-  const MIN_TIME = 800; // minimum loader display
+  const MIN_TIME = 800;
   const startTime = performance.now();
 
   const sections = [
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const loadSection = ({ id, url }) => {
     const container = document.getElementById(id);
-    if (!container) return Promise.resolve(); // skip missing containers
+    if (!container) return Promise.resolve();
 
     container.style.opacity = 0;
     container.style.transition = "opacity 0.6s ease";
@@ -24,25 +24,20 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(() => container.style.opacity = 1);
       })
       .catch(err => {
-        console.error(err);
-        // fallback content if fetch fails
-        container.innerHTML = `<p style="color: #fff;">${id} failed to load.</p>`;
+        console.warn(err);
+        container.innerHTML = `<p style="color: white;">Failed to load ${id}</p>`;
         container.style.opacity = 1;
       });
   };
 
-  // Load all sections
-  const allLoads = sections.map(loadSection);
-
-  // Ensure loader always fades
-  Promise.allSettled(allLoads).finally(() => {
+  Promise.allSettled(sections.map(loadSection)).finally(() => {
     const elapsed = performance.now() - startTime;
     const remaining = Math.max(0, MIN_TIME - elapsed);
 
     setTimeout(() => {
       if (!preloader) return;
-      preloader.classList.add("fade-out");
-      setTimeout(() => preloader.remove(), 700); // remove after fade
+      preloader.style.opacity = 0;
+      setTimeout(() => preloader.remove(), 700); // remove even if transition fails
     }, remaining);
   });
 });
