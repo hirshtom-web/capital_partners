@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="main-section.css">
   <link rel="stylesheet" href="popup.css">
   <link rel="stylesheet" href="tabs.css">
-
+  <link rel="stylesheet" href="alert.css">
   
   
   
@@ -82,7 +82,8 @@
 <div id="preloader">
   <div class="loader"></div>
 </div>
-  
+
+<div id="alert"></div>
 <div id="header"></div>
 
 <h1>
@@ -135,6 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const startTime = performance.now();
 
  const sections = [
+  { id: "alert", url: "alert.html" },
   { id: "header", url: "header.html" },
   { id: "main-section", url: "main-section.html" },
   { id: "trusted-by", url: "https://hirshtom-web.github.io/capital_partners/trusted-by.html" },
