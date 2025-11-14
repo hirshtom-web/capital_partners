@@ -31,31 +31,58 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!container) return; // safety check
   container.innerHTML = "";
 
+  function createRow(start, end, extra) {
+    const row = document.createElement("div");
+    row.className = "re-row";
+    for (let i = start; i < end; i++) {
+      const item = document.createElement("div");
+      item.className = "re-phrase";
+      item.textContent = shuffled[i];
+      row.appendChild(item);
+    }
+    if(extra) row.appendChild(extra);
+    container.appendChild(row);
+  }
+
   // ROW 1
-  const row1 = document.createElement("div");
-  row1.className = "re-row";
-  for (let i = 0; i < 3; i++) {
-    const item = document.createElement("div");
-    item.className = "re-phrase";
-    item.textContent = shuffled[i];
-    row1.appendChild(item);
-  }
-  container.appendChild(row1);
+  createRow(0, 3);
 
-  // ROW 2
-  const row2 = document.createElement("div");
-  row2.className = "re-row";
-  for (let i = 3; i < 6; i++) {
-    const item = document.createElement("div");
-    item.className = "re-phrase";
-    item.textContent = shuffled[i];
-    row2.appendChild(item);
-  }
-
+  // ROW 2 + "It's something else..."
   const other = document.createElement("div");
   other.className = "re-other";
   other.textContent = "It's something else...";
-  row2.appendChild(other);
+  createRow(3, 6, other);
 
-  container.appendChild(row2);
+  // ================== KEYWORD CLICK TRIGGER ==================
+  container.addEventListener("click", (e) => {
+    if (e.target.classList.contains("re-phrase") || e.target.classList.contains("re-other")) {
+      // Open your existing popup
+      const popup = document.getElementById("popup");
+      if (!popup) return;
+
+      popup.style.display = "flex";       // make visible
+      popup.style.opacity = "1";          // optional smooth fade if your CSS supports it
+
+      // Optional: focus the first input inside popup
+      const firstInput = popup.querySelector("input");
+      if (firstInput) firstInput.focus();
+    }
+  });
+
+  // Optional: close popup button
+  const closeBtn = document.getElementById("closePopup");
+  if(closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      const popup = document.getElementById("popup");
+      popup.style.display = "none";
+    });
+  }
+
+  // Optional: click outside popup to close
+  const popupBackdrop = document.getElementById("popup");
+  if(popupBackdrop) {
+    popupBackdrop.addEventListener("click", (ev) => {
+      if(ev.target === popupBackdrop) popupBackdrop.style.display = "none";
+    });
+  }
 });
