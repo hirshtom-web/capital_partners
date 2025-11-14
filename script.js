@@ -1,4 +1,13 @@
-<script>
+  // header
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const header = document.getElementById("header");
+      if (!header) return;
+
+      const isHome = window.location.pathname === "/" || window.location.pathname.endsWith("index.html");
+      header.style.backgroundColor = isHome ? "#1e0949" : "#ffffff";
+    });
+
 document.addEventListener("DOMContentLoaded", () => {
 
   // ---------------------------------------------------
