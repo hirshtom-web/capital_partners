@@ -1,16 +1,24 @@
 /* ================= POP-UP BACKDROP ================= */
 .popup-backdrop {
-  position: fixed;             /* overlay everything */
+  position: fixed;             
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.5); /* semi-transparent dark overlay */
-  display: none;               /* hidden by default */
+  background: rgba(0,0,0,0.5); 
+  display: none;              
   justify-content: center;     
-  align-items: center;         /* center vertically & horizontally */
-  z-index: 1000;               /* on top of everything */
-  padding: 20px;               /* optional padding for small screens */
+  align-items: center;        
+  z-index: 9999;              
+  padding: 20px;              
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+/* Show popup with fade-in */
+.popup-backdrop.show {
+  display: flex;
+  opacity: 1;
 }
 
 /* ================= POP-UP CARD ================= */
@@ -26,13 +34,20 @@
   align-items: center;
   text-align: center;
   box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-  position: relative;          /* for inner elements positioning */
+  position: relative;         
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+/* Animate popup card when showing */
+.popup-backdrop.show .popup-card {
+  transform: scale(1);
 }
 
 /* ================= LOGO ================= */
 .popup-card img {
   height: 40px;
-  width: auto;                 /* maintain aspect ratio */
+  width: auto;                 
   margin-bottom: 10px;
 }
 
@@ -56,7 +71,7 @@
   width: 100%;
   height: 40px;
   background: #fafafa;
-  border: 0.2px solid #dddddd;
+  border: 1px solid #dddddd; /* 0.2px is too thin, use 1px */
   border-radius: 8px;
   padding: 0 10px;
   margin-bottom: 15px;
@@ -67,7 +82,7 @@
 .popup-card label {
   font-size: 12px;
   display: flex;
-  align-items: center; /* vertically center text with checkbox */
+  align-items: center;
   gap: 8px;
   margin: 10px 0 20px 0;
   color: #000;
@@ -76,9 +91,8 @@
 .popup-card input[type="checkbox"] {
   width: 16px;
   height: 16px;
-  vertical-align: middle;
   margin: 0;
-  transform: translateY(1px); /* fine-tune alignment */
+  transform: translateY(1px);
 }
 
 /* ================= SUBMIT BUTTON ================= */
@@ -97,7 +111,7 @@
 }
 
 .popup-card button:hover {
-  background: #999;
+  background: #333;
 }
 
 /* ================= FOOTER ================= */
@@ -120,24 +134,28 @@
 }
 
 
-const popup = document.getElementById('popup');
-const openBtn = document.getElementById('openPopup');
-const closeBtn = document.getElementById('closePopup');
+document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('popup');
+  const openBtn = document.getElementById('openPopup');
+  const closeBtn = document.getElementById('closePopup');
 
-// Open popup
-openBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  popup.style.display = 'flex';
-});
+  if (!popup || !openBtn || !closeBtn) return; // prevent errors if elements are missing
 
-// Close popup
-closeBtn.addEventListener('click', () => {
-  popup.style.display = 'none';
-});
+  // Open popup
+  openBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    popup.classList.add('show');
+  });
 
-// Close when clicking outside popup-card
-popup.addEventListener('click', (e) => {
-  if (e.target === popup) {
-    popup.style.display = 'none';
-  }
+  // Close popup
+  closeBtn.addEventListener('click', () => {
+    popup.classList.remove('show');
+  });
+
+  // Close when clicking outside popup-card
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) {
+      popup.classList.remove('show');
+    }
+  });
 });
