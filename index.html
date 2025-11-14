@@ -36,33 +36,42 @@
 
   <style>
     
-
+/* Preloader styles */
 #preloader {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: #000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0d1b3d; /* dark blue */
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 1;
   z-index: 9999;
-  transition: opacity 0.5s ease;
+  transition: opacity 1s ease; /* smooth fade */
 }
 
-.loader {
-  border: 4px solid rgba(255,255,255,0.3);
-  border-top: 4px solid white;
+#preloader .spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff; /* bright white highlight */
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
+  animation: spin 1.2s linear infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg);}
-  100% { transform: rotate(360deg);}
-}  
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Smooth fade-in for sections */
+#header, #main-section, #trusted-by, #property-slide {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
  </style>
 </head>  
 
