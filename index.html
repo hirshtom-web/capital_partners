@@ -51,27 +51,35 @@ html {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #0d1b3d; /* dark blue */
+  background: #1e0949; /* new dark blue */
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 1;
   z-index: 9999;
-  transition: opacity 1s ease; /* smooth fade */
+  transition: opacity 0.8s ease;
 }
 
+/* Spinning loader */
 #preloader .spinner {
-  width: 60px;
-  height: 60px;
-  border: 6px solid rgba(255, 255, 255, 0.3);
-  border-top-color: #ffffff; /* bright white highlight */
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.2); /* faint outer ring */
+  border-top-color: #ffffff; /* bright spinning highlight */
   border-radius: 50%;
-  animation: spin 1.2s linear infinite;
+  animation: spin 1s linear infinite, pulse 1.5s ease-in-out infinite;
 }
 
+/* Spin animation */
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Subtle scaling pulse to modernize the look */
+@keyframes pulse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.2) rotate(180deg); }
 }
 
 /* Smooth fade-in for sections */
@@ -79,6 +87,7 @@ html {
   opacity: 0;
   transition: opacity 0.8s ease;
 }
+
 
  </style>
 </head>  
