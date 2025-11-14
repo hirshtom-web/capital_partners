@@ -30,14 +30,25 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   };
 
-  Promise.allSettled(sections.map(loadSection)).finally(() => {
-    const elapsed = performance.now() - startTime;
-    const remaining = Math.max(0, MIN_TIME - elapsed);
+  // Load all sections
+  Promise.allSettled(sections.map(loadSection))
+    .finally(() => {
+      const elapsed = performance.now() - startTime;
+      const remaining = Math.max(0, MIN_TIME - elapsed);
 
-    setTimeout(() => {
-      if (!preloader) return;
-      preloader.style.opacity = 0;
-      setTimeout(() => preloader.remove(), 700); // remove even if transition fails
-    }, remaining);
-  });
+      setTimeout(() => {
+        if (preloader) {
+          // Ensure the loader disappears even if transition fails
+          preloader.style.transition = "opacity 0.5s ease";
+          preloader.style.opacity = 0;
+
+          setTimeout(() => {
+            preloader.remove();
+          }, 600);
+        }
+      }, remaining);
+
+      // Safety fallback: force remove after 5 seconds
+      setTimeout(() => preloader?.remove(), 5000);
+    });
 });
