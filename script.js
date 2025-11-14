@@ -1,112 +1,121 @@
+<script>
 document.addEventListener("DOMContentLoaded", () => {
-  // =========================
-  // Helper: Load external HTML (returns a Promise)
-  // =========================
-  const loadHTML = (id, url, errorMsg) => {
-    return new Promise((resolve, reject) => {
-      const container = document.getElementById(id);
-      if (!container) return resolve(); // skip if container missing
 
-      fetch(url)
-        .then(response => {
-          if (!response.ok) throw new Error(errorMsg);
-          return response.text();
-        })
-        .then(html => {
-          container.innerHTML = html;
-          resolve(); // resolve after loading
-        })
-        .catch(err => {
-          console.error(err);
-          resolve(); // still resolve so Promise.allSettled continues
+  // ---------------------------------------------------
+  // Helper to load external HTML into a section by ID
+  // ---------------------------------------------------
+  function loadHTML(id, url) {
+    const container = document.getElementById(id);
+    if (!container) return Promise.resolve();
+
+    return fetch(url)
+      .then(res => res.ok ? res.text() : Promise.reject(`${url} failed`))
+      .then(html => {
+        container.innerHTML = html;
+
+        // 💡 Run scripts inside the loaded HTML (very important!)
+        const scripts = container.querySelectorAll("script");
+        scripts.forEach(oldScript => {
+          const newScript = document.createElement("script");
+          if (oldScript.src) {
+            newScript.src = oldScript.src; // load external JS
+          } else {
+            newScript.textContent = oldScript.textContent; // inline JS
+          }
+          document.body.appendChild(newScript);
+          oldScript.remove();
         });
-    });
-  };
-
-  // =========================
-  // Load all sections
-  // =========================
-  const loads = [
-    loadHTML("header", "header.html", "Header not found"),
-    loadHTML("main-section", "main-section.html", "Main section not found"),
-    loadHTML(
-      "trusted-by",
-      "https://hirshtom-web.github.io/capital_partners/trusted-by.html",
-      "Trusted By section not found"
-    ),
-    loadHTML("property-slide", "property-slide.html", "Property slide not found"),
-    loadHTML("tabs", "tabs.html", "Tabs not found"),
-    loadHTML("footer", "footer.html", "Footer not found"),
-    loadHTML("re-container", "re-container.html", "Re Container not found")
-      .then(() => {
-        // ---------------------------
-        // Populate keywords after re-container is loaded
-        // ---------------------------
-        const keywords = [
-          "Looking for a new condo",
-          "Want to refinance my home",
-          "Buying my first property",
-          "Exploring investment options",
-          "Selling my house",
-          "Finding a real estate agent",
-          "Interested in luxury homes",
-          "Looking for office space",
-          "Seeking mortgage advice",
-          "Relocating to a new city",
-          "Need property valuation",
-          "Investing in rental properties",
-          "Building a new home",
-          "Checking current market trends",
-          "Finding foreclosed properties",
-          "Upsizing my home",
-          "Downsizing after retirement",
-          "Interested in vacation homes",
-          "Want to co-invest",
-          "Looking for real estate partnerships"
-        ];
-
-        function shuffleArray(array) {
-          return array.sort(() => Math.random() - 0.5);
-        }
-
-        const shuffled = shuffleArray([...keywords]);
-        const container = document.getElementById("re-container");
-        container.innerHTML = "";
-
-        // ROW 1
-        const row1 = document.createElement("div");
-        row1.className = "re-row";
-        for (let i = 0; i < 3; i++) {
-          const item = document.createElement("div");
-          item.className = "re-phrase";
-          item.textContent = shuffled[i];
-          row1.appendChild(item);
-        }
-        container.appendChild(row1);
-
-        // ROW 2
-        const row2 = document.createElement("div");
-        row2.className = "re-row";
-        for (let i = 3; i < 6; i++) {
-          const item = document.createElement("div");
-          item.className = "re-phrase";
-          item.textContent = shuffled[i];
-          row2.appendChild(item);
-        }
-
-        const other = document.createElement("div");
-        other.className = "re-other";
-        other.textContent = "It's something else...";
-        row2.appendChild(other);
-
-        container.appendChild(row2);
       })
+      .catch(err => {
+        console.warn("SECTION FAILED:", err);
+      });
+  }
+
+  // ---------------------------------------------------
+  // LOAD ALL SECTIONS HERE
+  // ---------------------------------------------------
+  const loads = [
+    loadHTML("header", "header.html"),
+    loadHTML("main-section", "main-section.html"),
+    loadHTML("trusted-by", "https://hirshtom-web.github.io/capital_partners/trusted-by.html"),
+    loadHTML("property-slide", "property-slide.html"),
+    loadHTML("tabs", "tabs.html"),
+    loadHTML("footer", "footer.html"),
+
+    // Special: RE-CONTAINER + populate after load
+    loadHTML("re-container", "re-container.html").then(() => {
+      populateREKeywords();
+    })
   ];
 
-  // =========================
-  // When all sections loaded
-  // =========================
+  // ---------------------------------------------------
+  // When everything is done
+  // ---------------------------------------------------
   Promise.allSettled(loads).then(() => {
-    console.log("All sections loaded, keywords populated!");
+    console.log("✔ All sections loaded successfully.");
   });
+
+  // ---------------------------------------------------
+  // Keyword generator for re-container
+  // ---------------------------------------------------
+  function populateREKeywords() {
+    const keywords = [
+      "Looking for a new condo",
+      "Want to refinance my home",
+      "Buying my first property",
+      "Exploring investment options",
+      "Selling my house",
+      "Finding a real estate agent",
+      "Interested in luxury homes",
+      "Looking for office space",
+      "Seeking mortgage advice",
+      "Relocating to a new city",
+      "Need property valuation",
+      "Investing in rental properties",
+      "Building a new home",
+      "Checking current market trends",
+      "Finding foreclosed properties",
+      "Upsizing my home",
+      "Downsizing after retirement",
+      "Interested in vacation homes",
+      "Want to co-invest",
+      "Looking for real estate partnerships"
+    ];
+
+    function shuffle(arr) {
+      return arr.sort(() => Math.random() - 0.5);
+    }
+
+    const list = shuffle([...keywords]);
+    const container = document.getElementById("re-container");
+    container.innerHTML = "";
+
+    const row1 = document.createElement("div");
+    row1.className = "re-row";
+    list.slice(0, 3).forEach(text => {
+      const d = document.createElement("div");
+      d.className = "re-phrase";
+      d.textContent = text;
+      row1.appendChild(d);
+    });
+
+    const row2 = document.createElement("div");
+    row2.className = "re-row";
+    list.slice(3, 6).forEach(text => {
+      const d = document.createElement("div");
+      d.className = "re-phrase";
+      d.textContent = text;
+      row2.appendChild(d);
+    });
+
+    const other = document.createElement("div");
+    other.className = "re-other";
+    other.textContent = "It's something else...";
+    row2.appendChild(other);
+
+    container.appendChild(row1);
+    container.appendChild(row2);
+  }
+
 });
+</script>
