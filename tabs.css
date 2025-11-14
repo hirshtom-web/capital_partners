@@ -1,0 +1,231 @@
+
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+  font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
+  background: #fafafa
+  color: #fff;
+}
+
+/* ===============================
+   SECTION AREA
+================================== */
+.uni-section-shell {
+  background-color: transparent; /* Fixed: now inherits dark background */
+  color: #fff;
+  padding: 80px 0;
+}
+
+/* ===============================
+   CONTENT TILE
+================================== */
+.uni-content-tile {
+  width: 100%;
+  background-color: #fafafa;
+  border-radius: 40px;
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  padding: 60px 40px;
+  text-align: center;
+  color: #111;
+}
+
+@media (max-width: 800px) {
+  .uni-content-tile {
+    max-width: 100%;
+    border-radius: 0;
+    margin: 0;
+    padding: 30px 15px;
+  }
+}
+
+/* ===============================
+   HEADINGS & TEXT
+================================== */
+.uni-heading-xl {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  line-height: 1.4;
+  color: #111;
+}
+
+.uni-subtitle {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 35px;
+  line-height: 1.6;
+}
+
+/* ===============================
+   TOGGLE BUTTONS
+================================== */
+.uni-toggle-wrapper {
+  display: inline-flex;
+  background-color: #f0f0f0;
+  border-radius: 45px;
+  padding: 5px;
+  margin-bottom: 35px;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.uni-toggle-btn {
+  border: none;
+  background-color: #f0f0f0;
+  color: #000;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  padding: 9px 25px;
+  border-radius: 45px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.uni-toggle-btn.active {
+  background-color: #fff;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+}
+
+/* ===============================
+   PANELS (Tab Content)
+================================== */
+.uni-panel {
+  display: none;
+  background: #f8f8f8;
+  border-radius: 18px;
+  max-width: 92%;
+  margin: 0 auto;
+  padding: 40px 35px;
+  color: #111;
+  text-align: left;
+  animation: fadeUp 0.4s ease;
+}
+
+.uni-panel.active {
+  display: block;
+}
+
+/* Two-column layout */
+.uni-panel-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 38px;
+  flex-wrap: nowrap;
+}
+
+.uni-panel-text {
+  flex: 1 1 60%;
+}
+
+.uni-panel-image {
+  flex: 1 1 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.uni-panel-image img {
+  width: 100%;
+  max-width: 380px;
+  border-radius: 18px;
+  object-fit: cover;
+}
+
+/* ===============================
+   PANEL TEXT STYLES
+================================== */
+.uni-panel h3 {
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 15px;
+}
+
+.uni-panel p {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 25px;
+  line-height: 1.7;
+}
+
+/* ===============================
+   LIST STYLES
+================================== */
+.uni-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.uni-list li {
+  margin-bottom: 13px;
+  font-size: 15px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.6;
+}
+
+.uni-list li img {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* ===============================
+   ANIMATIONS
+================================== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===============================
+   RESPONSIVE
+================================== */
+@media (max-width: 900px) {
+  .uni-panel-inner {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .uni-panel-text,
+  .uni-panel-image {
+    flex: 1 1 100%;
+  }
+
+  .uni-panel-image img {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .uni-heading-xl {
+    font-size: 22px;
+  }
+
+  .uni-toggle-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .uni-panel {
+    padding: 25px 20px;
+  }
+
+  .uni-list li img {
+    width: 18px;
+    height: 18px;
+  }
+}
+
