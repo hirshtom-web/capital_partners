@@ -295,12 +295,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const MIN_TIME = 800; // Minimum preloader display
   const startTime = performance.now();
 
-  const sections = [
-    { id: "header", url: "header.html" },
-    { id: "main-section", url: "main-section.html" },
-    { id: "trusted-by", url: "https://hirshtom-web.github.io/capital_partners/trusted-by.html" },
-    { id: "property-slide", url: "property-slide.html" }
-  ];
+ const sections = [
+  { id: "header", url: "header.html" },
+  { id: "main-section", url: "main-section.html" },
+  { id: "trusted-by", url: "https://hirshtom-web.github.io/capital_partners/trusted-by.html" },
+  { id: "property-slide", url: "property-slide.html" },
+  { id: "tabs", url: "tabs.html" }  // <-- ADD THIS
+];
+
 
   // Helper to fetch and fade in a section
   const loadSection = ({ id, url }) => {
