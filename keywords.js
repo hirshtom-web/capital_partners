@@ -1,4 +1,3 @@
-<!-- ================= KEYWORDS ================= -->
 <div id="re-container"></div>
 
 <!-- ================= CHAT POPUP ================= -->
@@ -40,43 +39,36 @@ document.addEventListener("DOMContentLoaded", () => {
     "Looking for real estate partnerships"
   ];
 
-  // Shuffle keywords
   function shuffleArray(array) {
     return array.sort(() => Math.random() - 0.5);
   }
-  const shuffled = shuffleArray([...keywords]);
 
+  const shuffled = shuffleArray([...keywords]);
   const container = document.getElementById("re-container");
   if (!container) return;
   container.innerHTML = "";
 
-  // ROW 1
-  const row1 = document.createElement("div");
-  row1.className = "re-row";
-  for (let i = 0; i < 3; i++) {
-    const item = document.createElement("div");
-    item.className = "re-phrase";
-    item.textContent = shuffled[i];
-    row1.appendChild(item);
+  // ===== CREATE KEYWORD ROWS (exactly like before) =====
+  function createRow(start, end, extra=null) {
+    const row = document.createElement("div");
+    row.className = "re-row";
+    for (let i = start; i < end; i++) {
+      const item = document.createElement("div");
+      item.className = "re-phrase";
+      item.textContent = shuffled[i];
+      row.appendChild(item);
+    }
+    if(extra) row.appendChild(extra);
+    container.appendChild(row);
   }
-  container.appendChild(row1);
 
-  // ROW 2
-  const row2 = document.createElement("div");
-  row2.className = "re-row";
-  for (let i = 3; i < 6; i++) {
-    const item = document.createElement("div");
-    item.className = "re-phrase";
-    item.textContent = shuffled[i];
-    row2.appendChild(item);
-  }
+  createRow(0, 3);
   const other = document.createElement("div");
   other.className = "re-other";
   other.textContent = "It's something else...";
-  row2.appendChild(other);
-  container.appendChild(row2);
+  createRow(3, 6, other);
 
-  // ================= CHAT LOGIC =================
+  // ===== CHAT LOGIC =====
   const chatBackdrop = document.getElementById('chatBackdrop');
   const chatMessages = document.getElementById('chatMessages');
   const chatInput = document.getElementById('chatInput');
@@ -139,11 +131,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function openChat() { chatBackdrop.classList.add('show'); }
 
-  // ================= CONNECT KEYWORDS TO CHAT =================
+  // ===== CONNECT KEYWORDS TO CHAT =====
   container.addEventListener('click', e => {
     if(e.target.classList.contains('re-phrase') || e.target.classList.contains('re-other')) {
       const text = e.target.textContent;
-      chatMessages.innerHTML = ''; // optional: clear previous messages
+      chatMessages.innerHTML = ''; // clear previous messages
       openChat();
       sendMessage(text);
     }
