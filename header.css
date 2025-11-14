@@ -62,12 +62,13 @@ nav > div > a {
 nav > div:hover > a {
   color: #bda3ff;
 }
-nav > div > a:focus,
-.btn-bubble:focus {
-  outline: 2px solid #bda3ff;
-  outline-offset: 2px;
+nav > div > a {
+  color: inherit;
+  font-weight: 500;
+  font-size: 12px;
+  padding: 10px 0;
+  transition: color 0.3s;
 }
-
 
 /* CTA BUTTON */
 .btn-bubble {
