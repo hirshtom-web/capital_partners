@@ -1,7 +1,4 @@
-/* ===============================
-   GLOBAL
-================================== */
-* {
+{
   box-sizing: border-box;
 }
 body {
@@ -15,35 +12,6 @@ a {
   text-decoration: none;
 }
 
-/* ===============================
-   ALERT BAR
-================================== */
-.alert {
-  padding: 8px 25px;
-  background: linear-gradient(90deg, #ffb0b0, #6d00ef);
-  color: #fff;
-  position: sticky;
-  top: 0;
-  font-size: 10px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  z-index: 1001;
-}
-.alert .material-symbols-outlined {
-  font-size: 14px;
-  vertical-align: middle;
-}
-.alert a.learn-more {
-  color: #fff;
-  text-decoration: underline;
-}
-
-/* ===============================
-   HEADER
-================================== */
 header {
   background: #1e0949;
   border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -361,81 +329,3 @@ nav > div:hover .submenu {
 .main-btn-bubble:hover {
   box-shadow: 0 2px 8px rgba(255,255,255,0.2);
 }
-/* ===============================
-   HEADER THEMES (Light / Dark toggle)
-   - Keeps layout identical
-   - Only swaps colors and backgrounds
-================================== */
-
-/* --- DARK HEADER (default look) --- */
-header.header-dark {
-  background: #1e0949;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-header.header-dark nav > div > a {
-  color: #fff;
-}
-
-header.header-dark nav > div:hover > a {
-  color: #bda3ff;
-}
-
-header.header-dark .btn-bubble {
-  background: linear-gradient(90deg, #a400f5, #7b00f8);
-  color: #fff;
-}
-
-header.header-dark .menu-toggle span {
-  background: #fff;
-}
-
-/* --- LIGHT HEADER --- */
-header.header-light {
-  background: #fff;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-
-header.header-light nav > div > a {
-  color: #1e0949;
-}
-
-header.header-light nav > div:hover > a {
-  color: #7b00f8;
-}
-
-header.header-light .btn-bubble {
-  background: linear-gradient(90deg, #7b00f8, #a400f5);
-  color: #fff;
-}
-
-header.header-light .menu-toggle span {
-  background: #1e0949;
-}
-
-/* --- Light Mode: Mobile Menu (adjusted for visibility) --- */
-header.header-light .mobile-menu {
-  background: #f5f5f5;
-}
-
-header.header-light .mobile-menu > li > a {
-  color: #1e0949;
-}
-
-header.header-light .mobile-menu .submenu {
-  background: rgba(0,0,0,0.05);
-  border-top: 1px solid rgba(0,0,0,0.1);
-}
-
-header.header-light .mobile-menu .submenu li a {
-  color: rgba(0,0,0,0.7);
-}
-
-header.header-light .mobile-menu li {
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-
-header.header-light .menu-toggle.active span {
-  background: #1e0949;
-}
-
