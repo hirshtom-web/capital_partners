@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const preloader = document.getElementById("preloader");
-  const MIN_TIME = 800;
+  const MIN_TIME = 800; // Minimum preloader display
   const startTime = performance.now();
 
   const sections = [
@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: "property-slide", url: "property-slide.html" }
   ];
 
+  // Helper to fetch and fade in a section
   const loadSection = ({ id, url }) => {
     const container = document.getElementById(id);
     if (!container) return Promise.resolve();
@@ -18,10 +19,15 @@ document.addEventListener("DOMContentLoaded", () => {
     container.style.transition = "opacity 0.6s ease";
 
     return fetch(url)
-      .then(res => res.ok ? res.text() : Promise.reject(`${id} not found`))
+      .then(res => {
+        if (!res.ok) throw new Error(`${id} failed to load (${res.status})`);
+        return res.text();
+      })
       .then(html => {
         container.innerHTML = html;
-        requestAnimationFrame(() => container.style.opacity = 1);
+        requestAnimationFrame(() => {
+          container.style.opacity = 1;
+        });
       })
       .catch(err => {
         console.warn(err);
@@ -30,25 +36,26 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   };
 
-  // Load all sections
+  // Load all sections in parallel
   Promise.allSettled(sections.map(loadSection))
     .finally(() => {
       const elapsed = performance.now() - startTime;
       const remaining = Math.max(0, MIN_TIME - elapsed);
 
+      // Fade out preloader
       setTimeout(() => {
         if (preloader) {
-          // Ensure the loader disappears even if transition fails
           preloader.style.transition = "opacity 0.5s ease";
           preloader.style.opacity = 0;
 
+          // Remove preloader after transition
           setTimeout(() => {
             preloader.remove();
           }, 600);
         }
       }, remaining);
 
-      // Safety fallback: force remove after 5 seconds
+      // Safety fallback: remove preloader after 5s
       setTimeout(() => preloader?.remove(), 5000);
     });
 });
