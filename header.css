@@ -193,57 +193,52 @@ nav > div:hover .submenu {
    HAMBURGER MENU
 ================================== */
 .menu-toggle {
-  display: none;
+  display: none; /* only show on mobile via media query */
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  width: 25px;
+  height: 18px;
   cursor: pointer;
-  width: 20px;
-  height: 16px;
   z-index: 1100;
 }
 
 .menu-toggle span {
   display: block;
-  height: 2px;
   width: 100%;
-  background: #fff; /* default for dark background */
-  margin: 3px 0;
+  height: 2px;
+  background: #fff;
   border-radius: 2px;
   transition: all 0.3s ease;
   transform-origin: center;
 }
 
 .menu-toggle.active span:nth-child(1) {
-  transform: rotate(45deg) translate(2.5px, 2.5px);
+  transform: rotate(45deg) translate(5px, 5px);
 }
 .menu-toggle.active span:nth-child(2) { opacity: 0; }
 .menu-toggle.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(2.5px, -2.5px);
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* ===============================
    MOBILE MENU
 ================================== */
 .mobile-menu {
-  display: none;
+  display: flex;       /* keep it flex so children align */
   flex-direction: column;
-  background: #fff;
   position: fixed;
-  top: 40px;
+  top: 70px;           /* adjust to header height */
   left: 0;
   right: 0;
-  width: 100%;
+  background: #fff;
   z-index: 999;
-  border-top: 1px solid #eee;
   overflow: hidden;
-  max-height: 0;
+  max-height: 0;       /* hidden initially */
   transition: max-height 0.35s ease;
 }
 
 .mobile-menu.active {
-  display: flex;
-  max-height: 100vh;
+  max-height: 1000px;  /* large enough to show all items */
 }
 
 .mobile-menu > li > a {
@@ -251,21 +246,21 @@ nav > div:hover .submenu {
   justify-content: space-between;
   align-items: center;
   padding: 14px 20px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   color: #130328;
 }
 
 .mobile-menu .arrow {
   font-family: 'Material Symbols Outlined';
-  font-size: 12px;
-  color: #6327e5;
+  font-size: 16px;
   transition: transform 0.3s;
 }
 
-.mobile-menu .expanded > a .arrow { transform: rotate(180deg); }
+.mobile-menu .expanded > a .arrow {
+  transform: rotate(180deg);
+}
 
-/* Submenu inside mobile menu */
 .mobile-menu .submenu {
   max-height: 0;
   overflow: hidden;
@@ -274,13 +269,15 @@ nav > div:hover .submenu {
   transition: max-height 0.35s ease;
 }
 
-.mobile-menu .expanded .submenu { max-height: 500px; }
+.mobile-menu .expanded .submenu {
+  max-height: 500px;  /* adjust if needed */
+}
 
 .mobile-menu .submenu li a {
   display: flex;
   align-items: center;
   padding: 10px 30px;
-  font-size: 10px;
+  font-size: 12px;
   color: #6a4fb0;
 }
 
@@ -305,9 +302,10 @@ nav > div:hover .submenu {
    MOBILE SPECIFIC
 ================================== */
 @media (max-width: 768px) {
-  nav > div { display: none; } /* hide desktop nav links */
+  nav > div { display: none; }    /* hide desktop menu */
   .menu-toggle { display: flex; }
-  #nav-menu.active > div { display: block; }
+}
+
 
   h1 { font-size: 48px; line-height: 1.1; }
   .machine-svg {
