@@ -24,30 +24,17 @@ h1 .line {
 
 /* Gradient text for AI-powered class */
 .ai-powered {
-  background: linear-gradient(90deg, #ffb0b0, #6d00ef);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 700;
-}
-.ai-powered {
   background: linear-gradient(
     90deg,
-    #ff9eb3,
-    #ff6ad5,
-    #bd34ff,
-    #6d00ef,
-    #4a23ff,
-    #6d00ef,
-    #bd34ff,
-    #ff6ad5,
-    #ff9eb3
+    #ffb0b0,
+    #6d00ef
   );
-  background-size: 900% 900%;
+  background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  /* **Slow movement = premium feel** */
-  animation: sideSwipe 24s ease-in-out infinite;
+  /* Extra slow movement for a premium feel */
+  animation: sideSwipe 40s ease-in-out infinite;
 }
 
 @keyframes sideSwipe {
