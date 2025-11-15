@@ -29,6 +29,33 @@ h1 .line {
   -webkit-text-fill-color: transparent;
   font-weight: 700;
 }
+.ai-powered {
+  background: linear-gradient(
+    90deg,
+    #ff9eb3,
+    #ff6ad5,
+    #bd34ff,
+    #6d00ef,
+    #4a23ff,
+    #6d00ef,
+    #bd34ff,
+    #ff6ad5,
+    #ff9eb3
+  );
+  background-size: 900% 900%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* **Slow movement = premium feel** */
+  animation: sideSwipe 24s ease-in-out infinite;
+}
+
+@keyframes sideSwipe {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 
 /* Machine SVG positioning */
 .machine-svg {
