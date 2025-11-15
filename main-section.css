@@ -44,7 +44,7 @@
 }
 
 /* Machine SVG positioning */
-.machine-svg {
+.hero-title .machine-svg {
   position: absolute;
   bottom: 7px;
   right: 22%;
@@ -59,7 +59,7 @@
     line-height: 1.1;
   }
 
-  .machine-svg {
+  .hero-title .machine-svg {
     position: static;
     display: block;
     margin: 10px auto 0;
@@ -74,7 +74,8 @@
     margin-top: 60px; /* slightly less top margin */
   }
 
-  .machine-svg {
+  .hero-title .machine-svg {
     width: 40px;
   }
 }
+
