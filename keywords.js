@@ -59,9 +59,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target.classList.contains("re-phrase") || e.target.classList.contains("re-other")) {
       const keyword = e.target.textContent;
 
+      // Option 1: Open chat-up.html in a new tab
+      // window.open("chat-up.html", "_blank");
+
       // Option 2: Load chat-up.html into a popup div
-      fetch("https://hirshtom-web.github.io/capital_partners/chat-up.html
-") // ✅ changed URL
+      fetch("chat-up.html")
         .then(res => res.text())
         .then(html => {
           const popupDiv = document.createElement("div");
@@ -82,11 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
           popupDiv.addEventListener("click", (ev) => {
             if(ev.target === popupDiv) popupDiv.remove();
           });
-        })
-        .catch(err => {
-          console.error("Popup loading error:", err);
-          alert("Could not load chat-up.html — check console for details.");
         });
     }
   });
-});
+}); we must keep as is so it show our keywords
