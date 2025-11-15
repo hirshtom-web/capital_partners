@@ -319,7 +319,12 @@ nav > div:hover .submenu {
 @media (max-width: 480px) {
   h1 { font-size: 32px; padding: 0 20px; }
   .machine-svg { width: 40px; }
-  .logo img { height: 40px; padding: 10px 10px; }
+@media (max-width: 480px) {
+  .logo img {
+    height: 20px;   /* set your desired size */
+    padding: 0;     /* adjust if needed */
+  }
+}
   header { padding: 10px 10px; }
   .alert { padding: 8px 10px; font-size: 8px; }
 }
