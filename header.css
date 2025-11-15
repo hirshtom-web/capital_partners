@@ -260,7 +260,7 @@ nav > div:hover .submenu {
 
 .menu-toggle span {
   display: block;
-  width: 100%;
+  width: 25px;
   height: 2px;
   background: #fff;
   border-radius: 2px;
@@ -269,28 +269,30 @@ nav > div:hover .submenu {
 }
 
 .menu-toggle.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
+  transform: rotate(45deg) translate(0, 0);
 }
-.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
 .menu-toggle.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
+  transform: rotate(-45deg) translate(0, 0);
 }
 
 /* ===============================
    MOBILE MENU
 ================================== */
 .mobile-menu {
-  display: flex;       /* keep it flex so children align */
+  display: flex;
   flex-direction: column;
   position: fixed;
-  top: 70px;           /* adjust to header height */
+  top: 70px;           /* header height */
   left: 0;
   right: 0;
   background: #fff;
-  z-index: 999;
   overflow: hidden;
   max-height: 0;       /* hidden initially */
   transition: max-height 0.35s ease;
+  z-index: 999;
 }
 
 .mobile-menu.active {
@@ -361,19 +363,25 @@ nav > div:hover .submenu {
   nav > div { display: none; }    /* hide desktop menu */
   .menu-toggle { display: flex; }
 
+ /* MOBILE SPECIFIC */
+@media (max-width: 768px) {
   header {
-    padding: 10px 10px;           /* top/bottom 10px, left/right 10px */
+    padding: 10px 10px;
     justify-content: space-between; /* logo left, hamburger right */
   }
 
   .main-logo {
-    margin-left: 0;               /* remove extra margin */
-    height: 30px;                 /* adjust logo size */
+    margin-left: 0;
+    height: 30px;
   }
 
   .menu-toggle {
-    margin-right: 0;              /* remove extra margin */
+    margin-right: 0;
+    display: flex;
+    position: relative; /* ensures absolute children (spans) rotate correctly */
   }
+}
+
 
   h1 { 
     font-size: 48px; 
