@@ -355,15 +355,31 @@ nav > div:hover .submenu {
 }
 
 /* ===============================
-   MOBILE SPECIFIC
-================================== */
+/* MOBILE SPECIFIC - up to 768px */
+/* =============================== */
 @media (max-width: 768px) {
   nav > div { display: none; }    /* hide desktop menu */
   .menu-toggle { display: flex; }
-}
 
+  header {
+    padding: 10px 10px;           /* top/bottom 10px, left/right 10px */
+    justify-content: space-between; /* logo left, hamburger right */
+  }
 
-  h1 { font-size: 48px; line-height: 1.1; }
+  .main-logo {
+    margin-left: 0;               /* remove extra margin */
+    height: 30px;                 /* adjust logo size */
+  }
+
+  .menu-toggle {
+    margin-right: 0;              /* remove extra margin */
+  }
+
+  h1 { 
+    font-size: 48px; 
+    line-height: 1.1; 
+  }
+
   .machine-svg {
     position: static;
     display: block;
@@ -372,18 +388,20 @@ nav > div:hover .submenu {
   }
 }
 
+/* MOBILE SPECIFIC - up to 480px */
 @media (max-width: 480px) {
-  h1 { font-size: 32px; padding: 0 20px; }
-  .machine-svg { width: 40px; }
-
-  .main-logo {
-    height: 30px;   /* set your desired size */
-    padding: 0;     /* adjust if needed */
+  h1 { 
+    font-size: 32px; 
+    padding: 0 20px; 
   }
 
+  .machine-svg { width: 40px; }
+
   header { padding: 10px 10px; }
+
   .alert { padding: 8px 10px; font-size: 8px; }
 }
+
 
 /* ===============================
    HEADER COLOR THEMES
