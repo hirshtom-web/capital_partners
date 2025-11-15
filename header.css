@@ -34,12 +34,12 @@ header {
   z-index: 1000;
 }
 
-.logo img.main-logo {
-  height: 20px;
-  filter: brightness(100%);
-  padding: 0;
-  transition: height 0.3s;
+.main-logo {
+  height: 30px; /* adjust this to the size you want */
+  width: auto;  /* keeps the aspect ratio */
+  transition: height 0.3s; /* optional smooth resizing */
 }
+
 
 nav {
   display: flex;
