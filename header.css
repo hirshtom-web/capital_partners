@@ -363,22 +363,23 @@ nav > div:hover .submenu {
   nav > div { display: none; }    /* hide desktop menu */
   .menu-toggle { display: flex; }
 
- /* MOBILE SPECIFIC */
+/* MOBILE HEADER EDGE PADDING */
 @media (max-width: 768px) {
   header {
-    padding: 10px 10px;
+    display: flex;
+    align-items: center;        /* vertically center items */
     justify-content: space-between; /* logo left, hamburger right */
+    padding: 10px 10px;         /* top/bottom 10px, left/right 10px */
   }
 
   .main-logo {
-    margin-left: 0;
-    height: 30px;
+    margin-left: 0;             /* remove extra spacing */
+    height: 30px;               /* adjust as needed */
   }
 
   .menu-toggle {
-    margin-right: 0;
-    display: flex;
-    position: relative; /* ensures absolute children (spans) rotate correctly */
+    margin-right: 0;            /* remove extra spacing */
+    cursor: pointer;            /* pointer on hover */
   }
 }
 
