@@ -70,7 +70,7 @@ h1 .line {
 
 @media (max-width: 480px) {
   h1 {
-    font-size: 36px; /* smaller font for very small screens */
+    font-size: 50px; /* smaller font for very small screens */
     padding: 0 20px;
     margin-top: 60px; /* slightly less top margin */
   }
