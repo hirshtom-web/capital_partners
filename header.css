@@ -35,7 +35,7 @@ header {
 }
 
 .main-logo {
-  height: 30px; /* adjust this to the size you want */
+  height: 40px; /* adjust this to the size you want */
   width: auto;  /* keeps the aspect ratio */
   transition: height 0.3s; /* optional smooth resizing */
 }
@@ -323,7 +323,7 @@ nav > div:hover .submenu {
   .machine-svg { width: 40px; }
 
   .main-logo {
-    height: 20px;   /* set your desired size */
+    height: 30px;   /* set your desired size */
     padding: 0;     /* adjust if needed */
   }
 
