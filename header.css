@@ -34,9 +34,11 @@ header {
   z-index: 1000;
 }
 
-.logo img {
+.main-logo {
   height: 20px;
+  padding: 0;
   filter: brightness(100%);
+  transition: height 0.3s;
 }
 
 nav {
@@ -277,107 +279,4 @@ nav > div:hover .submenu {
 .mobile-menu .submenu li a {
   display: flex;
   align-items: center;
-  padding: 10px 30px;
-  font-size: 10px;
-  color: #6a4fb0;
-}
-
-.mobile-menu .submenu-icon {
-  font-family: 'Material Symbols Outlined';
-  font-size: 15px;
-  margin-right: 10px;
-  color: #6a4fb0;
-}
-
-/* ===============================
-   DESKTOP SPECIFIC
-================================== */
-@media (min-width: 769px) {
-  nav > div { display: block; }
-  h1 { font-size: 100px; }
-  .machine-svg { width: 100px; right: 22%; }
-  .menu-toggle { display: none; }
-}
-
-/* ===============================
-   MOBILE SPECIFIC
-================================== */
-@media (max-width: 768px) {
-  nav > div { display: none; } /* hide desktop nav links */
-  .menu-toggle { display: flex; }
-  #nav-menu.active > div { display: block; }
-
-  h1 { font-size: 48px; line-height: 1.1; }
-  .machine-svg {
-    position: static;
-    display: block;
-    margin: 10px auto 0;
-    width: 70px;
-  }
-}
-
-@media (max-width: 480px) {
-  h1 { font-size: 32px; padding: 0 20px; }
-  .machine-svg { width: 40px; }
-@media (max-width: 480px) {
-  .logo img {
-    height: 20px;   /* set your desired size */
-    padding: 0;     /* adjust if needed */
-  }
-}
-  header { padding: 10px 10px; }
-  .alert { padding: 8px 10px; font-size: 8px; }
-}
-
-/* ===============================
-   HEADER COLOR THEMES
-================================== */
-
-/* 🎨 HOME PAGE — BLUE HEADER */
-#header.header--blue header {
-  background: #1e0949;
-  color: #fff;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-#header.header--blue nav > div > a { color: #ffffff; }
-#header.header--blue nav > div:hover > a { color: #bda3ff; }
-#header.header--blue .logo img { filter: brightness(100%); }
-#header.header--blue .menu-toggle span { background: #fff; }
-
-/* 🎨 SUB PAGES — WHITE HEADER */
-#header.header--white header {
-  background: #ffffff;
-  color: #1e0949;
-  border-bottom: 1px solid #e3e3e3;
-}
-
-#header.header--white nav > div > a { color: #1e0949; }
-#header.header--white nav > div:hover > a { color: #5a2bb8; }
-#header.header--white .logo img { filter: brightness(0); }
-#header.header--white .menu-toggle span { background: #1e0949; }
-#header.header--white .mobile-menu { background: #fff; }
-
-
-/* White-header specific adjustments for submenu and button */
-#header.header--white .main-btn-bubble {
-  color: #1e0949; /* dark text for contrast */
-}
-#header.header--white .main-btn-bubble:hover {
-  color: #fff; /* optional hover effect */
-}
-#header.header--white .submenu {
-  background: #ffffff;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
-#header.header--white .submenu-left a {
-  color: #1e0949;
-}
-#header.header--white .submenu-left a:hover {
-  color: #6327e5;
-}
-#header.header--white .submenu-right.map-container svg .state {
-  fill: rgba(99,39,229,0.5);
-  stroke: #fef7f2;
-}
-
+  padding: 10px
