@@ -1,18 +1,6 @@
-// Full JS: header + dynamic sections + RE keywords + mobile menu
+// Full JS: dynamic sections + header + mobile menu + RE keywords
 
 document.addEventListener("DOMContentLoaded", () => {
-  // -------------------------------
-  // MOBILE MENU TOGGLE
-  // -------------------------------
-  const menuToggle = document.querySelector(".menu-toggle");
-  const mobileMenu = document.getElementById("mobile-menu");
-
-  if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener("click", () => {
-      mobileMenu.classList.toggle("open");
-      menuToggle.classList.toggle("active");
-    });
-  }
 
   // -------------------------------
   // Helper to load external HTML into a section by ID
@@ -26,36 +14,46 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(html => {
         container.innerHTML = html;
 
-        // Apply header color AFTER loading header.html
-        if (id === "header") {
-          const isHome = window.location.pathname === "/" || window.location.pathname.endsWith("index.html");
-          container.classList.toggle("header--blue", isHome);
-          container.classList.toggle("header--white", !isHome);
-        }
-
-        // 💡 Run scripts inside the loaded HTML (important!)
+        // Run scripts inside loaded HTML
         const scripts = container.querySelectorAll("script");
         scripts.forEach(oldScript => {
           const newScript = document.createElement("script");
-          if (oldScript.src) {
-            newScript.src = oldScript.src; // load external JS
-          } else {
-            newScript.textContent = oldScript.textContent; // inline JS
-          }
+          if (oldScript.src) newScript.src = oldScript.src;
+          else newScript.textContent = oldScript.textContent;
           document.body.appendChild(newScript);
           oldScript.remove();
         });
       })
-      .catch(err => {
-        console.warn("SECTION FAILED:", err);
-      });
+      .catch(err => console.warn("SECTION FAILED:", err));
   }
 
   // -------------------------------
-  // LOAD ALL SECTIONS
+  // HEADER: load + background + mobile menu
+  // -------------------------------
+  loadHTML("header", "header.html").then(() => {
+    const header = document.getElementById("header");
+    const isHome = window.location.pathname === "/" || window.location.pathname.endsWith("index.html");
+
+    if (header) {
+      header.classList.toggle("header--blue", isHome);
+      header.classList.toggle("header--white", !isHome);
+    }
+
+    // Mobile menu toggle
+    const menuToggle = document.querySelector(".menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("open");
+        menuToggle.classList.toggle("active");
+      });
+    }
+  });
+
+  // -------------------------------
+  // Load other sections
   // -------------------------------
   const loads = [
-    loadHTML("header", "header.html"),
     loadHTML("main-section", "main-section.html"),
     loadHTML("trusted-by", "https://hirshtom-web.github.io/capital_partners/trusted-by.html"),
     loadHTML("property-slide", "property-slide.html"),
@@ -73,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // -------------------------------
-  // Keyword generator for re-container
+  // Keyword generator for RE container
   // -------------------------------
   function populateREKeywords() {
     const keywords = [
@@ -105,6 +103,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const list = shuffle([...keywords]);
     const container = document.getElementById("re-container");
+    if (!container) return;
+
     container.innerHTML = "";
 
     const row1 = document.createElement("div");
