@@ -362,10 +362,11 @@ nav > div:hover .submenu {
 
 /* White-header specific adjustments for submenu and button */
 #header.header--white .main-btn-bubble {
-  color: #1e0949; /* dark text for contrast */
+  color: #fff; /* white text */
 }
 #header.header--white .main-btn-bubble:hover {
-  color: #fff; /* optional hover effect */
+  color: #fff; /* keeps text white on hover */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* optional, keeps some hover effect */
 }
 #header.header--white .submenu {
   background: #ffffff;
