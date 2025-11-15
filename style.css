@@ -15,20 +15,6 @@ a {
   text-decoration: none;
 }
 
-
-/* ===============================
-   HEADER
-================================== */
-header {
-  background: #1e0949;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 100%;                     /* full width */
-}
-
-
 /* ==================================
    TRUSTED SECTION
 ================================== */
@@ -125,10 +111,6 @@ header {
   .logo-slider::after { width: 40px; }
 }
 
-
-/* ===============================
-   Keywords SECTION
-================================== */
 /* ===============================
    KEYWORDS SECTION FIXED
 ================================== */
@@ -194,9 +176,6 @@ header {
   color: white;
 }
 
-/* ===============================
-   MOBILE ADJUSTMENTS
-================================== */
 @media (max-width: 768px) {
   .re-phrase,
   .re-other {
