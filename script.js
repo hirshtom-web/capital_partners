@@ -1,18 +1,31 @@
-  // header
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const header = document.getElementById("header");
-      if (!header) return;
-
-      const isHome = window.location.pathname === "/" || window.location.pathname.endsWith("index.html");
-      header.style.backgroundColor = isHome ? "#1e0949" : "#ffffff";
-    });
+// Full JS: header + dynamic sections + RE keywords + mobile menu
 
 document.addEventListener("DOMContentLoaded", () => {
+  // -------------------------------
+  // HEADER BACKGROUND
+  // -------------------------------
+  const header = document.getElementById("header");
+  if (header) {
+    const isHome = window.location.pathname === "/" || window.location.pathname.endsWith("index.html");
+    header.style.backgroundColor = isHome ? "#1e0949" : "#ffffff";
+  }
 
-  // ---------------------------------------------------
+  // -------------------------------
+  // MOBILE MENU TOGGLE
+  // -------------------------------
+  const menuToggle = document.querySelector(".menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("open");
+      menuToggle.classList.toggle("active");
+    });
+  }
+
+  // -------------------------------
   // Helper to load external HTML into a section by ID
-  // ---------------------------------------------------
+  // -------------------------------
   function loadHTML(id, url) {
     const container = document.getElementById(id);
     if (!container) return Promise.resolve();
@@ -22,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(html => {
         container.innerHTML = html;
 
-        // 💡 Run scripts inside the loaded HTML (very important!)
+        // 💡 Run scripts inside the loaded HTML (important!)
         const scripts = container.querySelectorAll("script");
         scripts.forEach(oldScript => {
           const newScript = document.createElement("script");
@@ -40,9 +53,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  // ---------------------------------------------------
-  // LOAD ALL SECTIONS HERE
-  // ---------------------------------------------------
+  // -------------------------------
+  // LOAD ALL SECTIONS
+  // -------------------------------
   const loads = [
     loadHTML("header", "header.html"),
     loadHTML("main-section", "main-section.html"),
@@ -57,16 +70,13 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   ];
 
-  // ---------------------------------------------------
-  // When everything is done
-  // ---------------------------------------------------
   Promise.allSettled(loads).then(() => {
     console.log("✔ All sections loaded successfully.");
   });
 
-  // ---------------------------------------------------
+  // -------------------------------
   // Keyword generator for re-container
-  // ---------------------------------------------------
+  // -------------------------------
   function populateREKeywords() {
     const keywords = [
       "Looking for a new condo",
@@ -127,4 +137,3 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
-</script>
