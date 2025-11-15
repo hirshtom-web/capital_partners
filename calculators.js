@@ -1,4 +1,3 @@
-
 const purchaseInput = document.getElementById('purchasePrice');
 const cashInput = document.getElementById('cashInvestment');
 const mortgageInput = document.getElementById('mortgageAmount');
@@ -104,6 +103,3 @@ document.addEventListener("DOMContentLoaded", () => {
   // Watch for new elements being added
   observer.observe(document.body, { childList: true, subtree: true });
 });
-
-
-</script>
