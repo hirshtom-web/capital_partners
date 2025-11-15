@@ -1,10 +1,12 @@
+// --- Input Elements ---
 const purchaseInput = document.getElementById('purchasePrice');
 const cashInput = document.getElementById('cashInvestment');
 const mortgageInput = document.getElementById('mortgageAmount');
 const additionalCriteria = document.getElementById('additionalCriteria');
 const cashFinancingToggle = document.getElementById('cashFinancingToggle');
+const calculateBtn = document.getElementById('calculateBtn');
 
-// Auto-calculate mortgage
+// --- Auto-calculate mortgage ---
 function updateMortgage() {
   const purchase = parseFloat(purchaseInput.value || 0);
   const cash = parseFloat(cashInput.value || 0);
@@ -12,27 +14,24 @@ function updateMortgage() {
     mortgageInput.value = Math.max(purchase - cash, 0).toFixed(0);
   }
 }
+
 purchaseInput.addEventListener('input', updateMortgage);
 cashInput.addEventListener('input', updateMortgage);
 updateMortgage();
 
-// Toggle ALL CASH / FINANCING
+// --- Toggle ALL CASH / FINANCING ---
 cashFinancingToggle.addEventListener('change', () => {
-  if (cashFinancingToggle.checked) {
-    additionalCriteria.style.display = 'flex';
-  } else {
-    additionalCriteria.style.display = 'none';
-    mortgageInput.value = 0;
-  }
+  additionalCriteria.classList.toggle('visible', cashFinancingToggle.checked);
+  if (!cashFinancingToggle.checked) mortgageInput.value = 0;
 });
 
-// Format number with thousand separators
+// --- Format number with thousand separators ---
 function formatMoney(num) {
   return "$" + num.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-// Calculate metrics
-document.getElementById('calculateBtn').addEventListener('click', () => {
+// --- Calculate metrics ---
+calculateBtn.addEventListener('click', () => {
   const rent = parseFloat(document.getElementById('rent').value || 0);
   const hoa = parseFloat(document.getElementById('hoa').value || 0);
   const tax = parseFloat(document.getElementById('tax').value || 0) / 12;
@@ -42,13 +41,12 @@ document.getElementById('calculateBtn').addEventListener('click', () => {
   const other = parseFloat(document.getElementById('otherExpenses').value || 0) / 12;
   const cashInvestment = parseFloat(document.getElementById('cashInvestment').value || 0);
 
-  // Mortgage calculation
+  // Mortgage payment calculation
   let mortgagePayment = 0;
-  if (additionalCriteria.style.display === 'flex') {
+  if (cashFinancingToggle.checked) {
     const P = parseFloat(mortgageInput.value || 0);
     const r = parseFloat(document.getElementById('mortgageRate').value || 0) / 100 / 12;
     const n = parseFloat(document.getElementById('mortgageTerm').value || 30) * 12;
-
     if (P > 0 && r > 0 && n > 0) {
       mortgagePayment = (P * r * Math.pow(1+r, n)) / (Math.pow(1+r, n) - 1);
     }
@@ -70,27 +68,20 @@ document.getElementById('calculateBtn').addEventListener('click', () => {
   document.getElementById('cocResult').textContent = cashOnCash.toFixed(2) + "%";
 });
 
-  // Handle calculator button selection
+// --- Calculator tab buttons ---
 const calcButtons = document.querySelectorAll('.calc-btn');
 calcButtons.forEach(btn => {
   btn.addEventListener('click', () => {
     calcButtons.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 
-    // You could later load a different calculator here based on btn.textContent
+    // Placeholder: Switch calculator logic
     console.log(`Switched to ${btn.textContent} calculator`);
   });
 });
-  cashFinancingToggle.addEventListener('change', () => {
-  if (cashFinancingToggle.checked) {
-    additionalCriteria.classList.add('visible');
-  } else {
-    additionalCriteria.classList.remove('visible');
-  }
-});
 
+// --- Header style adjustment after dynamic load ---
 document.addEventListener("DOMContentLoaded", () => {
-  // Wait until the header is loaded by your include.js
   const observer = new MutationObserver(() => {
     const header = document.querySelector("header");
     if (header) {
@@ -99,7 +90,5 @@ document.addEventListener("DOMContentLoaded", () => {
       observer.disconnect();
     }
   });
-
-  // Watch for new elements being added
   observer.observe(document.body, { childList: true, subtree: true });
 });
