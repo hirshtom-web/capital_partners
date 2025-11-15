@@ -60,7 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const keyword = e.target.textContent;
 
       // Option 2: Load chat-up.html into a popup div
-      fetch("/chat-up.html") // ✅ changed URL
+      fetch("https://hirshtom-web.github.io/capital_partners/chat-up.html
+") // ✅ changed URL
         .then(res => res.text())
         .then(html => {
           const popupDiv = document.createElement("div");
