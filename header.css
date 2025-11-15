@@ -410,7 +410,7 @@ nav > div:hover .submenu {
 
 #header.header--white nav > div > a { color: #1e0949; }
 #header.header--white nav > div:hover > a { color: #5a2bb8; }
-#header.header--white .main-logo { filter: brightness(0); }
+#header.header--white .main-logo { filter: brightness(100%); }
 #header.header--white .menu-toggle span { background: #1e0949; }
 #header.header--white .mobile-menu { background: #fff; }
 
