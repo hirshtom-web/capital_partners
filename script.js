@@ -4,11 +4,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // -------------------------------
   // HEADER BACKGROUND
   // -------------------------------
-  const header = document.getElementById("header");
-  if (header) {
-    const isHome = window.location.pathname === "/" || window.location.pathname.endsWith("index.html");
-    header.style.backgroundColor = isHome ? "#1e0949" : "#ffffff";
+const header = document.getElementById("header");
+if (header) {
+  const isHome = window.location.pathname === "/" || window.location.pathname.endsWith("index.html");
+
+  if (isHome) {
+    header.classList.add("header--blue");
+    header.classList.remove("header--white");
+  } else {
+    header.classList.add("header--white");
+    header.classList.remove("header--blue");
   }
+}
+
 
   // -------------------------------
   // MOBILE MENU TOGGLE
