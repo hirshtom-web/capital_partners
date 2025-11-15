@@ -87,4 +87,4 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
   });
-}); we must keep as is so it show our keywords
+});
