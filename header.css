@@ -104,8 +104,8 @@ nav > div:hover > a {
    SUBMENU (DESKTOP)
 ================================== */
 .submenu {
-  position: absolute;        /* relative to parent nav > div */
-  top: 100%;                 /* right below the header item */
+  position: fixed;          /* stays pinned to viewport */
+  top: 60px;                /* slightly below header (adjust based on header height) */
   left: 0;
   width: 100%;
   background: #1e0949;
@@ -114,10 +114,11 @@ nav > div:hover > a {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateY(0);  
+  transform: translateY(0);
   transition: opacity 0.25s, transform 0.25s;
-  z-index: 999;
+  z-index: 999;             /* below header items if needed */
 }
+
 nav > div:hover .submenu {
   opacity: 1;
   visibility: visible;
