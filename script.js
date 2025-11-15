@@ -2,23 +2,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   // -------------------------------
-  // HEADER BACKGROUND
-  // -------------------------------
-const header = document.getElementById("header");
-if (header) {
-  const isHome = window.location.pathname === "/" || window.location.pathname.endsWith("index.html");
-
-  if (isHome) {
-    header.classList.add("header--blue");
-    header.classList.remove("header--white");
-  } else {
-    header.classList.add("header--white");
-    header.classList.remove("header--blue");
-  }
-}
-
-
-  // -------------------------------
   // MOBILE MENU TOGGLE
   // -------------------------------
   const menuToggle = document.querySelector(".menu-toggle");
@@ -42,6 +25,13 @@ if (header) {
       .then(res => res.ok ? res.text() : Promise.reject(`${url} failed`))
       .then(html => {
         container.innerHTML = html;
+
+        // Apply header color AFTER loading header.html
+        if (id === "header") {
+          const isHome = window.location.pathname === "/" || window.location.pathname.endsWith("index.html");
+          container.classList.toggle("header--blue", isHome);
+          container.classList.toggle("header--white", !isHome);
+        }
 
         // 💡 Run scripts inside the loaded HTML (important!)
         const scripts = container.querySelectorAll("script");
