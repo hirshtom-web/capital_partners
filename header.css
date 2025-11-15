@@ -290,4 +290,64 @@ nav > div:hover .submenu {
   .alert { padding: 8px 10px; font-size: 8px; }
 }
 
-</style>
+/* ===============================
+   HEADER COLOR THEMES
+================================== */
+
+/* 🎨 HOME PAGE — BLUE HEADER */
+#header.header--blue header {
+  background: #1e0949;
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Nav links */
+#header.header--blue nav > div > a {
+  color: #ffffff;
+}
+#header.header--blue nav > div:hover > a {
+  color: #bda3ff;
+}
+
+/* Logo stays white version */
+#header.header--blue .logo img {
+  filter: brightness(100%);
+}
+
+/* Hamburger menu lines */
+#header.header--blue .menu-toggle span {
+  background: #fff;
+}
+
+
+
+/* 🎨 SUB PAGES — WHITE HEADER */
+#header.header--white header {
+  background: #ffffff;
+  color: #1e0949;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+/* Nav links */
+#header.header--white nav > div > a {
+  color: #1e0949;
+}
+#header.header--white nav > div:hover > a {
+  color: #5a2bb8;
+}
+
+/* Logo switches to dark mode */
+#header.header--white .logo img {
+  filter: brightness(0);
+}
+
+/* Hamburger menu lines turn dark */
+#header.header--white .menu-toggle span {
+  background: #1e0949;
+}
+
+/* Mobile dropdown uses your existing white menu style */
+#header.header--white .mobile-menu {
+  background: #fff;
+}
+
