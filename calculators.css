@@ -1,23 +1,24 @@
-body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  margin: 0;
-  padding: 0; /* remove global padding */
-  background-color: #fff;
-  color: #1e0949;
+/* ---------------------- CALCULATOR SECTION ---------------------- */
+#calculatorSection {
+  font-family: inherit;
+  color: #1e0949; /* default dark text */
 }
 
-#header {
-  width: 100%;
+#calculatorSection *, 
+#calculatorSection *::before, 
+#calculatorSection *::after {
   box-sizing: border-box;
-  padding: 0 40px; /* if you want padding inside content only */
 }
 
-  input, select, textarea {
-  font-size: 16px; /* prevents zoom */
+#calculatorSection input,
+#calculatorSection select,
+#calculatorSection textarea {
+  font-size: 16px; /* prevent zoom */
+  color: #1e0949; /* dark text */
 }
 
-
-.container {
+/* ---------- CONTAINER ---------- */
+#calculatorSection .calc-container {
   display: flex;
   gap: 20px;
   max-width: 1200px;
@@ -26,9 +27,10 @@ body {
   flex-wrap: wrap;
 }
 
-.left, .right {
+#calculatorSection .calc-left,
+#calculatorSection .calc-right {
   flex: 1;
-  background-color: #fef7f2;
+  background-color: #fef7f2; /* light background */
   border-radius: 18px;
   padding: 30px;
   display: flex;
@@ -36,15 +38,17 @@ body {
   align-items: center;
 }
 
-h2 {
+/* ---------- HEADINGS ---------- */
+#calculatorSection h2 {
   text-align: center;
   margin-bottom: 50px;
   font-size: 20px;
   font-weight: 700;
+  color: #1e0949;
 }
 
-/* ---------- FORM STYLING ---------- */
-form {
+/* ---------- FORM ---------- */
+#calculatorSection form {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -53,16 +57,16 @@ form {
   margin: 0 auto;
 }
 
-.input-group {
+#calculatorSection .calc-input-group {
   position: relative;
   display: flex;
   flex-direction: column;
-  flex: 1 1 40%;
-  max-width: 400px;
+  flex: 1 1 calc(50% - 20px);
+  max-width: calc(50% - 20px);
   min-width: 200px;
 }
 
-.input-group input {
+#calculatorSection .calc-input-group input {
   width: 100%;
   height: 60px;
   padding: 12px;
@@ -70,31 +74,25 @@ form {
   border-radius: 8px;
   border: none;
   background-color: #fff;
-  color: #000;
+  color: #1e0949;
   outline: none;
   box-sizing: border-box;
   transition: all 0.2s ease;
   -moz-appearance: textfield;
 }
 
-.input-group {
-  flex: 1 1 calc(50% - 20px); /* two items per row with gap */
-  max-width: calc(50% - 20px);
-  min-width: 200px;
-}
-
-.input-label {
+#calculatorSection .calc-input-label {
   position: absolute;
   top: 10px;
   left: 12px;
   font-size: 9px;
   letter-spacing: 0.5px;
-  color: #999;
+  color: #1e0949;
   text-transform: uppercase;
   pointer-events: none;
 }
 
-.bottom-row {
+#calculatorSection .calc-bottom-row {
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -103,7 +101,7 @@ form {
   gap: 15px;
 }
 
-.toggle-section {
+#calculatorSection .calc-toggle-section {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -113,35 +111,34 @@ form {
   width: 100%;
 }
 
-.toggle-section label {
+#calculatorSection .calc-toggle-section label {
   display: flex;
   align-items: center;
   gap: 5px;
   font-weight: 500;
   cursor: pointer;
 }
-.hidden-criteria {
-  display: none;           /* initially hidden */
-  flex-direction: row;     /* desktop default */
-  flex-wrap: wrap;         /* allow wrapping */
+
+#calculatorSection .calc-hidden-criteria {
+  display: none;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 20px;
   justify-content: flex-start;
   width: 100%;
-  box-sizing: border-box;  /* important */
 }
 
-.hidden-criteria.visible {
+#calculatorSection .calc-hidden-criteria.visible {
   display: flex;
 }
 
-.hidden-criteria .input-group {
-  flex: 1 1 200px; /* grow/shrink, base width 200px */
-  min-width: 0;    /* key fix to allow shrinking below 200px if needed */
+#calculatorSection .calc-hidden-criteria .calc-input-group {
+  flex: 1 1 200px;
+  min-width: 0;
 }
 
-
-/* ---------- FORM BUTTONS ---------- */
-button:not(.calc-btn) {
+/* ---------- BUTTONS ---------- */
+#calculatorSection button:not(.calc-btn) {
   width: 100%;
   padding: 14px;
   font-size: 16px;
@@ -157,31 +154,31 @@ button:not(.calc-btn) {
   gap: 8px;
 }
 
-button:hover {
+#calculatorSection button:hover {
   background-color: #3c1e7c;
 }
 
-.material-symbols-outlined.calc-icon {
+#calculatorSection .material-symbols-outlined.calc-icon {
   font-size: 24px;
   color: #fff;
 }
 
 /* ---------- TOGGLE SWITCH ---------- */
-.switch {
+#calculatorSection .calc-switch {
   position: relative;
   display: inline-block;
   width: 60px;
   height: 30px;
 }
 
-.switch input {
+#calculatorSection .calc-switch input {
   opacity: 0;
   width: 0;
   height: 0;
   cursor: pointer;
 }
 
-.slider {
+#calculatorSection .calc-slider {
   position: absolute;
   cursor: pointer;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -190,7 +187,7 @@ button:hover {
   border-radius: 30px;
 }
 
-.slider:before {
+#calculatorSection .calc-slider:before {
   position: absolute;
   content: "";
   height: 24px;
@@ -202,16 +199,16 @@ button:hover {
   border-radius: 50%;
 }
 
-input:checked + .slider {
+#calculatorSection .calc-switch input:checked + .calc-slider {
   background-color: #1e0949;
 }
 
-input:checked + .slider:before {
+#calculatorSection .calc-switch input:checked + .calc-slider:before {
   transform: translateX(30px);
 }
 
 /* ---------- RESULTS ---------- */
-#resultsContainer {
+#calculatorSection #calcResultsContainer {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
@@ -222,63 +219,52 @@ input:checked + .slider:before {
   margin-right: auto;
 }
 
-.result-row {
+#calculatorSection .calc-result-row {
   display: flex;
-  justify-content: space-between; /* label left, value right */
-  align-items: center;            /* vertically centers text */
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   padding: 5px 10px;
   border-radius: 8px;
+  color: #1e0949;
 }
 
-.result-net {
+#calculatorSection .calc-result-net {
   background-color: #d0e8ff;
   font-weight: 600;
-  height: 50px;        /* example taller height */
+  height: 50px;
   display: flex;
-  align-items: center; /* vertical center */
-  justify-content: space-between; /* keeps left/right spacing inside */
-  padding: 0 10px;    /* optional: spacing inside */
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
   border-radius: 8px;
 }
 
-
-.result-row span:first-child {
-  text-align: left;
-}
-
-.result-row span:last-child {
-  text-align: right;
-  min-width: 150px;
-}
-
 /* ---------- CALCULATOR BUTTONS ---------- */
-.calc-selector {
+#calculatorSection .calc-selector {
   text-align: center;
   margin-bottom: 40px;
 }
 
-.calc-selector h1 {
+#calculatorSection .calc-selector h1 {
   font-size: 26px;
   font-weight: 700;
   margin-bottom: 20px;
   color: #1e0949;
 }
 
-.calc-buttons {
+#calculatorSection .calc-buttons {
   display: flex;
-  flex-wrap: nowrap;                /* keep horizontal scrolling */
+  flex-wrap: nowrap;
   overflow-x: auto;
   gap: 10px;
   padding-bottom: 10px;
-  -webkit-overflow-scrolling: touch; /* smooth scrolling iOS */
-  
-  justify-content: center;          /* center all buttons horizontally */
-  align-items: center;              /* center vertically */
+  -webkit-overflow-scrolling: touch;
+  justify-content: center;
+  align-items: center;
 }
 
-
-.calc-btn {
+#calculatorSection .calc-btn {
   background-color: #fef7f2;
   color: #1e0949;
   border: 1px solid #1e0949;
@@ -289,96 +275,83 @@ input:checked + .slider:before {
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
-  flex: 0 0 auto;           /* prevent shrinking */
+  flex: 0 0 auto;
 }
 
-.calc-btn:hover,
-.calc-btn.active {
+#calculatorSection .calc-btn:hover,
+#calculatorSection .calc-btn.active {
   background-color: #1e0949;
   color: #fff;
 }
 
 /* ---------- MEDIA QUERIES ---------- */
 @media (max-width: 900px) {
-  body {
+  #calculatorSection body {
     padding: 20px 10px;
     margin: 0;
-    overflow-x: hidden; /* prevent horizontal scroll */
+    overflow-x: hidden;
   }
 
-  .container {
+  #calculatorSection .calc-container {
     flex-direction: column;
     margin: 0;
     padding: 0;
     width: 100%;
-    box-sizing: border-box;
   }
 
-  .left, .right {
+  #calculatorSection .calc-left,
+  #calculatorSection .calc-right {
     width: 100%;
-    padding: 20px; /* smaller padding to prevent overflow */
-    box-sizing: border-box;
+    padding: 20px;
   }
 
-form {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-
-  .input-group {
-    flex: 1 1 100%;
+  #calculatorSection form {
+    width: 100%;
     max-width: 100%;
-    min-width: 0; /* allow shrinking on small screens */
   }
 
-  #resultsContainer {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-
-  .hidden-criteria {
-    flex-direction: column !important;
-    width: 100%;
-    gap: 15px;
-  }
-
-  .hidden-criteria .input-group {
+  #calculatorSection .calc-input-group {
     flex: 1 1 100%;
     max-width: 100%;
     min-width: 0;
   }
 
-
-  .toggle-section {
-    flex-direction: column;
-    align-items: flex-start; /* better for small screens */
+  #calculatorSection #calcResultsContainer {
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
 
-  .bottom-row {
+  #calculatorSection .calc-hidden-criteria {
+    flex-direction: column !important;
+    width: 100%;
+    gap: 15px;
+  }
+
+  #calculatorSection .calc-hidden-criteria .calc-input-group {
+    flex: 1 1 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  #calculatorSection .calc-toggle-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #calculatorSection .calc-bottom-row {
     gap: 10px;
   }
 
-  .calc-buttons {
+  #calculatorSection .calc-buttons {
     gap: 10px;
     flex-wrap: nowrap;
     overflow-x: auto;
     padding-bottom: 10px;
-    -webkit-overflow-scrolling: touch;
     justify-content: flex-start;
   }
 }
 
-
-input, select, textarea {
-  font-size: 16px;
-}
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-#additionalCriteria {
+#calculatorSection #additionalCriteria {
   transition: all 0.3s ease;
 }
-
