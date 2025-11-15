@@ -6,8 +6,8 @@
   text-align: center;
 }
 
-/* Headings */
-h1 {
+/* Hero Heading */
+.hero-title {
   font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
   font-weight: 600;
   color: #fef7f2;
@@ -18,7 +18,7 @@ h1 {
   position: relative;
 }
 
-h1 .line {
+.hero-title .line {
   display: block;
 }
 
@@ -43,7 +43,6 @@ h1 .line {
   100% { background-position: 0% 50%; }
 }
 
-
 /* Machine SVG positioning */
 .machine-svg {
   position: absolute;
@@ -55,7 +54,7 @@ h1 .line {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-  h1 {
+  .hero-title {
     font-size: 48px;
     line-height: 1.1;
   }
@@ -69,7 +68,7 @@ h1 .line {
 }
 
 @media (max-width: 480px) {
-  h1 {
+  .hero-title {
     font-size: 50px; /* smaller font for very small screens */
     padding: 0 20px;
     margin-top: 60px; /* slightly less top margin */
