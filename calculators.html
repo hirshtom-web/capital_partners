@@ -52,6 +52,10 @@ html {
     background-color: white;
     color: #000;
 }
+    html, body {
+    background-color: white !important;
+}
+
     
 /* Preloader styles */
 #preloader {
@@ -302,6 +306,9 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => preloader?.remove(), 5000);
     });
 });
+  preloader.style.opacity = 0;
+setTimeout(() => preloader.remove(), 600);
+
 </script>
 
 
