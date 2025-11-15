@@ -105,7 +105,7 @@ nav > div:hover > a {
 ================================== */
 .submenu {
   position: fixed;          /* stays pinned to viewport */
-  top: 60px;                /* slightly below header (adjust based on header height) */
+  top: 80px;                /* slightly below header (adjust based on header height) */
   left: 0;
   width: 100%;
   background: #1e0949;
