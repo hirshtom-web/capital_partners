@@ -257,11 +257,25 @@ nav > div:hover .submenu {
    MOBILE SPECIFIC STYLES
 ================================== */
 .menu-toggle {
-  display: none; /* hidden by default */
-  cursor: pointer;
-  align-items: center;
+  display: none;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 20px;
+  height: 16px;
+  z-index: 1100;
 }
+.menu-toggle span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: #fff; /* set default to white so it displays on dark */
+  margin: 3px 0;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
 .menu-toggle .menu-icon {
   width: 20px;
   height: 20px;
