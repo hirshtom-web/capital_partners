@@ -23,6 +23,7 @@ a {
   justify-content: center; /* centers horizontally */
   align-items: center;     /* centers vertically, optional if you want vertical centering */
   margin: 20px 20px;          /* keeps spacing from other elements */
+   margin-bottom: 40px;
 }
 
 
