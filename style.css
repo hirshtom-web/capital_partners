@@ -15,6 +15,17 @@ a {
   text-decoration: none;
 }
 
+/* ===============================
+   Hero section
+================================== */
+.button-wrapper {
+  display: flex;
+  justify-content: center; /* centers horizontally */
+  align-items: center;     /* centers vertically, optional if you want vertical centering */
+  margin: 20px 0;          /* keeps spacing from other elements */
+}
+
+
 /* ==================================
    TRUSTED SECTION
 ================================== */
