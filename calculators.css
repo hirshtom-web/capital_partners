@@ -30,7 +30,7 @@
 #calculatorSection .calc-left,
 #calculatorSection .calc-right {
   flex: 1;
-  background-color: #fef7f2; /* light background */
+  background-color: #fbf8f5; /* light background */
   border-radius: 18px;
   padding: 30px;
   display: flex;
@@ -265,7 +265,7 @@
 }
 
 #calculatorSection .calc-btn {
-  background-color: #fef7f2;
+  background-color: #fbf8f5;
   color: #1e0949;
   border: 1px solid #1e0949;
   border-radius: 25px;
