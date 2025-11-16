@@ -32,6 +32,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
+   position: relative; /* ← ADD THIS LINE */
 }
 
 .main-logo {
@@ -248,17 +249,19 @@ nav > div:hover .submenu {
 /* ===============================
    HAMBURGER MENU
 ================================== */
-.menu-toggle {
-  width: 30px;
-  height: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.menu-toggle { 
+    display: flex; 
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2000; /* ← ADD THIS */
 }
 .menu-toggle span {
   display: block;
   height: 3px;
-  background: #000;
+  background: #fff;
   border-radius: 2px;
 }
 
@@ -362,11 +365,15 @@ nav > div:hover .submenu {
   }
 
   /* Show hamburger */
-  .menu-toggle { 
+.menu-toggle { 
     display: flex; 
     cursor: pointer;
-    margin-right: 10px;
-  }
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 
   /* Proper header spacing */
   header {
