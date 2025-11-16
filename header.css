@@ -332,6 +332,63 @@ nav > div:hover .submenu {
 .mobile-menu .submenu-mobile.active {
   max-height: 500px;
 }
+/* ===============================
+   SLIDING MOBILE SUBMENU (NEW)
+================================== */
+
+.mobile-submenu {
+  position: fixed;
+  top: 70px;
+  left: 100%;
+  width: 100%;
+  height: calc(100vh - 70px);
+  background: #1e0949;
+  color: #ffffff;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  transition: left 0.3s ease;
+  z-index: 999999;
+}
+
+.mobile-submenu.active {
+  left: 0;
+}
+
+.mobile-submenu li a {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  font-size: 22px;
+  color: #ffffff;
+}
+
+.mobile-submenu .submenu-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  margin-right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg,#a400f5,#7b00f8);
+  color: #fff;
+}
+
+/* Back button */
+.mobile-submenu .back a {
+  font-size: 18px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+}
+
+.mobile-submenu .back a::before {
+  content: "←";
+  margin-right: 10px;
+}
 
 /* Submenu links */
 .mobile-menu .submenu-mobile a {
