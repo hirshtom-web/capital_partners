@@ -26,6 +26,34 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch(err => console.warn("SECTION FAILED:", err));
   }
+// Toggle main mobile menu
+const menuToggle = document.querySelector('.menu-toggle');
+const mobileMenu = document.querySelector('.mobile-menu');
+
+menuToggle.addEventListener('click', () => {
+  menuToggle.classList.toggle('active');
+  mobileMenu.classList.toggle('active');
+});
+
+// Handle submenu slide per category
+document.querySelectorAll('.mobile-menu .menu-link').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const submenu = link.nextElementSibling;
+
+    // Close other open submenus
+    document.querySelectorAll('.mobile-menu .submenu-mobile').forEach(sm => {
+      if(sm !== submenu) sm.classList.remove('active');
+    });
+    document.querySelectorAll('.mobile-menu .menu-link').forEach(l => {
+      if(l !== link) l.classList.remove('active');
+    });
+
+    // Toggle current submenu
+    submenu.classList.toggle('active');
+    link.classList.toggle('active');
+  });
+});
 
   // -------------------------------
   // HEADER: load + background + mobile menu
