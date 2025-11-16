@@ -350,34 +350,38 @@ nav > div:hover .submenu {
   .menu-toggle { display: none; }
 }
 
-/* ===============================
-/* MOBILE SPECIFIC - up to 768px */
-/* =============================== */
-@media (max-width: 768px) {
-  nav > div { display: none; }    /* hide desktop menu */
-  .menu-toggle { display: flex; }
 
-/* MOBILE HEADER EDGE PADDING */
+/* ===============================
+   MOBILE SPECIFIC - up to 768px
+================================== */
 @media (max-width: 768px) {
+  
+  /* Hide desktop menu */
+  nav > div { 
+    display: none; 
+  }
+
+  /* Show hamburger */
+  .menu-toggle { 
+    display: flex; 
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  /* Proper header spacing */
   header {
     display: flex;
-    align-items: center;        /* vertically center items */
-    justify-content: space-between; /* logo left, hamburger right */
-    padding: 10px 10px;         /* top/bottom 10px, left/right 10px */
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 10px;
   }
 
   .main-logo {
-    margin-left: 0;             /* remove extra spacing */
-    height: 30px;               /* adjust as needed */
+    margin-left: 0;
+    height: 30px;
   }
 
-  .menu-toggle {
-    margin-right: 0;            /* remove extra spacing */
-    cursor: pointer;            /* pointer on hover */
-  }
-}
-
-
+  /* Mobile H1 */
   h1 { 
     font-size: 48px; 
     line-height: 1.1; 
@@ -391,7 +395,9 @@ nav > div:hover .submenu {
   }
 }
 
-/* MOBILE SPECIFIC - up to 480px */
+/* ===============================
+   MOBILE SPECIFIC - up to 480px
+================================== */
 @media (max-width: 480px) {
   h1 { 
     font-size: 32px; 
