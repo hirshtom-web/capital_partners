@@ -92,34 +92,42 @@
 
 </header>
 
-<!-- MOBILE MENU -->
-<ul class="mobile-menu">
-  <li>
-    <a href="#" class="menu-link">Category 1 <span class="arrow">→</span></a>
-    <ul class="submenu-mobile">
-      <li>
-        <a href="#">
-          <div class="submenu-icon">🏠</div>
-          Sub 1
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <div class="submenu-icon">📄</div>
-          Sub 2
-        </a>
-      </li>
-    </ul>
+<!-- Main Mobile Menu -->
+<ul class="mobile-menu" id="mobile-menu">
+  <li class="menu-item" data-submenu="services-submenu">
+    <a href="javascript:void(0)" class="menu-link">
+      Services <span class="arrow">▶</span>
+    </a>
   </li>
-
   <li>
-    <a href="#" class="menu-link">Category 2 <span class="arrow">→</span></a>
-    <ul class="submenu-mobile">
-      <li><a href="#">Sub 1</a></li>
-      <li><a href="#">Sub 2</a></li>
-    </ul>
+    <a href="#">About</a>
   </li>
-
-  <!-- Add more categories as needed -->
+  <li>
+    <a href="#">Contact</a>
+  </li>
 </ul>
 
+<!-- Sliding Submenu -->
+<ul class="mobile-submenu" id="services-submenu">
+  <li class="back">
+    <a href="javascript:void(0)" class="back-link">◀ Back</a>
+  </li>
+  <li>
+    <a href="calculators.html">
+      <div class="submenu-icon">🧮</div>
+      Calculators
+    </a>
+  </li>
+  <li>
+    <a href="#">
+      <div class="submenu-icon">💡</div>
+      Service 2
+    </a>
+  </li>
+  <li>
+    <a href="#">
+      <div class="submenu-icon">⚙️</div>
+      Service 3
+    </a>
+  </li>
+</ul>
