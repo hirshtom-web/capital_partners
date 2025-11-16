@@ -376,8 +376,11 @@ nav > div:hover .submenu {
   .main-logo {
     height: 32px;
   }
+   nav > div > a {
+  font-weight: 500;
+  font-size: 20px;
 }
-
+ }
 /* ===============================
    EXTRA MOBILE — up to 480px
 ================================== */
@@ -465,7 +468,7 @@ nav > div:hover .submenu {
 }
 
 #header.header--blue nav > div > a { color: #ffffff; }
-#header.header--blue nav > div:hover > a { color: #bda3ff; }
+#header.header--blue nav > div:hover > a { color: #e0b3ff; /* brighter purple */ }
 #header.header--blue .main-logo { filter: brightness(100%); }
 #header.header--blue .menu-toggle span { background: #fff; }
 
