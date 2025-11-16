@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const mobileMenu = document.getElementById("mobile-menu");
     if (menuToggle && mobileMenu) {
       menuToggle.addEventListener("click", () => {
-        mobileMenu.classList.toggle("open");
+        mobileMenu.classList.toggle("active");
         menuToggle.classList.toggle("active");
       });
     }
