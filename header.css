@@ -294,6 +294,12 @@ nav > div:hover .submenu {
   padding-left: 0;       /* remove default padding */
   margin: 0;             /* remove default margin */
 }
+.mobile-menu.active,
+.mobile-submenu.active {
+  top: 70px;
+  height: calc(100vh - 70px);
+}
+
 
 .mobile-menu.active {
   display: flex;
@@ -438,6 +444,30 @@ nav > div:hover .submenu {
   font-size: 20px;
 }
  }
+/* Prevent scrolling when menu is open */
+body.menu-open {
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Make mobile menu cover the whole screen */
+.mobile-menu.active,
+.mobile-submenu.active {
+  position: fixed;
+  top: 60px; /* header height */
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  background: #1e0949;
+  z-index: 9999;
+}
+.mobile-menu .current,
+.mobile-submenu .current {
+  color: #ffdd55 !important;
+  font-weight: 700;
+}
+
 /* ===============================
    EXTRA MOBILE — up to 480px
 ================================== */
