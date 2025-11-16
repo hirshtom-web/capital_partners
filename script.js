@@ -2,9 +2,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  // -------------------------------
-  // Helper to load external HTML into a section by ID
-  // -------------------------------
   function loadHTML(id, url) {
     const container = document.getElementById(id);
     if (!container) return Promise.resolve();
@@ -14,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(html => {
         container.innerHTML = html;
 
-        // Run scripts inside loaded HTML
         const scripts = container.querySelectorAll("script");
         scripts.forEach(oldScript => {
           const newScript = document.createElement("script");
@@ -28,38 +24,41 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // -------------------------------
-  // HEADER: load + background + mobile menu
+  // HEADER (must run AFTER header.html loads)
   // -------------------------------
   loadHTML("header", "header.html").then(() => {
+
     const header = document.getElementById("header");
-    const isHome = window.location.pathname === "/" || window.location.pathname.endsWith("index.html");
+    const isHome =
+      window.location.pathname === "/" ||
+      window.location.pathname.endsWith("index.html");
 
     if (header) {
       header.classList.toggle("header--blue", isHome);
       header.classList.toggle("header--white", !isHome);
     }
 
-    // Mobile menu toggle
     const menuToggle = document.querySelector(".menu-toggle");
     const mobileMenu = document.querySelector(".mobile-menu");
 
     if (menuToggle && mobileMenu) {
+      // Hamburger toggle
       menuToggle.addEventListener("click", () => {
-        mobileMenu.classList.toggle("active");
         menuToggle.classList.toggle("active");
+        mobileMenu.classList.toggle("active");
       });
 
-      // Mobile submenu expand/collapse
+      // 🔥 Mobile submenu toggle (MUST run inside this block)
       mobileMenu.querySelectorAll("> li").forEach((item) => {
-        const submenu = item.querySelector(".submenu");
         const link = item.querySelector("a");
+        const submenu = item.querySelector(".submenu");
 
         if (submenu && link) {
-          link.addEventListener("click", function (e) {
+          link.addEventListener("click", (e) => {
             e.preventDefault();
 
-            // Close other open submenus
-            mobileMenu.querySelectorAll(".expanded").forEach((openItem) => {
+            // Close others
+            mobileMenu.querySelectorAll(".expanded").forEach(openItem => {
               if (openItem !== item) openItem.classList.remove("expanded");
             });
 
@@ -68,10 +67,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     }
+
   });
 
   // -------------------------------
-  // Load other sections
+  // OTHER SECTIONS
   // -------------------------------
   const loads = [
     loadHTML("main-section", "main-section.html"),
@@ -80,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
     loadHTML("tabs", "tabs.html"),
     loadHTML("footer", "footer.html"),
 
-    // Special: RE-CONTAINER + populate after load
     loadHTML("re-container", "re-container.html").then(() => {
       populateREKeywords();
     })
@@ -91,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // -------------------------------
-  // Keyword generator for RE container
+  // RE Keyword Generator
   // -------------------------------
   function populateREKeywords() {
     const keywords = [
