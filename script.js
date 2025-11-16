@@ -2,6 +2,9 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
+  // -------------------------------
+  // Helper to load external HTML into a section by ID
+  // -------------------------------
   function loadHTML(id, url) {
     const container = document.getElementById(id);
     if (!container) return Promise.resolve();
@@ -11,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(html => {
         container.innerHTML = html;
 
+        // Run scripts inside loaded HTML
         const scripts = container.querySelectorAll("script");
         scripts.forEach(oldScript => {
           const newScript = document.createElement("script");
@@ -24,54 +28,52 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // -------------------------------
-  // HEADER (must run AFTER header.html loads)
+  // HEADER: load + background + mobile menu
   // -------------------------------
   loadHTML("header", "header.html").then(() => {
-
+    
     const header = document.getElementById("header");
-    const isHome =
-      window.location.pathname === "/" ||
-      window.location.pathname.endsWith("index.html");
+    const isHome = window.location.pathname === "/" || window.location.pathname.endsWith("index.html");
 
     if (header) {
       header.classList.toggle("header--blue", isHome);
       header.classList.toggle("header--white", !isHome);
     }
 
+    // 🔥 MOBILE MENU TOGGLE — WORKS NOW
     const menuToggle = document.querySelector(".menu-toggle");
     const mobileMenu = document.querySelector(".mobile-menu");
 
     if (menuToggle && mobileMenu) {
-      // Hamburger toggle
       menuToggle.addEventListener("click", () => {
-        menuToggle.classList.toggle("active");
         mobileMenu.classList.toggle("active");
-      });
-
-      // 🔥 Mobile submenu toggle (MUST run inside this block)
-      mobileMenu.querySelectorAll("> li").forEach((item) => {
-        const link = item.querySelector("a");
-        const submenu = item.querySelector(".submenu");
-
-        if (submenu && link) {
-          link.addEventListener("click", (e) => {
-            e.preventDefault();
-
-            // Close others
-            mobileMenu.querySelectorAll(".expanded").forEach(openItem => {
-              if (openItem !== item) openItem.classList.remove("expanded");
-            });
-
-            item.classList.toggle("expanded");
-          });
-        }
+        menuToggle.classList.toggle("active");
       });
     }
+
+    // 🔥 MOBILE SUBMENU — MUST BE INSIDE THIS THEN()
+    document.querySelectorAll(".mobile-menu > li").forEach((item) => {
+      const submenu = item.querySelector(".submenu");
+      const link = item.querySelector("a");
+
+      if (submenu && link) {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          // Close others
+          document.querySelectorAll(".mobile-menu .expanded").forEach((openItem) => {
+            if (openItem !== item) openItem.classList.remove("expanded");
+          });
+
+          item.classList.toggle("expanded");
+        });
+      }
+    });
 
   });
 
   // -------------------------------
-  // OTHER SECTIONS
+  // Load other sections
   // -------------------------------
   const loads = [
     loadHTML("main-section", "main-section.html"),
@@ -80,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadHTML("tabs", "tabs.html"),
     loadHTML("footer", "footer.html"),
 
+    // Special: RE-CONTAINER + populate after load
     loadHTML("re-container", "re-container.html").then(() => {
       populateREKeywords();
     })
@@ -90,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // -------------------------------
-  // RE Keyword Generator
+  // Keyword generator for RE container
   // -------------------------------
   function populateREKeywords() {
     const keywords = [
