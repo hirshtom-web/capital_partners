@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qalley Pitch Deck - Vertical Scroll</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+:root {
+  --primary: #6327e5;
+  --accent: #a734af;
+  --bg: #fdfcff;
+  --bg-light: #f8f2ff;
+  --text-dark: #1a0b2e;
+  --text-muted: #555;
+  --card-bg: #fff;
+  --shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
+  background: var(--bg);
+  scroll-behavior: smooth;
+}
+
+.deck {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Slides --- */
+.slide {
+  min-height: 100vh;
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: linear-gradient(135deg, var(--bg) 0%, var(--bg-light) 60%, rgba(167,52,175,0.08) 100%);
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.slide.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Headings --- */
+h1 { font-size: 3.2rem; color: var(--primary); margin-bottom: 0.5rem; }
+h2 { font-size: 2rem; color: var(--text-dark); margin-bottom: 1rem; }
+p { color: var(--text-muted); max-width: 700px; line-height: 1.6; font-size: 1.1rem; }
+
+/* --- Layouts --- */
+.layout { display: grid; gap: 24px; margin-top: 40px; }
+.layout.three-squares { grid-template-columns: repeat(3, 1fr); }
+.layout.four-long { grid-template-columns: repeat(4, 1fr); }
+.layout.two-wide { grid-template-columns: 2fr 1fr; }
+
+.box {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+.box.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Responsive --- */
+@media (max-width:1024px) { .layout.three-squares { grid-template-columns: repeat(2,1fr); } }
+@media (max-width:600px) { .layout.three-squares, .layout.four-long, .layout.two-wide { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="deck">
+  <!-- Slide 1 -->
+  <section class="slide">
+    <h1 id="qalley">Quality Deals <span id="alley">alley</span></h1>
+    <h2>The Queen of the Alley</h2>
+    <p>“The difference between $1M and $200M+ could be just one smart move—the right insight, the right timing, the right execution.”</p>
+  </section>
+
+  <!-- Slide 2 -->
+  <section class="slide">
+    <h2>The Problem</h2>
+    <div class="layout three-squares">
+      <div class="box"><p>Pain point 1</p></div>
+      <div class="box"><p>Pain point 2</p></div>
+      <div class="box"><p>Pain point 3</p></div>
+    </div>
+  </section>
+
+  <!-- Slide 3 with Chart -->
+  <section class="slide">
+    <h2>Market Opportunity</h2>
+    <canvas id="marketChart" width="400" height="200"></canvas>
+  </section>
+</div>
+
+<script>
+/* --- Intersection Observer for Animations --- */
+const slides = document.querySelectorAll('.slide');
+const boxes = document.querySelectorAll('.box');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.3 });
+
+slides.forEach(slide => observer.observe(slide));
+boxes.forEach(box => observer.observe(box));
+
+/* --- Chart.js Example --- */
+const ctx = document.getElementById('marketChart').getContext('2d');
+const chart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Residential', 'Commercial', 'Industrial', 'Land'],
+    datasets: [{
+      label: 'Market Value ($T)',
+      data: [110.8, 40.5, 25.3, 5.2],
+      backgroundColor: ['#6327e5','#a734af','#ffcd4d','#00bcd4']
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+
+/* --- Typewriter for Cover --- */
+const fullText = "Quality Deals in the Alley";
+const typingEl = document.getElementById("qalley");
+let i = 0;
+function typeText() {
+  if(i<fullText.length){ typingEl.textContent+=fullText[i]; i++; setTimeout(typeText,50); }
+}
+typeText();
+</script>
+
+</body>
+</html>
