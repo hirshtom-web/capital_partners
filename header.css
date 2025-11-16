@@ -275,6 +275,9 @@ nav > div:hover .submenu {
 /* ===============================
    MOBILE MENU
 ================================== */
+/* ===============================
+   MOBILE MENU CLEAN STYLING
+================================== */
 .mobile-menu {
   display: none;                 
   flex-direction: column;
@@ -282,11 +285,14 @@ nav > div:hover .submenu {
   top: 70px;
   left: 0;
   right: 0;
-  background: #fff;
+  background: #1e0949;  /* default blue background */
   overflow: hidden;
   max-height: 0;
   transition: max-height 0.35s ease;
   z-index: 9999;
+  list-style: none;      /* remove bullets */
+  padding-left: 0;       /* remove default padding */
+  margin: 0;             /* remove default margin */
 }
 
 .mobile-menu.active {
@@ -296,7 +302,59 @@ nav > div:hover .submenu {
 
 .mobile-menu > li > a {
   padding: 14px 20px;
-  color: #130328;
+  color: #ffffff;        /* white text on blue */
+  font-size: 20px;       /* menu category font size */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* Arrow styling on right */
+.mobile-menu .menu-link .arrow {
+  transition: transform 0.3s;
+  margin-left: auto;
+}
+
+.mobile-menu .menu-link.active .arrow {
+  transform: rotate(90deg);
+}
+
+/* Submenu hidden by default */
+.mobile-menu .submenu-mobile {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding-left: 10px;
+  margin: 0;
+}
+
+.mobile-menu .submenu-mobile.active {
+  max-height: 500px;
+}
+
+/* Submenu links */
+.mobile-menu .submenu-mobile a {
+  display: block;
+  padding: 12px 20px;
+  font-size: 18px;
+  color: #ffffff;  /* default white */
+  text-decoration: none;
+}
+
+/* ===============================
+   WHITE THEME MOBILE MENU
+================================== */
+#header.header--white .mobile-menu {
+  background: #ffffff;      /* white background */
+}
+
+#header.header--white .mobile-menu > li > a {
+  color: #1e0949;           /* dark blue text */
+}
+
+#header.header--white .mobile-menu .submenu-mobile a {
+  color: #1e0949;           /* dark text for submenu */
 }
 
 /* ===============================
