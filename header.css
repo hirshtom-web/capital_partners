@@ -350,6 +350,52 @@ nav > div:hover .submenu {
     width: 70px;
   }
 }
+/* Mobile submenu hidden by default */
+.mobile-menu .submenu-mobile {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding-left: 10px;
+}
+
+.mobile-menu .submenu-mobile.active {
+  max-height: 500px; /* adjust as needed */
+}
+
+/* Arrow rotation */
+.mobile-menu .menu-link .arrow {
+  float: right;
+  transition: transform 0.3s;
+}
+
+.mobile-menu .menu-link.active .arrow {
+  transform: rotate(90deg);
+}
+
+/* Keep icons visible */
+.submenu-mobile .submenu-icon {
+  display: flex;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg,#a400f5,#7b00f8);
+  color: #fff;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+/* Theme support */
+#header.header--blue .mobile-menu {
+  background: #1e0949;
+  color: #fff;
+}
+
+#header.header--white .mobile-menu {
+  background: #fff;
+  color: #1e0949;
+}
 
 /* ===============================
    HEADER COLOR THEMES
