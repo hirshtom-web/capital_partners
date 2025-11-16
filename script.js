@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // -------------------------------
     // MOBILE SUBMENU: slide per category
+    // (old dropdown behavior — left untouched)
     // -------------------------------
     document.querySelectorAll(".mobile-menu > li").forEach(item => {
       const link = item.querySelector("a");
@@ -62,16 +63,36 @@ document.addEventListener("DOMContentLoaded", () => {
         link.addEventListener("click", e => {
           e.preventDefault();
 
-          // Close other open submenus
           document.querySelectorAll(".mobile-menu > li.expanded").forEach(openItem => {
             if (openItem !== item) openItem.classList.remove("expanded");
           });
 
-          // Toggle current submenu
           item.classList.toggle("expanded");
         });
       }
     });
+
+    // -------------------------------
+    // 🚀 NEW: SLIDING SUBMENU LOGIC
+    // -------------------------------
+    const openServices = document.getElementById("open-services");
+    const servicesSubmenu = document.getElementById("services-submenu");
+    const backLinks = document.querySelectorAll(".mobile-submenu .back-link");
+
+    if (openServices && servicesSubmenu) {
+      openServices.addEventListener("click", (e) => {
+        e.preventDefault();
+        servicesSubmenu.classList.add("active");
+      });
+    }
+
+    backLinks.forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        servicesSubmenu.classList.remove("active");
+      });
+    });
+
   });
 
   // -------------------------------
