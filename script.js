@@ -26,10 +26,24 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // -------------------------------
+  // Reset body & menu states (safe for dynamic pages)
+  // -------------------------------
+  function resetPageState() {
+    document.body.classList.remove("menu-open");
+    document.querySelectorAll(".mobile-menu, .mobile-menu .expanded").forEach(el => el.classList.remove("active", "expanded"));
+    document.querySelectorAll("#services-submenu.active").forEach(el => el.classList.remove("active"));
+    const header = document.getElementById("header");
+    if (header) header.classList.remove("header--blue", "header--white");
+  }
+
+  // -------------------------------
   // HEADER: load + theme + mobile menu
   // -------------------------------
   loadHTML("header", "header.html").then(() => {
+    resetPageState();
+
     const header = document.getElementById("header");
+    const body = document.body;
     const isHome = window.location.pathname === "/" || window.location.pathname.endsWith("index.html");
 
     if (header) {
@@ -42,10 +56,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const mobileMenu = document.querySelector(".mobile-menu");
 
     if (menuToggle && mobileMenu) {
+      // Ensure clean initial state
+      menuToggle.classList.remove("active");
+      mobileMenu.classList.remove("active");
+      body.classList.remove("menu-open");
+
       menuToggle.addEventListener("click", () => {
         menuToggle.classList.toggle("active");
         mobileMenu.classList.toggle("active");
-        document.body.classList.toggle("menu-open", mobileMenu.classList.contains("active"));
+        body.classList.toggle("menu-open", mobileMenu.classList.contains("active"));
       });
     }
 
@@ -170,4 +189,3 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
-
