@@ -1,5 +1,4 @@
 // Full JS: dynamic sections + header + mobile menu + RE keywords
-
 document.addEventListener("DOMContentLoaded", () => {
 
   // -------------------------------
@@ -26,40 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch(err => console.warn("SECTION FAILED:", err));
   }
-// Toggle main mobile menu
-const menuToggle = document.querySelector('.menu-toggle');
-const mobileMenu = document.querySelector('.mobile-menu');
-
-menuToggle.addEventListener('click', () => {
-  menuToggle.classList.toggle('active');
-  mobileMenu.classList.toggle('active');
-});
-
-// Handle submenu slide per category
-document.querySelectorAll('.mobile-menu .menu-link').forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const submenu = link.nextElementSibling;
-
-    // Close other open submenus
-    document.querySelectorAll('.mobile-menu .submenu-mobile').forEach(sm => {
-      if(sm !== submenu) sm.classList.remove('active');
-    });
-    document.querySelectorAll('.mobile-menu .menu-link').forEach(l => {
-      if(l !== link) l.classList.remove('active');
-    });
-
-    // Toggle current submenu
-    submenu.classList.toggle('active');
-    link.classList.toggle('active');
-  });
-});
 
   // -------------------------------
   // HEADER: load + background + mobile menu
   // -------------------------------
   loadHTML("header", "header.html").then(() => {
-    
     const header = document.getElementById("header");
     const isHome = window.location.pathname === "/" || window.location.pathname.endsWith("index.html");
 
@@ -68,36 +38,40 @@ document.querySelectorAll('.mobile-menu .menu-link').forEach(link => {
       header.classList.toggle("header--white", !isHome);
     }
 
-    // 🔥 MOBILE MENU TOGGLE — WORKS NOW
+    // -------------------------------
+    // MOBILE MENU TOGGLE
+    // -------------------------------
     const menuToggle = document.querySelector(".menu-toggle");
     const mobileMenu = document.querySelector(".mobile-menu");
 
     if (menuToggle && mobileMenu) {
       menuToggle.addEventListener("click", () => {
-        mobileMenu.classList.toggle("active");
         menuToggle.classList.toggle("active");
+        mobileMenu.classList.toggle("active");
       });
     }
 
-    // 🔥 MOBILE SUBMENU — MUST BE INSIDE THIS THEN()
-    document.querySelectorAll(".mobile-menu > li").forEach((item) => {
-      const submenu = item.querySelector(".submenu");
+    // -------------------------------
+    // MOBILE SUBMENU: slide per category
+    // -------------------------------
+    document.querySelectorAll(".mobile-menu > li").forEach(item => {
       const link = item.querySelector("a");
+      const submenu = item.querySelector(".submenu-mobile");
 
-      if (submenu && link) {
-        link.addEventListener("click", function (e) {
+      if (link && submenu) {
+        link.addEventListener("click", e => {
           e.preventDefault();
 
-          // Close others
-          document.querySelectorAll(".mobile-menu .expanded").forEach((openItem) => {
+          // Close other open submenus
+          document.querySelectorAll(".mobile-menu > li.expanded").forEach(openItem => {
             if (openItem !== item) openItem.classList.remove("expanded");
           });
 
+          // Toggle current submenu
           item.classList.toggle("expanded");
         });
       }
     });
-
   });
 
   // -------------------------------
