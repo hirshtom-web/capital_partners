@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   // -------------------------------
-  // Helper to load external HTML into a section by ID
+  // Helper: load external HTML into a section by ID
   // -------------------------------
   function loadHTML(id, url) {
     const container = document.getElementById(id);
@@ -14,8 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         container.innerHTML = html;
 
         // Run scripts inside loaded HTML
-        const scripts = container.querySelectorAll("script");
-        scripts.forEach(oldScript => {
+        container.querySelectorAll("script").forEach(oldScript => {
           const newScript = document.createElement("script");
           if (oldScript.src) newScript.src = oldScript.src;
           else newScript.textContent = oldScript.textContent;
@@ -27,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // -------------------------------
-  // HEADER: load + background + mobile menu
+  // HEADER: load + theme + mobile menu
   // -------------------------------
   loadHTML("header", "header.html").then(() => {
     const header = document.getElementById("header");
@@ -38,9 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
       header.classList.toggle("header--white", !isHome);
     }
 
-    // -------------------------------
     // MOBILE MENU TOGGLE
-    // -------------------------------
     const menuToggle = document.querySelector(".menu-toggle");
     const mobileMenu = document.querySelector(".mobile-menu");
 
@@ -48,13 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
       menuToggle.addEventListener("click", () => {
         menuToggle.classList.toggle("active");
         mobileMenu.classList.toggle("active");
+        document.body.classList.toggle("menu-open", mobileMenu.classList.contains("active"));
       });
     }
 
-    // -------------------------------
     // MOBILE SUBMENU: slide per category
-    // (old dropdown behavior — left untouched)
-    // -------------------------------
     document.querySelectorAll(".mobile-menu > li").forEach(item => {
       const link = item.querySelector("a");
       const submenu = item.querySelector(".submenu-mobile");
@@ -72,22 +67,20 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // -------------------------------
-    // 🚀 NEW: SLIDING SUBMENU LOGIC
-    // -------------------------------
+    // SLIDING SUBMENU LOGIC (services)
     const openServices = document.getElementById("open-services");
     const servicesSubmenu = document.getElementById("services-submenu");
     const backLinks = document.querySelectorAll(".mobile-submenu .back-link");
 
     if (openServices && servicesSubmenu) {
-      openServices.addEventListener("click", (e) => {
+      openServices.addEventListener("click", e => {
         e.preventDefault();
         servicesSubmenu.classList.add("active");
       });
     }
 
     backLinks.forEach(btn => {
-      btn.addEventListener("click", (e) => {
+      btn.addEventListener("click", e => {
         e.preventDefault();
         servicesSubmenu.classList.remove("active");
       });
@@ -105,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadHTML("tabs", "tabs.html"),
     loadHTML("footer", "footer.html"),
 
-    // Special: RE-CONTAINER + populate after load
+    // RE-CONTAINER + populate keywords
     loadHTML("re-container", "re-container.html").then(() => {
       populateREKeywords();
     })
@@ -116,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // -------------------------------
-  // Keyword generator for RE container
+  // Real Estate Keywords Generator
   // -------------------------------
   function populateREKeywords() {
     const keywords = [
@@ -142,10 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "Looking for real estate partnerships"
     ];
 
-    function shuffle(arr) {
-      return arr.sort(() => Math.random() - 0.5);
-    }
-
+    const shuffle = arr => arr.sort(() => Math.random() - 0.5);
     const list = shuffle([...keywords]);
     const container = document.getElementById("re-container");
     if (!container) return;
@@ -180,3 +170,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+
