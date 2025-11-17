@@ -441,3 +441,55 @@
   h2 { font-size: 20px; }
   .table thead th, .table tbody td{ font-size: 12px; padding: 8px; }
 }
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+
+<style>
+.table-wrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.table th, .table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.input-hover {
+  font-size: 0.9em;
+  color: #555;
+  margin-top: 4px;
+}
+
+.info-icon {
+  font-family: 'Material Symbols Outlined';
+  cursor: pointer;
+  margin-left: 8px;
+  vertical-align: middle;
+  color: #2a0f66;
+  position: relative;
+}
+
+.tooltip {
+  visibility: hidden;
+  background-color: #2a0f66;
+  color: #fff;
+  text-align: left;
+  padding: 8px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 25px;
+  min-width: 180px;
+  font-size: 0.85em;
+}
+
+.info-icon:hover .tooltip {
+  visibility: visible;
+}
