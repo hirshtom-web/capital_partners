@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Qalley Pitch Deck – Vertical Scroll With Navigation</title>
+<title>Qalley Pitch Deck</title>
 
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=keyboard_arrow_down" />
 
@@ -26,7 +25,7 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Top Scroll Progress Bar */
+/* Scroll Progress Bar */
 #scrollProgress {
   position: fixed;
   top: 0;
@@ -42,111 +41,6 @@ body {
 .slide {
   position: relative;
   z-index: 1;
-}
-
-/* ---------------- NAVIGATION BAR (DESKTOP) ---------------- */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: var(--nav-height);
-  width: 100%;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-}
-
-.nav-scroll {
-  display: flex;
-  overflow-x: auto;
-  white-space: nowrap;
-  gap: 50px;
-  scrollbar-width: none;
-}
-.nav-scroll::-webkit-scrollbar { display: none; }
-
-/* Add margin only to first and last item */
-.nav-item:first-child { margin-left: 20px; }
-.nav-item:last-child { margin-right: 20px; }
-
-.nav-item {
-  font-size: 14px;
-  padding: 6px 0;
-  cursor: pointer;
-  color: #444;
-  border-bottom: 3px solid transparent;
-  transition: 0.25s;
-}
-.nav-item.active {
-  color: var(--primary);
-  border-bottom: 3px solid var(--primary);
-  font-weight: 600;
-}
-
-/* ---------------- MOBILE NAV ---------------- */
-.mobile-nav {
-  display: flex !important;
-  justify-content: space-between;
-  align-items: center;
-  height: var(--nav-height);
-  padding: 0 20px;
-  background: #fff;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  z-index: 10000;
-  overflow: visible;
-}
-
-.mobile-nav-button {
-  font-size: 28px;
-  cursor: pointer;
-  color: #000;
-  z-index: 10001;
-  display: flex;
-  align-items: center;
-}
-
-.material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
-  color: #000;
-  font-size: 28px;
-}
-
-.mobile-nav-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #000;
-}
-
-/* Dropdown on mobile */
-.mobile-dropdown {
-  position: fixed;
-  top: var(--nav-height);
-  left: 0;
-  width: 100%;
-  background: white;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-  display: none;
-  flex-direction: column;
-  z-index: 9999;
-}
-
-.mobile-dropdown .drop-item {
-  padding: 18px 20px;
-  border-bottom: 1px solid #eee;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-/* --------------- SLIDE CONTENT --------------- */
-.deck { padding-top: calc(var(--nav-height) + 10px); }
-
-.slide {
   min-height: 100vh;
   padding: 80px 50px;
   opacity: 0;
@@ -158,6 +52,94 @@ body {
   transform: translateY(0);
 }
 
+/* ------------------- DESKTOP NAVIGATION ------------------- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: var(--nav-height);
+  width: 100%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 0 10px;
+  scrollbar-width: none;
+}
+.navbar::-webkit-scrollbar { display: none; }
+
+.nav-item {
+  display: inline-block;
+  padding: 6px 0;
+  cursor: pointer;
+  font-size: 14px;
+  color: #444;
+  border-bottom: 3px solid transparent;
+  margin-right: 50px; /* 50px gap between items */
+  white-space: nowrap;
+}
+.nav-item:last-child { margin-right: 0; } /* remove extra gap on last item */
+.nav-item.active {
+  color: var(--primary);
+  font-weight: 600;
+  border-bottom: 3px solid var(--primary);
+}
+
+/* ------------------- MOBILE NAVIGATION ------------------- */
+.mobile-nav {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--nav-height);
+  padding: 0 20px;
+  background: #fff;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  z-index: 10000;
+}
+
+.mobile-nav-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.mobile-nav-button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+  font-size: 28px;
+}
+
+/* Dropdown */
+.mobile-dropdown {
+  display: none;
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  width: 100%;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  z-index: 9999;
+}
+
+.mobile-dropdown .drop-item {
+  padding: 18px 20px;
+  font-size: 15px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+/* --------------- SLIDE CONTENT --------------- */
 h2 {
   font-size: 2rem;
   color: var(--text-dark);
@@ -171,45 +153,43 @@ p {
   font-size: 1.1rem;
 }
 
-/* --------------- RESPONSIVE --------------- */
+/* ------------------- RESPONSIVE ------------------- */
 @media (max-width: 900px) {
-  .navbar { display: none !important; }
-  .mobile-nav { display: flex !important; }
+  .navbar { display: none; }
+  .mobile-nav { display: flex; }
 }
 </style>
 </head>
 <body>
 
-<!-- ------------------- DESKTOP NAVIGATION ------------------- -->
+<!-- Scroll Progress -->
 <div id="scrollProgress"></div>
 
-<div class="navbar">
-  <div class="nav-scroll" id="navScroll">
-    <div class="nav-item" data-target="slide-1">1. Cover</div>
-    <div class="nav-item" data-target="slide-2">2. Problem</div>
-    <div class="nav-item" data-target="slide-3">3. Solution</div>
-    <div class="nav-item" data-target="slide-4">4. Market Opportunity</div>
-    <div class="nav-item" data-target="slide-5">5. Key Stats</div>
-    <div class="nav-item" data-target="slide-6">6. Product & Tech</div>
-    <div class="nav-item" data-target="slide-7">7. Business Model</div>
-    <div class="nav-item" data-target="slide-8">8. Traction</div>
-    <div class="nav-item" data-target="slide-9">9. Go-To-Market</div>
-    <div class="nav-item" data-target="slide-10">10. Competition</div>
-    <div class="nav-item" data-target="slide-11">11. Team</div>
-    <div class="nav-item" data-target="slide-12">12. Financials</div>
-    <div class="nav-item" data-target="slide-13">13. Funding Ask</div>
-    <div class="nav-item" data-target="slide-14">14. Vision</div>
-  </div>
+<!-- Desktop Navigation -->
+<div class="navbar" id="desktopNav">
+  <div class="nav-item" data-target="slide-1">1. Cover</div>
+  <div class="nav-item" data-target="slide-2">2. Problem</div>
+  <div class="nav-item" data-target="slide-3">3. Solution</div>
+  <div class="nav-item" data-target="slide-4">4. Market Opportunity</div>
+  <div class="nav-item" data-target="slide-5">5. Key Stats</div>
+  <div class="nav-item" data-target="slide-6">6. Product & Tech</div>
+  <div class="nav-item" data-target="slide-7">7. Business Model</div>
+  <div class="nav-item" data-target="slide-8">8. Traction</div>
+  <div class="nav-item" data-target="slide-9">9. Go-To-Market</div>
+  <div class="nav-item" data-target="slide-10">10. Competition</div>
+  <div class="nav-item" data-target="slide-11">11. Team</div>
+  <div class="nav-item" data-target="slide-12">12. Financials</div>
+  <div class="nav-item" data-target="slide-13">13. Funding Ask</div>
+  <div class="nav-item" data-target="slide-14">14. Vision</div>
 </div>
 
-<!-- ------------------- MOBILE NAVIGATION ------------------- -->
+<!-- Mobile Navigation -->
 <div class="mobile-nav">
   <div class="mobile-nav-title" id="mobileTitle">Cover</div>
   <div class="mobile-nav-button" id="mobileButton">
     <span class="material-symbols-outlined">keyboard_arrow_down</span>
   </div>
 </div>
-
 <div class="mobile-dropdown" id="mobileDropdown">
   <div class="drop-item" data-target="slide-1">1. Cover</div>
   <div class="drop-item" data-target="slide-2">2. Problem</div>
@@ -227,9 +207,8 @@ p {
   <div class="drop-item" data-target="slide-14">14. Vision</div>
 </div>
 
-<!-- ------------------- SLIDES ------------------- -->
+<!-- Slides -->
 <div class="deck">
-
   <section class="slide" id="slide-1"><h2>Cover</h2><p>Intro content...</p></section>
   <section class="slide" id="slide-2"><h2>Problem</h2></section>
   <section class="slide" id="slide-3"><h2>Solution</h2></section>
@@ -244,21 +223,19 @@ p {
   <section class="slide" id="slide-12"><h2>Financials</h2></section>
   <section class="slide" id="slide-13"><h2>Funding Ask</h2></section>
   <section class="slide" id="slide-14"><h2>Vision</h2></section>
-
 </div>
 
 <script>
-/* ------------------- SCROLL PROGRESS BAR ------------------- */
+/* Scroll Progress */
 const scrollProgress = document.getElementById("scrollProgress");
 function updateScrollProgress() {
   const scrollTop = window.scrollY;
   const docHeight = document.body.scrollHeight - window.innerHeight;
-  const progress = (scrollTop / docHeight) * 100;
-  scrollProgress.style.width = progress + "%";
+  scrollProgress.style.width = (scrollTop / docHeight * 100) + "%";
 }
 window.addEventListener("scroll", updateScrollProgress);
 
-/* ------------------- INTERSECTION OBSERVER ------------------- */
+/* Intersection Observer for slides */
 const sections = document.querySelectorAll(".slide");
 const navItems = document.querySelectorAll(".nav-item");
 const mobileTitle = document.getElementById("mobileTitle");
@@ -268,10 +245,8 @@ const observer = new IntersectionObserver((entries) => {
     if(entry.isIntersecting){
       entry.target.classList.add("visible");
       const id = entry.target.id;
-      navItems.forEach(i => {
-        i.classList.toggle("active", i.dataset.target === id);
-      });
-      const matchedItem = [...navItems].find(i => i.dataset.target === id);
+      navItems.forEach(i => i.classList.toggle("active", i.dataset.target===id));
+      const matchedItem = [...navItems].find(i => i.dataset.target===id);
       if(matchedItem) mobileTitle.textContent = matchedItem.textContent;
     }
   });
@@ -279,28 +254,24 @@ const observer = new IntersectionObserver((entries) => {
 
 sections.forEach(section => observer.observe(section));
 
-/* ------------------- DESKTOP NAV CLICK ------------------- */
+/* Desktop nav click */
 navItems.forEach(item => {
   item.onclick = () => {
-    const target = document.getElementById(item.dataset.target);
-    if(target) target.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(item.dataset.target).scrollIntoView({behavior:"smooth"});
   };
 });
 
-/* ------------------- MOBILE NAV LOGIC ------------------- */
+/* Mobile nav */
 const mobileButton = document.getElementById("mobileButton");
 const mobileDropdown = document.getElementById("mobileDropdown");
-
 mobileButton.onclick = () => {
-  const isOpen = mobileDropdown.style.display === "flex";
-  mobileDropdown.style.display = isOpen ? "none" : "flex";
+  mobileDropdown.style.display = mobileDropdown.style.display==="flex"?"none":"flex";
 };
 
 document.querySelectorAll(".mobile-dropdown .drop-item").forEach(item => {
   item.onclick = () => {
-    const target = document.getElementById(item.dataset.target);
-    if(target) target.scrollIntoView({ behavior: "smooth" });
-    mobileDropdown.style.display = "none";
+    document.getElementById(item.dataset.target).scrollIntoView({behavior:"smooth"});
+    mobileDropdown.style.display="none";
   };
 });
 </script>
