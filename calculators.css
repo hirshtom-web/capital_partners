@@ -367,79 +367,77 @@
 
 /* ---------- Table ---------- */
 /* Section */
-   h1, h2{
-      text-align: center;
-      font-weight: 800;
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      font-size: 24px;
-    }
+   h2{
+  text-align: center;
+  font-weight: 800;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
 
-    .flag {
-      width: 28px;
-      height: 18px;
-      border-radius: 4px;
-      object-fit: cover;
-      box-shadow: 0 0 3px rgba(0,0,0,0.15);
-    }
+.table-wrap{
+  width: 100%;
+  margin: 0 auto 40px;
+  background: var(--bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  max-width: 900px;
+}
 
-    .table-wrap{
-      width: 100%;
-      margin: 0 auto 40px;
-      background: var(--bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow-x: auto;
-      border: 1px solid var(--border);
-      max-width: 1000px;
-    }
+.table{
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg);
+}
 
-    .table{
-      width: 100%;
-      border-collapse: collapse;
-      background: var(--bg);
-    }
+.table thead th{
+  text-align: center;
+  background: var(--soft-gray);
+  border-bottom: 1px solid var(--border);
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 600;
+}
 
-    .table thead th{
-      text-align: center;
-      background: var(--soft-gray);
-      border-bottom: 1px solid var(--border);
-      padding: 14px;
-      font-size: 14px;
-      font-weight: 600;
-    }
+.table tbody td{
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  padding: 12px;
+  font-size: 14px;
+  position: relative;
+}
 
-    .table tbody td{
-      border-bottom: 1px solid var(--border);
-      text-align: center;
-      padding: 12px;
-      font-size: 14px;
-    }
+.table tbody td:first-child{
+  text-align: left;
+  font-weight: 500;
+  color: #111827;
+}
 
-    .table tbody td:first-child{
-      text-align: left;
-      font-weight: 500;
-      color: #111827;
-    }
+.table tbody tr:nth-child(odd){ background: #fff; }
+.table tbody tr:nth-child(even){ background: var(--soft-gray); }
+.table tbody tr:hover{ background: #f3f3f3; }
 
-    .table tbody tr:nth-child(odd){ background: #fff; }
-    .table tbody tr:nth-child(even){ background: var(--soft-gray); }
-    .table tbody tr:hover{ background: #f3f3f3; }
+.input-hover {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  background: #f9f9ff;
+  padding: 8px 12px;
+  font-size: 12px;
+  border-top: 1px solid var(--border);
+  color: #333;
+  white-space: normal;
+  z-index: 1;
+}
 
-    .checkmark, .crossmark {
-      font-size: 18px;
-      user-select: none;
-    }
+.table tbody tr:hover .input-hover {
+  display: block;
+}
 
-    .checkmark { color: var(--green); }
-    .crossmark { color: var(--red); }
-
-    @media (max-width: 680px){
-      h1, h2 { font-size: 20px; }
-      .flag { width: 22px; height: 14px; }
-      .table thead th, .table tbody td{ font-size: 12px; padding: 8px; }
-    }
+@media (max-width: 680px){
+  h2 { font-size: 20px; }
+  .table thead th, .table tbody td{ font-size: 12px; padding: 8px; }
+}
