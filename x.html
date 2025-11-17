@@ -26,7 +26,7 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Top Scroll Progress Bar */
+/* ---------------- SCROLL PROGRESS ---------------- */
 #scrollProgress {
   position: fixed;
   top: 0;
@@ -39,12 +39,40 @@ body {
   transition: width 0.15s ease-out;
 }
 
+/* ---------------- SLIDE ---------------- */
 .slide {
   position: relative;
   z-index: 1;
 }
 
-/* ---------------- NAVIGATION BAR (DESKTOP) ---------------- */
+.deck { padding-top: calc(var(--nav-height) + 10px); }
+
+.slide {
+  min-height: 100vh;
+  padding: 80px 50px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.8s ease;
+}
+.slide.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+h2 {
+  font-size: 2rem;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+p {
+  max-width: 700px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+/* ---------------- NAVBAR ---------------- */
 .navbar {
   position: fixed;
   top: 0;
@@ -76,11 +104,16 @@ body {
   border-bottom: 3px solid transparent;
   transition: 0.25s;
 }
+
 .nav-item.active {
   color: var(--primary);
   border-bottom: 3px solid var(--primary);
   font-weight: 600;
 }
+
+/* Add margin to first and last desktop nav items */
+.nav-item:first-child { margin-left: 20px; }
+.nav-item:last-child { margin-right: 20px; }
 
 /* ---------------- MOBILE NAV ---------------- */
 .mobile-nav {
@@ -95,13 +128,13 @@ body {
   width: 100%;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   z-index: 10000;
-  overflow: visible; /* allow arrow to escape container if needed */
+  overflow: visible; 
 }
 
 .mobile-nav-button {
-  position: absolute; /* absolute inside .mobile-nav */
-  right: 20px;        /* 20px from right edge of mobile nav */
-  top: 50%;           /* vertically center */
+  position: absolute;
+  right: 20px;
+  top: 50%;
   transform: translateY(-50%); 
   font-size: 28px;
   cursor: pointer;
@@ -115,15 +148,13 @@ body {
   font-size: 28px;
 }
 
-
 .mobile-nav-title {
   font-size: 16px;
   font-weight: 600;
   color: #000;
 }
 
-
-/* Dropdown on mobile */
+/* ---------------- MOBILE DROPDOWN ---------------- */
 .mobile-dropdown {
   position: fixed;
   top: var(--nav-height);
@@ -136,6 +167,10 @@ body {
   z-index: 9999;
 }
 
+/* Padding on first and last dropdown item so text doesn't hit edges */
+.mobile-dropdown .drop-item:first-child { padding-left: 25px; }
+.mobile-dropdown .drop-item:last-child { padding-right: 25px; }
+
 .mobile-dropdown .drop-item {
   padding: 18px 20px;
   border-bottom: 1px solid #eee;
@@ -143,40 +178,13 @@ body {
   cursor: pointer;
 }
 
-/* --------------- SLIDE CONTENT --------------- */
-.deck { padding-top: calc(var(--nav-height) + 10px); }
-
-.slide {
-  min-height: 100vh;
-  padding: 80px 50px;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 0.8s ease;
-}
-.slide.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-h2 {
-  font-size: 2rem;
-  color: var(--text-dark);
-  margin-bottom: 20px;
-}
-
-p {
-  max-width: 700px;
-  color: var(--text-muted);
-  line-height: 1.6;
-  font-size: 1.1rem;
-}
-
-/* --------------- RESPONSIVE --------------- */
+/* ---------------- RESPONSIVE ---------------- */
 @media (max-width: 900px) {
   .navbar { display: none !important; }
   .mobile-nav { display: flex !important; }
 }
 </style>
+
 </head>
 <body>
 
