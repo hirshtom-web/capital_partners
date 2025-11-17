@@ -67,7 +67,7 @@ body {
   overflow-x: auto;
   white-space: nowrap;
   padding-left: 10px;
-  padding-right: 60px; /* extra right padding for last item */
+  padding-right: 0; /* no padding, we'll use margin on last item */
   scrollbar-width: none;
 }
 .navbar::-webkit-scrollbar { display: none; }
@@ -82,7 +82,7 @@ body {
   margin-right: 50px; /* 50px gap between items */
   white-space: nowrap;
 }
-.nav-item:last-child { margin-right: 0; }
+.nav-item:last-child { margin-right: 100px; /* extra 50px after last item */ }
 .nav-item.active {
   color: var(--primary);
   font-weight: 600;
@@ -102,13 +102,12 @@ body {
   width: 100%;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   z-index: 10000;
-  overflow: visible; /* make sure arrow isn't cut */
 }
 
 .mobile-nav-title {
   font-size: 16px;
   font-weight: 600;
-  max-width: 80%; /* prevent overflow */
+  max-width: 70%; /* prevent overflow with arrow */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -118,7 +117,7 @@ body {
   display: flex;
   align-items: center;
   cursor: pointer;
-  z-index: 10001; /* ensure it's above other elements */
+  margin-right: 50px; /* extra 50px margin from screen edge */
 }
 
 /* Arrow icon */
