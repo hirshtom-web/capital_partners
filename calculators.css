@@ -367,32 +367,79 @@
 
 /* ---------- Table ---------- */
 /* Section */
-/* Round the section corners */
-#real-estate-calculators {
-  background: linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 100%);
-  color: #1e0949;
-  padding: 50px 20px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  border-radius: 20px; /* <-- makes corners rounded */
-}
+   h1, h2{
+      text-align: center;
+      font-weight: 800;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 24px;
+    }
 
-/* Optional: round the table corners */
-#real-estate-calculators table {
-  width: 100%;
-  border-collapse: separate; /* important for rounding table corners */
-  border-spacing: 0;
-  border-radius: 12px; /* <-- table corners */
-  overflow: hidden; /* clips the table cells to respect border-radius */
-}
+    .flag {
+      width: 28px;
+      height: 18px;
+      border-radius: 4px;
+      object-fit: cover;
+      box-shadow: 0 0 3px rgba(0,0,0,0.15);
+    }
 
-/* Optional: round table header separately */
-#real-estate-calculators th:first-child {
-  border-top-left-radius: 12px;
-}
-#real-estate-calculators th:last-child {
-  border-top-right-radius: 12px;
-}
-#real-estate-calculators td:first-child:last-child {
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-}
+    .table-wrap{
+      width: 100%;
+      margin: 0 auto 40px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      max-width: 1000px;
+    }
+
+    .table{
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg);
+    }
+
+    .table thead th{
+      text-align: center;
+      background: var(--soft-gray);
+      border-bottom: 1px solid var(--border);
+      padding: 14px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .table tbody td{
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    .table tbody td:first-child{
+      text-align: left;
+      font-weight: 500;
+      color: #111827;
+    }
+
+    .table tbody tr:nth-child(odd){ background: #fff; }
+    .table tbody tr:nth-child(even){ background: var(--soft-gray); }
+    .table tbody tr:hover{ background: #f3f3f3; }
+
+    .checkmark, .crossmark {
+      font-size: 18px;
+      user-select: none;
+    }
+
+    .checkmark { color: var(--green); }
+    .crossmark { color: var(--red); }
+
+    @media (max-width: 680px){
+      h1, h2 { font-size: 20px; }
+      .flag { width: 22px; height: 14px; }
+      .table thead th, .table tbody td{ font-size: 12px; padding: 8px; }
+    }
