@@ -66,7 +66,8 @@ body {
   align-items: center;
   overflow-x: auto;
   white-space: nowrap;
-  padding: 0 10px;
+  padding-left: 10px;
+  padding-right: 60px; /* extra right padding for last item */
   scrollbar-width: none;
 }
 .navbar::-webkit-scrollbar { display: none; }
@@ -81,7 +82,7 @@ body {
   margin-right: 50px; /* 50px gap between items */
   white-space: nowrap;
 }
-.nav-item:last-child { margin-right: 0; } /* remove extra gap on last item */
+.nav-item:last-child { margin-right: 0; }
 .nav-item.active {
   color: var(--primary);
   font-weight: 600;
@@ -101,22 +102,30 @@ body {
   width: 100%;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   z-index: 10000;
+  overflow: visible; /* make sure arrow isn't cut */
 }
 
 .mobile-nav-title {
   font-size: 16px;
   font-weight: 600;
+  max-width: 80%; /* prevent overflow */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .mobile-nav-button {
   display: flex;
   align-items: center;
   cursor: pointer;
+  z-index: 10001; /* ensure it's above other elements */
 }
 
+/* Arrow icon */
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
   font-size: 28px;
+  line-height: 1;
 }
 
 /* Dropdown */
