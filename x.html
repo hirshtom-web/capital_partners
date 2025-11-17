@@ -48,6 +48,7 @@ body {
   opacity: 0;
   transform: translateY(40px);
   transition: 0.8s ease;
+  scroll-margin-top: var(--nav-height); /* leaves space for fixed navbar */
 }
 .slide.visible {
   opacity: 1;
@@ -207,6 +208,9 @@ p {
 @media (max-width: 900px) {
   .navbar { display: none; }
   .mobile-nav { display: flex; }
+  .slide {
+    scroll-margin-top: calc(var(--nav-height) + 20px); /* 20px extra spacing */
+}
 }
 /* ------------------- The Problem ------------------- */
    .container {
