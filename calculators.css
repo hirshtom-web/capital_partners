@@ -239,6 +239,15 @@
   padding: 0 10px;
   border-radius: 8px;
 }
+/* Add space below calculator section */
+#calculatorSection {
+  margin-bottom: 50px; /* adjust the value as needed */
+}
+
+/* Optional: Add space above the real estate calculators section */
+#real-estate-calculators {
+  margin-top: 50px; /* adjust the value as needed */
+}
 
 /* ---------- CALCULATOR BUTTONS ---------- */
 #calculatorSection .calc-selector {
