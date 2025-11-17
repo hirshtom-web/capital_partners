@@ -98,15 +98,16 @@ body {
 .mobile-nav-title {
   font-size: 16px;
   font-weight: 600;
+  color: #000;
 }
 
 .mobile-nav-button {
   font-size: 22px;
   cursor: pointer;
-  color: #000; /* make arrow visible */
+  color: #000;
 }
 
-/* Dropdown on mobile  */
+/* Dropdown on mobile */
 .mobile-dropdown {
   position: fixed;
   top: var(--nav-height);
@@ -155,7 +156,7 @@ p {
 }
 
 /* --------------- RESPONSIVE --------------- */
-@media (max-width: 1200px) {
+@media (max-width: 900px) {
   .navbar { display: none !important; }
   .mobile-nav { display: flex !important; }
 }
@@ -186,14 +187,12 @@ p {
 </div>
 
 <!-- ------------------- MOBILE NAVIGATION ------------------- -->
-<!-- MOBILE BUTTON -->
-<div class="mobile-button" id="mobileButton" style="width:50px; height:50px; cursor:pointer; display:flex; justify-content:center; align-items:center;">
-  <svg width="24" height="24" viewBox="0 0 24 24">
-    <path d="M7 10l5 5 5-5H7z" fill="#000"/>
-  </svg>
+<div class="mobile-nav">
+  <div class="mobile-nav-title" id="mobileTitle">Cover</div>
+  <div class="mobile-nav-button" id="mobileButton">▼</div>
 </div>
 
-<div class="mobile-dropdown" id="mobileDropdown" style="display:none; position:absolute; top:60px; right:0; background:#fff; border:1px solid #ddd;">
+<div class="mobile-dropdown" id="mobileDropdown">
   <div class="drop-item" data-target="slide-1">1. Cover</div>
   <div class="drop-item" data-target="slide-2">2. Problem</div>
   <div class="drop-item" data-target="slide-3">3. Solution</div>
@@ -214,44 +213,33 @@ p {
 <div class="deck">
 
   <section class="slide" id="slide-1"><h2>Cover</h2><p>Intro content...</p></section>
-
   <section class="slide" id="slide-2"><h2>Problem</h2></section>
-
   <section class="slide" id="slide-3"><h2>Solution</h2></section>
-
   <section class="slide" id="slide-4"><h2>Market Opportunity</h2></section>
-
   <section class="slide" id="slide-5"><h2>Key Stats</h2></section>
-
   <section class="slide" id="slide-6"><h2>Product & Tech</h2></section>
-
   <section class="slide" id="slide-7"><h2>Business Model</h2></section>
-
   <section class="slide" id="slide-8"><h2>Traction</h2></section>
-
   <section class="slide" id="slide-9"><h2>Go-To-Market</h2></section>
-
   <section class="slide" id="slide-10"><h2>Competition</h2></section>
-
   <section class="slide" id="slide-11"><h2>Team</h2></section>
-
   <section class="slide" id="slide-12"><h2>Financials</h2></section>
-
   <section class="slide" id="slide-13"><h2>Funding Ask</h2></section>
-
   <section class="slide" id="slide-14"><h2>Vision</h2></section>
 
 </div>
 
 <script>
-/* ------------------- SCROLL PROGRESS ------------------- */
+/* ------------------- SCROLL PROGRESS BAR ------------------- */
 const scrollProgress = document.getElementById("scrollProgress");
+
 function updateScrollProgress() {
   const scrollTop = window.scrollY;
   const docHeight = document.body.scrollHeight - window.innerHeight;
   const progress = (scrollTop / docHeight) * 100;
   scrollProgress.style.width = progress + "%";
 }
+
 window.addEventListener("scroll", updateScrollProgress);
 
 /* ------------------- INTERSECTION OBSERVER ------------------- */
@@ -264,11 +252,9 @@ const observer = new IntersectionObserver((entries) => {
     if(entry.isIntersecting){
       entry.target.classList.add("visible");
       const id = entry.target.id;
-
       navItems.forEach(i => {
         i.classList.toggle("active", i.dataset.target === id);
       });
-
       const matchedItem = [...navItems].find(i => i.dataset.target === id);
       if(matchedItem) mobileTitle.textContent = matchedItem.textContent;
     }
@@ -285,26 +271,23 @@ navItems.forEach(item => {
   };
 });
 
-/* ------------------- MOBILE NAV TOGGLE ------------------- */
+/* ------------------- MOBILE NAV LOGIC ------------------- */
 const mobileButton = document.getElementById("mobileButton");
 const mobileDropdown = document.getElementById("mobileDropdown");
 
 mobileButton.onclick = () => {
   const isOpen = mobileDropdown.style.display === "flex";
   mobileDropdown.style.display = isOpen ? "none" : "flex";
-  mobileDropdown.style.flexDirection = "column"; // ensure column layout
 };
 
-/* ------------------- MOBILE DROPDOWN ITEM CLICK ------------------- */
 document.querySelectorAll(".mobile-dropdown .drop-item").forEach(item => {
   item.onclick = () => {
     const target = document.getElementById(item.dataset.target);
-    target.scrollIntoView({ behavior: "smooth" });
+    if(target) target.scrollIntoView({ behavior: "smooth" });
     mobileDropdown.style.display = "none";
   };
 });
 </script>
-
 
 </body>
 </html>
