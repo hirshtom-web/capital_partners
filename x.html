@@ -267,6 +267,133 @@ p {
         50%  { transform: translateY(-18px); }
         100% { transform: translateY(0px); }
     }
+  
+/* ------------------- The solution ------------------- */
+  /* Slider container */
+#slide-3 .slider {
+    overflow: hidden;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    background: #fff;
+    max-width: 400px; /* adjust width as needed */
+    margin: 20px auto; /* centers slider in section */
+}
+
+/* Slides wrapper */
+#slide-3 .slides {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+/* Individual invoice card */
+#slide-3 .invoice-card {
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Invoice header */
+#slide-3 .invoice-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 25px;
+    background: #f4f4f9;
+    font-size: 16px;
+    color: #555;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+}
+
+#slide-3 .invoice-header span {
+    font-weight: 600;
+    color: #222;
+}
+
+/* Invoice title */
+#slide-3 .invoice-title {
+    text-align: center;
+    font-size: 22px;
+    margin: 15px 0;
+    color: #222;
+}
+
+/* Items container */
+#slide-3 .container {
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    overflow: hidden;
+}
+
+/* Individual fee item */
+#slide-3 .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+#slide-3 .item:last-child {
+    border-bottom: none;
+}
+
+/* Check icon */
+#slide-3 .check {
+    color: #3cc663;
+    font-variation-settings: 'FILL' 1, 'wght' 400;
+    font-size: 20px;
+    margin-right: 12px;
+}
+
+/* Fee name */
+#slide-3 .fee-name {
+    font-size: 16px;
+    font-weight: 500;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* Amount */
+#slide-3 .amount {
+    font-size: 16px;
+    font-weight: 600;
+    color: #3cc663;
+    min-width: 60px;
+    text-align: right;
+}
+
+/* Total saved */
+#slide-3 .total {
+    margin: 15px;
+    padding: 12px;
+    background: #e9fdf0;
+    border: 1px solid #b6eec8;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1d7e3d;
+    text-align: right;
+}
+
+/* Slider buttons */
+#slide-3 .slider-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+#slide-3 .slider-buttons button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    background: #3cc663;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+}
+
 </style>
 </head>
 <body>
@@ -334,8 +461,64 @@ p {
 
   <section class="slide" id="slide-3">
     <h2>Our Innovative Solution</h2>
-    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Fast, transparent, and data-driven | A platform that streamlines property search, simplifies transactions, and delivers actionable insights for all stakeholders.</div>
-  </section>
+
+    <!-- Invoice Slider Start -->
+    <div class="right-column" style="margin-top: 30px;">
+        <div class="slider">
+            <div class="slides">
+                <!-- Invoice 1 -->
+                <div class="invoice-card">
+                    <div class="invoice-header">
+                        <div>Invoice #: <span>#123456</span></div>
+                        <div>Date: <span>Nov 17, 2025</span></div>
+                    </div>
+                    <div class="invoice-title">Fees You Saved</div>
+                    <div class="container">
+                        <div class="item"><span class="material-symbols-outlined check">check_small</span><span class="fee-name">Checked Bag Fee</span><span class="amount">$45</span></div>
+                        <div class="item"><span class="material-symbols-outlined check">check_small</span><span class="fee-name">Carry-on Fee</span><span class="amount">$30</span></div>
+                        <div class="item"><span class="material-symbols-outlined check">check_small</span><span class="fee-name">Seat Selection Fee</span><span class="amount">$18</span></div>
+                    </div>
+                    <div class="total">TOTAL SAVED: $93</div>
+                </div>
+
+                <!-- Invoice 2 -->
+                <div class="invoice-card">
+                    <div class="invoice-header">
+                        <div>Invoice #: <span>#123457</span></div>
+                        <div>Date: <span>Nov 18, 2025</span></div>
+                    </div>
+                    <div class="invoice-title">Fees You Saved</div>
+                    <div class="container">
+                        <div class="item"><span class="material-symbols-outlined check">check_small</span><span class="fee-name">Extra Legroom</span><span class="amount">$39</span></div>
+                        <div class="item"><span class="material-symbols-outlined check">check_small</span><span class="fee-name">Priority Boarding</span><span class="amount">$22</span></div>
+                        <div class="item"><span class="material-symbols-outlined check">check_small</span><span class="fee-name">Wi-Fi / Internet</span><span class="amount">$11</span></div>
+                    </div>
+                    <div class="total">TOTAL SAVED: $72</div>
+                </div>
+
+                <!-- Invoice 3 -->
+                <div class="invoice-card">
+                    <div class="invoice-header">
+                        <div>Invoice #: <span>#123458</span></div>
+                        <div>Date: <span>Nov 19, 2025</span></div>
+                    </div>
+                    <div class="invoice-title">Fees You Saved</div>
+                    <div class="container">
+                        <div class="item"><span class="material-symbols-outlined check">check_small</span><span class="fee-name">Food & Snacks</span><span class="amount">$12</span></div>
+                        <div class="item"><span class="material-symbols-outlined check">check_small</span><span class="fee-name">Airport Shuttle</span><span class="amount">$16</span></div>
+                    </div>
+                    <div class="total">TOTAL SAVED: $28</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-buttons" style="margin-top: 15px;">
+            <button onclick="prevSlide()">Prev</button>
+            <button onclick="nextSlide()">Next</button>
+        </div>
+    </div>
+    <!-- Invoice Slider End -->
+    </section>
 
   <section class="slide" id="slide-4">
     <h2>A Growing Real Estate Market</h2>
@@ -509,7 +692,24 @@ fees.forEach((fee) => {
 
     container.appendChild(bubble);
 });
+let currentIndex = 0;
+    const slides = document.querySelector('#slide-3 .slides');
+    const totalSlides = slides.children.length;
 
+    function showSlide(index) {
+        if(index < 0) index = totalSlides - 1;
+        if(index >= totalSlides) index = 0;
+        slides.style.transform = `translateX(-${index * 100}%)`;
+        currentIndex = index;
+    }
+
+    function nextSlide() {
+        showSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentIndex - 1);
+    }
 
 </script>
 </body>
