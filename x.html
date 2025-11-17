@@ -54,6 +54,20 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+/* Wrap slide text in a container occupying left 50% (or 40%) */
+.text-content {
+  max-width: 50%;       /* Try 40% for narrower layout */
+  padding-left: 40px;   /* Optional gap from left edge */
+  padding-right: 20px;  /* Optional internal spacing */
+}
+
+/* Optional: make it responsive */
+@media (max-width: 900px) {
+  .text-content {
+    max-width: 90%;     /* Full width on small screens */
+    padding-left: 20px;
+  }
+}
 
 /* Checkmark Style */
 .checkmark {
@@ -327,12 +341,22 @@ p {
   <div class="mega-section" style="background-color:#f4f4f9;">
     <section class="slide" id="slide-1">
       <h2>Revolutionizing Real Estate with Technology</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Innovative solutions for modern property challenges | Redefining how real estate is searched, bought, and managed. Your gateway to smarter property decisions.</div>
+      <div class="checkmark">
+        <span><
+                svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+        </span>
+        Innovative solutions for modern property challenges | Redefining how real estate is searched, bought, and managed. Your gateway to smarter property decisions.
+      </div>
     </section>
 
     <section class="slide" id="slide-2">
       <h2>Current Real Estate Challenges</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Fragmented market | Buyers and sellers face inefficiencies, lack of transparency, and slow processes. Current tools are outdated and fail to deliver real-time insights.</div>
+      <div class="checkmark">
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+        </span>
+        Fragmented market | Buyers and sellers face inefficiencies, lack of transparency, and slow processes. Current tools are outdated and fail to deliver real-time insights.
+      </div>
 <div class="container" id="cloud"></div>
     </section>
   </div>
@@ -341,7 +365,12 @@ p {
   <div class="mega-section" style="background-color:#f4f4f9;">
     <section class="slide" id="slide-4">
       <h2>A Growing Real Estate Market</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Multi-billion dollar potential | Urbanization and tech adoption make this the perfect time to scale our platform.</div>
+      <div class="checkmark">
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+        </span>
+        Multi-billion dollar potential | Urbanization and tech adoption make this the perfect time to scale our platform.
+      </div>
     </section>
 
     <section class="slide" id="slide-5">
