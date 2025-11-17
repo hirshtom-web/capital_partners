@@ -208,6 +208,63 @@ p {
   .navbar { display: none; }
   .mobile-nav { display: flex; }
 }
+/* ------------------- The Problem ------------------- */
+   .container {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .bubble {
+        position: absolute;
+        padding: 18px 26px 18px 40px;
+        border-radius: 14px;
+        white-space: nowrap;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 0.2px;
+        cursor: default;
+        transition: 0.25s ease;
+
+        /* Clean glass card look */
+        background: rgba(255,255,255,0.65);
+        box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+        border: 1px solid rgba(200,200,200,0.45);
+        backdrop-filter: blur(10px);
+
+        animation: float infinite ease-in-out;
+    }
+
+    .bubble:hover {
+        transform: translateY(-6px) scale(1.04);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+    }
+
+    .bad-x {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 18px;
+        background: #ff4a4a;
+        color: #fff;
+        border-radius: 50%;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        box-shadow: 0 0 8px rgba(255,0,0,0.4);
+    }
+
+    @keyframes float {
+        0%   { transform: translateY(0px); }
+        50%  { transform: translateY(-18px); }
+        100% { transform: translateY(0px); }
+    }
 </style>
 </head>
 <body>
@@ -272,6 +329,7 @@ p {
     <section class="slide" id="slide-2">
       <h2>Current Real Estate Challenges</h2>
       <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Fragmented market | Buyers and sellers face inefficiencies, lack of transparency, and slow processes. Current tools are outdated and fail to deliver real-time insights.</div>
+<div class="container" id="cloud"></div>
     </section>
   </div>
 
@@ -417,6 +475,53 @@ dropItems.forEach(item => {
 mobileButton.addEventListener('click', () => {
   mobileDropdown.style.display = mobileDropdown.style.display === 'flex' ? 'none' : 'flex';
 });
+
+const fees = [
+    "Application fee",
+    "Appraisal fee",
+    "Attorney fees",
+    "Closing protection letter (CPL)",
+    "Credit report",
+    "Deed preparation",
+    "Document preparation",
+    "Escrow fees / Settlement fee / Closing fee",
+    "Flood certification fee",
+    "Home inspection fee",
+    "Homeowners association (HOA) fees / transfer fees",
+    "Homeowners insurance premium",
+    "Lender's title insurance premium",
+    "Loan origination fee",
+    "Mortgage insurance premium",
+    "Notary fees",
+    "Prepaid interest",
+    "Prorated property taxes",
+    "Recording fees",
+    "Stamp taxes"
+];
+
+const container = document.getElementById("cloud");
+
+fees.forEach((fee) => {
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+
+    bubble.innerHTML = `
+        <div class="bad-x">X</div>
+        ${fee}
+    `;
+
+    // Random positions
+    bubble.style.left = Math.random() * 75 + "vw";
+    bubble.style.top  = (Math.random() * 60 + 18) + "vh";
+
+    // Random timing for natural motion
+    bubble.style.animationDuration = (8 + Math.random() * 6) + "s";
+    bubble.style.animationDelay = (Math.random() * -5) + "s";
+
+    container.appendChild(bubble);
+});
+
+
 </script>
 </body>
 </html>
