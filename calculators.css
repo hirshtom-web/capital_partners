@@ -367,54 +367,32 @@
 
 /* ---------- Table ---------- */
 /* Section */
+/* Round the section corners */
 #real-estate-calculators {
   background: linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 100%);
   color: #1e0949;
   padding: 50px 20px;
   font-family: 'Plus Jakarta Sans', sans-serif;
+  border-radius: 20px; /* <-- makes corners rounded */
 }
 
-/* Container */
-#real-estate-calculators .container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Heading and paragraph */
-#real-estate-calculators h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-#real-estate-calculators p {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto 40px auto;
-  line-height: 1.6;
-}
-
-/* Table wrapper for responsiveness */
-#real-estate-calculators .table-wrapper {
-  overflow-x: auto;
-}
-
-/* Table */
+/* Optional: round the table corners */
 #real-estate-calculators table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate; /* important for rounding table corners */
+  border-spacing: 0;
+  border-radius: 12px; /* <-- table corners */
+  overflow: hidden; /* clips the table cells to respect border-radius */
 }
 
-/* Table header */
-#real-estate-calculators th {
-  padding: 10px;
-  border: 1px solid #444;
-  background-color: #2a0f66;
-  color: #fff;
-  text-align: left;
+/* Optional: round table header separately */
+#real-estate-calculators th:first-child {
+  border-top-left-radius: 12px;
 }
-
-/* Table body */
-#real-estate-calculators td {
-  padding: 10px;
-  border: 1px solid #444;
+#real-estate-calculators th:last-child {
+  border-top-right-radius: 12px;
+}
+#real-estate-calculators td:first-child:last-child {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
