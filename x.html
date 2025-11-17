@@ -186,12 +186,14 @@ p {
 </div>
 
 <!-- ------------------- MOBILE NAVIGATION ------------------- -->
-<div class="mobile-nav">
-  <div class="mobile-nav-title" id="mobileTitle">Cover</div>
-  <div class="mobile-nav-button" id="mobileButton">▼</div>
+<!-- MOBILE BUTTON -->
+<div class="mobile-button" id="mobileButton" style="width:50px; height:50px; cursor:pointer; display:flex; justify-content:center; align-items:center;">
+  <svg width="24" height="24" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5H7z" fill="#000"/>
+  </svg>
 </div>
 
-<div class="mobile-dropdown" id="mobileDropdown">
+<div class="mobile-dropdown" id="mobileDropdown" style="display:none; position:absolute; top:60px; right:0; background:#fff; border:1px solid #ddd;">
   <div class="drop-item" data-target="slide-1">1. Cover</div>
   <div class="drop-item" data-target="slide-2">2. Problem</div>
   <div class="drop-item" data-target="slide-3">3. Solution</div>
@@ -242,18 +244,17 @@ p {
 </div>
 
 <script>
-/* ------------------- INTERSECTION OBSERVER ------------------- */
+/* ------------------- SCROLL PROGRESS ------------------- */
 const scrollProgress = document.getElementById("scrollProgress");
-
 function updateScrollProgress() {
   const scrollTop = window.scrollY;
   const docHeight = document.body.scrollHeight - window.innerHeight;
   const progress = (scrollTop / docHeight) * 100;
   scrollProgress.style.width = progress + "%";
 }
-
 window.addEventListener("scroll", updateScrollProgress);
 
+/* ------------------- INTERSECTION OBSERVER ------------------- */
 const sections = document.querySelectorAll(".slide");
 const navItems = document.querySelectorAll(".nav-item");
 const mobileTitle = document.getElementById("mobileTitle");
@@ -262,7 +263,6 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if(entry.isIntersecting){
       entry.target.classList.add("visible");
-
       const id = entry.target.id;
 
       navItems.forEach(i => {
@@ -285,15 +285,17 @@ navItems.forEach(item => {
   };
 });
 
-/* ------------------- MOBILE NAV LOGIC ------------------- */
+/* ------------------- MOBILE NAV TOGGLE ------------------- */
 const mobileButton = document.getElementById("mobileButton");
 const mobileDropdown = document.getElementById("mobileDropdown");
 
 mobileButton.onclick = () => {
   const isOpen = mobileDropdown.style.display === "flex";
   mobileDropdown.style.display = isOpen ? "none" : "flex";
+  mobileDropdown.style.flexDirection = "column"; // ensure column layout
 };
 
+/* ------------------- MOBILE DROPDOWN ITEM CLICK ------------------- */
 document.querySelectorAll(".mobile-dropdown .drop-item").forEach(item => {
   item.onclick = () => {
     const target = document.getElementById(item.dataset.target);
@@ -302,6 +304,7 @@ document.querySelectorAll(".mobile-dropdown .drop-item").forEach(item => {
   };
 });
 </script>
+
 
 </body>
 </html>
