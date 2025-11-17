@@ -105,19 +105,18 @@ body {
   cursor: pointer;
 }
 
-/* Dropdown on mobile */
+/* Dropdown on mobile  (FIXED: white background + z-index) */
 .mobile-dropdown {
   position: fixed;
   top: var(--nav-height);
   left: 0;
   width: 100%;
-  background: #777;
+  background: white;         /* FIX: visible dropdown */
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
   display: none;
   flex-direction: column;
-  z-index: 5000;
+  z-index: 9999;             /* FIX: on top */
 }
-
 
 .mobile-dropdown .drop-item {
   padding: 18px 20px;
@@ -127,8 +126,7 @@ body {
 }
 
 /* --------------- SLIDE CONTENT --------------- */
-  .deck { padding-top: calc(var(--nav-height) + 10px); }
-
+.deck { padding-top: calc(var(--nav-height) + 10px); }
 
 .slide {
   min-height: 100vh;
@@ -156,9 +154,10 @@ p {
 }
 
 /* --------------- RESPONSIVE --------------- */
-@media (max-width: 1200px) {
-  .navbar { display: none; }
-  .mobile-nav { display: flex; }
+/* FIX: proper breakpoint for mobile nav */
+@media (max-width: 900px) {
+  .navbar { display: none !important; }
+  .mobile-nav { display: flex !important; }
 }
 </style>
 </head>
