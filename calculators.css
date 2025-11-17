@@ -368,7 +368,7 @@
 /* ---------- Table ---------- */
 /* Section */
    h2{
-  text-align: left;
+  text-align: center;
   font-weight: 800;
   margin-bottom: 20px;
   font-size: 24px;
@@ -402,7 +402,7 @@
 
 .table tbody td{
   border-bottom: 1px solid var(--border);
-  text-align: center;
+  text-align: left;
   padding: 12px;
   font-size: 14px;
   position: relative;
