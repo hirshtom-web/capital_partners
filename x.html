@@ -17,7 +17,36 @@
   --text-muted: #555;
   --nav-height: 60px;
 }
+hero-h1 {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.2;
+    color: #333;
+    max-width: 90%;
+  }
 
+  .gradient {
+    background: linear-gradient(270deg, #ff6a00, #ee0979, #00d2ff, #7928ca);
+    background-size: 800% 800%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 8s ease infinite;
+    display: inline-block;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 50px;
+    }
+  }
+ 
 /* GENERAL */
 body {
   margin: 0;
@@ -190,6 +219,11 @@ body {
 
 <!-- SLIDES -->
 <div class="deck">
+
+<hero-h1>
+  Tomorrow’s Real Estate <span class="gradient">Today</span>
+</hero-h1>
+ 
 
 <!-- 1. COVER -->
 <section class="slide" id="slide-1">
