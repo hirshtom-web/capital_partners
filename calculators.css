@@ -445,20 +445,24 @@
 
 <style>
 .table-wrap {
-  overflow-x: auto;
+  /* Remove overflow scroll */
+  overflow: visible; /* or just remove this line */
 }
 
 .table {
-  width: 100%;
+  width: 100%;       /* Full width of container */
   border-collapse: collapse;
   font-family: 'Plus Jakarta Sans', sans-serif;
+  table-layout: auto; /* allow cells to adjust width automatically */
 }
 
 .table th, .table td {
   padding: 12px;
   border: 1px solid #ddd;
   text-align: left;
+  white-space: normal; /* allow text to wrap */
 }
+
 
 .input-hover {
   font-size: 0.9em;
