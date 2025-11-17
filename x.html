@@ -168,12 +168,14 @@ body {
 }
 
 /* ------------------- SLIDER DESIGN ------------------- */
+
 .tabs-container {
   display: flex;
   overflow-x: auto;
   gap: 16px;
-  margin-top: 20px;
+  margin-top: calc(var(--nav-height) + 20px); /* ensures spacing below navbar */
 }
+
 .tabs-container p {
   flex: 0 0 auto;
   padding: 12px 20px;
@@ -280,15 +282,15 @@ p {
   <div class="nav-item" data-target="slide-4">4. Market Opportunity</div>
   <div class="nav-item" data-target="slide-5">5. Key Stats</div>
   <div class="nav-item" data-target="slide-6">6. Product & Tech</div>
-  <div class="nav-item" data-target="slide-6b">6b. Features</div>
-  <div class="nav-item" data-target="slide-7">7. Business Model</div>
-  <div class="nav-item" data-target="slide-8">8. Traction</div>
-  <div class="nav-item" data-target="slide-9">9. Go-To-Market</div>
-  <div class="nav-item" data-target="slide-10">10. Competition</div>
-  <div class="nav-item" data-target="slide-11">11. Team</div>
-  <div class="nav-item" data-target="slide-12">12. Financials</div>
-  <div class="nav-item" data-target="slide-13">13. Funding Ask</div>
-  <div class="nav-item" data-target="slide-14">14. Vision</div>
+  <div class="nav-item" data-target="slide-7">7. Features</div>
+  <div class="nav-item" data-target="slide-8">8. Business Model</div>
+  <div class="nav-item" data-target="slide-9">9. Traction</div>
+  <div class="nav-item" data-target="slide-10">10. Go-To-Market</div>
+  <div class="nav-item" data-target="slide-11">11. Competition</div>
+  <div class="nav-item" data-target="slide-12">12. Team</div>
+  <div class="nav-item" data-target="slide-13">13. Financials</div>
+  <div class="nav-item" data-target="slide-14">14. Funding Ask</div>
+  <div class="nav-item" data-target="slide-15">15. Vision</div>
 </div>
 
 <!-- Mobile Navigation -->
@@ -305,116 +307,103 @@ p {
   <div class="drop-item" data-target="slide-4">4. Market Opportunity</div>
   <div class="drop-item" data-target="slide-5">5. Key Stats</div>
   <div class="drop-item" data-target="slide-6">6. Product & Tech</div>
-  <div class="drop-item" data-target="slide-6b">6b. Features</div>
-  <div class="drop-item" data-target="slide-7">7. Business Model</div>
-  <div class="drop-item" data-target="slide-8">8. Traction</div>
-  <div class="drop-item" data-target="slide-9">9. Go-To-Market</div>
-  <div class="drop-item" data-target="slide-10">10. Competition</div>
-  <div class="drop-item" data-target="slide-11">11. Team</div>
-  <div class="drop-item" data-target="slide-12">12. Financials</div>
-  <div class="drop-item" data-target="slide-13">13. Funding Ask</div>
-  <div class="drop-item" data-target="slide-14">14. Vision</div>
+  <div class="drop-item" data-target="slide-7">7. Features</div>
+  <div class="drop-item" data-target="slide-8">8. Business Model</div>
+  <div class="drop-item" data-target="slide-9">9. Traction</div>
+  <div class="drop-item" data-target="slide-10">10. Go-To-Market</div>
+  <div class="drop-item" data-target="slide-11">11. Competition</div>
+  <div class="drop-item" data-target="slide-12">12. Team</div>
+  <div class="drop-item" data-target="slide-13">13. Financials</div>
+  <div class="drop-item" data-target="slide-14">14. Funding Ask</div>
+  <div class="drop-item" data-target="slide-15">15. Vision</div>
 </div>
 
 <!-- Slides -->
 <div class="deck">
 
-  <!-- Mega Section 1: Introduction / Problem -->
-  <div class="mega-section" style="background-color:#f4f4f9;">
-    <section class="slide" id="slide-1">
-      <h2>Revolutionizing Real Estate with Technology</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Innovative solutions for modern property challenges | Redefining how real estate is searched, bought, and managed. Your gateway to smarter property decisions.</div>
-    </section>
+  <section class="slide" id="slide-1">
+    <h2>Revolutionizing Real Estate with Technology</h2>
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Innovative solutions for modern property challenges | Redefining how real estate is searched, bought, and managed. Your gateway to smarter property decisions.</div>
+  </section>
 
-    <section class="slide" id="slide-2">
-      <h2>Current Real Estate Challenges</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Fragmented market | Buyers and sellers face inefficiencies, lack of transparency, and slow processes. Current tools are outdated and fail to deliver real-time insights.</div>
-<div class="container" id="cloud"></div>
-    </section>
-  </div>
+  <section class="slide" id="slide-2">
+    <h2>Current Real Estate Challenges</h2>
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Fragmented market | Buyers and sellers face inefficiencies, lack of transparency, and slow processes. Current tools are outdated and fail to deliver real-time insights.</div>
+    <div class="container" id="cloud"></div>
+  </section>
 
-  <!-- Mega Section 2: Market & Traction -->
-  <div class="mega-section" style="background-color:#f4f4f9;">
-    <section class="slide" id="slide-4">
-      <h2>A Growing Real Estate Market</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Multi-billion dollar potential | Urbanization and tech adoption make this the perfect time to scale our platform.</div>
-    </section>
+  <section class="slide" id="slide-3">
+    <h2>Our Innovative Solution</h2>
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Fast, transparent, and data-driven | A platform that streamlines property search, simplifies transactions, and delivers actionable insights for all stakeholders.</div>
+  </section>
 
-    <section class="slide" id="slide-5">
-      <h2>Market Trends & Insights</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Data-backed opportunities | 75% of buyers research online before visiting properties; adoption of real estate tech rising 20% annually.</div>
-    </section>
+  <section class="slide" id="slide-4">
+    <h2>A Growing Real Estate Market</h2>
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Multi-billion dollar potential | Urbanization and tech adoption make this the perfect time to scale our platform.</div>
+  </section>
 
-    <section class="slide" id="slide-8">
-      <h2>Growth & Milestones</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Proven early adoption | Early beta launched with X users, Y properties listed, Z% engagement. Momentum is building as market awareness grows.</div>
-    </section>
+  <section class="slide" id="slide-5">
+    <h2>Market Trends & Insights</h2>
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Data-backed opportunities | 75% of buyers research online before visiting properties; adoption of real estate tech rising 20% annually.</div>
+  </section>
 
-    <section class="slide" id="slide-9">
-      <h2>Launch Strategy & Channels</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Targeted acquisition plan | Multi-channel approach including partnerships with brokers, online marketing, and direct user engagement for fast adoption.</div>
-      <div class="tabs-container">
-        <p>Tab 1: Social Media Strategy</p>
-        <p>Tab 2: Broker Partnerships</p>
-        <p>Tab 3: Direct Engagement</p>
-      </div>
-    </section>
-  </div>
+  <section class="slide" id="slide-6">
+    <h2>Cutting-Edge Platform & Technology</h2>
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>AI-driven insights | Leverages AI, ML, and analytics for instant valuations, predictive trends, and seamless experiences.</div>
+  </section>
 
-  <!-- Mega Section 3: Solution / Product / Business Model -->
-  <div class="mega-section" style="background-color:white;">
-    <section class="slide" id="slide-3">
-      <h2>Our Innovative Solution</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Fast, transparent, and data-driven | A platform that streamlines property search, simplifies transactions, and delivers actionable insights for all stakeholders.</div>
-    </section>
+  <section class="slide" id="slide-7">
+    <h2>Platform Features & Demo</h2>
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Interactive demo | Highlight key product features like search, AI valuations, predictive insights, and property analytics.</div>
+  </section>
 
-    <section class="slide" id="slide-6">
-      <h2>Cutting-Edge Platform & Technology</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>AI-driven insights | Leverages AI, ML, and analytics for instant valuations, predictive trends, and seamless experiences.</div>
-    </section>
+  <section class="slide" id="slide-8">
+    <h2>How We Make Money</h2>
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Scalable revenue streams | Subscription platform for brokers, commission fees, premium data services, and targeted advertising opportunities.</div>
+  </section>
 
-    <section class="slide" id="slide-6b">
-      <h2>Platform Features & Demo</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Interactive demo or tabs container | Highlight key product features like search, AI valuations, predictive insights, and property analytics.</div>
-    </section>
+  <section class="slide" id="slide-9">
+    <h2>Growth & Milestones</h2>
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Proven early adoption | Early beta launched with X users, Y properties listed, Z% engagement. Momentum is building as market awareness grows.</div>
+  </section>
 
-    <section class="slide" id="slide-7">
-      <h2>How We Make Money</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Scalable revenue streams | Subscription platform for brokers, commission fees, premium data services, and targeted advertising opportunities.</div>
-    </section>
-  </div>
+  <section class="slide" id="slide-10">
+    <h2>Launch Strategy & Channels</h2>
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Targeted acquisition plan | Multi-channel approach including partnerships with brokers, online marketing, and direct user engagement for fast adoption.</div>
+    <div class="tabs-container">
+      <p>Tab 1: Social Media Strategy</p>
+      <p>Tab 2: Broker Partnerships</p>
+      <p>Tab 3: Direct Engagement</p>
+    </div>
+  </section>
 
-  <!-- Mega Section 4: Competition & Team -->
-  <div class="mega-section" style="background-color:white;">
-    <section class="slide" id="slide-10">
-      <h2>Competitive Landscape</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Unique advantages | Unlike competitors, our platform offers real-time insights, AI valuations, and seamless user experience. We turn data into actionable property decisions.</div>
-    </section>
+  <section class="slide" id="slide-11">
+    <h2>Competitive Landscape</h2>
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Unique advantages | Unlike competitors, our platform offers real-time insights, AI valuations, and seamless user experience. We turn data into actionable property decisions.</div>
+  </section>
 
-    <section class="slide" id="slide-11">
-      <h2>Meet the Founders & Advisors</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Experienced leadership | Combining real estate expertise, tech innovation, and growth strategy to drive market adoption and revenue.</div>
-    </section>
-  </div>
+  <section class="slide" id="slide-12">
+    <h2>Meet the Founders & Advisors</h2>
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Experienced leadership | Combining real estate expertise, tech innovation, and growth strategy to drive market adoption and revenue.</div>
+  </section>
 
-  <!-- Mega Section 5: Financials & Vision -->
-  <div class="mega-section" style="background-color:#f4f4f9;">
-    <section class="slide" id="slide-12">
-      <h2>Financial Projections</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Revenue forecast & key metrics | 3-year projections including user growth, ARPU, and market expansion potential.</div>
-    </section>
+  <section class="slide" id="slide-13">
+    <h2>Financial Projections</h2>
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Revenue forecast & key metrics | 3-year projections including user growth, ARPU, and market expansion potential.</div>
+  </section>
 
-    <section class="slide" id="slide-13">
-      <h2>Funding Ask</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Investment required | Capital allocation for product development, marketing, and team expansion to accelerate growth.</div>
-    </section>
+  <section class="slide" id="slide-14">
+    <h2>Funding Ask</h2>
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Investment required | Capital allocation for product development, marketing, and team expansion to accelerate growth.</div>
+  </section>
 
-    <section class="slide" id="slide-14">
-      <h2>Vision for the Future</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Transforming real estate | Build the most trusted and efficient platform for buyers, sellers, and investors. Empowering smarter property decisions globally.</div>
-    </section>
-  </div>
+  <section class="slide" id="slide-15">
+    <h2>Vision for the Future</h2>
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Transforming real estate | Build the most trusted and efficient platform for buyers, sellers, and investors. Empowering smarter property decisions globally.</div>
+  </section>
+
 </div>
+
 
 <script>
 const slides = document.querySelectorAll('.slide');
