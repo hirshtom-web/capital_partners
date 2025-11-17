@@ -23,6 +23,19 @@ body {
   background: var(--bg);
   scroll-behavior: smooth;
 }
+  
+/* Top Scroll Progress Bar */
+#scrollProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 0%;
+  background: linear-gradient(90deg, #6327e5, #a734af, #ffcd4d);
+  border-radius: 0 6px 6px 0;
+  z-index: 99999;
+  transition: width 0.15s ease-out;
+}
 
 /* ---------------- NAVIGATION BAR (DESKTOP) ---------------- */
 .navbar {
@@ -145,6 +158,8 @@ p {
 <body>
 
 <!-- ------------------- DESKTOP NAVIGATION ------------------- -->
+<div id="scrollProgress"></div>
+
 <div class="navbar">
   <div class="nav-scroll" id="navScroll">
     <div class="nav-item" data-target="slide-1">1. Cover</div>
@@ -222,6 +237,18 @@ p {
 
 <script>
 /* ------------------- INTERSECTION OBSERVER ------------------- */
+  /* --- SCROLL PROGRESS BAR --- */
+const scrollProgress = document.getElementById("scrollProgress");
+
+function updateScrollProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.body.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / docHeight) * 100;
+  scrollProgress.style.width = progress + "%";
+}
+
+window.addEventListener("scroll", updateScrollProgress);
+
 const sections = document.querySelectorAll(".slide");
 const navItems = document.querySelectorAll(".nav-item");
 const mobileTitle = document.getElementById("mobileTitle");
@@ -272,6 +299,6 @@ document.querySelectorAll(".mobile-dropdown .drop-item").forEach(item => {
   };
 });
 </script>
-
+  
 </body>
 </html>
