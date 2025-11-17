@@ -5,6 +5,7 @@
   <title>Calculators</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
   
+  
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -14,7 +15,9 @@
   
   <!-- Material Icons -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
 
+  
   <!-- CSS -->
   <link rel="stylesheet" href="header.css">
   <link rel="stylesheet" href="style.css">
@@ -243,7 +246,61 @@ html {
 
 <!-- Real Estate Calculators Section -->
  <h2>Real Estate Calculators Suite</h2>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
 
+<style>
+.table-wrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.table th, .table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.input-hover {
+  font-size: 0.9em;
+  color: #555;
+  margin-top: 4px;
+}
+
+.info-icon {
+  font-family: 'Material Symbols Outlined';
+  cursor: pointer;
+  margin-left: 8px;
+  vertical-align: middle;
+  color: #2a0f66;
+  position: relative;
+}
+
+.tooltip {
+  visibility: hidden;
+  background-color: #2a0f66;
+  color: #fff;
+  text-align: left;
+  padding: 8px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 25px;
+  min-width: 180px;
+  font-size: 0.85em;
+}
+
+.info-icon:hover .tooltip {
+  visibility: visible;
+}
+</style>
+
+  
 <div class="table-wrap">
   <table class="table">
     <thead>
@@ -251,6 +308,7 @@ html {
         <th>Calculator</th>
         <th>Purpose</th>
         <th>Outputs / Formula</th>
+        <th>Info</th>
       </tr>
     </thead>
     <tbody>
@@ -260,6 +318,11 @@ html {
         </td>
         <td>Evaluate rental income</td>
         <td>Cash flow = Rent − Mortgage − Expenses</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Estimates your monthly rental profit after all expenses.</span>
+          </span>
+        </td>
       </tr>
       <tr>
         <td>Mortgage Calculator
@@ -267,6 +330,11 @@ html {
         </td>
         <td>Calculate monthly mortgage payments</td>
         <td>M = P [r(1+r)^n] / [(1+r)^n − 1]</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Calculate monthly payments including principal and interest.</span>
+          </span>
+        </td>
       </tr>
       <tr>
         <td>Refinance Calculator
@@ -274,6 +342,11 @@ html {
         </td>
         <td>Compare current vs. new mortgage</td>
         <td>Monthly savings = Old payment − New payment</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Decide if refinancing saves you money over time.</span>
+          </span>
+        </td>
       </tr>
       <tr>
         <td>Investment Property ROI
@@ -281,6 +354,11 @@ html {
         </td>
         <td>Measure investment profitability</td>
         <td>ROI = (Net profit / Total investment) × 100%</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Shows the return on investment as a percentage of total costs.</span>
+          </span>
+        </td>
       </tr>
       <tr>
         <td>Pre-Construction Calculator
@@ -288,6 +366,11 @@ html {
         </td>
         <td>Estimate future property value</td>
         <td>Profit = Projected value − Total costs</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Estimate potential profit from pre-construction properties.</span>
+          </span>
+        </td>
       </tr>
       <tr>
         <td>Cap Rate Calculator
@@ -295,12 +378,210 @@ html {
         </td>
         <td>Measure property yield</td>
         <td>Cap Rate = NOI ÷ Property Price × 100%</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Calculates the return of the property investment.</span>
+          </span>
+        </td>
       </tr>
-      <!-- Add remaining calculators here in same format -->
+      <tr>
+        <td>Affordability Calculator
+          <div class="input-hover">Inputs: Income, debts, down payment, interest rate</div>
+        </td>
+        <td>Determine max home price</td>
+        <td>Max price = (Monthly affordable × 12 ÷ Interest factor) + Down payment</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Shows the maximum home price you can afford.</span>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Down Payment Calculator
+          <div class="input-hover">Inputs: Home price, % down</div>
+        </td>
+        <td>Show payment impact</td>
+        <td>Down payment = Home price × % down</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">See how down payment affects monthly payments.</span>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Closing Costs Calculator
+          <div class="input-hover">Inputs: Purchase price, local rates</div>
+        </td>
+        <td>Estimate closing fees</td>
+        <td>Closing Costs ≈ 2–5% of purchase price</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Estimate all additional fees during property purchase.</span>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Property Tax Calculator
+          <div class="input-hover">Inputs: Assessed value, tax rate</div>
+        </td>
+        <td>Calculate annual property taxes</td>
+        <td>Tax = Assessed value × Tax rate</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Calculates yearly property taxes based on assessment and rate.</span>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Home Equity Calculator
+          <div class="input-hover">Inputs: Purchase price, loan balance, appreciation</div>
+        </td>
+        <td>Measure equity in property</td>
+        <td>Equity = Property value − Loan balance</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Shows the current equity you own in the property.</span>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Loan Comparison Calculator
+          <div class="input-hover">Inputs: Loan amount, rates, terms</div>
+        </td>
+        <td>Compare multiple mortgages</td>
+        <td>Shows monthly payment & total interest for each</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Compare different loans to find the best option.</span>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Cash Flow Calculator
+          <div class="input-hover">Inputs: Rent, mortgage, taxes, insurance, maintenance</div>
+        </td>
+        <td>Rental income vs. expenses</td>
+        <td>Cash Flow = Rent − Expenses</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Calculate your net rental income after expenses.</span>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Gross Rent Multiplier (GRM)
+          <div class="input-hover">Inputs: Purchase price, gross rental income</div>
+        </td>
+        <td>Quick investment metric</td>
+        <td>GRM = Purchase price ÷ Gross rent</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">A simple metric to quickly assess property value vs rent.</span>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Depreciation Calculator
+          <div class="input-hover">Inputs: Property value, land value, life of property</div>
+        </td>
+        <td>Estimate tax benefits</td>
+        <td>Annual depreciation = (Property value − Land value) ÷ Life span</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Estimate yearly depreciation for tax purposes.</span>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>1031 Exchange Calculator
+          <div class="input-hover">Inputs: Sale price, reinvestment, capital gains</div>
+        </td>
+        <td>Tax-deferred property swap</td>
+        <td>Deferred tax = Gain − Reinvestment</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Calculate potential tax deferral on exchanged properties.</span>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Loan-to-Value (LTV) Calculator
+          <div class="input-hover">Inputs: Loan amount, property value</div>
+        </td>
+        <td>Lender risk assessment</td>
+        <td>LTV = Loan ÷ Property value × 100%</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Shows the loan risk based on property value.</span>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Debt Service Coverage Ratio (DSCR)
+          <div class="input-hover">Inputs: NOI, annual debt</div>
+        </td>
+        <td>Measure income vs. debt</td>
+        <td>DSCR = NOI ÷ Debt service</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Indicates if property income covers debt obligations.</span>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Vacancy Rate Calculator
+          <div class="input-hover">Inputs: Monthly rent, expected vacancy %</div>
+        </td>
+        <td>Predict lost rental income</td>
+        <td>Lost income = Rent × Vacancy %</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Estimates lost rental income due to vacancies.</span>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Operating Expense Ratio Calculator
+          <div class="input-hover">Inputs: Operating expenses, gross income</div>
+        </td>
+        <td>Measure property efficiency</td>
+        <td>OER = Expenses ÷ Gross income × 100%</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Shows the percentage of income spent on operating expenses.</span>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Construction Cost Estimator
+          <div class="input-hover">Inputs: Square footage, cost per sq.ft, permits</div>
+        </td>
+        <td>Estimate building costs</td>
+        <td>Total cost = Sq.ft × Cost per sq.ft + Fees</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Estimate full construction costs including permits.</span>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Break-Even Calculator
+          <div class="input-hover">Inputs: Total costs, monthly income</div>
+        </td>
+        <td>Determine when investment is profitable</td>
+        <td>Break-even months = Total costs ÷ Monthly net income</td>
+        <td>
+          <span class="info-icon">info
+            <span class="tooltip">Calculate when your investment starts generating profit.</span>
+          </span>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
 
+
+  
   <div id="footer"></div>
   
   <!-- JS at the bottom -->
