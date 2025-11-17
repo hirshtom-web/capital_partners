@@ -18,7 +18,7 @@
   --nav-height: 60px;
 }
 
-/* ------------------- GENERAL ------------------- */
+/* GENERAL */
 body {
   margin: 0;
   font-family: "Plus Jakarta Sans", sans-serif;
@@ -26,574 +26,524 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Scroll Progress Bar */
+/* SCROLL BAR */
 #scrollProgress {
   position: fixed;
-  top: 0;
-  left: 0;
-  height: 4px;
-  width: 0%;
+  top: 0; left: 0;
+  height: 4px; width: 0%;
   background: linear-gradient(90deg, #6327e5, #a734af, #ffcd4d);
-  border-radius: 0 6px 6px 0;
   z-index: 99999;
-  transition: width 0.15s ease-out;
+  transition: width .15s ease-out;
 }
 
-/* Slides */
+/* SLIDES */
 .slide {
-  position: relative;
-  z-index: 1;
   min-height: 100vh;
   padding: 80px 50px;
   opacity: 0;
   transform: translateY(40px);
   transition: 0.8s ease;
-  scroll-margin-top: var(--nav-height); /* leaves space for fixed navbar */
 }
-.slide.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-/* Wrap slide text in a container occupying left 50% (or 40%) */
-.text-content {
-  max-width: 50%;       /* Try 40% for narrower layout */
-  padding-left: 40px;   /* Optional gap from left edge */
-  padding-right: 20px;  /* Optional internal spacing */
+.slide.visible { opacity: 1; transform: translateY(0); }
+
+.text-content { max-width: 50%; padding-left: 40px; }
+@media (max-width:900px) {
+  .text-content { max-width: 90%; padding-left: 20px; }
 }
 
-/* Optional: make it responsive */
-@media (max-width: 900px) {
-  .text-content {
-    max-width: 90%;     /* Full width on small screens */
-    padding-left: 20px;
-  }
-}
-
-/* Checkmark Style */
-.checkmark {
-  display: inline-flex;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.checkmark span {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 26px;
-  height: 26px;
-  margin-right: 12px;
-  background-color: var(--primary);
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.checkmark span svg {
-  width: 14px;
-  height: 14px;
-  stroke: #fff;
-}
-
-/* ------------------- DESKTOP NAVIGATION ------------------- */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: var(--nav-height);
-  width: 100%;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  z-index: 999;
+/* KEYWORD CHIPS */
+.keywords {
   display: flex;
-  align-items: center;
-  overflow-x: auto;
-  white-space: nowrap;
-  padding-left: 10px;
-  padding-right: 100px;
-  scrollbar-width: none;
-}
-.navbar::-webkit-scrollbar { display: none; }
-
-.nav-item {
-  display: inline-block;
-  padding: 6px 0;
-  cursor: pointer;
-  font-size: 14px;
-  color: #444;
-  border-bottom: 3px solid transparent;
-  margin-right: 50px;
-  white-space: nowrap;
-}
-.nav-item.active {
-  color: var(--primary);
-  font-weight: 600;
-  border-bottom: 3px solid var(--primary);
-}
-
-/* ------------------- MOBILE NAVIGATION ------------------- */
-.mobile-nav {
-  display: none;
-  justify-content: space-between;
-  align-items: center;
-  height: var(--nav-height);
-  padding: 0 20px;
-  background: #fff;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  z-index: 10000;
-}
-.mobile-nav-title {
-  font-size: 16px;
-  font-weight: 600;
-  max-width: 70%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.mobile-nav-button {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  margin-right: 50px;
-}
-.material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
-  font-size: 28px;
-  line-height: 1;
-}
-.mobile-dropdown {
-  display: none;
-  position: fixed;
-  top: var(--nav-height);
-  left: 0;
-  width: 100%;
-  max-height: calc(100vh - var(--nav-height));
-  flex-direction: column;
-  background: #fff;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-  z-index: 9999;
-  overflow-y: auto;
-}
-.mobile-dropdown .drop-item {
-  padding: 18px 20px;
-  font-size: 15px;
-  border-bottom: 1px solid #eee;
-  cursor: pointer;
-}
-
-/* ------------------- SLIDER DESIGN ------------------- */
-.tabs-container {
-  display: flex;
-  overflow-x: auto;
-  gap: 16px;
-  margin-top: 20px;
-}
-.tabs-container p {
-  flex: 0 0 auto;
-  padding: 12px 20px;
-  background: var(--accent);
-  color: #fff;
-  border-radius: 10px;
-  font-weight: 500;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.tabs-container p:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 10px rgba(0,0,0,0.1);
-}
-
-/* ------------------- TEXT ------------------- */
-h2 {
-  font-size: 2rem;
-  color: var(--text-dark);
+  flex-wrap: wrap;
+  gap: 8px;
   margin-bottom: 20px;
 }
-p {
-  max-width: 700px;
-  color: var(--text-muted);
-  line-height: 1.6;
-  font-size: 1.1rem;
+.keyword-chip {
+  background: rgba(99,39,229,0.12);
+  color: var(--primary);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
-/* ------------------- RESPONSIVE ------------------- */
-@media (max-width: 900px) {
-  .navbar { display: none; }
-  .mobile-nav { display: flex; }
-  .slide {
-    scroll-margin-top: calc(var(--nav-height) + 20px); /* 20px extra spacing */
+/* CHECKMARK */
+.checkmark {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
 }
+.checkmark span {
+  display: inline-flex; justify-content: center; align-items: center;
+  width: 26px; height: 26px; margin-right: 10px;
+  background: var(--primary); border-radius: 50%;
 }
-/* ------------------- The Problem ------------------- */
-   .container {
-        position: absolute;
-        top: 100px; left: 0;
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-    }
+.checkmark span svg { width: 14px; height: 14px; stroke: #fff; }
 
-    .bubble {
-        position: absolute;
-        padding: 18px 26px 18px 40px;
-        border-radius: 14px;
-        white-space: nowrap;
-        font-size: 16px;
-        font-weight: 500;
-        letter-spacing: 0.2px;
-        cursor: default;
-        transition: 0.25s ease;
+/* NAV BAR */
+.navbar {
+  position: fixed; top: 0; left: 0;
+  height: var(--nav-height); width: 100%;
+  background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  display: flex; align-items: center;
+  overflow-x: auto; white-space: nowrap; padding-left: 10px;
+  z-index: 999;
+}
+.navbar::-webkit-scrollbar { display:none; }
 
-        /* Clean glass card look */
-        background: rgba(255,255,255,0.65);
-        box-shadow: 0 6px 14px rgba(0,0,0,0.12);
-        border: 1px solid rgba(200,200,200,0.45);
-        backdrop-filter: blur(10px);
+.nav-item {
+  padding: 6px 0; margin-right: 40px;
+  cursor: pointer; font-size: 14px;
+  border-bottom: 3px solid transparent;
+}
+.nav-item.active { border-bottom: 3px solid var(--primary); font-weight: 600; color: var(--primary); }
 
-        animation: float infinite ease-in-out;
-    }
+/* MOBILE NAV */
+.mobile-nav {
+  display:none; align-items:center; justify-content:space-between;
+  height: var(--nav-height); padding:0 20px; background:#fff;
+  position:fixed; top:0; width:100%; z-index:10000;
+}
+.mobile-nav-title { font-size:16px; font-weight:600; overflow:hidden; text-overflow:ellipsis; }
 
-    .bubble:hover {
-        transform: translateY(-6px) scale(1.04);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.18);
-    }
+.mobile-dropdown {
+  display:none; position:fixed; top:var(--nav-height); width:100%;
+  background:#fff; box-shadow:0 6px 20px rgba(0,0,0,0.15);
+  z-index:9999; max-height:calc(100vh - var(--nav-height));
+  overflow-y:auto;
+}
+.drop-item { padding:18px 20px; border-bottom:1px solid #eee; cursor:pointer; }
 
-    .bad-x {
-        position: absolute;
-        left: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 18px;
-        height: 18px;
-        background: #ff4a4a;
-        color: #fff;
-        border-radius: 50%;
-        font-size: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        box-shadow: 0 0 8px rgba(255,0,0,0.4);
-    }
+/* SLIDE TABS */
+.tabs-container {
+  display:flex; overflow-x:auto; gap:16px; margin-top:20px;
+}
+.tabs-container p {
+  padding:12px 20px; background:var(--accent); color:#fff;
+  border-radius:10px; white-space:nowrap;
+}
 
-    @keyframes float {
-        0%   { transform: translateY(0px); }
-        50%  { transform: translateY(-18px); }
-        100% { transform: translateY(0px); }
-    }
+/* PROBLEM BUBBLES */
+.container {
+  position:absolute; top:100px; left:0;
+  width:100vw; height:100vh; overflow:hidden;
+}
+.bubble {
+  position:absolute; padding:18px 26px 18px 40px;
+  background:rgba(255,255,255,0.65);
+  border:1px solid rgba(200,200,200,0.45);
+  border-radius:14px; backdrop-filter:blur(10px);
+  box-shadow:0 6px 14px rgba(0,0,0,0.12);
+  animation:float infinite ease-in-out;
+}
+.bubble:hover { transform:translateY(-6px) scale(1.04); }
+
+.bad-x {
+  position:absolute; left:12px; top:50%; transform:translateY(-50%);
+  width:18px; height:18px; background:#ff4a4a; color:white;
+  border-radius:50%; display:flex; align-items:center;
+  justify-content:center; font-size:12px; font-weight:700;
+}
+
+@keyframes float {
+  0% {transform:translateY(0);}
+  50% {transform:translateY(-18px);}
+  100% {transform:translateY(0);}
+}
 </style>
 </head>
 <body>
 
-<!-- Scroll Progress -->
+<!-- PROGRESS -->
 <div id="scrollProgress"></div>
 
-<!-- Desktop Navigation -->
+<!-- DESKTOP NAV -->
 <div class="navbar" id="desktopNav">
   <div class="nav-item" data-target="slide-1">1. Cover</div>
   <div class="nav-item" data-target="slide-2">2. Problem</div>
   <div class="nav-item" data-target="slide-3">3. Solution</div>
-  <div class="nav-item" data-target="slide-4">4. Market Opportunity</div>
+  <div class="nav-item" data-target="slide-4">4. Market</div>
   <div class="nav-item" data-target="slide-5">5. Key Stats</div>
   <div class="nav-item" data-target="slide-6">6. Product & Tech</div>
-  <div class="nav-item" data-target="slide-6b">6b. Features</div>
-  <div class="nav-item" data-target="slide-7">7. Business Model</div>
-  <div class="nav-item" data-target="slide-8">8. Traction</div>
-  <div class="nav-item" data-target="slide-9">9. Go-To-Market</div>
-  <div class="nav-item" data-target="slide-10">10. Competition</div>
-  <div class="nav-item" data-target="slide-11">11. Team</div>
-  <div class="nav-item" data-target="slide-12">12. Financials</div>
-  <div class="nav-item" data-target="slide-13">13. Funding Ask</div>
-  <div class="nav-item" data-target="slide-14">14. Vision</div>
+  <div class="nav-item" data-target="slide-7">7. Features</div>
+  <div class="nav-item" data-target="slide-8">8. Business Model</div>
+  <div class="nav-item" data-target="slide-9">9. Traction</div>
+  <div class="nav-item" data-target="slide-10">10. Go-To-Market</div>
+  <div class="nav-item" data-target="slide-11">11. Competition</div>
+  <div class="nav-item" data-target="slide-12">12. Team</div>
+  <div class="nav-item" data-target="slide-13">13. Financials</div>
+  <div class="nav-item" data-target="slide-14">14. Funding Ask</div>
+  <div class="nav-item" data-target="slide-15">15. Vision</div>
 </div>
 
-<!-- Mobile Navigation -->
+<!-- MOBILE -->
 <div class="mobile-nav">
   <div class="mobile-nav-title" id="mobileTitle">Cover</div>
   <div class="mobile-nav-button" id="mobileButton">
     <span class="material-symbols-outlined">keyboard_arrow_down</span>
   </div>
 </div>
+
 <div class="mobile-dropdown" id="mobileDropdown">
-  <div class="drop-item" data-target="slide-1">1. Cover</div>
-  <div class="drop-item" data-target="slide-2">2. Problem</div>
-  <div class="drop-item" data-target="slide-3">3. Solution</div>
-  <div class="drop-item" data-target="slide-4">4. Market Opportunity</div>
-  <div class="drop-item" data-target="slide-5">5. Key Stats</div>
-  <div class="drop-item" data-target="slide-6">6. Product & Tech</div>
-  <div class="drop-item" data-target="slide-6b">6b. Features</div>
-  <div class="drop-item" data-target="slide-7">7. Business Model</div>
-  <div class="drop-item" data-target="slide-8">8. Traction</div>
-  <div class="drop-item" data-target="slide-9">9. Go-To-Market</div>
-  <div class="drop-item" data-target="slide-10">10. Competition</div>
-  <div class="drop-item" data-target="slide-11">11. Team</div>
-  <div class="drop-item" data-target="slide-12">12. Financials</div>
-  <div class="drop-item" data-target="slide-13">13. Funding Ask</div>
-  <div class="drop-item" data-target="slide-14">14. Vision</div>
+  <!-- auto-generated below -->
 </div>
 
-<!-- Slides -->
+<!-- SLIDES -->
 <div class="deck">
 
- <!-- Mega Section 1: Introduction / Problem -->
-<div class="mega-section" style="background-color:#f4f4f9;">
+<!-- 1. COVER -->
+<section class="slide" id="slide-1">
+  <div class="text-content">
+    <h2>Revolutionizing Real Estate with Technology</h2>
 
-  <!-- Slide 1 -->
-  <section class="slide" id="slide-1">
-    <div class="text-content">
-      <h2>Revolutionizing Real Estate with Technology</h2>
-
-      <div class="checkmark">
-        <span>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" 
-               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
-               viewBox="0 0 24 24">
-            <path d="M20 6L9 17l-5-5"/>
-          </svg>
-        </span>
-        Innovative solutions for modern property challenges — redefining how real estate 
-        is searched, bought, and managed. Your gateway to smarter property decisions.
-      </div>
-    </div>
-  </section>
-
-  <!-- Slide 2 -->
-  <section class="slide" id="slide-2">
-    <div class="text-content">
-      <h2>Current Real Estate Challenges</h2>
-
-      <div class="checkmark">
-        <span>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white"
-               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
-               viewBox="0 0 24 24">
-            <path d="M20 6L9 17l-5-5"/>
-          </svg>
-        </span>
-        Fragmented market — buyers and sellers face inefficiencies, lack of transparency, 
-        and slow processes. Current tools are outdated and fail to deliver real-time insights.
-      </div>
+    <div class="keywords">
+      <div class="keyword-chip">Innovation</div>
+      <div class="keyword-chip">PropTech</div>
+      <div class="keyword-chip">Automation</div>
     </div>
 
-    <!-- Floating bubbles container -->
-    <div class="container" id="cloud"></div>
-  </section>
-
-</div>
-
-
-<!-- Mega Section 2: Market & Traction -->
-<div class="mega-section" style="background-color:#f4f4f9;">
-
-  <!-- Slide 4 -->
-  <section class="slide" id="slide-4">
-    <div class="text-content">
-      <h2>A Growing Real Estate Market</h2>
-
-      <div class="checkmark">
-        <span>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white"
-               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
-               viewBox="0 0 24 24">
-            <path d="M20 6L9 17l-5-5"/>
-          </svg>
-        </span>
-        Multi-billion dollar potential — urbanization and tech adoption make this the 
-        perfect time to scale our platform.
-      </div>
+    <div class="checkmark">
+      <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+      Smarter property decisions through data-driven tools.
     </div>
-  </section>
 
-</div>
+  </div>
+</section>
 
+<!-- 2. PROBLEM -->
+<section class="slide" id="slide-2">
+  <div class="text-content">
+    <h2>Current Real Estate Challenges</h2>
 
-    <section class="slide" id="slide-5">
-      <h2>Market Trends & Insights</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Data-backed opportunities | 75% of buyers research online before visiting properties; adoption of real estate tech rising 20% annually.</div>
-    </section>
+    <div class="keywords">
+      <div class="keyword-chip">Fragmentation</div>
+      <div class="keyword-chip">Inefficiency</div>
+      <div class="keyword-chip">Transparency</div>
+    </div>
 
-    <section class="slide" id="slide-8">
-      <h2>Growth & Milestones</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Proven early adoption | Early beta launched with X users, Y properties listed, Z% engagement. Momentum is building as market awareness grows.</div>
-    </section>
-
-    <section class="slide" id="slide-9">
-      <h2>Launch Strategy & Channels</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Targeted acquisition plan | Multi-channel approach including partnerships with brokers, online marketing, and direct user engagement for fast adoption.</div>
-      <div class="tabs-container">
-        <p>Tab 1: Social Media Strategy</p>
-        <p>Tab 2: Broker Partnerships</p>
-        <p>Tab 3: Direct Engagement</p>
-      </div>
-    </section>
+    <div class="checkmark">
+      <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+      Buyers and sellers face slow, outdated tools and unclear processes.
+    </div>
   </div>
 
-  <!-- Mega Section 3: Solution / Product / Business Model -->
-  <div class="mega-section" style="background-color:white;">
-    <section class="slide" id="slide-3">
-      <h2>Our Innovative Solution</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Fast, transparent, and data-driven | A platform that streamlines property search, simplifies transactions, and delivers actionable insights for all stakeholders.</div>
-    </section>
+  <div class="container" id="cloud"></div>
+</section>
 
-    <section class="slide" id="slide-6">
-      <h2>Cutting-Edge Platform & Technology</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>AI-driven insights | Leverages AI, ML, and analytics for instant valuations, predictive trends, and seamless experiences.</div>
-    </section>
+<!-- 3. SOLUTION -->
+<section class="slide" id="slide-3">
+  <div class="text-content">
+    <h2>Our Innovative Solution</h2>
 
-    <section class="slide" id="slide-6b">
-      <h2>Platform Features & Demo</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Interactive demo or tabs container | Highlight key product features like search, AI valuations, predictive insights, and property analytics.</div>
-    </section>
+    <div class="keywords">
+      <div class="keyword-chip">AI</div>
+      <div class="keyword-chip">Speed</div>
+      <div class="keyword-chip">Clarity</div>
+    </div>
 
-    <section class="slide" id="slide-7">
-      <h2>How We Make Money</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Scalable revenue streams | Subscription platform for brokers, commission fees, premium data services, and targeted advertising opportunities.</div>
-    </section>
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+      One streamlined platform for search, valuation, and transactions.
+    </div>
   </div>
+</section>
 
-  <!-- Mega Section 4: Competition & Team -->
-  <div class="mega-section" style="background-color:white;">
-    <section class="slide" id="slide-10">
-      <h2>Competitive Landscape</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Unique advantages | Unlike competitors, our platform offers real-time insights, AI valuations, and seamless user experience. We turn data into actionable property decisions.</div>
-    </section>
+<!-- 4. MARKET -->
+<section class="slide" id="slide-4">
+  <div class="text-content">
+    <h2>A Growing Real Estate Market</h2>
 
-    <section class="slide" id="slide-11">
-      <h2>Meet the Founders & Advisors</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Experienced leadership | Combining real estate expertise, tech innovation, and growth strategy to drive market adoption and revenue.</div>
-    </section>
+    <div class="keywords">
+      <div class="keyword-chip">Demand</div>
+      <div class="keyword-chip">Urbanization</div>
+      <div class="keyword-chip">Scale</div>
+    </div>
+
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+      Multi-billion dollar opportunity fueled by digital adoption.
+    </div>
   </div>
+</section>
 
-  <!-- Mega Section 5: Financials & Vision -->
-  <div class="mega-section" style="background-color:#f4f4f9;">
-    <section class="slide" id="slide-12">
-      <h2>Financial Projections</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Revenue forecast & key metrics | 3-year projections including user growth, ARPU, and market expansion potential.</div>
-    </section>
+<!-- 5. KEY STATS -->
+<section class="slide" id="slide-5">
+  <div class="text-content">
+    <h2>Market Trends & Insights</h2>
 
-    <section class="slide" id="slide-13">
-      <h2>Funding Ask</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Investment required | Capital allocation for product development, marketing, and team expansion to accelerate growth.</div>
-    </section>
+    <div class="keywords">
+      <div class="keyword-chip">Data</div>
+      <div class="keyword-chip">Trends</div>
+      <div class="keyword-chip">Growth</div>
+    </div>
 
-    <section class="slide" id="slide-14">
-      <h2>Vision for the Future</h2>
-      <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>Transforming real estate | Build the most trusted and efficient platform for buyers, sellers, and investors. Empowering smarter property decisions globally.</div>
-    </section>
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+      75% of buyers start online. Tech adoption rising 20% yearly.
+    </div>
   </div>
+</section>
+
+<!-- 6. PRODUCT & TECH -->
+<section class="slide" id="slide-6">
+  <div class="text-content">
+    <h2>Cutting-Edge Platform & Technology</h2>
+
+    <div class="keywords">
+      <div class="keyword-chip">AI/ML</div>
+      <div class="keyword-chip">Predictive</div>
+      <div class="keyword-chip">Experience</div>
+    </div>
+
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+      Real-time valuations, analytics, and automation.
+    </div>
+  </div>
+</section>
+
+<!-- 7. FEATURES (old 6b) -->
+<section class="slide" id="slide-7">
+  <div class="text-content">
+    <h2>Key Platform Features</h2>
+
+    <div class="keywords">
+      <div class="keyword-chip">Search</div>
+      <div class="keyword-chip">Valuation</div>
+      <div class="keyword-chip">Insights</div>
+    </div>
+
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+      Interactive demos, core features, AI tools and analytics.
+    </div>
+  </div>
+</section>
+
+<!-- 8. BUSINESS MODEL -->
+<section class="slide" id="slide-8">
+  <div class="text-content">
+    <h2>How We Make Money</h2>
+
+    <div class="keywords">
+      <div class="keyword-chip">Revenue</div>
+      <div class="keyword-chip">Scalable</div>
+      <div class="keyword-chip">Recurring</div>
+    </div>
+
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+      Subscriptions, commissions, premium data, targeted ads.
+    </div>
+  </div>
+</section>
+
+<!-- 9. TRACTION -->
+<section class="slide" id="slide-9">
+  <div class="text-content">
+    <h2>Growth & Milestones</h2>
+
+    <div class="keywords">
+      <div class="keyword-chip">Momentum</div>
+      <div class="keyword-chip">Users</div>
+      <div class="keyword-chip">Engagement</div>
+    </div>
+
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+      Beta users, listings, early adoption metrics.
+    </div>
+  </div>
+</section>
+
+<!-- 10. GO-TO-MARKET -->
+<section class="slide" id="slide-10">
+  <div class="text-content">
+    <h2>Launch Strategy & Channels</h2>
+
+    <div class="keywords">
+      <div class="keyword-chip">Growth</div>
+      <div class="keyword-chip">Acquisition</div>
+      <div class="keyword-chip">Scale</div>
+    </div>
+
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+      Multi-channel strategy: brokers, social, direct outreach.
+    </div>
+
+    <div class="tabs-container">
+      <p>Social Strategy</p>
+      <p>Broker Partnerships</p>
+      <p>Direct Outreach</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- 11. COMPETITION -->
+<section class="slide" id="slide-11">
+  <div class="text-content">
+    <h2>Competitive Landscape</h2>
+
+    <div class="keywords">
+      <div class="keyword-chip">Differentiation</div>
+      <div class="keyword-chip">Advantages</div>
+      <div class="keyword-chip">Positioning</div>
+    </div>
+
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+      Real-time insights, AI valuations, superior UX.
+    </div>
+  </div>
+</section>
+
+<!-- 12. TEAM -->
+<section class="slide" id="slide-12">
+  <div class="text-content">
+    <h2>Meet the Team</h2>
+
+    <div class="keywords">
+      <div class="keyword-chip">Leadership</div>
+      <div class="keyword-chip">Advisors</div>
+      <div class="keyword-chip">Experience</div>
+    </div>
+
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+      Proven track record in real estate, tech and growth.
+    </div>
+  </div>
+</section>
+
+<!-- 13. FINANCIALS -->
+<section class="slide" id="slide-13">
+  <div class="text-content">
+    <h2>Financial Projections</h2>
+
+    <div class="keywords">
+      <div class="keyword-chip">Metrics</div>
+      <div class="keyword-chip">Forecast</div>
+      <div class="keyword-chip">Growth</div>
+    </div>
+
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+      3-year revenue, ARPU, user growth projections.
+    </div>
+  </div>
+</section>
+
+<!-- 14. FUNDING -->
+<section class="slide" id="slide-14">
+  <div class="text-content">
+    <h2>Funding Ask</h2>
+
+    <div class="keywords">
+      <div class="keyword-chip">Capital</div>
+      <div class="keyword-chip">Growth</div>
+      <div class="keyword-chip">Scaling</div>
+    </div>
+
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+      Allocation for development, marketing, and expansion.
+    </div>
+  </div>
+</section>
+
+<!-- 15. VISION -->
+<section class="slide" id="slide-15">
+  <div class="text-content">
+    <h2>Vision for the Future</h2>
+
+    <div class="keywords">
+      <div class="keyword-chip">Global</div>
+      <div class="keyword-chip">Future</div>
+      <div class="keyword-chip">Impact</div>
+    </div>
+
+    <div class="checkmark"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+      Building the smartest global real estate ecosystem.
+    </div>
+  </div>
+</section>
+
 </div>
 
 <script>
+/* SLIDE VISIBILITY & NAV SYNC */
 const slides = document.querySelectorAll('.slide');
 const navItems = document.querySelectorAll('.nav-item');
-const dropItems = document.querySelectorAll('.drop-item');
+const mobileDropdown = document.getElementById('mobileDropdown');
 const mobileTitle = document.getElementById('mobileTitle');
 const mobileButton = document.getElementById('mobileButton');
-const mobileDropdown = document.getElementById('mobileDropdown');
 const scrollProgress = document.getElementById('scrollProgress');
-const desktopNav = document.getElementById('desktopNav');
 
+/* Populate Mobile Dropdown */
+navItems.forEach(n => {
+  const item = document.createElement("div");
+  item.className = "drop-item";
+  item.textContent = n.textContent;
+  item.dataset.target = n.dataset.target;
+  mobileDropdown.appendChild(item);
+});
+
+/* Sync Logic */
 function updateActiveSlide() {
   let scrollPos = window.scrollY;
+
   slides.forEach(slide => {
-    const offset = slide.offsetTop;
-    const height = slide.offsetHeight;
-    if(scrollPos >= offset - window.innerHeight/2 && scrollPos < offset + height - window.innerHeight/2){
+    const top = slide.offsetTop - window.innerHeight * 0.5;
+    const bottom = slide.offsetTop + slide.offsetHeight - window.innerHeight * 0.5;
+
+    if(scrollPos >= top && scrollPos < bottom){
       slides.forEach(s => s.classList.remove('visible'));
       slide.classList.add('visible');
 
       navItems.forEach(n => n.classList.remove('active'));
-      dropItems.forEach(d => d.classList.remove('active'));
+      mobileDropdown.querySelectorAll('.drop-item').forEach(d => d.classList.remove('active'));
 
-      let targetId = slide.id;
-      document.querySelector(`.nav-item[data-target="${targetId}"]`)?.classList.add('active');
-      document.querySelector(`.drop-item[data-target="${targetId}"]`)?.classList.add('active');
+      let id = slide.id;
+      document.querySelector(`.nav-item[data-target="${id}"]`)?.classList.add('active');
+      document.querySelector(`.drop-item[data-target="${id}"]`)?.classList.add('active');
 
-      mobileTitle.textContent = document.querySelector(`.drop-item[data-target="${targetId}"]`).textContent;
-
-      if(targetId === "slide-1"){
-        desktopNav.style.display = "none";
-      } else {
-        desktopNav.style.display = "flex";
-      }
+      mobileTitle.textContent =
+        document.querySelector(`.drop-item[data-target="${id}"]`)?.textContent;
     }
   });
 
-  // Update scroll progress
   let docHeight = document.body.scrollHeight - window.innerHeight;
-  scrollProgress.style.width = ((scrollPos / docHeight) * 100) + '%';
+  scrollProgress.style.width = (scrollPos / docHeight) * 100 + "%";
 }
-
 window.addEventListener('scroll', updateActiveSlide);
 
-navItems.forEach(item => {
+/* CLICK EVENTS */
+document.querySelectorAll('.nav-item, .drop-item').forEach(item => {
   item.addEventListener('click', () => {
-    document.getElementById(item.dataset.target).scrollIntoView({behavior:'smooth'});
-  });
-});
-dropItems.forEach(item => {
-  item.addEventListener('click', () => {
+    document.getElementById(item.dataset.target).scrollIntoView({ behavior: 'smooth' });
     mobileDropdown.style.display = 'none';
-    mobileTitle.textContent = item.textContent;
-    document.getElementById(item.dataset.target).scrollIntoView({behavior:'smooth'});
   });
 });
-
 mobileButton.addEventListener('click', () => {
-  mobileDropdown.style.display = mobileDropdown.style.display === 'flex' ? 'none' : 'flex';
+  mobileDropdown.style.display =
+    mobileDropdown.style.display === 'flex' ? 'none' : 'flex';
 });
 
+/* BUBBLES */
 const fees = [
-    "Application fee",
-    "Appraisal fee",
-    "Attorney fees",
-    "Closing protection letter (CPL)",
-    "Credit report",
-    "Deed preparation",
-    "Document preparation",
-    "Escrow fees",
-    "Settlement fee",
-    "Closing fee",
-    "Flood certification fee",
-    "Home inspection fee",
-    "Homeowners association (HOA) fees",
-    "Transfer fees",
-    "Homeowners insurance premium",
-    "Lender's title insurance premium",
-    "Loan origination fee",
-    "Mortgage insurance premium",
-    "Notary fees",
-    "Prepaid interest",
-    "Prorated property taxes",
-    "Recording fees",
-    "Stamp taxes"
+  "Application fee", "Appraisal fee", "Attorney fees", "Closing fee",
+  "Credit report", "Deed prep", "Document prep", "Escrow fees",
+  "Settlement fee", "Flood cert", "Inspection fee",
+  "HOA fees", "Transfer fees", "Insurance", "Loan origination",
+  "Mortgage insurance", "Notary", "Prepaid interest",
+  "Taxes", "Recording fees", "Stamp taxes"
 ];
 
 const container = document.getElementById("cloud");
 
-fees.forEach((fee) => {
-    const bubble = document.createElement("div");
-    bubble.className = "bubble";
+fees.forEach(fee => {
+  const bubble = document.createElement("div");
+  bubble.className = "bubble";
+  bubble.innerHTML = `<div class="bad-x">X</div>${fee}`;
 
-    bubble.innerHTML = `
-        <div class="bad-x">X</div>
-        ${fee}
-    `;
+  bubble.style.left = Math.random() * 75 + "vw";
+  bubble.style.top = Math.random() * 60 + "vh";
+  bubble.style.animationDuration = (8 + Math.random() * 6) + "s";
+  bubble.style.animationDelay = (Math.random() * -5) + "s";
 
-    // Random positions
-    bubble.style.left = Math.random() * 75 + "vw";
-    bubble.style.top  = (Math.random() * 60 + 18) + "vh";
-
-    // Random timing for natural motion
-    bubble.style.animationDuration = (8 + Math.random() * 6) + "s";
-    bubble.style.animationDelay = (Math.random() * -5) + "s";
-
-    container.appendChild(bubble);
+  container.appendChild(bubble);
 });
-
-
 </script>
+
 </body>
 </html>
