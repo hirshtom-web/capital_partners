@@ -393,6 +393,22 @@ p {
     cursor: pointer;
     font-weight: 600;
 }
+  #slide-3 .slider {
+  overflow: hidden;
+  width: 100%;
+}
+
+#slide-3 .slides {
+  display: flex;
+  transition: transform 0.3s ease;
+  width: 300%; /* or 100% * number of slides */
+}
+
+.invoice-card {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+}
+
   /* ------------------- feature solution ------------------- */
 .feature-section {
   display: grid;
@@ -546,8 +562,9 @@ p {
         </div>
 
         <div class="slider-buttons" style="margin-top: 15px;">
-            <button onclick="prevSlide()">Prev</button>
-            <button onclick="nextSlide()">Next</button>
+            <button onclick="prevInvoiceSlide()">Prev</button>
+            <button onclick="nextInvoiceSlide()">Next</button>
+
         </div>
     </div>
     <!-- Invoice Slider End -->
@@ -767,6 +784,15 @@ function nextInvoiceSlide() {
 
 function prevInvoiceSlide() {
     showInvoiceSlide(invoiceIndex - 1);
+}
+
+// Event listeners
+document.getElementById('next-invoice').addEventListener('click', nextInvoiceSlide);
+document.getElementById('prev-invoice').addEventListener('click', prevInvoiceSlide);
+
+// Initialize
+showInvoiceSlide(0);
+
 }
 </script>
 
