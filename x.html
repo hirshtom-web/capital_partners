@@ -168,7 +168,6 @@ body {
 }
 
 /* ------------------- SLIDER DESIGN ------------------- */
-
 .tabs-container {
   display: flex;
   overflow-x: auto;
@@ -210,89 +209,87 @@ p {
   .navbar { display: none; }
   .mobile-nav { display: flex; }
 }
-/* ------------------- The Problem ------------------- */
-   .container {
-        position: absolute;
-        top: 150px; left: 0;
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-    }
 
-    .bubble {
-        position: absolute;
-        padding: 18px 26px 18px 40px;
-        border-radius: 14px;
-        white-space: nowrap;
-        font-size: 16px;
-        font-weight: 500;
-        letter-spacing: 0.2px;
-        cursor: default;
-        transition: 0.25s ease;
+/* ------------------- THE BUBBLES ------------------- */
+.bubble-container {
+    position: absolute;
+    top: 150px;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 10; /* ensures bubbles appear above content but below navbars */
+}
 
-        /* Clean glass card look */
-        background: rgba(255,255,255,0.65);
-        box-shadow: 0 6px 14px rgba(0,0,0,0.12);
-        border: 1px solid rgba(200,200,200,0.45);
-        backdrop-filter: blur(10px);
+.bubble {
+    position: absolute;
+    padding: 18px 26px 18px 40px;
+    border-radius: 14px;
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    cursor: default;
+    transition: 0.25s ease;
 
-        animation: float infinite ease-in-out;
-    }
+    background: rgba(255,255,255,0.65);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    border: 1px solid rgba(200,200,200,0.45);
+    backdrop-filter: blur(10px);
 
-    .bubble:hover {
-        transform: translateY(-6px) scale(1.04);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.18);
-    }
+    animation: float 4s infinite ease-in-out;
+}
 
-    .bad-x {
-        position: absolute;
-        left: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 18px;
-        height: 18px;
-        background: #ff4a4a;
-        color: #fff;
-        border-radius: 50%;
-        font-size: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        box-shadow: 0 0 8px rgba(255,0,0,0.4);
-    }
+.bubble:hover {
+    transform: translateY(-6px) scale(1.04);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+}
 
-    @keyframes float {
-        0%   { transform: translateY(0px); }
-        50%  { transform: translateY(-18px); }
-        100% { transform: translateY(0px); }
-    }
-  
-/* ------------------- The solution ------------------- */
-  /* Slider container */
+.bad-x {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    background: #ff4a4a;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    box-shadow: 0 0 8px rgba(255,0,0,0.4);
+}
+
+@keyframes float {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-18px); }
+    100% { transform: translateY(0px); }
+}
+
+/* ------------------- SLIDER SOLUTION ------------------- */
 #slide-3 .slider {
     overflow: hidden;
     border-radius: 14px;
     box-shadow: 0 4px 18px rgba(0,0,0,0.08);
     background: #fff;
-    max-width: 400px; /* adjust width as needed */
-    margin: 20px auto; /* centers slider in section */
+    max-width: 400px;
+    margin: 20px auto;
+    width: 100%;
 }
 
-/* Slides wrapper */
 #slide-3 .slides {
     display: flex;
-    transition: transform 0.5s ease;
+    transition: transform 0.3s ease;
 }
 
-/* Individual invoice card */
-#slide-3 .invoice-card {
-    min-width: 100%;
-    display: flex;
-    flex-direction: column;
+.invoice-card {
+    flex: 0 0 100%;
+    box-sizing: border-box;
 }
 
-/* Invoice header */
 #slide-3 .invoice-header {
     display: flex;
     justify-content: space-between;
@@ -309,7 +306,6 @@ p {
     color: #222;
 }
 
-/* Invoice title */
 #slide-3 .invoice-title {
     text-align: center;
     font-size: 22px;
@@ -317,14 +313,12 @@ p {
     color: #222;
 }
 
-/* Items container */
 #slide-3 .container {
     border-top: 1px solid #e0e0e0;
     border-bottom: 1px solid #e0e0e0;
     overflow: hidden;
 }
 
-/* Individual fee item */
 #slide-3 .item {
     display: flex;
     justify-content: space-between;
@@ -337,7 +331,6 @@ p {
     border-bottom: none;
 }
 
-/* Check icon */
 #slide-3 .check {
     color: #3cc663;
     font-variation-settings: 'FILL' 1, 'wght' 400;
@@ -345,7 +338,6 @@ p {
     margin-right: 12px;
 }
 
-/* Fee name */
 #slide-3 .fee-name {
     font-size: 16px;
     font-weight: 500;
@@ -354,7 +346,6 @@ p {
     align-items: center;
 }
 
-/* Amount */
 #slide-3 .amount {
     font-size: 16px;
     font-weight: 600;
@@ -363,7 +354,6 @@ p {
     text-align: right;
 }
 
-/* Total saved */
 #slide-3 .total {
     margin: 15px;
     padding: 12px;
@@ -376,7 +366,6 @@ p {
     text-align: right;
 }
 
-/* Slider buttons */
 #slide-3 .slider-buttons {
     display: flex;
     justify-content: center;
@@ -393,23 +382,8 @@ p {
     cursor: pointer;
     font-weight: 600;
 }
-  #slide-3 .slider {
-  overflow: hidden;
-  width: 100%;
-}
 
-#slide-3 .slides {
-  display: flex;
-  transition: transform 0.3s ease;
-  width: 300%; /* or 100% * number of slides */
-}
-
-.invoice-card {
-  flex: 0 0 100%;
-  box-sizing: border-box;
-}
-
-  /* ------------------- feature solution ------------------- */
+/* ------------------- FEATURE SECTION ------------------- */
 .feature-section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -442,9 +416,8 @@ p {
   color: #333;
   line-height: 1.5;
 }
-
 </style>
-</head>
+
 <body>
 
 <!-- Scroll Progress -->
@@ -564,11 +537,10 @@ p {
         <div class="slider-buttons" style="margin-top: 15px;">
             <button onclick="prevInvoiceSlide()">Prev</button>
             <button onclick="nextInvoiceSlide()">Next</button>
-
         </div>
     </div>
     <!-- Invoice Slider End -->
-    </section>
+  </section>
 
   <section class="slide" id="slide-4">
     <h2>A Growing Real Estate Market</h2>
@@ -581,48 +553,44 @@ p {
   </section>
 
   <section class="slide" id="slide-6">
-  <h2>Cutting-Edge Platform & Technology</h2>
-
-  <div class="checkmark">
-    <span>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-        <path d="M20 6L9 17l-5-5" />
-      </svg>
-    </span>
-    AI-driven insights | Leverages AI, ML, and analytics for instant valuations, predictive trends, and seamless experiences.
-  </div>
-
-  <section class="feature-section">
-
-    <div class="feature-container">
-      <img src="icon1.png" alt="Icon 1" class="feature-icon">
-      <h3 class="feature-title">Fast & Reliable Service</h3>
-      <p class="feature-content">We ensure every task is completed efficiently and with high standards for quality.</p>
+    <h2>Cutting-Edge Platform & Technology</h2>
+    <div class="checkmark">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M20 6L9 17l-5-5" />
+        </svg>
+      </span>
+      AI-driven insights | Leverages AI, ML, and analytics for instant valuations, predictive trends, and seamless experiences.
     </div>
 
-    <div class="feature-container">
-      <img src="icon2.png" alt="Icon 2" class="feature-icon">
-      <h3 class="feature-title">Secure & Private</h3>
-      <p class="feature-content">Your data is protected with top-notch security and confidentiality measures.</p>
-    </div>
+    <section class="feature-section">
 
-    <div class="feature-container">
-      <img src="icon3.png" alt="Icon 3" class="feature-icon">
-      <h3 class="feature-title">24/7 Customer Support</h3>
-      <p class="feature-content">Our team is always available to help you with any questions or issues.</p>
-    </div>
+      <div class="feature-container">
+        <img src="icon1.png" alt="Icon 1" class="feature-icon">
+        <h3 class="feature-title">Fast & Reliable Service</h3>
+        <p class="feature-content">We ensure every task is completed efficiently and with high standards for quality.</p>
+      </div>
 
-    <div class="feature-container">
-      <img src="icon4.png" alt="Icon 4" class="feature-icon">
-      <h3 class="feature-title">Easy Integration</h3>
-      <p class="feature-content">Seamlessly integrate our solutions with your existing systems without hassle.</p>
-    </div>
+      <div class="feature-container">
+        <img src="icon2.png" alt="Icon 2" class="feature-icon">
+        <h3 class="feature-title">Secure & Private</h3>
+        <p class="feature-content">Your data is protected with top-notch security and confidentiality measures.</p>
+      </div>
 
+      <div class="feature-container">
+        <img src="icon3.png" alt="Icon 3" class="feature-icon">
+        <h3 class="feature-title">24/7 Customer Support</h3>
+        <p class="feature-content">Our team is always available to help you with any questions or issues.</p>
+      </div>
+
+      <div class="feature-container">
+        <img src="icon4.png" alt="Icon 4" class="feature-icon">
+        <h3 class="feature-title">Easy Integration</h3>
+        <p class="feature-content">Seamlessly integrate our solutions with your existing systems without hassle.</p>
+      </div>
+
+    </section>
   </section>
-
-</section>
-
-
 
   <section class="slide" id="slide-7">
     <h2>Platform Features & Demo</h2>
@@ -675,6 +643,8 @@ p {
   </section>
 
 </div>
+</body>
+
 
 
 <script>
@@ -790,10 +760,10 @@ function prevInvoiceSlide() {
 document.getElementById('next-invoice').addEventListener('click', nextInvoiceSlide);
 document.getElementById('prev-invoice').addEventListener('click', prevInvoiceSlide);
 
-// Initialize
+// Initialize first slide
 showInvoiceSlide(0);
 
-}
+
 </script>
 
 </body>
