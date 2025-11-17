@@ -36,6 +36,11 @@ body {
   z-index: 99999;
   transition: width 0.15s ease-out;
 }
+  
+.slide {
+  position: relative;
+  z-index: 1;
+}
 
 /* ---------------- NAVIGATION BAR (DESKTOP) ---------------- */
 .navbar {
@@ -106,12 +111,13 @@ body {
   top: var(--nav-height);
   left: 0;
   width: 100%;
-  background: white;
+  background: #777;
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
   display: none;
   flex-direction: column;
-  z-index: 2000;
+  z-index: 5000;
 }
+
 
 .mobile-dropdown .drop-item {
   padding: 18px 20px;
@@ -121,7 +127,8 @@ body {
 }
 
 /* --------------- SLIDE CONTENT --------------- */
-.deck { padding-top: var(--nav-height); }
+  .deck { padding-top: calc(var(--nav-height) + 10px); }
+
 
 .slide {
   min-height: 100vh;
