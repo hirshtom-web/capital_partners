@@ -9,31 +9,25 @@
   <title>Miami Is Rising as a Global Financial Power — And Real Estate Is Surging</title>
 
   <style>
-    body {
+:root {
+  --primary: #6327e5;
+  --accent: #a734af;
+  --bg: #fdfcff;
+  --text-dark: #1a0b2e;
+  --text-muted: #555;
+}
+
+/* Reset */
+body, html {
+  margin: 0;
+  padding: 0;
   font-family: "Plus Jakarta Sans", sans-serif;
   background: var(--bg);
   scroll-behavior: smooth;
-      margin: 0;
-      padding: 30px 15px;
-      color: #000;
-      line-height: 1.5;
-      direction: ltr;
-      box-sizing: border-box;
-    }
-    *, *::before, *::after {
-      box-sizing: inherit;
-    }
+  color: var(--text-dark);
+  line-height: 1.6;
+}
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      gap: 30px;
-    }
-
-    .content {
-      flex: 2;
-    }
 /* Top Scroll Progress Bar */
 #scrollProgress {
   position: fixed;
@@ -46,123 +40,154 @@
   z-index: 99999;
   transition: width 0.15s ease-out;
 }
-    /* Sticky left-side image */
-    .sticky-image {
-      flex: 1;
-      position: sticky;
-      top: 30px;
-      align-self: start;
-    }
-    .sticky-image img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
 
-    /* Typography */
-    h1.main-title {
-      font-size: 50px;
-      font-weight: 800;
-      margin-bottom: 25px;
-      line-height: 1.2;
-    }
+/* Container & layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 30px;
+  padding: 30px 15px;
+}
 
-    h2.subtitle {
-      font-size: 25px;
-      font-weight: 700;
-      margin-top: 32px;
-      margin-bottom: 10px;
-    }
+.sticky-image {
+  flex: 1;
+  position: sticky;
+  top: 30px;
+  align-self: start;
+}
+.sticky-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
 
-    p.text {
-      font-size: 15px;
-      margin-bottom: 20px;
-    }
+/* Article content */
+.content {
+  flex: 2;
+}
 
-    ul {
-      padding-left: 19px;
-      font-size: 15px;
-      margin-bottom: 20px;
-    }
-    ul li {
-      margin-bottom: 8px;
-    }
+/* Big main title */
+h1.main-title {
+  font-size: 50px;
+  font-weight: 700; /* similar to Qalley deck headings */
+  margin-bottom: 25px;
+  line-height: 1.2;
+  color: var(--text-dark);
+}
 
-    a {
-      color: #000;
-      text-decoration: underline;
-    }
-    a:hover {
-      color: #9F7BED;
-    }
+/* Section / category titles */
+h2.subtitle {
+  font-size: 28px; /* slightly bigger than p, smaller than main title */
+  font-weight: 600;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+}
 
-    /* Metadata */
-    .meta-info {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      font-size: 15px;
-      margin-top: 20px;
-      margin-bottom: 30px;
-      color: #666;
-    }
+/* Paragraph / content */
+p.text {
+  font-size: 17px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  max-width: 700px;
+}
 
-    .meta-info img.icon {
-      width: 18px;
-      height: 18px;
-      vertical-align: middle;
-      margin-right: 6px;
-    }
+/* Bullet points */
+ul {
+  margin-bottom: 20px;
+  padding-left: 20px;
+  list-style-type: disc;
+  color: var(--text-muted);
+}
+ul li {
+  margin-bottom: 10px;
+  font-size: 17px;
+}
 
-    /* Inline Article Image (2:3 ratio) */
-    .inline-image-wrapper {
-      width: 100%;
-      aspect-ratio: 2 / 3;
-      overflow: hidden;
-      border-radius: 8px;
-      margin: 20px 0 32px 0;
-    }
+/* Inline highlights */
+.highlight {
+  background-color: #fff0ff;
+  color: var(--primary);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+}
 
-    .inline-article-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+/* Metadata */
+.meta-info {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 15px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  color: #666;
+}
+.meta-info img.icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
 
-    .image-credit {
-      font-size: 12px;
-      color: #444;
-      margin-bottom: 20px;
-    }
+/* Inline article images */
+.inline-image-wrapper {
+  width: 100%;
+  aspect-ratio: 2/3;
+  overflow: hidden;
+  border-radius: 8px;
+  margin: 20px 0 32px 0;
+}
+.inline-article-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.image-credit {
+  font-size: 12px;
+  color: #444;
+  margin-bottom: 20px;
+}
 
-    /* Keywords */
-    .keywords {
-      margin-top: 48px;
-      font-size: 12px;
-      margin-bottom: 80px;
-    }
-    .keywords span {
-      display: inline-block;
-      background: #f3ecff;
-      color: #6a38a6;
-      padding: 6px 12px;
-      margin: 4px;
-      border-radius: 6px;
-      font-weight: 500;
-    }
+/* Keywords / tags */
+.keywords {
+  margin-top: 48px;
+  font-size: 12px;
+  margin-bottom: 80px;
+}
+.keywords span {
+  display: inline-block;
+  background: #f3ecff;
+  color: #6a38a6;
+  padding: 6px 12px;
+  margin: 4px;
+  border-radius: 6px;
+  font-weight: 500;
+}
 
-    /* Responsive */
-    @media (max-width: 992px) {
-      .container {
-        flex-direction: column;
-      }
-      .sticky-image {
-        position: relative;
-        top: 0;
-      }
-    }
-  </style>
+/* Responsive */
+@media (max-width: 992px) {
+  .container {
+    flex-direction: column;
+  }
+  .sticky-image {
+    position: relative;
+    top: 0;
+  }
+  h1.main-title {
+    font-size: 36px;
+  }
+  h2.subtitle {
+    font-size: 24px;
+  }
+  p.text, ul li {
+    font-size: 16px;
+  }
+}
+</style>
+
 </head>
 
 <body>
