@@ -23,7 +23,7 @@ body {
   background: var(--bg);
   scroll-behavior: smooth;
 }
-  
+
 /* Top Scroll Progress Bar */
 #scrollProgress {
   position: fixed;
@@ -36,7 +36,7 @@ body {
   z-index: 99999;
   transition: width 0.15s ease-out;
 }
-  
+
 .slide {
   position: relative;
   z-index: 1;
@@ -98,24 +98,26 @@ body {
 .mobile-nav-title {
   font-size: 16px;
   font-weight: 600;
+  color: #000;
 }
 
 .mobile-nav-button {
   font-size: 22px;
   cursor: pointer;
+  color: #000;
 }
 
-/* Dropdown on mobile  (FIXED: white background + z-index) */
+/* Dropdown on mobile */
 .mobile-dropdown {
   position: fixed;
   top: var(--nav-height);
   left: 0;
   width: 100%;
-  background: white;         /* FIX: visible dropdown */
+  background: white;
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
   display: none;
   flex-direction: column;
-  z-index: 9999;             /* FIX: on top */
+  z-index: 9999;
 }
 
 .mobile-dropdown .drop-item {
@@ -154,7 +156,6 @@ p {
 }
 
 /* --------------- RESPONSIVE --------------- */
-/* FIX: proper breakpoint for mobile nav */
 @media (max-width: 900px) {
   .navbar { display: none !important; }
   .mobile-nav { display: flex !important; }
@@ -212,38 +213,24 @@ p {
 <div class="deck">
 
   <section class="slide" id="slide-1"><h2>Cover</h2><p>Intro content...</p></section>
-
   <section class="slide" id="slide-2"><h2>Problem</h2></section>
-
   <section class="slide" id="slide-3"><h2>Solution</h2></section>
-
   <section class="slide" id="slide-4"><h2>Market Opportunity</h2></section>
-
   <section class="slide" id="slide-5"><h2>Key Stats</h2></section>
-
   <section class="slide" id="slide-6"><h2>Product & Tech</h2></section>
-
   <section class="slide" id="slide-7"><h2>Business Model</h2></section>
-
   <section class="slide" id="slide-8"><h2>Traction</h2></section>
-
   <section class="slide" id="slide-9"><h2>Go-To-Market</h2></section>
-
   <section class="slide" id="slide-10"><h2>Competition</h2></section>
-
   <section class="slide" id="slide-11"><h2>Team</h2></section>
-
   <section class="slide" id="slide-12"><h2>Financials</h2></section>
-
   <section class="slide" id="slide-13"><h2>Funding Ask</h2></section>
-
   <section class="slide" id="slide-14"><h2>Vision</h2></section>
 
 </div>
 
 <script>
-/* ------------------- INTERSECTION OBSERVER ------------------- */
-  /* --- SCROLL PROGRESS BAR --- */
+/* ------------------- SCROLL PROGRESS BAR ------------------- */
 const scrollProgress = document.getElementById("scrollProgress");
 
 function updateScrollProgress() {
@@ -255,6 +242,7 @@ function updateScrollProgress() {
 
 window.addEventListener("scroll", updateScrollProgress);
 
+/* ------------------- INTERSECTION OBSERVER ------------------- */
 const sections = document.querySelectorAll(".slide");
 const navItems = document.querySelectorAll(".nav-item");
 const mobileTitle = document.getElementById("mobileTitle");
@@ -263,15 +251,10 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if(entry.isIntersecting){
       entry.target.classList.add("visible");
-
       const id = entry.target.id;
-
-      // highlight nav item
       navItems.forEach(i => {
         i.classList.toggle("active", i.dataset.target === id);
       });
-
-      // mobile title update
       const matchedItem = [...navItems].find(i => i.dataset.target === id);
       if(matchedItem) mobileTitle.textContent = matchedItem.textContent;
     }
@@ -300,11 +283,11 @@ mobileButton.onclick = () => {
 document.querySelectorAll(".mobile-dropdown .drop-item").forEach(item => {
   item.onclick = () => {
     const target = document.getElementById(item.dataset.target);
-    target.scrollIntoView({ behavior: "smooth" });
+    if(target) target.scrollIntoView({ behavior: "smooth" });
     mobileDropdown.style.display = "none";
   };
 });
 </script>
-  
+
 </body>
 </html>
