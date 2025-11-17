@@ -250,7 +250,7 @@
   </div>
 
 <script>
-  /* --- SCROLL PROGRESS BAR --- */
+/* --- SCROLL PROGRESS BAR --- */
 const scrollProgress = document.getElementById("scrollProgress");
 
 function updateScrollProgress() {
@@ -268,12 +268,12 @@ const mobileTitle = document.getElementById("mobileTitle");
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if(entry.isIntersecting){
+    if (entry.isIntersecting) {
       entry.target.classList.add("visible");
-
       const id = entry.target.id;
-  };
-});
+    }
+  });
+}); //
 </script>
 </body>
 </html>
