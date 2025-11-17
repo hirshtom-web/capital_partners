@@ -589,7 +589,8 @@ p {
 
 
 <script>
-const slides = document.querySelectorAll('.slide');
+/* ---------- Scroll Slides & Navigation ---------- */
+const allSlides = document.querySelectorAll('.slide');
 const navItems = document.querySelectorAll('.nav-item');
 const dropItems = document.querySelectorAll('.drop-item');
 const mobileTitle = document.getElementById('mobileTitle');
@@ -599,76 +600,63 @@ const scrollProgress = document.getElementById('scrollProgress');
 const desktopNav = document.getElementById('desktopNav');
 
 function updateActiveSlide() {
-  let scrollPos = window.scrollY;
-  slides.forEach(slide => {
-    const offset = slide.offsetTop;
-    const height = slide.offsetHeight;
-    if(scrollPos >= offset - window.innerHeight/2 && scrollPos < offset + height - window.innerHeight/2){
-      slides.forEach(s => s.classList.remove('visible'));
-      slide.classList.add('visible');
+    let scrollPos = window.scrollY;
 
-      navItems.forEach(n => n.classList.remove('active'));
-      dropItems.forEach(d => d.classList.remove('active'));
+    allSlides.forEach(slide => {
+        const offset = slide.offsetTop;
+        const height = slide.offsetHeight;
 
-      let targetId = slide.id;
-      document.querySelector(`.nav-item[data-target="${targetId}"]`)?.classList.add('active');
-      document.querySelector(`.drop-item[data-target="${targetId}"]`)?.classList.add('active');
+        if(scrollPos >= offset - window.innerHeight/2 && scrollPos < offset + height - window.innerHeight/2){
+            allSlides.forEach(s => s.classList.remove('visible'));
+            slide.classList.add('visible');
 
-      mobileTitle.textContent = document.querySelector(`.drop-item[data-target="${targetId}"]`).textContent;
+            navItems.forEach(n => n.classList.remove('active'));
+            dropItems.forEach(d => d.classList.remove('active'));
 
-      if(targetId === "slide-1"){
-        desktopNav.style.display = "none";
-      } else {
-        desktopNav.style.display = "flex";
-      }
-    }
-  });
+            let targetId = slide.id;
+            document.querySelector(`.nav-item[data-target="${targetId}"]`)?.classList.add('active');
+            document.querySelector(`.drop-item[data-target="${targetId}"]`)?.classList.add('active');
 
-  // Update scroll progress
-  let docHeight = document.body.scrollHeight - window.innerHeight;
-  scrollProgress.style.width = ((scrollPos / docHeight) * 100) + '%';
+            mobileTitle.textContent = document.querySelector(`.drop-item[data-target="${targetId}"]`).textContent;
+
+            desktopNav.style.display = (targetId === "slide-1") ? "none" : "flex";
+        }
+    });
+
+    // Scroll progress bar
+    let docHeight = document.body.scrollHeight - window.innerHeight;
+    scrollProgress.style.width = ((scrollPos / docHeight) * 100) + '%';
 }
 
 window.addEventListener('scroll', updateActiveSlide);
 
 navItems.forEach(item => {
-  item.addEventListener('click', () => {
-    document.getElementById(item.dataset.target).scrollIntoView({behavior:'smooth'});
-  });
+    item.addEventListener('click', () => {
+        document.getElementById(item.dataset.target).scrollIntoView({behavior:'smooth'});
+    });
 });
+
 dropItems.forEach(item => {
-  item.addEventListener('click', () => {
-    mobileDropdown.style.display = 'none';
-    mobileTitle.textContent = item.textContent;
-    document.getElementById(item.dataset.target).scrollIntoView({behavior:'smooth'});
-  });
+    item.addEventListener('click', () => {
+        mobileDropdown.style.display = 'none';
+        mobileTitle.textContent = item.textContent;
+        document.getElementById(item.dataset.target).scrollIntoView({behavior:'smooth'});
+    });
 });
 
 mobileButton.addEventListener('click', () => {
-  mobileDropdown.style.display = mobileDropdown.style.display === 'flex' ? 'none' : 'flex';
+    mobileDropdown.style.display = mobileDropdown.style.display === 'flex' ? 'none' : 'flex';
 });
 
+
+/* ---------- Bubble Cloud ---------- */
 const fees = [
-    "Application fee",
-    "Appraisal fee",
-    "Attorney fees",
-    "Closing protection letter (CPL)",
-    "Credit report",
-    "Deed preparation",
-    "Document preparation",
-    "Escrow fees / Settlement fee / Closing fee",
-    "Flood certification fee",
-    "Home inspection fee",
-    "Homeowners association (HOA) fees / transfer fees",
-    "Homeowners insurance premium",
-    "Lender's title insurance premium",
-    "Loan origination fee",
-    "Mortgage insurance premium",
-    "Notary fees",
-    "Prepaid interest",
-    "Prorated property taxes",
-    "Recording fees",
-    "Stamp taxes"
+    "Application fee", "Appraisal fee", "Attorney fees", "Closing protection letter (CPL)",
+    "Credit report", "Deed preparation", "Document preparation", "Escrow fees / Settlement fee / Closing fee",
+    "Flood certification fee", "Home inspection fee", "Homeowners association (HOA) fees / transfer fees",
+    "Homeowners insurance premium", "Lender's title insurance premium", "Loan origination fee",
+    "Mortgage insurance premium", "Notary fees", "Prepaid interest", "Prorated property taxes",
+    "Recording fees", "Stamp taxes"
 ];
 
 const container = document.getElementById("cloud");
@@ -676,41 +664,39 @@ const container = document.getElementById("cloud");
 fees.forEach((fee) => {
     const bubble = document.createElement("div");
     bubble.className = "bubble";
+    bubble.innerHTML = `<div class="bad-x">X</div>${fee}`;
 
-    bubble.innerHTML = `
-        <div class="bad-x">X</div>
-        ${fee}
-    `;
-
-    // Random positions
+    // Random positions and animation
     bubble.style.left = Math.random() * 75 + "vw";
     bubble.style.top  = (Math.random() * 60 + 18) + "vh";
-
-    // Random timing for natural motion
     bubble.style.animationDuration = (8 + Math.random() * 6) + "s";
     bubble.style.animationDelay = (Math.random() * -5) + "s";
 
     container.appendChild(bubble);
 });
-let currentIndex = 0;
-    const slides = document.querySelector('#slide-3 .slides');
-    const totalSlides = slides.children.length;
 
-    function showSlide(index) {
-        if(index < 0) index = totalSlides - 1;
-        if(index >= totalSlides) index = 0;
-        slides.style.transform = `translateX(-${index * 100}%)`;
-        currentIndex = index;
-    }
 
-    function nextSlide() {
-        showSlide(currentIndex + 1);
-    }
+/* ---------- Invoice Slider (inside #slide-3) ---------- */
+let invoiceIndex = 0;
+const invoiceSlides = document.querySelector('#slide-3 .slides');
+const totalInvoiceSlides = invoiceSlides ? invoiceSlides.children.length : 0;
 
-    function prevSlide() {
-        showSlide(currentIndex - 1);
-    }
+function showInvoiceSlide(index) {
+    if(totalInvoiceSlides === 0) return;
+    if(index < 0) index = totalInvoiceSlides - 1;
+    if(index >= totalInvoiceSlides) index = 0;
+    invoiceSlides.style.transform = `translateX(-${index * 100}%)`;
+    invoiceIndex = index;
+}
 
+function nextInvoiceSlide() {
+    showInvoiceSlide(invoiceIndex + 1);
+}
+
+function prevInvoiceSlide() {
+    showInvoiceSlide(invoiceIndex - 1);
+}
 </script>
+
 </body>
 </html>
