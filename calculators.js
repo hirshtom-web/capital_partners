@@ -92,3 +92,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   observer.observe(document.body, { childList: true, subtree: true });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("calculator-search");
+  const tableRows = document.querySelectorAll("#real-estate-calculators tbody tr");
+
+  searchInput.addEventListener("input", (e) => {
+    const value = e.target.value.toLowerCase();
+    tableRows.forEach(row => {
+      const text = row.innerText.toLowerCase();
+      row.style.display = text.includes(value) ? "" : "none";
+    });
+  });
+});
+
