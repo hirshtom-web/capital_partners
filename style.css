@@ -259,7 +259,8 @@ a {
   background-color: #fff;
   border-radius: 20px;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;   /* keeps clean sides */
+  overflow-y: visible;  /* allows the chat to scroll upward */
   display: flex;
   justify-content: center;
   align-items: center;
