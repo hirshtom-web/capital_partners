@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rolling Chat Inside Phone</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: #fff;
+}
+
+</style>
+</head>
+<body>
+
+<div class="uni-content-tile">
+  <!-- LEFT COLUMN -->
+  <div class="left-column">
+    <div class="iphone-container">
+      <!-- Profile Image -->
+      <img src="https://static.wixstatic.com/media/1799ca_3dbf0ad66ef24fd78afd87ce46a1a4dd~mv2.jpg" 
+           alt="Profile" class="profile-image">
+
+      <!-- Timestamp -->
+      <div class="phone-timestamp">Thursday 2:34 PM</div>
+
+      <!-- Chat -->
+      <div class="chat-wrapper">
+        <div class="chat-messages" id="chat-messages"></div>
+      </div>
+
+      <!-- Top fade -->
+      <div class="top-fade"></div>
+    </div>
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div class="right-column">
+    <div class="keyword-pill">NEW</div>
+    <h2 class="mini-title">Seamless Pre-Approval</h2>
+    <p>Place your supporting text here. Explain the benefits quickly and clearly.</p>
+    <button class="cta-button">Get Started</button>
+  </div>
+</div>
+
+<script>
+const messages = [
+  {text: "Hello! How can I help you today?", side: "left"},
+  {text: "Hi! I want to check my pre-approval.", side: "right"},
+  {text: "Sure! It only takes a few seconds. 👌", side: "left"},
+  {text: "Great, let's do it!", side: "right"},
+  {text: "Please provide your info.", side: "left"},
+  {text: "Done! Submitted.", side: "right"},
+   {text: "Hello! How can I help you today?", side: "left"},
+  {text: "Hi! I want to check my pre-approval.", side: "right"},
+  {text: "Sure! It only takes a few seconds.", side: "left"},
+  {text: "Great, let's do it!", side: "right"},
+  {text: "Please provide your info.", side: "left"},
+  {text: "Done! Submitted. 🥳", side: "right"},
+];
+
+const chatMessages = document.getElementById('chat-messages');
+let index = 0;
+
+function addMessage(msg) {
+  const bubble = document.createElement('div');
+  bubble.className = 'chat-bubble ' + (msg.side === 'right' ? 'chat-right' : 'chat-left');
+  bubble.textContent = msg.text;
+  chatMessages.appendChild(bubble);
+  
+  setTimeout(() => {
+    bubble.style.opacity = 1;
+    bubble.style.transform = 'translateY(0)';
+    chatMessages.style.transform = `translateY(-${Math.max(0, chatMessages.scrollHeight - chatMessages.parentNode.clientHeight)}px)`;
+  }, 50);
+}
+
+function nextMessage() {
+  if(index >= messages.length) return; // Stop at the last message
+
+  const msg = messages[index];
+  
+  const typing = document.createElement('div');
+  typing.className = 'typing-bubble ' + (msg.side === 'right' ? 'typing-right' : 'typing-left');
+  typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+  chatMessages.appendChild(typing);
+  chatMessages.parentNode.scrollTop = chatMessages.scrollHeight;
+
+  setTimeout(() => {
+    typing.remove();
+    addMessage(msg);
+    index++;
+    setTimeout(nextMessage, 500 + Math.random() * 800);
+  }, 1200 + Math.random() * 800);
+}
+
+nextMessage();
+</script>
+
+</body>
+</html>
