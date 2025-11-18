@@ -220,6 +220,7 @@ a {
 ================================== */
 .flow-section-shell {
   background-color: #fff; /* entire section is now white */
+   padding: 80px 0;
 }
 
 /* =============================== */
