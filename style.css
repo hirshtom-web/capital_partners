@@ -215,6 +215,12 @@ a {
 /* =============================== */
 /* UNIVERSAL UNI-CONTENT TILE      */
 /* =============================== */
+/* ===============================
+   SECTION AREA
+================================== */
+.uni-section-shell {
+  background-color: #fff; /* entire section is now white */
+}
 
 /* =============================== */
 /* UNIVERSAL UNI-CONTENT TILE      */
