@@ -514,3 +514,75 @@ a {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ===============================
+   MOBILE RESPONSIVE - VERTICAL STACK
+================================== */
+@media (max-width: 868px) {  /* you can adjust breakpoint: 868px or 768px */
+  .uix-tile {
+    flex-direction: column;      /* <<< THIS IS THE KEY: stack vertically */
+    padding: 40px 20px;          /* reduce horizontal padding on mobile */
+    min-height: auto;            /* remove fixed height on mobile */
+    gap: 40px;                   /* space between top/bottom parts */
+  }
+
+  /* Both left and right columns become full-width and reorder */
+  .uix-left,
+  .uix-right {
+    width: 100% !important;      /* full width on mobile */
+    padding: 0;                  /* remove extra padding from right column */
+  }
+
+  /* TEXT / RIGHT COLUMN - now appears FIRST (on top) */
+  .uix-right {
+    order: 1;                    /* put text on top */
+    padding: 0 20px 40px 20px;   /* comfortable mobile padding */
+    align-items: center;         /* center everything nicely */
+    text-align: center;          /* center text */
+  }
+
+  .uix-title {
+    font-size: 24px;             /* slightly smaller title on mobile */
+  }
+
+  .uix-pill {
+    font-size: 11px;
+  }
+
+  /* VISUAL / LEFT COLUMN - now appears SECOND (below text) */
+  .uix-left {
+    order: 2;                    /* put phone/chart below text */
+    min-height: 400px;           /* give it some height so phone isn't squashed */
+  }
+
+  /* Phone mockup adjustments for mobile */
+  .uix-phone {
+    width: 80%;                  /* larger phone on mobile for better visibility */
+    max-width: 320px;            /* don't let it get too huge */
+    bottom: -20%;                /* adjust positioning */
+  }
+
+  /* If you have the chart version too */
+  .uix-chart {
+    width: 100%;
+  }
+  .uix-chart svg {
+    height: 200px;               /* slightly smaller chart on mobile */
+  }
+}
+
+/* Optional: even smaller phones (iPhone SE etc.) */
+@media (max-width: 480px) {
+  .uix-tile {
+    padding: 30px 15px;
+  }
+  .uix-right {
+    padding: 0 15px 30px 15px;
+  }
+  .uix-title {
+    font-size: 22px;
+  }
+  .uix-phone {
+    width: 90%;
+  }
+}
