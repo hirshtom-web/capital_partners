@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const html = await res.text();
       container.innerHTML = html;
 
-      // ⭐ FIX: Run inline scripts inside the container, not body
+      // Run inline scripts inside container
       container.querySelectorAll("script").forEach(oldScript => {
         const newScript = document.createElement("script");
         if (oldScript.src) newScript.src = oldScript.src;
@@ -23,11 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       container.style.opacity = 1;
-
     } catch (err) {
       console.warn(`❌ SECTION FAILED: ${id} ->`, err);
       container.style.opacity = 1;
-
       container.innerHTML = `<strong>Failed to load: ${id}</strong><br>${err.message}`;
     }
   }
@@ -110,13 +108,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // ====================
   function populateREKeywords() {
     const keywords = [
-      "Looking for a new condo", "Want to refinance my home", "Buying my first property",
-      "Exploring investment options", "Selling my house", "Finding a real estate agent",
-      "Interested in luxury homes", "Looking for office space", "Seeking mortgage advice",
-      "Relocating to a new city", "Need property valuation", "Investing in rental properties",
-      "Building a new home", "Checking current market trends", "Finding foreclosed properties",
-      "Upsizing my home", "Downsizing after retirement", "Interested in vacation homes",
-      "Want to co-invest", "Looking for real estate partnerships"
+      "Looking for a new condo","Want to refinance my home","Buying my first property",
+      "Exploring investment options","Selling my house","Finding a real estate agent",
+      "Interested in luxury homes","Looking for office space","Seeking mortgage advice",
+      "Relocating to a new city","Need property valuation","Investing in rental properties",
+      "Building a new home","Checking current market trends","Finding foreclosed properties",
+      "Upsizing my home","Downsizing after retirement","Interested in vacation homes",
+      "Want to co-invest","Looking for real estate partnerships"
     ];
 
     const shuffle = arr => arr.sort(() => Math.random() - 0.5);
@@ -128,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const row1 = document.createElement("div");
     row1.className = "re-row";
-    list.slice(0, 3).forEach(text => {
+    list.slice(0,3).forEach(text => {
       const d = document.createElement("div");
       d.className = "re-phrase";
       d.textContent = text;
@@ -137,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const row2 = document.createElement("div");
     row2.className = "re-row";
-    list.slice(3, 6).forEach(text => {
+    list.slice(3,6).forEach(text => {
       const d = document.createElement("div");
       d.className = "re-phrase";
       d.textContent = text;
@@ -152,6 +150,14 @@ document.addEventListener("DOMContentLoaded", () => {
     container.appendChild(row1);
     container.appendChild(row2);
     container.style.opacity = 1;
+
+    // Add click handlers to trigger chat
+    container.querySelectorAll(".re-phrase, .re-other").forEach(el => {
+      el.addEventListener("click", () => {
+        if (!window.uixChat) return;
+        addChatMessage({text: el.textContent, side: "right"});
+      });
+    });
   }
 
   // ============================
@@ -180,114 +186,101 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ============================
-  // CHAT MODULE INIT
+  // CHAT MODULE
   // ============================
-  function startChat() {
+  const uixMessages = [
+    {text:"Hello! How can I help you today?", side:"left"},
+    {text:"Hi! I want to check my pre-approval.", side:"right"},
+    {text:"Sure! It only takes a few seconds. 👌", side:"left"},
+    {text:"Great, let's do it!", side:"right"},
+    {text:"Please provide your info.", side:"left"},
+    {text:"Done! Submitted.", side:"right"},
+  ];
+
+  let uixChat = null;
+  let uixIndex = 0;
+
+  function addChatMessage(msg) {
     if (!uixChat) return;
-    uixNextMessage();
+
+    const bubble = document.createElement('div');
+    bubble.className = 'uix-chat-bubble ' + (msg.side==="right"?"uix-right-bubble":"uix-left-bubble");
+    bubble.textContent = msg.text;
+    uixChat.appendChild(bubble);
+
+    setTimeout(()=>{
+      bubble.style.opacity = 1;
+      bubble.style.transform = 'translateY(0)';
+      uixChat.style.transform =
+        `translateY(-${Math.max(0, uixChat.scrollHeight - uixChat.parentNode.clientHeight)}px)`;
+    }, 50);
   }
 
-  // ====================
+  function nextChatMessage() {
+    if (uixIndex >= uixMessages.length) return;
+
+    const msg = uixMessages[uixIndex];
+    const typing = document.createElement('div');
+    typing.className = 'uix-typing ' + (msg.side==="right"?"uix-typing-right":"uix-typing-left");
+    typing.innerHTML = '<div class="uix-dot"></div><div class="uix-dot"></div><div class="uix-dot"></div>';
+    uixChat.appendChild(typing);
+
+    setTimeout(()=>{
+      typing.remove();
+      addChatMessage(msg);
+      uixIndex++;
+      setTimeout(nextChatMessage, 500 + Math.random()*800);
+    }, 1200 + Math.random()*800);
+  }
+
+  function startChat() {
+    nextChatMessage();
+  }
+
+  // ============================
   // Main Execution
-  // ====================
+  // ============================
   const preloader = document.getElementById("preloader");
   const MIN_TIME = 800;
   const startTime = performance.now();
 
-  loadHTML("header", "header.html").then(() => {
+  // Load sections sequentially
+  loadHTML("header","header.html").then(()=>{
     resetPageState();
     setupHeaderMenu();
   });
 
   const sections = [
-    loadHTML("alert", "alert.html"),
-    loadHTML("main-section", "main-section.html"),
-    loadHTML("trusted-by", "https://hirshtom-web.github.io/capital_partners/trusted-by.html"),
-    loadHTML("property-slide", "property-slide.html"),
-    loadHTML("tabs", "tabs.html"),
+    loadHTML("alert","alert.html"),
+    loadHTML("main-section","main-section.html"),
+    loadHTML("trusted-by","https://hirshtom-web.github.io/capital_partners/trusted-by.html"),
+    loadHTML("property-slide","property-slide.html"),
+    loadHTML("tabs","tabs.html"),
 
-    // ⭐ FIX: flow loads → then scripts run → THEN animations start
-    loadHTML("flow", "flow.html").then(() => {
-      setTimeout(() => {
-
-        // ⭐ FIX: fetch chat container AFTER flow.html is loaded
-        const chatEl = document.getElementById("uix-chat-messages");
-        if (chatEl) window.uixChat = chatEl;
-
-        initFlowGraphics();
-        startChat();
-
-      }, 50);
+    loadHTML("flow","flow.html").then(()=>{
+      // Flow loaded, now fetch chat container + init graphics
+      uixChat = document.getElementById("uix-chat-messages");
+      uixIndex = 0;
+      initFlowGraphics();
+      startChat();
     }),
 
-    loadHTML("market", "market.html"),
-    loadHTML("footer", "footer.html"),
+    loadHTML("market","market.html"),
+    loadHTML("footer","footer.html"),
     Promise.resolve().then(populateREKeywords)
   ];
 
-  Promise.allSettled(sections).finally(() => {
+  Promise.allSettled(sections).finally(()=>{
     const elapsed = performance.now() - startTime;
     const remaining = Math.max(0, MIN_TIME - elapsed);
-
-    setTimeout(() => {
-      if (preloader) {
+    setTimeout(()=>{
+      if(preloader){
         preloader.style.transition = "opacity 0.5s ease";
         preloader.style.opacity = 0;
-        setTimeout(() => preloader.remove(), 600);
+        setTimeout(()=>preloader.remove(),600);
       }
-    }, remaining);
-
-    setTimeout(() => preloader?.remove(), 5000);
+    },remaining);
+    setTimeout(()=>preloader?.remove(),5000);
   });
+
 });
-
-/* ========================================== */
-/* CHAT MODULE (kept exactly as original)     */
-/* ========================================== */
-
-const uixMessages = [
-  {text: "Hello! How can I help you today?", side: "left"},
-  {text: "Hi! I want to check my pre-approval.", side: "right"},
-  {text: "Sure! It only takes a few seconds. 👌", side: "left"},
-  {text: "Great, let's do it!", side: "right"},
-  {text: "Please provide your info.", side: "left"},
-  {text: "Done! Submitted.", side: "right"},
-];
-
-const uixChat = document.getElementById('uix-chat-messages');
-let uixIndex = 0;
-
-function uixAddMessage(msg) {
-  const bubble = document.createElement('div');
-  bubble.className = 'uix-chat-bubble ' +
-                     (msg.side === 'right' ? 'uix-right-bubble' : 'uix-left-bubble');
-  bubble.textContent = msg.text;
-  uixChat.appendChild(bubble);
-
-  setTimeout(() => {
-    bubble.style.opacity = 1;
-    bubble.style.transform = 'translateY(0)';
-    uixChat.style.transform =
-      `translateY(-${Math.max(0, uixChat.scrollHeight - uixChat.parentNode.clientHeight)}px)`;
-  }, 50);
-}
-
-function uixNextMessage() {
-  if (uixIndex >= uixMessages.length) return;
-
-  const msg = uixMessages[uixIndex];
-
-  const typing = document.createElement('div');
-  typing.className = 'uix-typing ' +
-                     (msg.side === 'right' ? 'uix-typing-right' : 'uix-typing-left');
-  typing.innerHTML =
-    '<div class="uix-dot"></div><div class="uix-dot"></div><div class="uix-dot"></div>';
-  uixChat.appendChild(typing);
-
-  setTimeout(() => {
-    typing.remove();
-    uixAddMessage(msg);
-    uixIndex++;
-    setTimeout(uixNextMessage, 500 + Math.random() * 800);
-  }, 1200 + Math.random() * 800);
-}
