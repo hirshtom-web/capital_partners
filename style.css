@@ -219,9 +219,22 @@ a {
    SECTION AREA
 ================================== */
 .flow-section-shell {
-  background-color: #fff;
-  padding: 0 0 80px 0; /* top: 0, bottom: 80px */
+  background-color: #fff; /* white background */
+  padding: 0 0 80px 0;    /* top: 0, bottom: 80px */
+  margin: 0;              /* remove extra margins if any */
 }
+
+/* Tiles inside */
+.uix-tile {
+  width: 100%;
+  max-width: 1200px;
+  background-color: #fbf8f5; /* tile color */
+  border-radius: 40px;
+  margin: 0 auto 80px; /* top: 0, bottom: 80px */
+  padding: 60px 40px;
+  box-sizing: border-box;
+}
+
 
 
 /* =============================== */
@@ -229,12 +242,6 @@ a {
 /* =============================== */
 
 .uix-tile {
-  width: 100%;
-  max-width: 1200px;
-  background-color: #fbf8f5; /* ← BACK TO ORIGINAL */
-  border-radius: 40px;
-  margin: 60px auto;
-  padding: 60px 40px;
   color: #111;
   display: flex;
   gap: 20px;
