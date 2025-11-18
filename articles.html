@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog - Capital Partners</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Rubik', sans-serif;
+      background-color: #ffffff;
+      color: #000;
+      text-align: center;
+      direction: ltr;
+      margin: 0;
+      padding: 40px 0;
+    }
+
+    .section-wrapper {
+      background-color: #fafafa;
+      border-radius: 40px;
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      padding: 60px 40px;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 40px;
+      font-weight: 600;
+      margin-bottom: 60px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #333;
+      max-width: 400px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    /* SLIDER */
+    .slider-container {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+
+    .slider {
+      display: flex;
+      gap: 20px;
+      transition: transform 0.4s ease;
+    }
+
+    .card {
+      flex: 0 0 32%;
+      background-color: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .card-text {
+      padding: 25px;
+      text-align: left;
+    }
+
+    .card-text .category {
+      font-size: 10px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    .card-text .title {
+      font-size: 18px;
+      font-weight: 550;
+      color: #000;
+      margin: 0;
+    }
+
+    /* Controls */
+    .slider-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    .view-all {
+      font-size: 13px;
+      color: #222;
+      text-decoration: none;
+    }
+
+    .arrow-buttons {
+      display: flex;
+      gap: 5px;
+    }
+
+    .arrow-buttons button {
+      width: 30px;
+      height: 30px;
+      font-size: 15px;
+      background-color: #f0f0f0;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .arrow-buttons button:hover {
+      background-color: #e0e0e0;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .card { flex: 0 0 48%; }
+    }
+
+    @media (max-width: 700px) {
+      body { padding: 0; }
+      .section-wrapper {
+        border-radius: 0;
+        max-width: 100%;
+        margin: 0;
+        padding: 40px 0;
+      }
+
+      .slider-container {
+        width: 100%;
+        overflow-x: hidden;
+      }
+
+      .slider {
+        padding-right: 20px;
+      }
+
+      .card {
+        flex: 0 0 85%;
+      }
+
+      .card-image { height: 180px; }
+      h1 { font-size: 28px; }
+
+      .arrow-buttons button {
+        background-color: transparent;
+        color: #000;
+        border: 1px solid #000;
+      }
+
+      .arrow-buttons button:hover {
+        background-color: #000;
+        color: #fff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="section-wrapper">
+    <h1>Related articles</h1>
+
+    <div class="slider-container" id="slider-container">
+      <div class="slider" id="slider">
+        <div class="card">
+          <div class="card-image" style="background-image:url('https://static.wixstatic.com/media/1799ca_5003fbe867f54687b224a76e8a928212~mv2.jpg');"></div>
+          <div class="card-text">
+            <p class="category">Investments</p>
+            <h3 class="title">How to Choose a Property for Investment</h3>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-image" style="background-image:url('https://static.wixstatic.com/media/1799ca_afbe32d52cd0484ca7ba987d7524bf3e~mv2.jpg');"></div>
+          <div class="card-text">
+            <p class="category">Real Estate Market</p>
+            <h3 class="title">Trends in the U.S. Real Estate Market</h3>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-image" style="background-image:url('https://static.wixstatic.com/media/1799ca_47f217f57cb849848d60dbff7979806e~mv2.png');"></div>
+          <div class="card-text">
+            <p class="category">Economy</p>
+            <h3 class="title">Impact of Interest Rates on Investments</h3>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-image" style="background-image:url('https://picsum.photos/600/400?random=4');"></div>
+          <div class="card-text">
+            <p class="category">Smart Investments</p>
+            <h3 class="title">How to Evaluate Investment Risks</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="slider-controls">
+        <a href="#" class="view-all">View more related articles</a>
+        <div class="arrow-buttons">
+          <button id="prev">&#10094;</button>
+          <button id="next">&#10095;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const slider = document.getElementById('slider');
+    const container = document.getElementById('slider-container');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    let currentIndex = 0;
+
+    function updateSlider() {
+      const cardWidth = slider.querySelector('.card').offsetWidth + 20;
+      slider.style.transform = `translateX(${-currentIndex * cardWidth}px)`;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) currentIndex--;
+      updateSlider();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const visibleCards = Math.floor(slider.parentElement.offsetWidth / slider.querySelector('.card').offsetWidth);
+      const maxIndex = slider.children.length - visibleCards;
+      if (currentIndex < maxIndex) currentIndex++;
+      updateSlider();
+    });
+
+    // --- Touch Swipe ---
+    let startX = 0;
+    let isDragging = false;
+
+    container.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      startX = e.touches[0].clientX;
+      slider.style.transition = 'none';
+    });
+
+    container.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const currentX = e.touches[0].clientX;
+      const deltaX = currentX - startX;
+      const cardWidth = slider.querySelector('.card').offsetWidth + 20;
+      const translate = -currentIndex * cardWidth + deltaX;
+      slider.style.transform = `translateX(${translate}px)`;
+    });
+
+    container.addEventListener('touchend', (e) => {
+      isDragging = false;
+      const endX = e.changedTouches[0].clientX;
+      const deltaX = endX - startX;
+      const threshold = 50;
+
+      if (deltaX < -threshold) nextBtn.click();
+      else if (deltaX > threshold) prevBtn.click();
+
+      slider.style.transition = 'transform 0.4s ease';
+      updateSlider();
+    });
+
+    window.addEventListener('resize', updateSlider);
+    updateSlider();
+  </script>
+</body>
+</html>
