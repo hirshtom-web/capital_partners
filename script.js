@@ -108,25 +108,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ====================
   // Tabs initialization
+  // Handles both "old" tabs and new Investors/Homebuyers/Developers
   // ====================
   function initTabs() {
-  const tabButtons = document.querySelectorAll(".tab-button");
-  const tabContents = document.querySelectorAll(".tab-content");
+    // Generic tab buttons
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const tabContents = document.querySelectorAll(".tab-content");
 
-  tabButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const target = btn.dataset.target;
+    tabButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.target;
 
-      // ✅ Log the clicked tab
-      console.log("Clicked tab:", target);
+        tabContents.forEach(c => c.classList.remove("active"));
+        tabButtons.forEach(b => b.classList.remove("active"));
 
-      tabContents.forEach(c => c.classList.remove("active"));
-      tabButtons.forEach(b => b.classList.remove("active"));
-      document.getElementById(target)?.classList.add("active");
-      btn.classList.add("active");
+        document.getElementById(target)?.classList.add("active");
+        btn.classList.add("active");
+      });
     });
-  });
-}
+
+    // New uni-toggle buttons for Investors/Homebuyers/Developers
+    const uniButtons = document.querySelectorAll(".uni-toggle-btn");
+    const uniPanels = document.querySelectorAll(".uni-panel");
+
+    uniButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.tab;
+
+        uniPanels.forEach(p => p.classList.remove("active"));
+        uniButtons.forEach(b => b.classList.remove("active"));
+
+        document.getElementById(target)?.classList.add("active");
+        btn.classList.add("active");
+      });
+    });
+  }
 
   // ====================
   // Populate real estate keyword suggestions
