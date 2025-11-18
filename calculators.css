@@ -366,32 +366,45 @@
 }
 
 /* ---------- Table ---------- */
-/* Section */
-   h2{
+/* ---------------------- CLEAN TABLE SECTION ---------------------- */
+
+:root {
+  --bg: #ffffff;
+  --soft-gray: #f6f6f8;
+  --border: #dcdcdc;
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* Section heading */
+#real-estate-calculators h2 {
   text-align: center;
-  font-weight:700;
-  margin-bottom: 70px;
+  font-weight: 700;
+  margin-bottom: 40px;
   font-size: 25px;
 }
 
-.table-wrap{
+/* Main wrapper (NO SCROLLING) */
+.table-wrap {
   width: 100%;
-  margin: 0 auto 00px;
+  max-width: 1200px;
+  margin: 0 auto 80px;
   background: var(--bg);
   border-radius: 20px;
   box-shadow: var(--shadow);
-  overflow-x: auto;
   border: 0px solid var(--border);
-  max-width: 1200px;
+  overflow: visible !important;      /* 🔥 THIS REMOVES SCROLL FOREVER */
 }
 
-.table{
+/* Table */
+.table {
   width: 100%;
   border-collapse: collapse;
-  background: var(--bg);
+  table-layout: auto;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-.table thead th{
+/* Header */
+.table thead th {
   text-align: center;
   background: var(--soft-gray);
   border-bottom: 0.5px solid var(--border);
@@ -400,103 +413,67 @@
   font-weight: 600;
 }
 
-.table tbody td{
+/* Body */
+.table tbody td {
   border-bottom: 0.5px solid var(--border);
   text-align: left;
   padding: 12px;
   font-size: 12px;
   position: relative;
+  vertical-align: top;
 }
 
-.table tbody td:first-child{
-  text-align: left;
-  font-weight: 500;
-  color: #111827;
-}
+/* Alternate rows */
+.table tbody tr:nth-child(odd) { background: #fff; }
+.table tbody tr:nth-child(even) { background: var(--soft-gray); }
 
-.table tbody tr:nth-child(odd){ background: #fff; }
-.table tbody tr:nth-child(even){ background: var(--soft-gray); }
-.table tbody tr:hover{ background: #f3f3f3; }
+/* Hover */
+.table tbody tr:hover { background: #f3f3f3; }
 
-.input-hover {
-  display: none;
-  position: absolute;
-  left: 0;
-  top: 100%;
-  width: 100%;
-  background: #f9f9ff;
-  padding: 8px 12px;
-  font-size: 10px;
-  border-top: 1px solid var(--border);
-  color: #333;
-  white-space: normal;
-  z-index: 1;
-}
-
-.table tbody tr:hover .input-hover {
-  display: block;
-}
-
-@media (max-width: 680px){
-  h2 { font-size: 20px; }
-  .table thead th, .table tbody td{ font-size: 12px; padding: 8px; }
-}
-
-.table-wrap {
-  /* Remove overflow scroll */
-  overflow: visible; /* or just remove this line */
-}
-
-.table {
-  width: 100%;       /* Full width of container */
-  border-collapse: collapse;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  table-layout: auto; /* allow cells to adjust width automatically */
-}
-
-.table th, .table td {
-  padding: 12px;
-  border: 0.5px solid #ddd;
-  text-align: left;
-  white-space: normal; /* allow text to wrap */
-}
-
-
-.input-hover {
-  font-size: 0.9em;
-  color: #555;
-  margin-top: 4px;
-}
-
+/* ----------- INFO ICON & TOOLTIP ----------- */
 .info-icon {
   font-family: 'Material Symbols Outlined';
   cursor: pointer;
-  margin-left: 8px;
+  margin-left: 6px;
   vertical-align: middle;
   color: #2a0f66;
+  display: inline-block;
   position: relative;
+  font-size: 18px;
 }
 
+/* Tooltip bubble */
 .tooltip {
   visibility: hidden;
-  background-color: #2a0f66;
+  opacity: 0;
+  background: #2a0f66;
   color: #fff;
   text-align: left;
-  padding: 8px;
-  border-radius: 6px;
+  padding: 10px;
+  border-radius: 8px;
   position: absolute;
-  z-index: 1;
-  top: -5px;
-  left: 25px;
+  top: 50%;
+  left: 28px;
+  transform: translateY(-50%);
   min-width: 180px;
-  font-size: 0.85em;
+  font-size: 12px;
+  z-index: 5;
+  line-height: 1.4;
+  transition: opacity 0.2s ease;
 }
 
+/* Show tooltip on hover */
 .info-icon:hover .tooltip {
   visibility: visible;
+  opacity: 1;
 }
 
-
-.table-wrap {
-  margin-bottom: 150px; /* adjust the value as needed */
+/* Mobile */
+@media (max-width: 680px) {
+  #real-estate-calculators h2 { font-size: 20px; }
+  .table thead th,
+  .table tbody td {
+    font-size: 12px;
+    padding: 8px;
+  }
 }
