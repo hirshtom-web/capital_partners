@@ -697,6 +697,10 @@ body.menu-open {
 .lets-go-btn {
   color: #ffffff !important;      /* always white text */
 }
+
+
+
+@media (max-width: 480px)
 /* Container */
 .hamburger {
   width: 32px;
@@ -714,7 +718,7 @@ body.menu-open {
   display: block;
   width: 28px;
   height: 4px;
-  background: #111;
+  background: #fff;
   border-radius: 3px;
   transition:
     transform 0.35s cubic-bezier(0.4, 0.0, 0.2, 1),
