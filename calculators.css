@@ -369,7 +369,7 @@
 /* Section */
    h2{
   text-align: center;
-  font-weight: 600;
+  font-weight:700;
   margin-bottom: 20px;
   font-size: 25px;
 }
@@ -378,11 +378,11 @@
   width: 100%;
   margin: 0 auto 40px;
   background: var(--bg);
-  border-radius: var(--radius);
+  border-radius: 20px;
   box-shadow: var(--shadow);
   overflow-x: auto;
-  border: 1px solid var(--border);
-  max-width: 900px;
+  border: 0px solid var(--border);
+  max-width: 1200px;
 }
 
 .table{
@@ -394,14 +394,14 @@
 .table thead th{
   text-align: center;
   background: var(--soft-gray);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 0.5px solid var(--border);
   padding: 14px;
   font-size: 14px;
   font-weight: 600;
 }
 
 .table tbody td{
-  border-bottom: 1px solid var(--border);
+  border-bottom: 0.5px solid var(--border);
   text-align: left;
   padding: 12px;
   font-size: 14px;
