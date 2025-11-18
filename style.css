@@ -219,9 +219,10 @@ a {
    SECTION AREA
 ================================== */
 .flow-section-shell {
-  background-color: #fff; /* entire section is now white */
-   padding: 80px 0;
+  background-color: #fff;
+  padding: 0 0 80px 0; /* top: 0, bottom: 80px */
 }
+
 
 /* =============================== */
 /* UNIVERSAL UNI-CONTENT TILE      */
