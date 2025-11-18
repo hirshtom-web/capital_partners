@@ -693,3 +693,7 @@ body.menu-open {
   fill: rgba(99,39,229,0.5);
   stroke: #fef7f2;
 }
+.cta-button,
+.lets-go-btn {
+  color: #ffffff !important;      /* always white text */
+}
