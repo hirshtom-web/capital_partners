@@ -46,95 +46,72 @@ document.addEventListener("DOMContentLoaded", () => {
   // ====================
   // Setup header + mobile menu
   // ====================
-  function setupHeaderMenu() {
-    const header = document.getElementById("header");
-    const body = document.body;
-    const isHome = window.location.pathname === "/" ||
-                   window.location.pathname.endsWith("index.html");
-
-    if (header) {
-      header.classList.toggle("header--blue", isHome);
-      header.classList.toggle("header--white", !isHome);
-    }
-
-    const menuToggle = document.querySelector(".menu-toggle");
-    const mobileMenu = document.querySelector(".mobile-menu");
-
-    if (menuToggle && mobileMenu) {
-      menuToggle.classList.remove("active");
-      mobileMenu.classList.remove("active");
-      body.classList.remove("menu-open");
-
-      menuToggle.addEventListener("click", () => {
-        menuToggle.classList.toggle("active");
-        mobileMenu.classList.toggle("active");
-        body.classList.toggle("menu-open", mobileMenu.classList.contains("active"));
-      });
-    }
-
-    // Mobile submenu toggle
-    document.querySelectorAll(".mobile-menu > li").forEach(item => {
-      const link = item.querySelector("a");
-      const submenu = item.querySelector(".submenu-mobile");
-      if (link && submenu) {
-        link.addEventListener("click", e => {
-          e.preventDefault();
-          document.querySelectorAll(".mobile-menu > li.expanded")
-                  .forEach(openItem => { if (openItem !== item) openItem.classList.remove("expanded"); });
-          item.classList.toggle("expanded");
-        });
-      }
-    });
-
-    // Services submenu
-    const openServices = document.getElementById("open-services");
-    const servicesSubmenu = document.getElementById("services-submenu");
-    const backLinks = document.querySelectorAll(".mobile-submenu .back-link");
-
-    if (openServices && servicesSubmenu) {
-      openServices.addEventListener("click", e => {
-        e.preventDefault();
-        servicesSubmenu.classList.add("active");
-      });
-    }
-
-    backLinks.forEach(btn => {
-      btn.addEventListener("click", e => {
-        e.preventDefault();
-        servicesSubmenu.classList.remove("active");
-      });
-    });
-  }
 function setupHeaderMenu() {
   const header = document.getElementById("header");
   const body = document.body;
   const isHome = window.location.pathname === "/" ||
                  window.location.pathname.endsWith("index.html");
 
+  // Header color
   if (header) {
     header.classList.toggle("header--blue", isHome);
     header.classList.toggle("header--white", !isHome);
   }
 
-  const menuToggle = document.querySelector(".menu-toggle");
-  const mobileMenu = document.querySelector(".mobile-menu");
+  // Menu toggle and mobile menu
+  const menuToggle = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobile-menu");
 
   if (menuToggle && mobileMenu) {
-    // Reset
+    // Reset classes
     menuToggle.classList.remove("active");
     mobileMenu.classList.remove("active");
     body.classList.remove("menu-open");
 
-    // Click event for animated hamburger
+    // Toggle on click
     menuToggle.addEventListener("click", () => {
-      menuToggle.classList.toggle("active"); // animation
+      menuToggle.classList.toggle("active"); // hamburger animation
       mobileMenu.classList.toggle("active"); // slide menu
       body.classList.toggle("menu-open", mobileMenu.classList.contains("active"));
     });
   }
 
-  // SNIP… (your submenu code stays as-is)
+  // Mobile submenu toggle
+  mobileMenu.querySelectorAll("li").forEach(item => {
+    const link = item.querySelector("a");
+    const submenu = item.querySelector(".submenu-mobile");
+
+    if (link && submenu) {
+      link.addEventListener("click", e => {
+        e.preventDefault(); // prevent default link
+        // Close other open submenus
+        mobileMenu.querySelectorAll("li.expanded")
+                  .forEach(openItem => { if (openItem !== item) openItem.classList.remove("expanded"); });
+        item.classList.toggle("expanded"); // toggle current
+      });
+    }
+  });
+
+  // Optional: special services submenu
+  const openServices = document.getElementById("open-services");
+  const servicesSubmenu = document.getElementById("services-submenu");
+  const backLinks = document.querySelectorAll(".mobile-submenu .back-link");
+
+  if (openServices && servicesSubmenu) {
+    openServices.addEventListener("click", e => {
+      e.preventDefault();
+      servicesSubmenu.classList.add("active");
+    });
+  }
+
+  backLinks.forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.preventDefault();
+      servicesSubmenu.classList.remove("active");
+    });
+  });
 }
+
 
   // ====================
   // Tabs initialization
