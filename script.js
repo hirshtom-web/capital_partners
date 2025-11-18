@@ -194,3 +194,50 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => preloader?.remove(), 5000);
   });
 });
+function uixNextMessage() {
+  if (uixIndex >= uixMessages.length) return;
+
+  const msg = uixMessages[uixIndex];
+
+  const typing = document.createElement('div');
+  typing.className = 'uix-typing ' +
+                     (msg.side === 'right' ? 'uix-typing-right' : 'uix-typing-left');
+  typing.innerHTML =
+    '<div class="uix-dot"></div><div class="uix-dot"></div><div class="uix-dot"></div>';
+  uixChat.appendChild(typing);
+
+  setTimeout(() => {
+    typing.remove();
+    uixAddMessage(msg);
+    uixIndex++;
+    setTimeout(uixNextMessage, 500 + Math.random() * 800);
+  }, 1200 + Math.random() * 800);
+}
+
+uixNextMessage();
+
+
+
+/* ========================================== */
+/* CHART COUNTER + LINE ANIMATION             */
+/* ========================================== */
+
+window.addEventListener('load', () => {
+  const line = document.querySelector('.uix-growth-line');
+  line.style.strokeDashoffset = 0;
+
+  const percentEl = document.getElementById('uix-percent');
+  let current = 0;
+  const target = 42.7;
+  const duration = 2000;
+  const increment = target / (duration / 20);
+
+  const counter = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      current = target;
+      clearInterval(counter);
+    }
+    percentEl.textContent = `+${current.toFixed(1)}%`;
+  }, 20);
+});
