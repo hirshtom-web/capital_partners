@@ -1,73 +1,289 @@
-/* ===== Footer CSS – Best of both worlds ===== */
+
+    /* ===== Footer CSS ===== */
 footer {
   width: 100%;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   background: #130328;
   padding: 100px 100px;
+}
+
+/* Top Section (6 Columns) */
+.footer-top {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  width: 100%;
+  padding: 0 0 30px 0;
   box-sizing: border-box;
 }
 
-/* Top + Bottom layout stays the same */
-.footer-top { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; padding-bottom: 30px; }
-.footer-section { border-top: 0.25px solid #9999; padding: 20px 0; display: flex; align-items: center; flex-wrap: wrap; gap: 15px; margin-top: 50px; }
+/* Bottom Section (buttons, privacy, etc.) */
+.footer-section {
+  border-top: 0.25px solid #9999;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 50px;
+}
 
-/* Your original desktop popups – clean & small */
-.country-popup,
-.privacy-popup {
+/* Country Selector */
+.flag {
+  width: 21px;
+  height: 13px;
+  border-radius: 2px;
+  object-fit: cover;
+}
+
+.country-selector {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.country-link {
+  font-size: 12px;
+  color: #fff;
+  text-decoration: none;
+  margin-left: 8px;
+}
+
+/* Popup for country selection */
+.country-popup {
   display: none;
   position: absolute;
+  bottom: 30px;
+  left: 0;
   background-color: #130328;
   border: 0.3px solid #fff;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  z-index: 1000;
-  animation: fadeIn 0.25s ease;
+  padding: 10px;
+  z-index: 100;
+  min-width: 180px;
+  animation: fadeIn 0.2s ease;
 }
 
-.country-popup  { bottom: 30px; left: 0;   min-width: 180px; padding: 10px; }
-.privacy-popup  { bottom: 30px; right: 0;  width: 230px;     padding: 12px 16px; }
-
-/* Mobile only – big beautiful bottom sheets */
-@media (max-width: 900px) {
-  footer { padding: 60px 20px; }
-  .footer-top { grid-template-columns: 1fr; gap: 40px; }
-
-  .country-popup,
-  .privacy-popup {
-    position: fixed !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    top: auto !important;
-    width: 100%;
-    max-height: 85vh;
-    border-radius: 20px 20px 0 0;
-    padding: 24px;
-    box-shadow: 0 -10px 40px rgba(0,0,0,0.4);
-    transform: translateY(100%);
-    transition: transform 0.35s cubic-bezier(0.22, 0.88, 0.32, 1);
-  }
-
-  .country-popup.open,
-  .privacy-popup.open {
-    transform: translateY(0);
-  }
-
-  /* Bigger tap targets on mobile */
-  .country-option { padding: 16px !important; font-size: 16px !important; }
-  .country-option img { width: 28px; height: 18px; margin-right: 12px; }
-  .privacy-popup h4 { font-size: 18px; margin-bottom: 16px; }
-  .privacy-option { font-size: 15px; margin-bottom: 16px; }
-  .privacy-popup button { width: 100%; padding: 14px; font-size: 15px; border-radius: 12px; }
+.country-option {
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 0.2s;
 }
 
-/* Keep all your other styles exactly as you had them (social icons, copyright, columns, etc.) */
-.flag { width: 21px; height: 13px; border-radius: 2px; object-fit: cover; }
-.country-link { font-size: 12px; color: #fff; text-decoration: none; margin-left: 8px; }
-/* … the rest of your original styles stay 100% the same … */
+.country-option:hover {
+  background-color: #333;
+}
 
+.country-option img {
+  width: 20px;
+  height: 13px;
+  margin-right: 8px;
+  border-radius: 2px;
+}
+
+/* Social Icons */
+.social-icons a {
+  margin-right: 10px;
+  margin-top: 6px;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+}
+
+.social-icons a img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0) invert(1);
+  transition: transform 0.2s;
+}
+
+.social-icons a:hover img {
+  transform: scale(1.1);
+}
+
+/* Privacy Section */
+.privacy {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  margin-left: auto;
+  margin-right: 15px;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+}
+
+.privacy-icon {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+}
+
+.privacy-popup {
+  display: none;
+  position: absolute;
+  bottom: 30px;
+  right: 0;
+  background-color: #130328;
+  border: 0.3px solid #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  padding: 12px 16px;
+  z-index: 200;
+  width: 230px;
+  animation: fadeIn 0.2s ease;
+  font-size: 12px;
+}
+
+.privacy-popup h4 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: #fff;
+}
+
+.privacy-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.privacy-option input {
+  margin-right: 8px;
+}
+
+.privacy-popup button {
+  background-color: #4e2b9a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.privacy-popup button:hover {
+  background-color: #6a3fd1;
+}
+
+/* Copyright */
+.copyright {
+  font-size: 12px;
+  color: #fff;
+}
+
+/* Fade animation */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {opacity: 0; transform: translateY(10px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* Footer Columns */
+.footer-column h4 {
+  font-weight: 500;
+  font-size: 12px;
+  margin-bottom: 10px;
+  position: relative;
+  cursor: default;
+  color: #fff; 
+}
+
+.footer-column ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-column li {
+  margin-bottom: 6px;
+}
+
+.footer-column a {
+  color: #dbdbdb;
+  text-decoration: none;
+  font-size: 12px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s;
+}
+
+.footer-column a:hover {
+  color: #fff;
+}
+
+/* Bubble */
+.hiring-bubble {
+  background-color: #6327e5;
+  color: #fff;
+  font-size: 7px;
+  font-weight: 400;
+  padding: 2px 4px;
+  border-radius: 4px;
+  margin-left: 5px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Mobile Footer Adjustments */
+@media (max-width: 900px) {
+  footer {
+    padding: 10px 10px;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr; /* stack columns vertically */
+    gap: 10px;
+  }
+
+  .footer-column {
+    margin-bottom: 10px; /* spacing between categories */
+  }
+
+  .footer-column h4 {
+    font-weight: 600;        /* slightly bolder */
+    font-size: 13px;         /* slightly bigger than links */
+    margin-bottom: 5px;      /* spacing before links */
+    cursor: default;
+    position: static;        /* remove absolute positioning/arrow */
+    padding: 0;
+  }
+
+  .footer-column ul {
+    display: block;          /* show links directly */
+    margin: 0;
+    padding: 0;
+    gap: 2px;                /* spacing between links */
+  }
+
+  .footer-column li {
+    margin-bottom: 8px;      /* 2px more than default */
+    margin-left: 10px;       /* spacing from title */
+  }
+
+  .footer-column a {
+    font-size: 12px;
+    color: #dbdbdb;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 2px;      /* spacing between links */
+  }
+
+  .footer-column a:hover {
+    color: #fff;
+  }
 }
