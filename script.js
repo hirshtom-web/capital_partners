@@ -176,6 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadHTML("property-slide", "property-slide.html"),
     loadHTML("tabs", "tabs.html"),
     loadHTML("flow", "flow.html"),
+    loadHTML("market", "market.html"),    
     loadHTML("footer", "footer.html"),
     Promise.resolve().then(populateREKeywords)
   ];
