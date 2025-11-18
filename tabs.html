@@ -18,14 +18,14 @@
           <h3>Why Capital Partners Real Estate is Great for Investors</h3>
           <p>Investing with Capital Partners Real Estate opens doors to smart, profitable opportunities...</p>
           <ul class="uni-list">
-            <li><img src="https://static.wixstatic.com/shapes/1799ca_ce0b06d466af4174b1e55bcdf5ffba0e.svg">High potential for strong ROI</li>
-            <li><img src="https://static.wixstatic.com/shapes/1799ca_ce0b06d466af4174b1e55bcdf5ffba0e.svg">Diversified property portfolios</li>
-            <li><img src="https://static.wixstatic.com/shapes/1799ca_ce0b06d466af4174b1e55bcdf5ffba0e.svg">Expert market analysis and guidance</li>
-            <li><img src="https://static.wixstatic.com/shapes/1799ca_ce0b06d466af4174b1e55bcdf5ffba0e.svg">Transparent reporting and communication</li>
+            <li><img src="https://static.wixstatic.com/shapes/icon1.svg" alt="icon1">High potential for strong ROI</li>
+            <li><img src="https://static.wixstatic.com/shapes/icon2.svg" alt="icon2">Diversified property portfolios</li>
+            <li><img src="https://static.wixstatic.com/shapes/icon3.svg" alt="icon3">Expert market analysis and guidance</li>
+            <li><img src="https://static.wixstatic.com/shapes/icon4.svg" alt="icon4">Transparent reporting and communication</li>
           </ul>
         </div>
         <div class="uni-panel-image">
-          <img src="https://static.wixstatic.com/media/1799ca_5612e730c7834e63a1c15aa6098c692c~mv2.webp" alt="Investors">
+          <img src="https://static.wixstatic.com/media/investor-image.webp" alt="Investors">
         </div>
       </div>
     </div>
@@ -35,9 +35,15 @@
         <div class="uni-panel-text">
           <h3>Your Dream Home Starts Here</h3>
           <p>At Capital Partners Real Estate, we help homeowners find the perfect place...</p>
+          <ul class="uni-list">
+            <li><img src="https://static.wixstatic.com/shapes/icon5.svg" alt="icon5">Personalized home search</li>
+            <li><img src="https://static.wixstatic.com/shapes/icon6.svg" alt="icon6">Guidance through the buying process</li>
+            <li><img src="https://static.wixstatic.com/shapes/icon7.svg" alt="icon7">Financing and mortgage support</li>
+            <li><img src="https://static.wixstatic.com/shapes/icon8.svg" alt="icon8">After-sale assistance</li>
+          </ul>
         </div>
         <div class="uni-panel-image">
-          <img src="https://static.wixstatic.com/media/1799ca_5612e730c7834e63a1c15aa6098c692c~mv2.webp" alt="Homebuyers">
+          <img src="https://static.wixstatic.com/media/homebuyer-image.webp" alt="Homebuyers">
         </div>
       </div>
     </div>
@@ -47,31 +53,17 @@
         <div class="uni-panel-text">
           <h3>For Developers</h3>
           <p>We partner with developers to bring projects to life...</p>
+          <ul class="uni-list">
+            <li><img src="https://static.wixstatic.com/shapes/icon9.svg" alt="icon9">Project funding & support</li>
+            <li><img src="https://static.wixstatic.com/shapes/icon10.svg" alt="icon10">Expert market insights</li>
+            <li><img src="https://static.wixstatic.com/shapes/icon11.svg" alt="icon11">Streamlined approvals</li>
+            <li><img src="https://static.wixstatic.com/shapes/icon12.svg" alt="icon12">Trusted partnerships</li>
+          </ul>
         </div>
         <div class="uni-panel-image">
-          <img src="https://static.wixstatic.com/media/1799ca_5612e730c7834e63a1c15aa6098c692c~mv2.webp" alt="Developers">
+          <img src="https://static.wixstatic.com/media/developer-image.webp" alt="Developers">
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const toggleButtons = document.querySelectorAll('.uni-toggle-btn');
-  const panels = document.querySelectorAll('.uni-panel');
-
-  toggleButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      toggleButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-
-      panels.forEach(panel => panel.classList.remove('active'));
-
-      const target = button.dataset.tab;
-      const activePanel = document.getElementById(target);
-      if (activePanel) activePanel.classList.add('active');
-    });
-  });
-});
-</script>
