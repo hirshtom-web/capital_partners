@@ -16,10 +16,13 @@ html, body {
    SECTION AREA
 ================================== */
 .uni-section-shell {
-  background-color: #fff; /* entire section is now white */
-  color: #111; /* dark text for readability */
-  padding: 0 80px 20px 0;
+  background-color: #fff;
+  color: #111;
+  padding: 80px 0px 20px 0px; 
+  max-width: 1200px;
+  margin: 0 auto;
 }
+
 
 
 /* ===============================
