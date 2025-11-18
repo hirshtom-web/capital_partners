@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   // ====================
-  // Load external HTML
+  // Load external HTML into container
   // ====================
   async function loadHTML(id, url) {
     const container = document.getElementById(id);
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const html = await res.text();
       container.innerHTML = html;
 
-      // Run inline scripts inside the container
+      // Execute inline scripts
       container.querySelectorAll("script").forEach(oldScript => {
         const newScript = document.createElement("script");
         if (oldScript.src) newScript.src = oldScript.src;
@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       container.style.opacity = 1;
-
     } catch (err) {
       console.warn(`❌ SECTION FAILED: ${id} ->`, err);
       container.style.opacity = 1;
@@ -32,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ====================
-  // Header + Menu
+  // Reset header/menu state
   // ====================
   function resetPageState() {
     document.body.classList.remove("menu-open");
@@ -44,6 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (header) header.classList.remove("header--blue", "header--white");
   }
 
+  // ====================
+  // Setup header + mobile menu
+  // ====================
   function setupHeaderMenu() {
     const header = document.getElementById("header");
     const body = document.body;
@@ -70,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
+    // Mobile submenu toggle
     document.querySelectorAll(".mobile-menu > li").forEach(item => {
       const link = item.querySelector("a");
       const submenu = item.querySelector(".submenu-mobile");
@@ -77,14 +80,13 @@ document.addEventListener("DOMContentLoaded", () => {
         link.addEventListener("click", e => {
           e.preventDefault();
           document.querySelectorAll(".mobile-menu > li.expanded")
-                  .forEach(openItem => {
-                    if (openItem !== item) openItem.classList.remove("expanded");
-                  });
+                  .forEach(openItem => { if (openItem !== item) openItem.classList.remove("expanded"); });
           item.classList.toggle("expanded");
         });
       }
     });
 
+    // Services submenu
     const openServices = document.getElementById("open-services");
     const servicesSubmenu = document.getElementById("services-submenu");
     const backLinks = document.querySelectorAll(".mobile-submenu .back-link");
@@ -105,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ====================
-  // Tabs Init
+  // Tabs initialization
   // ====================
   function initTabs() {
     const tabButtons = document.querySelectorAll(".tab-button");
@@ -123,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ====================
-  // Real Estate Keywords
+  // Populate real estate keyword suggestions
   // ====================
   function populateREKeywords() {
     const keywords = [
@@ -170,15 +172,14 @@ document.addEventListener("DOMContentLoaded", () => {
     container.appendChild(row2);
     container.style.opacity = 1;
 
-    // Attach keyword click to popup chat
     document.querySelectorAll(".re-phrase, .re-other").forEach(el => {
       el.addEventListener("click", showKeywordChat);
     });
   }
 
-  // ============================
-  // Flow Graphics Init
-  // ============================
+  // ====================
+  // Flow graphics animation
+  // ====================
   function initFlowGraphics() {
     const line = document.querySelector('.uix-growth-line');
     const percentEl = document.getElementById('uix-percent');
@@ -201,9 +202,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 20);
   }
 
-  // ============================
-  // CHAT MODULE
-  // ============================
+  // ====================
+  // Chat module
+  // ====================
   const uixMessages = [
     {text: "Hello! How can I help you today?", side: "left"},
     {text: "Hi! I want to check my pre-approval.", side: "right"},
@@ -251,9 +252,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1200 + Math.random() * 800);
   }
 
-  // ============================
-  // Keyword Chat Popup
-  // ============================
+  // ====================
+  // Keyword Chat popup
+  // ====================
   function showKeywordChat() {
     const overlay = document.createElement("div");
     overlay.className = "uix-overlay";
@@ -264,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
     chatContainer.className = "uix-chat-popup";
     overlay.appendChild(chatContainer);
 
-    uixChat = chatContainer; // assign dynamically
+    uixChat = chatContainer;
     uixIndex = 0;
     uixNextMessage();
 
@@ -274,7 +275,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ====================
-  // Main Execution
+  // Main execution
   // ====================
   const preloader = document.getElementById("preloader");
   const MIN_TIME = 800;
@@ -291,17 +292,15 @@ document.addEventListener("DOMContentLoaded", () => {
     loadHTML("trusted-by", "https://hirshtom-web.github.io/capital_partners/trusted-by.html"),
     loadHTML("property-slide", "property-slide.html"),
     loadHTML("tabs", "tabs.html").then(() => initTabs()),
-
     loadHTML("flow", "flow.html").then(() => {
       setTimeout(() => {
         const chatEl = document.getElementById("uix-chat-messages");
         if (chatEl) uixChat = chatEl;
 
         initFlowGraphics();
-        uixNextMessage(); // start looping flow chat
+        uixNextMessage();
       }, 50);
     }),
-
     loadHTML("market", "market.html"),
     loadHTML("footer", "footer.html"),
     Promise.resolve().then(populateREKeywords)
@@ -321,4 +320,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(() => preloader?.remove(), 5000);
   });
+
 });
