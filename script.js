@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const DEBUG = true;
 
   // ====================
   // Load external HTML
@@ -14,25 +13,22 @@ document.addEventListener("DOMContentLoaded", () => {
       const html = await res.text();
       container.innerHTML = html;
 
+      // ⭐ FIX: Run inline scripts inside the container, not body
       container.querySelectorAll("script").forEach(oldScript => {
         const newScript = document.createElement("script");
         if (oldScript.src) newScript.src = oldScript.src;
         else newScript.textContent = oldScript.textContent;
-        document.body.appendChild(newScript);
+        container.appendChild(newScript);
         oldScript.remove();
       });
 
       container.style.opacity = 1;
-      if (DEBUG) console.log(`✅ Loaded section: ${id}`);
+
     } catch (err) {
       console.warn(`❌ SECTION FAILED: ${id} ->`, err);
       container.style.opacity = 1;
 
-      if (DEBUG) {
-        container.style.border = "2px dashed red";
-        container.style.backgroundColor = "#ffe6e6";
-        container.innerHTML = `<strong>Failed to load: ${id}</strong><br>${err.message}`;
-      }
+      container.innerHTML = `<strong>Failed to load: ${id}</strong><br>${err.message}`;
     }
   }
 
@@ -159,12 +155,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ============================
-  // FIX: Flow Graphics Init
+  // Flow Graphics Init
   // ============================
   function initFlowGraphics() {
     const line = document.querySelector('.uix-growth-line');
     const percentEl = document.getElementById('uix-percent');
-    if (!line || !percentEl) return; // safely skip if not loaded yet
+    if (!line || !percentEl) return;
 
     line.style.strokeDashoffset = 0;
 
@@ -198,13 +194,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const MIN_TIME = 800;
   const startTime = performance.now();
 
-  // Load header
   loadHTML("header", "header.html").then(() => {
     resetPageState();
     setupHeaderMenu();
   });
 
-  // Load sections
   const sections = [
     loadHTML("alert", "alert.html"),
     loadHTML("main-section", "main-section.html"),
@@ -212,10 +206,12 @@ document.addEventListener("DOMContentLoaded", () => {
     loadHTML("property-slide", "property-slide.html"),
     loadHTML("tabs", "tabs.html"),
 
-    // ⭐ FIX: When flow loads → run graphics + chat
+    // ⭐ FIX: flow loads → then scripts run → THEN animations start
     loadHTML("flow", "flow.html").then(() => {
-      initFlowGraphics();
-      startChat();
+      setTimeout(() => {
+        initFlowGraphics();
+        startChat();
+      }, 50); // tiny delay ensures injected scripts finish
     }),
 
     loadHTML("market", "market.html"),
@@ -240,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ========================================== */
-/* CHAT MODULE (unchanged)                     */
+/* CHAT MODULE (kept exactly as original)     */
 /* ========================================== */
 
 const uixMessages = [
@@ -257,7 +253,7 @@ let uixIndex = 0;
 
 function uixAddMessage(msg) {
   const bubble = document.createElement('div');
-  bubble.className = 'uix-chat-bubble ' + 
+  bubble.className = 'uix-chat-bubble ' +
                      (msg.side === 'right' ? 'uix-right-bubble' : 'uix-left-bubble');
   bubble.textContent = msg.text;
   uixChat.appendChild(bubble);
