@@ -1,3 +1,34 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const preloader = document.getElementById("preloader");
+  const MIN_TIME = 800; 
+  const startTime = performance.now();
+
+  // All your section loads (header, main-section, etc.)
+  const sections = [
+    loadHTML("header", "header.html"),
+    loadHTML("main-section", "main-section.html"),
+    loadHTML("trusted-by", "https://hirshtom-web.github.io/capital_partners/trusted-by.html"),
+    loadHTML("property-slide", "property-slide.html"),
+    loadHTML("tabs", "tabs.html"),
+    loadHTML("footer", "footer.html"),
+    loadHTML("re-container", "re-container.html").then(populateREKeywords)
+  ];
+
+  Promise.allSettled(sections).finally(() => {
+    const elapsed = performance.now() - startTime;
+    const remaining = Math.max(0, MIN_TIME - elapsed);
+
+    setTimeout(() => {
+      if (preloader) {
+        preloader.style.transition = "opacity 0.5s ease";
+        preloader.style.opacity = 0;
+        setTimeout(() => preloader.remove(), 600);
+      }
+    }, remaining);
+
+    setTimeout(() => preloader?.remove(), 5000);
+  });
+});
 // Full JS: dynamic sections + header + mobile menu + RE keywords
 document.addEventListener("DOMContentLoaded", () => {
 
