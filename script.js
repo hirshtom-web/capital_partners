@@ -1,36 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const DEBUG = true; // <-- toggle debug mode here
+
   // ====================
   // Helper: load external HTML into a section by ID
   // ====================
-  function loadHTML(id, url) {
+  async function loadHTML(id, url) {
     const container = document.getElementById(id);
-    if (!container) return Promise.resolve();
+    if (!container) return;
 
-    return fetch(url)
-      .then(res => {
-        if (!res.ok) throw new Error(`${url} failed: ${res.status}`);
-        return res.text();
-      })
-      .then(html => {
-        container.innerHTML = html;
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`${url} failed: ${res.status}`);
+      const html = await res.text();
+      container.innerHTML = html;
 
-        // Run any inline scripts inside loaded HTML
-        container.querySelectorAll("script").forEach(oldScript => {
-          const newScript = document.createElement("script");
-          if (oldScript.src) newScript.src = oldScript.src;
-          else newScript.textContent = oldScript.textContent;
-          document.body.appendChild(newScript);
-          oldScript.remove();
-        });
+      // Run inline scripts in loaded HTML
+      container.querySelectorAll("script").forEach(oldScript => {
+        const newScript = document.createElement("script");
+        if (oldScript.src) newScript.src = oldScript.src;
+        else newScript.textContent = oldScript.textContent;
+        document.body.appendChild(newScript);
+        oldScript.remove();
+      });
 
-        // Fade in loaded section
-        container.style.opacity = 1;
-      })
-      .catch(err => console.warn("SECTION FAILED:", err));
+      container.style.opacity = 1;
+      if (DEBUG) console.log(`✅ Loaded section: ${id}`);
+    } catch (err) {
+      console.warn(`❌ SECTION FAILED: ${id} ->`, err);
+      container.style.opacity = 1;
+
+      if (DEBUG) {
+        container.style.border = "2px dashed red";
+        container.style.backgroundColor = "#ffe6e6";
+        container.innerHTML = `<strong>Failed to load: ${id}</strong><br>${err.message}`;
+      }
+    }
   }
 
   // ====================
-  // Header + Menu
+  // Header + Mobile Menu Setup
   // ====================
   function resetPageState() {
     document.body.classList.remove("menu-open");
@@ -99,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ====================
-  // Real Estate Keywords
+  // Real Estate Keywords Generator
   // ====================
   function populateREKeywords() {
     const keywords = [
@@ -160,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupHeaderMenu();
   });
 
-  // Load other sections
+  // Load other sections in parallel
   const sections = [
     loadHTML("main-section", "main-section.html"),
     loadHTML("trusted-by", "https://hirshtom-web.github.io/capital_partners/trusted-by.html"),
@@ -182,6 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }, remaining);
 
+    // Safety fallback: remove preloader after 5s
     setTimeout(() => preloader?.remove(), 5000);
   });
 });
