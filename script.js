@@ -170,10 +170,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Load other sections in parallel
   const sections = [
+    loadHTML("alert", "alert.html"),
     loadHTML("main-section", "main-section.html"),
     loadHTML("trusted-by", "https://hirshtom-web.github.io/capital_partners/trusted-by.html"),
     loadHTML("property-slide", "property-slide.html"),
     loadHTML("tabs", "tabs.html"),
+    loadHTML("flow", "flow.html"),
     loadHTML("footer", "footer.html"),
     Promise.resolve().then(populateREKeywords)
   ];
