@@ -212,10 +212,14 @@ a {
 /* UNIVERSAL UNI-CONTENT TILE      */
 /* =============================== */
 
-.uni-content-tile {
+/* =============================== */
+/* UNIVERSAL UNI-CONTENT TILE      */
+/* =============================== */
+
+.uix-tile {
   width: 100%;
   max-width: 1200px;
-  background-color: #fbf8f5;
+  background-color: #fff; /* changed to white */
   border-radius: 40px;
   margin: 60px auto;
   padding: 60px 40px;
@@ -227,10 +231,10 @@ a {
 }
 
 /* =============================== */
-/* LEFT COLUMN (WORKS FOR BOTH)   */
+/* LEFT COLUMN (BOTH MODULES)      */
 /* =============================== */
 
-.left-column {
+.uix-left {
   width: 40%;
   background-color: #fff;
   border-radius: 20px;
@@ -242,10 +246,10 @@ a {
 }
 
 /* =============================== */
-/* CHART VERSION                   */
+/* CHART MODULE                    */
 /* =============================== */
 
-.chart-container {
+.uix-chart {
   width: 90%;
   position: relative;
   border-radius: 20px;
@@ -256,25 +260,25 @@ a {
   align-items: center;
 }
 
-svg {
+.uix-chart svg {
   width: 100%;
   height: 250px;
   display: block;
   overflow: visible;
 }
 
-.grid-line {
+.uix-grid-line {
   stroke: #fafafa;
   stroke-width: 0.5;
 }
 
-.track-line {
+.uix-track-line {
   stroke: #e0e0e0;
   stroke-width: 2;
   fill: none;
 }
 
-.growth-line {
+.uix-growth-line {
   stroke: url(#lineGradient);
   stroke-width: 2;
   fill: none;
@@ -284,7 +288,7 @@ svg {
   transition: stroke-dashoffset 2s ease-out;
 }
 
-.top-right-box {
+.uix-top-right {
   position: absolute;
   top: 105px;
   right: 0px;
@@ -300,12 +304,12 @@ svg {
   color: #fff;
 }
 
-.year-label {
+.uix-year-label {
   font-size: 5px;
   fill: #888888;
 }
 
-.mid-label {
+.uix-mid-label {
   font-size: 8px;
   font-weight: bold;
   fill: #000000;
@@ -313,10 +317,10 @@ svg {
 }
 
 /* =============================== */
-/* IPHONE CHAT VERSION             */
+/* IPHONE CHAT MODULE              */
 /* =============================== */
 
-.iphone-container {
+.uix-phone {
   width: 65%;
   aspect-ratio: 11/19;
   background: #fefefe;
@@ -331,7 +335,7 @@ svg {
   overflow: hidden;
 }
 
-.profile-image {
+.uix-phone-img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -342,7 +346,7 @@ svg {
   z-index: 10;
 }
 
-.phone-timestamp {
+.uix-phone-time {
   font-size: 8px;
   color: #888;
   position: absolute;
@@ -352,20 +356,20 @@ svg {
   z-index: 10;
 }
 
-.chat-wrapper {
+.uix-chat-wrapper {
   flex: 1;
   margin-top: 80px;
   overflow: hidden;
   position: relative;
 }
 
-.chat-messages {
+.uix-chat-messages {
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease;
 }
 
-.chat-bubble {
+.uix-chat-bubble {
   max-width: 70%;
   padding: 10px 15px;
   border-radius: 20px;
@@ -377,19 +381,19 @@ svg {
   transition: all 0.3s ease;
 }
 
-.chat-left {
+.uix-left-bubble {
   background-color: #e9e9eb;
   align-self: flex-start;
   color: #111;
 }
 
-.chat-right {
+.uix-right-bubble {
   background-color: #1a8bfe;
   color: #fff;
   align-self: flex-end;
 }
 
-.typing-bubble {
+.uix-typing {
   width: 40px;
   height: 20px;
   border-radius: 10px;
@@ -402,31 +406,31 @@ svg {
   opacity: 0.7;
 }
 
-.typing-left {
+.uix-typing-left {
   align-self: flex-start;
 }
 
-.typing-right {
+.uix-typing-right {
   align-self: flex-end;
 }
 
-.typing-dot {
+.uix-dot {
   width: 5px;
   height: 5px;
   background-color: #888;
   border-radius: 50%;
-  animation: blink 1s infinite;
+  animation: uix-blink 1s infinite;
 }
 
-.typing-dot:nth-child(2) { animation-delay: 0.2s; }
-.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+.uix-dot:nth-child(2) { animation-delay: 0.2s; }
+.uix-dot:nth-child(3) { animation-delay: 0.4s; }
 
-@keyframes blink {
+@keyframes uix-blink {
   0%, 80%, 100% { opacity: 0; }
   40% { opacity: 1; }
 }
 
-.top-fade {
+.uix-top-fade {
   position: absolute;
   top: 0;
   left: 0;
@@ -437,10 +441,10 @@ svg {
 }
 
 /* =============================== */
-/* RIGHT COLUMN (SHARED)           */
+/* RIGHT COLUMN                    */
 /* =============================== */
 
-.right-column {
+.uix-right {
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -451,7 +455,7 @@ svg {
   text-align: left;
 }
 
-.keyword-pill {
+.uix-pill {
   display: inline-block;
   background-color: #eee6ff;
   color: #a162f7;
@@ -464,13 +468,13 @@ svg {
   white-space: nowrap;
 }
 
-.mini-title {
+.uix-title {
   font-size: 28px;
   font-weight: 700;
   margin: 0;
 }
 
-.cta-button {
+.uix-btn {
   background-color: #e2d1ff;
   color: #a162f7;
   padding: 12px 24px;
@@ -486,7 +490,7 @@ svg {
   align-self: flex-start;
 }
 
-.right-column:hover .cta-button {
+.uix-right:hover .uix-btn {
   opacity: 1;
   transform: translateY(0);
 }
