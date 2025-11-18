@@ -342,3 +342,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+document.getElementById("hamburger").addEventListener("click", function() {
+  this.classList.toggle("active");
+});
+
