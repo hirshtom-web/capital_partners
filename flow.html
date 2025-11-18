@@ -107,3 +107,93 @@
 </div>
 </div>
 
+  <!-- =========================== -->
+<!-- JAVASCRIPT (BOTTOM)         -->
+<!-- =========================== -->
+<script>
+/* ========================================== */
+/* CHAT MODULE                                */
+/* ========================================== */
+
+const uixMessages = [
+  {text: "Hello! How can I help you today?", side: "left"},
+  {text: "Hi! I want to check my pre-approval.", side: "right"},
+  {text: "Sure! It only takes a few seconds. 👌", side: "left"},
+  {text: "Great, let's do it!", side: "right"},
+  {text: "Please provide your info.", side: "left"},
+  {text: "Done! Submitted.", side: "right"},
+  {text: "Hello! How can I help you today?", side: "left"},
+  {text: "Hi! I want to check my pre-approval.", side: "right"},
+  {text: "Sure! It only takes a few seconds.", side: "left"},
+  {text: "Great, let's do it!", side: "right"},
+  {text: "Please provide your info.", side: "left"},
+  {text: "Done! Submitted. 🥳", side: "right"},
+];
+
+const uixChat = document.getElementById('uix-chat-messages');
+let uixIndex = 0;
+
+function uixAddMessage(msg) {
+  const bubble = document.createElement('div');
+  bubble.className = 'uix-chat-bubble ' + 
+                     (msg.side === 'right' ? 'uix-right-bubble' : 'uix-left-bubble');
+  bubble.textContent = msg.text;
+  uixChat.appendChild(bubble);
+
+  setTimeout(() => {
+    bubble.style.opacity = 1;
+    bubble.style.transform = 'translateY(0)';
+    uixChat.style.transform =
+      `translateY(-${Math.max(0, uixChat.scrollHeight - uixChat.parentNode.clientHeight)}px)`;
+  }, 50);
+}
+
+function uixNextMessage() {
+  if (uixIndex >= uixMessages.length) return;
+
+  const msg = uixMessages[uixIndex];
+
+  const typing = document.createElement('div');
+  typing.className = 'uix-typing ' +
+                     (msg.side === 'right' ? 'uix-typing-right' : 'uix-typing-left');
+  typing.innerHTML =
+    '<div class="uix-dot"></div><div class="uix-dot"></div><div class="uix-dot"></div>';
+  uixChat.appendChild(typing);
+
+  setTimeout(() => {
+    typing.remove();
+    uixAddMessage(msg);
+    uixIndex++;
+    setTimeout(uixNextMessage, 500 + Math.random() * 800);
+  }, 1200 + Math.random() * 800);
+}
+
+uixNextMessage();
+
+
+
+/* ========================================== */
+/* CHART COUNTER + LINE ANIMATION             */
+/* ========================================== */
+
+window.addEventListener('load', () => {
+  const line = document.querySelector('.uix-growth-line');
+  line.style.strokeDashoffset = 0;
+
+  const percentEl = document.getElementById('uix-percent');
+  let current = 0;
+  const target = 42.7;
+  const duration = 2000;
+  const increment = target / (duration / 20);
+
+  const counter = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      current = target;
+      clearInterval(counter);
+    }
+    percentEl.textContent = `+${current.toFixed(1)}%`;
+  }, 20);
+});
+</script>
+
