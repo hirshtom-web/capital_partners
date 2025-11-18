@@ -36,7 +36,7 @@ header {
 }
 
 .main-logo {
-  height: 40px;
+  height: 20px;
   width: auto;
   transition: height 0.3s;
 }
