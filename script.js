@@ -110,19 +110,23 @@ document.addEventListener("DOMContentLoaded", () => {
   // Tabs initialization
   // ====================
   function initTabs() {
-    const tabButtons = document.querySelectorAll(".tab-button");
-    const tabContents = document.querySelectorAll(".tab-content");
+  const tabButtons = document.querySelectorAll(".tab-button");
+  const tabContents = document.querySelectorAll(".tab-content");
 
-    tabButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const target = btn.dataset.target;
-        tabContents.forEach(c => c.classList.remove("active"));
-        tabButtons.forEach(b => b.classList.remove("active"));
-        document.getElementById(target)?.classList.add("active");
-        btn.classList.add("active");
-      });
+  tabButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const target = btn.dataset.target;
+
+      // ✅ Log the clicked tab
+      console.log("Clicked tab:", target);
+
+      tabContents.forEach(c => c.classList.remove("active"));
+      tabButtons.forEach(b => b.classList.remove("active"));
+      document.getElementById(target)?.classList.add("active");
+      btn.classList.add("active");
     });
-  }
+  });
+}
 
   // ====================
   // Populate real estate keyword suggestions
