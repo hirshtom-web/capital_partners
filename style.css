@@ -216,10 +216,14 @@ a {
 /* UNIVERSAL UNI-CONTENT TILE      */
 /* =============================== */
 
+/* =============================== */
+/* UNIVERSAL UNI-CONTENT TILE      */
+/* =============================== */
+
 .uix-tile {
   width: 100%;
   max-width: 1200px;
-  background-color: #fff; /* changed to white */
+  background-color: #fbf8f5; /* ← BACK TO ORIGINAL */
   border-radius: 40px;
   margin: 60px auto;
   padding: 60px 40px;
@@ -229,6 +233,7 @@ a {
   box-sizing: border-box;
   min-height: 500px;
 }
+
 
 /* =============================== */
 /* LEFT COLUMN (BOTH MODULES)      */
