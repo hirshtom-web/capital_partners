@@ -241,7 +241,7 @@
 }
 /* Add space below calculator section */
 #calculatorSection {
-  margin-bottom: 50px; /* adjust the value as needed */
+  margin-bottom: 150px; /* adjust the value as needed */
 }
 
 /* Optional: Add space above the real estate calculators section */
@@ -441,9 +441,7 @@
   h2 { font-size: 20px; }
   .table thead th, .table tbody td{ font-size: 12px; padding: 8px; }
 }
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
 
-<style>
 .table-wrap {
   /* Remove overflow scroll */
   overflow: visible; /* or just remove this line */
@@ -496,4 +494,9 @@
 
 .info-icon:hover .tooltip {
   visibility: visible;
+}
+
+
+.table-wrap {
+  margin-bottom: 150px; /* adjust the value as needed */
 }
