@@ -105,6 +105,36 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+function setupHeaderMenu() {
+  const header = document.getElementById("header");
+  const body = document.body;
+  const isHome = window.location.pathname === "/" ||
+                 window.location.pathname.endsWith("index.html");
+
+  if (header) {
+    header.classList.toggle("header--blue", isHome);
+    header.classList.toggle("header--white", !isHome);
+  }
+
+  const menuToggle = document.querySelector(".menu-toggle");
+  const mobileMenu = document.querySelector(".mobile-menu");
+
+  if (menuToggle && mobileMenu) {
+    // Reset
+    menuToggle.classList.remove("active");
+    mobileMenu.classList.remove("active");
+    body.classList.remove("menu-open");
+
+    // Click event for animated hamburger
+    menuToggle.addEventListener("click", () => {
+      menuToggle.classList.toggle("active"); // animation
+      mobileMenu.classList.toggle("active"); // slide menu
+      body.classList.toggle("menu-open", mobileMenu.classList.contains("active"));
+    });
+  }
+
+  // SNIP… (your submenu code stays as-is)
+}
 
   // ====================
   // Tabs initialization
@@ -341,9 +371,5 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => preloader?.remove(), 5000);
   });
 
-});
-
-document.getElementById("hamburger").addEventListener("click", function() {
-  this.classList.toggle("active");
 });
 
