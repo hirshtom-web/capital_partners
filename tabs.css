@@ -1,4 +1,7 @@
-
+/* ===============================
+   GLOBAL RESET
+================================== */
+* {
   box-sizing: border-box;
 }
 
@@ -9,7 +12,7 @@ html, body {
   width: 100%;
   font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
   background: #fafafa;
-  color: #fff;
+  color: #111;
 }
 
 /* ===============================
@@ -20,8 +23,6 @@ html, body {
   color: #111;
   padding: 80px 0px 20px 0px; 
 }
-
-
 
 /* ===============================
    CONTENT TILE
@@ -178,10 +179,12 @@ html, body {
 }
 
 .uni-list li img {
-  width: 20px;
-  height: 20px;
+  width: 40px;       /* fixed icon size */
+  height: 40px;
+  object-fit: contain;
+  margin-right: 12px;
+  vertical-align: middle;
   flex-shrink: 0;
-  margin-top: 3px;
 }
 
 /* ===============================
@@ -226,8 +229,8 @@ html, body {
   }
 
   .uni-list li img {
-    width: 18px;
-    height: 18px;
+    width: 30px;      /* smaller icons on mobile */
+    height: 30px;
+    margin-right: 8px;
   }
 }
-
