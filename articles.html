@@ -4,52 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Blog Articles</title>
-    <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=trending_up" />
-  <link rel="stylesheet" href="style.css">
   <style>
- /* ===============================
-   GLOBAL
-================================== */
-* {
-  box-sizing: border-box;
-}
-body {
-  font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
-  margin: 0;
-  background: #1e0949;
-  color: #fff;
-}
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
+      margin: 0;
+      background: #fff; /* page background white */
+      color: #111;
+      display: flex;
+      justify-content: center;
+      padding: 40px 0;
+    }
 
+    /* Section wrapper same as uni-content-tile */
     .section-wrapper {
-      background-color: #fafafa;
+      width: 100%;
+      max-width: 1200px;
+      background-color: #fbf8f5; /* light beige */
       border-radius: 40px;
-      max-width: 1100px;
-      margin: 0 auto 60px;
       padding: 60px 40px;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      min-height: 500px;
     }
 
     h1 {
-      font-size: 40px;
+      font-size: 28px;
       font-weight: 600;
-      margin-bottom: 60px;
+      margin: 0 0 40px 0;
+      color: #111;
     }
 
-    .subtitle {
-      font-size: 16px;
-      color: #333;
-      max-width: 400px;
-      margin: 0 auto 40px;
-      line-height: 1.7;
-    }
-
-    /* SLIDER */
     .slider-container {
       overflow: hidden;
-      position: relative;
       width: 100%;
     }
 
@@ -59,45 +50,45 @@ body {
       transition: transform 0.4s ease;
     }
 
+    /* Cards same height as container */
     .card {
       flex: 0 0 32%;
-      background-color: #fff;
+      background-color: #fbf8f5; /* same beige as container */
       border-radius: 20px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      min-height: 350px;
     }
 
     .card-image {
-      height: 200px;
+      height: 180px;
       background-size: cover;
       background-position: center;
     }
 
     .card-text {
-      padding: 25px;
+      padding: 20px;
       text-align: left;
     }
 
     .card-text .category {
-      font-size: 10px;
+      font-size: 12px;
       color: #666;
       margin-bottom: 5px;
     }
 
     .card-text .title {
-      font-size: 18px;
-      font-weight: 550;
-      color: #000;
+      font-size: 16px;
+      font-weight: 500;
+      color: #111;
       margin: 0;
     }
 
-    /* Controls */
     .slider-controls {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 40px;
     }
 
     .view-all {
@@ -128,46 +119,22 @@ body {
       background-color: #e0e0e0;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 1024px) {
       .card { flex: 0 0 48%; }
     }
 
     @media (max-width: 700px) {
-      body { padding: 0; }
       .section-wrapper {
-        border-radius: 0;
-        max-width: 100%;
-        margin: 0;
-        padding: 40px 0;
-      }
-
-      .slider-container {
-        width: 100%;
-        overflow-x: hidden;
-      }
-
-      .slider {
-        padding-right: 20px;
+        border-radius: 20px;
+        padding: 30px 20px;
       }
 
       .card {
         flex: 0 0 85%;
+        min-height: 250px;
       }
 
-      .card-image { height: 180px; }
-      h1 { font-size: 28px; }
-
-      .arrow-buttons button {
-        background-color: transparent;
-        color: #000;
-        border: 1px solid #000;
-      }
-
-      .arrow-buttons button:hover {
-        background-color: #000;
-        color: #fff;
-      }
+      h1 { font-size: 22px; }
     }
   </style>
 </head>
