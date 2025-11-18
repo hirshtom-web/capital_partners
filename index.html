@@ -136,81 +136,10 @@ html {
 </div>
 
 <div id="trusted-by"></div>
-
 <div id="property-slide"></div>
-
 <div id="tabs"></div>
-
 <div id="flow"></div>
-
 <div id="footer"></div>
-
-
-<!-- JS at the bottom -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const preloader = document.getElementById("preloader");
-  const MIN_TIME = 800; // Minimum time the preloader is visible
-  const startTime = performance.now();
-
-  // Sections to load dynamically
-  const sections = [
-    { id: "alert", url: "alert.html" },
-    { id: "header", url: "header.html" },
-    { id: "main-section", url: "main-section.html" },
-    { id: "trusted-by", url: "https://hirshtom-web.github.io/capital_partners/trusted-by.html" },
-    { id: "property-slide", url: "property-slide.html" },
-    { id: "tabs", url: "tabs.html" },
-    { id: "flow", url: "flow.html" },
-    { id: "footer", url: "footer.html" }
-  ];
-
-  // Function to fetch a section and fade it in
-  const loadSection = ({ id, url }) => {
-    const container = document.getElementById(id);
-    if (!container) return Promise.resolve(); // Skip if container doesn't exist
-
-    container.style.opacity = 0;
-    container.style.transition = "opacity 0.6s ease";
-
-    return fetch(url)
-      .then(res => {
-        if (!res.ok) throw new Error(`Failed to load ${id} (${res.status})`);
-        return res.text();
-      })
-      .then(html => {
-        container.innerHTML = html;
-        requestAnimationFrame(() => container.style.opacity = 1);
-      })
-      .catch(err => {
-        console.warn(err);
-        container.innerHTML = `<p style="color: white;">Failed to load ${id}</p>`;
-        container.style.opacity = 1;
-      });
-  };
-
-  // Load all sections in parallel
-  Promise.allSettled(sections.map(loadSection))
-    .finally(() => {
-      const elapsed = performance.now() - startTime;
-      const remaining = Math.max(0, MIN_TIME - elapsed);
-
-      // Fade out preloader after minimum time
-      setTimeout(() => {
-        if (preloader) {
-          preloader.style.transition = "opacity 0.5s ease";
-          preloader.style.opacity = 0;
-          setTimeout(() => preloader.remove(), 600);
-        }
-      }, remaining);
-
-      // Safety fallback: remove preloader after 5s in case something hangs
-      setTimeout(() => preloader?.remove(), 5000);
-    });
-});
-
-</script>
-
 
 
 
