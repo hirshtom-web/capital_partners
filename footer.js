@@ -2,18 +2,32 @@
 <script defer>
   document.addEventListener('DOMContentLoaded', () => {
     // ========================
-    // COUNTRY SELECTOR
+    // ELEMENTS
     // ========================
     const countrySelector = document.getElementById('countrySelector');
     const countryPopup    = document.getElementById('countryPopup');
+    const privacyTrigger  = document.getElementById('privacyTrigger');
+    const privacyPopup    = document.getElementById('privacyPopup');
+    const savePrivacy     = document.getElementById('savePrivacy');
 
+    // ========================
+    // TOGGLE FUNCTIONS (with .open class for smooth mobile slide)
+    // ========================
+    const toggleCountryPopup = () => {
+      const isOpen = countryPopup.classList.toggle('open');
+      countryPopup.style.display = isOpen ? 'block' : 'none';
+    };
+
+    const togglePrivacyPopup = () => {
+      const isOpen = privacyPopup.classList.toggle('open');
+      privacyPopup.style.display = isOpen ? 'block' : 'none';
+    };
+
+    // ========================
+    // COUNTRY SELECTOR
+    // ========================
     if (countrySelector && countryPopup) {
-      const toggleCountryPopup = (show = null) => {
-        const shouldShow = show ?? countryPopup.style.display !== 'block';
-        countryPopup.style.display = shouldShow ? 'block' : 'none';
-      };
-
-      countrySelector.addEventListener('click', (e) => {
+      countrySelector.addEventListener('click', e => {
         e.stopPropagation();
         toggleCountryPopup();
       });
@@ -29,7 +43,7 @@
           if (selectorImg)  selectorImg.src = img;
           if (selectorText) selectorText.textContent = text;
 
-          toggleCountryPopup(false);
+          toggleCountryPopup(); // closes it
         });
       });
     }
@@ -37,17 +51,8 @@
     // ========================
     // PRIVACY POPUP
     // ========================
-    const privacyTrigger = document.getElementById('privacyTrigger');
-    const privacyPopup   = document.getElementById('privacyPopup');
-    const savePrivacy    = document.getElementById('savePrivacy');
-
     if (privacyTrigger && privacyPopup) {
-      const togglePrivacyPopup = (show = null) => {
-        const shouldShow = show ?? privacyPopup.style.display !== 'block';
-        privacyPopup.style.display = shouldShow ? 'block' : 'none';
-      };
-
-      privacyTrigger.addEventListener('click', (e) => {
+      privacyTrigger.addEventListener('click', e => {
         e.stopPropagation();
         togglePrivacyPopup();
       });
@@ -56,40 +61,33 @@
         savePrivacy.addEventListener('click', () => {
           const selected = document.querySelector('input[name="privacy"]:checked');
           if (selected) {
-            // Replace alert with whatever you actually want to do
             console.log('Privacy preference saved:', selected.value);
-            // Example: localStorage.setItem('privacyPref', selected.value);
+            // localStorage.setItem('privacyPref', selected.value); // uncomment when ready
           }
-          togglePrivacyPopup(false);
+          togglePrivacyPopup();
         });
       }
     }
 
     // ========================
-    // CLOSE POPUPS ON OUTSIDE CLICK OR ESC
+    // CLOSE ON OUTSIDE CLICK OR ESC
     // ========================
-    const closeAllPopups = () => {
-      if (countryPopup)   countryPopup.style.display   = 'none';
-      if (privacyPopup)   privacyPopup.style.display   = 'none';
+    const closeAll = () => {
+      if (countryPopup?.classList.contains('open')) toggleCountryPopup();
+      if (privacyPopup?.classList.contains('open')) togglePrivacyPopup();
     };
 
-    document.addEventListener('click', (e) => {
-      // If click is inside any popup → do nothing
+    document.addEventListener('click', e => {
       if (countryPopup?.contains(e.target) || privacyPopup?.contains(e.target)) return;
-      // If click is on the triggers → already handled above
       if (e.target.closest('#countrySelector, #privacyTrigger')) return;
-
-      closeAllPopups();
+      closeAll();
     });
 
-    // Close with ESC key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeAllPopups();
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeAll();
     });
 
-    // Prevent popups from closing when clicking inside them
-    [countryPopup, privacyPopup].forEach(popup => {
-      popup?.addEventListener('click', e => e.stopPropagation());
-    });
+    // Prevent propagation inside popups
+    [countryPopup, privacyPopup].forEach(p => p?.addEventListener('click', e => e.stopPropagation()));
   });
 </script>
