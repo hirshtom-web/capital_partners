@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const DEBUG = true; // <-- toggle debug mode here
+  const DEBUG = true;
 
   // ====================
-  // Helper: load external HTML into a section by ID
+  // Load external HTML
   // ====================
   async function loadHTML(id, url) {
     const container = document.getElementById(id);
@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const html = await res.text();
       container.innerHTML = html;
 
-      // Run inline scripts in loaded HTML
       container.querySelectorAll("script").forEach(oldScript => {
         const newScript = document.createElement("script");
         if (oldScript.src) newScript.src = oldScript.src;
@@ -38,12 +37,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ====================
-  // Header + Mobile Menu Setup
+  // Header + Menu
   // ====================
   function resetPageState() {
     document.body.classList.remove("menu-open");
-    document.querySelectorAll(".mobile-menu, .mobile-menu .expanded").forEach(el => el.classList.remove("active", "expanded"));
-    document.querySelectorAll("#services-submenu.active").forEach(el => el.classList.remove("active"));
+    document.querySelectorAll(".mobile-menu, .mobile-menu .expanded")
+            .forEach(el => el.classList.remove("active", "expanded"));
+    document.querySelectorAll("#services-submenu.active")
+            .forEach(el => el.classList.remove("active"));
     const header = document.getElementById("header");
     if (header) header.classList.remove("header--blue", "header--white");
   }
@@ -51,7 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function setupHeaderMenu() {
     const header = document.getElementById("header");
     const body = document.body;
-    const isHome = window.location.pathname === "/" || window.location.pathname.endsWith("index.html");
+    const isHome = window.location.pathname === "/" ||
+                   window.location.pathname.endsWith("index.html");
 
     if (header) {
       header.classList.toggle("header--blue", isHome);
@@ -79,9 +81,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (link && submenu) {
         link.addEventListener("click", e => {
           e.preventDefault();
-          document.querySelectorAll(".mobile-menu > li.expanded").forEach(openItem => {
-            if (openItem !== item) openItem.classList.remove("expanded");
-          });
+          document.querySelectorAll(".mobile-menu > li.expanded")
+                  .forEach(openItem => {
+                    if (openItem !== item) openItem.classList.remove("expanded");
+                  });
           item.classList.toggle("expanded");
         });
       }
@@ -107,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ====================
-  // Real Estate Keywords Generator
+  // Real Estate Keywords
   // ====================
   function populateREKeywords() {
     const keywords = [
@@ -155,6 +158,39 @@ document.addEventListener("DOMContentLoaded", () => {
     container.style.opacity = 1;
   }
 
+  // ============================
+  // FIX: Flow Graphics Init
+  // ============================
+  function initFlowGraphics() {
+    const line = document.querySelector('.uix-growth-line');
+    const percentEl = document.getElementById('uix-percent');
+    if (!line || !percentEl) return; // safely skip if not loaded yet
+
+    line.style.strokeDashoffset = 0;
+
+    let current = 0;
+    const target = 42.7;
+    const duration = 2000;
+    const increment = target / (duration / 20);
+
+    const counter = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        current = target;
+        clearInterval(counter);
+      }
+      percentEl.textContent = `+${current.toFixed(1)}%`;
+    }, 20);
+  }
+
+  // ============================
+  // CHAT MODULE INIT
+  // ============================
+  function startChat() {
+    if (!uixChat) return;
+    uixNextMessage();
+  }
+
   // ====================
   // Main Execution
   // ====================
@@ -162,21 +198,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const MIN_TIME = 800;
   const startTime = performance.now();
 
-  // Load header first
+  // Load header
   loadHTML("header", "header.html").then(() => {
     resetPageState();
     setupHeaderMenu();
   });
 
-  // Load other sections in parallel
+  // Load sections
   const sections = [
     loadHTML("alert", "alert.html"),
     loadHTML("main-section", "main-section.html"),
     loadHTML("trusted-by", "https://hirshtom-web.github.io/capital_partners/trusted-by.html"),
     loadHTML("property-slide", "property-slide.html"),
     loadHTML("tabs", "tabs.html"),
-    loadHTML("flow", "flow.html"),
-    loadHTML("market", "market.html"),    
+
+    // ⭐ FIX: When flow loads → run graphics + chat
+    loadHTML("flow", "flow.html").then(() => {
+      initFlowGraphics();
+      startChat();
+    }),
+
+    loadHTML("market", "market.html"),
     loadHTML("footer", "footer.html"),
     Promise.resolve().then(populateREKeywords)
   ];
@@ -193,63 +235,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }, remaining);
 
-    // Safety fallback: remove preloader after 5s
     setTimeout(() => preloader?.remove(), 5000);
   });
 });
-function uixNextMessage() {
-  if (uixIndex >= uixMessages.length) return;
-
-  const msg = uixMessages[uixIndex];
-
-  const typing = document.createElement('div');
-  typing.className = 'uix-typing ' +
-                     (msg.side === 'right' ? 'uix-typing-right' : 'uix-typing-left');
-  typing.innerHTML =
-    '<div class="uix-dot"></div><div class="uix-dot"></div><div class="uix-dot"></div>';
-  uixChat.appendChild(typing);
-
-  setTimeout(() => {
-    typing.remove();
-    uixAddMessage(msg);
-    uixIndex++;
-    setTimeout(uixNextMessage, 500 + Math.random() * 800);
-  }, 1200 + Math.random() * 800);
-}
-
-uixNextMessage();
-
-
 
 /* ========================================== */
-/* CHART COUNTER + LINE ANIMATION             */
-/* ========================================== */
-
-window.addEventListener('load', () => {
-  const line = document.querySelector('.uix-growth-line');
-  line.style.strokeDashoffset = 0;
-
-  const percentEl = document.getElementById('uix-percent');
-  let current = 0;
-  const target = 42.7;
-  const duration = 2000;
-  const increment = target / (duration / 20);
-
-  const counter = setInterval(() => {
-    current += increment;
-    if (current >= target) {
-      current = target;
-      clearInterval(counter);
-    }
-    percentEl.textContent = `+${current.toFixed(1)}%`;
-  }, 20);
-});
-  <!-- =========================== -->
-<!-- JAVASCRIPT (BOTTOM)         -->
-<!-- =========================== -->
-
-    /* ========================================== */
-/* CHAT MODULE                                */
+/* CHAT MODULE (unchanged)                     */
 /* ========================================== */
 
 const uixMessages = [
@@ -259,12 +250,6 @@ const uixMessages = [
   {text: "Great, let's do it!", side: "right"},
   {text: "Please provide your info.", side: "left"},
   {text: "Done! Submitted.", side: "right"},
-  {text: "Hello! How can I help you today?", side: "left"},
-  {text: "Hi! I want to check my pre-approval.", side: "right"},
-  {text: "Sure! It only takes a few seconds.", side: "left"},
-  {text: "Great, let's do it!", side: "right"},
-  {text: "Please provide your info.", side: "left"},
-  {text: "Done! Submitted. 🥳", side: "right"},
 ];
 
 const uixChat = document.getElementById('uix-chat-messages');
@@ -285,3 +270,22 @@ function uixAddMessage(msg) {
   }, 50);
 }
 
+function uixNextMessage() {
+  if (uixIndex >= uixMessages.length) return;
+
+  const msg = uixMessages[uixIndex];
+
+  const typing = document.createElement('div');
+  typing.className = 'uix-typing ' +
+                     (msg.side === 'right' ? 'uix-typing-right' : 'uix-typing-left');
+  typing.innerHTML =
+    '<div class="uix-dot"></div><div class="uix-dot"></div><div class="uix-dot"></div>';
+  uixChat.appendChild(typing);
+
+  setTimeout(() => {
+    typing.remove();
+    uixAddMessage(msg);
+    uixIndex++;
+    setTimeout(uixNextMessage, 500 + Math.random() * 800);
+  }, 1200 + Math.random() * 800);
+}
