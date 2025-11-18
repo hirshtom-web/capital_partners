@@ -141,7 +141,7 @@
 #calculatorSection button:not(.calc-btn) {
   width: 100%;
   padding: 14px;
-  font-size: 16px;
+  font-size: 12px;
   background-color: #1e0949;
   color: white;
   border: none;
@@ -276,7 +276,7 @@
 #calculatorSection .calc-btn {
   background-color: #f4f4f9;
   color: #1e0949;
-  border: 1px solid #1e0949;
+  border: 0px solid #1e0949;
   border-radius: 25px;
   padding: 6px 14px;
   font-size: 14px;
