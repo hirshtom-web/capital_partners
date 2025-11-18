@@ -128,7 +128,6 @@ h1 {
     <ul id="list" class="states-grid"></ul>
   </div>
 </div>
-
 <script>
 const states = [
   "Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia",
@@ -138,97 +137,96 @@ const states = [
   "South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"
 ];
 
-// Complete list of ~30–50 largest/relevant cities for EVERY state
+// Florida cities
 const towns = {
-  Alabama: ["Birmingham","Montgomery","Mobile","Huntsville","Tuscaloosa","Hoover","Dothan","Auburn","Decatur","Madison","Florence","Phenix City","Prattville","Gadsden","Vestavia Hills","Alabaster","Opelika","Enterprise","Bessemer","Athens","Pelham","Fairhope","Mountain Brook","Trussville","Helena","Daphne","Homewood","Northport","Talladega","Pelham"],
-  Alaska: ["Anchorage","Fairbanks","Juneau","Wasilla","Sitka","Ketchikan","Kenai","Kodiak","Bethel","Palmer","Homer","Soldotna","Unalaska","Nome","Valdez","Seward","Petersburg","Utqiaġvik","Kotzebue","Cordova","Wrangell","Dillingham","Craig","Hooper Bay","Sand Point"],
-  Arizona: ["Phoenix","Tucson","Mesa","Chandler","Gilbert","Glendale","Scottsdale","Peoria","Tempe","Surprise","Yuma","Avondale","Goodyear","Flagstaff","Buckeye","Lake Havasu City","Casa Grande","Maricopa","Oro Valley","Prescott","Sierra Vista","Bullhead City","Queen Creek","Prescott Valley","Marana"],
-  Arkansas: ["Little Rock","Fort Smith","Fayetteville","Springdale","Jonesboro","Rogers","Conway","North Little Rock","Bentonville","Pine Bluff","Hot Springs","Benton","Sherwood","Texarkana","Russellville","Jacksonville","Bella Vista","Paragould","Cabot","West Memphis","Searcy","Van Buren","El Dorado","Maumelle","Bryant"],
-  California: ["Los Angeles","San Diego","San Jose","San Francisco","Fresno","Sacramento","Long Beach","Oakland","Bakersfield","Anaheim","Santa Ana","Riverside","Stockton","Irvine","Chula Vista","Fremont","San Bernardino","Modesto","Oxnard","Fontana","Moreno Valley","Huntington Beach","Glendale","Santa Clarita","Garden Grove","Oceanside","Rancho Cucamonga","Santa Rosa","Ontario","Elk Grove"],
-  Colorado: ["Denver","Colorado Springs","Aurora","Fort Collins","Lakewood","Thornton","Arvada","Westminster","Pueblo","Centennial","Boulder","Greeley","Longmont","Loveland","Grand Junction","Broomfield","Castle Rock","Commerce City","Parker","Littleton","Brighton","Northglenn","Englewood","Wheat Ridge","Fountain"],
-  Connecticut: ["Bridgeport","New Haven","Stamford","Hartford","Waterbury","Norwalk","Danbury","New Britain","West Hartford","Greenwich","Fairfield","Hamden","Bristol","Meriden","Manchester","East Hartford","Southington","West Haven","Milford","Stratford","Middletown","Wallingford","Enfield","Shelton","Torrington"],
-  Delaware: ["Wilmington","Dover","Newark","Middletown","Smyrna","Milford","Seaford","Georgetown","Elsmere","New Castle","Bear","Hockessin","Brookside","Glasgow","Claymont","North Star","Pike Creek","Wilmington Manor","Milford","Lewes","Rehoboth Beach","Millsboro","Laurel","Harrington","Camden"],
-  Florida: ["Jacksonville","Miami","Tampa","Orlando","St. Petersburg","Hialeah","Tallahassee","Fort Lauderdale","Port St. Lucie","Cape Coral","Pembroke Pines","Hollywood","Gainesville","Miramar","Coral Springs","Lehigh Acres","Clearwater","Brandon","Palm Bay","West Palm Beach","Spring Hill","Lakeland","Pompano Beach","Miami Gardens","Davie"],
-  Georgia: ["Atlanta","Augusta","Columbus","Macon","Savannah","Athens","Sandy Springs","Roswell","Johns Creek","Warner Robins","Albany","Alpharetta","Marietta","Smyrna","Valdosta","Brookhaven","Dunwoody","Peachtree Corners","Gainesville","Newnan","Milton","Rome","Tucker","Kennesaw","Hinesville"],
-  Hawaii: ["Honolulu","East Honolulu","Pearl City","Hilo","Kailua","Waipahu","Kaneohe","Mililani Town","Kahului","Ewa Gentry","Kihei","Kapolei","Makakilo","Wahiawa","Schofield Barracks","Mililani Mauka","Wailuku","Halawa","Royal Kunia","Waimalu"],
-  Idaho: ["Boise","Meridian","Nampa","Idaho Falls","Caldwell","Pocatello","Coeur d'Alene","Twin Falls","Post Falls","Lewiston","Rexburg","Moscow","Eagle","Kuna","Mountain Home","Ammon","Hayden","Chubbuck","Garden City","Blackfoot"],
-  Illinois: ["Chicago","Aurora","Naperville","Joliet","Rockford","Elgin","Waukegan","Cicero","Champaign","Bloomington","Arlington Heights","Evanston","Schaumburg","Bolingbrook","Palatine","Skokie","Des Plaines","Orland Park","Tinley Park","Oak Lawn","Berwyn","Mount Prospect","Wheaton","Normal"],
-  Indiana: ["Indianapolis","Fort Wayne","Evansville","South Bend","Carmel","Fishers","Bloomington","Hammond","Lafayette","Gary","Muncie","Terre Haute","Kokomo","Noblesville","Anderson","Greenwood","Elkhart","Mishawaka","Lawrence","Jeffersonville","Columbus","West Lafayette","Portage","New Albany","Merrillville"],
-  Iowa: ["Des Moines","Cedar Rapids","Davenport","Sioux City","Iowa City","West Des Moines","Ankeny","Waterloo","Ames","Council Bluffs","Dubuque","Urbandale","Cedar Falls","Marion","Bettendorf","Marshalltown","Mason City","Clinton","Burlington","Ottumwa"],
-  Kansas: ["Wichita","Overland Park","Kansas City","Olathe","Topeka","Lawrence","Shawnee","Lenexa","Manhattan","Salina","Hutchinson","Leavenworth","Leawood","Garden City","Dodge City","Derby","Emporia","Gardner","Prairie Village","Junction City"],
-  Kentucky: ["Louisville","Lexington","Bowling Green","Owensboro","Covington","Richmond","Georgetown","Florence","Hopkinsville","Nicholasville","Elizabethtown","Henderson","Frankfort","Jeffersontown","Paducah","Independence","Radcliff","Ashland","Madisonville","Winchester"],
-  Louisiana: ["New Orleans","Baton Rouge","Shreveport","Lafayette","Lake Charles","Kenner","Bossier City","Monroe","Alexandria","Houma","Slidell","New Iberia","Ruston","Sulphur","Hammond","Laplace","Zachary","Natchitoches","Gretna","Thibodaux"],
-  Maine: ["Portland","Lewiston","Bangor","South Portland","Auburn","Biddeford","Sanford","Saco","Augusta","Westbrook","Waterville","Brewer","Presque Isle","Bath","Caribou","Old Town","Ellsworth","Rockland","Belfast","Gardiner"],
-  Maryland: ["Baltimore","Columbia","Germantown","Silver Spring","Waldorf","Frederick","Glen Burnie","Gaithersburg","Rockville","Bethesda","Dundalk","Ellicott City","Bowie","Towson","Aspen Hill","Wheaton","Bel Air South","Potomac","Severn","North Bethesda"],
-  Massachusetts: ["Boston","Worcester","Springfield","Cambridge","Lowell","Brockton","Quincy","Lynn","New Bedford","Fall River","Newton","Somerville","Lawrence","Waltham","Haverhill","Malden","Medford","Taunton","Chicopee","Weymouth Town"],
-  Michigan: ["Detroit","Grand Rapids","Warren","Sterling Heights","Ann Arbor","Lansing","Flint","Dearborn","Livonia","Troy","Westland","Farmington Hills","Kalamazoo","Wyoming","Southfield","Rochester Hills","Taylor","Pontiac","Royal Oak","Novi"],
-  Minnesota: ["Minneapolis","Saint Paul","Rochester","Duluth","Bloomington","Brooklyn Park","Plymouth","Saint Cloud","Eagan","Woodbury","Maple Grove","Eden Prairie","Coon Rapids","Burnsville","Blaine","Lakeville","Minnetonka","Apple Valley","Edina","St. Louis Park"],
-  Mississippi: ["Jackson","Gulfport","Southaven","Biloxi","Hattiesburg","Meridian","Tupelo","Greenville","Olive Branch","Horn Lake","Pearl","Madison","Starkville","Clinton","Ridgeland","Columbus","Vicksburg","Brandon","Oxford","Gautier"],
-  Missouri: ["Kansas City","St. Louis","Springfield","Columbia","Independence","Lee's Summit","O'Fallon","St. Joseph","St. Charles","St. Peters","Blue Springs","Florissant","Joplin","Chesterfield","Cape Girardeau","Wentzville","Jefferson City","Oakville","Wildwood","University City"],
-  Montana: ["Billings","Missoula","Great Falls","Bozeman","Butte","Helena","Kalispell","Belgrade","Havre","Anaconda","Miles City","Livingston","Whitefish","Sidney","Lewistown","Laurel","Columbia Falls","Polson","Hamilton","Dillon"],
-  Nebraska: ["Omaha","Lincoln","Bellevue","Grand Island","Kearney","Fremont","Hastings","Norfolk","Papillion","North Platte","Columbus","La Vista","Scottsbluff","South Sioux City","Beatrice","Chalco","Lexington","Alliance","Gering","York"],
-  Nevada: ["Las Vegas","Henderson","Reno","North Las Vegas","Sparks","Carson City","Fernley","Elko","Mesquite","Boulder City","Fallon","Winnemucca","West Wendover","Ely","Yerington","Gardnerville Ranchos","Spanish Springs","Sun Valley","Dayton","Spring Creek"],
-  New Hampshire: ["Manchester","Nashua","Concord","Derry","Dover","Rochester","Salem","Merrimack","Hudson","Londonderry","Keene","Portsmouth","Laconia","Lebanon","Claremont","Somersworth","Berlin","Exeter","Durham","Hooksett"],
-  New Jersey: ["Newark","Jersey City","Paterson","Elizabeth","Lakewood","Edison","Woodbridge","Hamilton","Trenton","Clifton","Camden","Cherry Hill","Passaic","Union City","Bayonne","East Orange","North Bergen","Irvington","Vineland","Union"],
-  New Mexico: ["Albuquerque","Las Cruces","Rio Rancho","Santa Fe","Roswell","Farmington","Clovis","Hobbs","Alamogordo","Carlsbad","Gallup","Sunland Park","Los Lunas","Deming","Chaparr","Las Vegas","Artesia","Portales","Silver City","Anthony"],
-  New York: ["New York City","Buffalo","Rochester","Yonkers","Syracuse","Albany","New Rochelle","Mount Vernon","Schenectady","Utica","White Plains","Hempstead","Troy","Niagara Falls","Binghamton","Freeport","Valley Stream","Newburgh","Middletown","Poughkeepsie"],
-  North Carolina: ["Charlotte","Raleigh","Greensboro","Durham","Winston-Salem","Fayetteville","Cary","Wilmington","High Point","Concord","Greenville","Asheville","Gastonia","Jacksonville","Apex","Chapel Hill","Huntersville","Rocky Mount","Burlington","Wilson"],
-  North Dakota: ["Fargo","Bismarck","Grand Forks","Minot","West Fargo","Williston","Mandan","Dickinson","Jamestown","Wahpeton","Devils Lake","Valley City","Watford City","Grafton","Beulah","Rugby","Horace","New Town","Lincoln","Casselton"],
-  Ohio: ["Columbus","Cleveland","Cincinnati","Toledo","Akron","Dayton","Parma","Canton","Youngstown","Lorain","Hamilton","Springfield","Kettering","Elyria","Middletown","Cuyahoga Falls","Lakewood","Newark","Euclid","Dublin"],
-  Oklahoma: ["Oklahoma City","Tulsa","Norman","Broken Arrow","Edmond","Lawton","Moore","Midwest City","Enid","Stillwater","Muskogee","Bartlesville","Owasso","Shawnee","Yukon","Bixby","Ardmore","Ponca City","Duncan","Del City"],
-  Oregon: ["Portland","Salem","Eugene","Gresham","Hillsboro","Bend","Beaverton","Medford","Springfield","Corvallis","Albany","Tigard","Keizer","Grants Pass","Oregon City","McMinnville","Redmond","Tualatin","West Linn","Bethany"],
-  Pennsylvania: ["Philadelphia","Pittsburgh","Allentown","Erie","Reading","Scranton","Bethlehem","Lancaster","Harrisburg","Altoona","York","State College","Wilkes-Barre","Chester","Williamsport","Easton","Lebanon","Hazleton","New Castle","Chambersburg"],
-  Rhode Island: ["Providence","Cranston","Warwick","Pawtucket","East Providence","Woonsocket","Coventry","Cumberland","North Providence","South Kingstown","West Warwick","Johnston","North Kingstown","Newport","Bristol","Westerly","Smithfield","Lincoln","Central Falls","Portsmouth"],
-  South Carolina: ["Charleston","Columbia","North Charleston","Mount Pleasant","Rock Hill","Greenville","Summerville","Goose Creek","Sumter","Hilton Head Island","Florence","Spartanburg","Myrtle Beach","Aiken","Anderson","Greer","Mauldin","Greenwood","Easley","Simpsonville"],
-  South Dakota: ["Sioux Falls","Rapid City","Aberdeen","Brookings","Watertown","Mitchell","Yankton","Pierre","Huron","Spearfish","Vermillion","Brandon","Box Elder","Madison","Sturgis","Belle Fourche","Harrisburg","Dell Rapids","Hot Springs","Milbank"],
-  Tennessee: ["Nashville","Memphis","Knoxville","Chattanooga","Clarksville","Murfreesboro","Franklin","Johnson City","Bartlett","Hendersonville","Kingsport","Jackson","Collierville","Cleveland","Smyrna","Germantown","Brentwood","Columbia","La Vergne","Cookeville"],
-  Texas: ["Houston","San Antonio","Dallas","Austin","Fort Worth","El Paso","Arlington","Corpus Christi","Plano","Laredo","Lubbock","Garland","Irving","Frisco","McKinney","Grand Prairie","Amarillo","Brownsville","Pasadena","Killeen","McAllen","Mesquite","Midland","Waco","Carrollton"],
-  Utah: ["Salt Lake City","West Valley City","Provo","West Jordan","Orem","Sandy","Ogden","St. George","Layton","South Jordan","Lehi","Millcreek","Taylorsville","Logan","Murray","Draper","Riverton","Bountiful","Spanish Fork","Roy"],
-  Vermont: ["Burlington","South Burlington","Rutland","Barre","Montpelier","Winooski","Essex Junction","Bennington","Brattleboro","Middletown","Williston","Essex","Hartford","Colchester","Milton","Barre City","Shelburne","Berlin","Swanton","St. Albans Town"],
-  Virginia: ["Virginia Beach","Norfolk","Chesapeake","Richmond","Newport News","Alexandria","Hampton","Roanoke","Portsmouth","Suffolk","Lynchburg","Harrisonburg","Leesburg","Charlottesville","Blacksburg","Danville","Manassas","Petersburg","Fredericksburg","Winchester"],
-  Washington: ["Seattle","Spokane","Tacoma","Vancouver","Bellevue","Kent","Everett","Renton","Yakima","Federal Way","Spokane Valley","Bellingham","Kennewick","Auburn","Pasco","Marysville","Lakewood","Redmond","Shoreline","Richland"],
-  West Virginia: ["Charleston","Huntington","Morgantown","Parkersburg","Wheeling","Weirton","Fairmont","Martinsburg","Beckley","Clarksburg","Teays Valley","South Charleston","St. Albans","Vienna","Bluefield","Bridgeport","Moundsville","Oak Hill","Dunbar","Elkins"],
-  Wisconsin: ["Milwaukee","Madison","Green Bay","Kenosha","Racine","Appleton","Waukesha","Eau Claire","Oshkosh","Janesville","West Allis","La Crosse","Sheboygan","Wauwatosa","Fond du Lac","New Berlin","Wausau","Brookfield","Beloit","Greenfield"],
-  Wyoming: ["Cheyenne","Casper","Laramie","Gillette","Rock Springs","Sheridan","Green River","Evanston","Riverton","Jackson","Cody","Rawlins","Lander","Torrington","Powell","Douglas","Worland","Buffalo","Craig","Rock Springs"]
+  Alabama: [
+    "Birmingham","Montgomery","Mobile","Huntsville","Tuscaloosa","Hoover","Dothan","Auburn","Decatur","Madison",
+    "Florence","Phenix City","Gadsden","Vestavia Hills","Prattville","Alabaster","Opelika","Enterprise","Bessemer","Homewood",
+    "Northport","Daphne","Athens","Pelham","Oxford","Albertville","Selma","Prichard","Fairhope","Talladega"
+  ],
+  Alaska: [
+    "Anchorage","Fairbanks","Juneau","Wasilla","Sitka","Ketchikan","Kenai","Kodiak","Bethel","Palmer",
+    "Homer","Soldotna","Unalaska","Nome","Valdez","Seward","Petersburg","Barrow","Kotzebue","Cordova",
+    "Wrangell","Dillingham","Craig","Hooper Bay","King Cove","Sand Point","Hoonah","Emmonak","Togiak","Galena"
+  ],
+  Arizona: [
+    "Phoenix","Tucson","Mesa","Chandler","Glendale","Scottsdale","Gilbert","Tempe","Peoria","Surprise",
+    "Yuma","Avondale","Goodyear","Flagstaff","Buckeye","Lake Havasu City","Casa Grande","Sierra Vista","Maricopa","Prescott",
+    "Oro Valley","Bullhead City","Queen Creek","Apache Junction","San Tan Valley","El Mirage","Kingman","Marana","Nogales","Douglas"
+  ],
+  Arkansas: [
+    "Little Rock","Fort Smith","Fayetteville","Springdale","Jonesboro","North Little Rock","Conway","Rogers","Bentonville","Pine Bluff",
+    "Hot Springs","Texarkana","Sherwood","Benton","Russellville","Jacksonville","Bella Vista","Paragould","West Memphis","Cabot",
+    "Searcy","Van Buren","El Dorado","Maumelle","Bryant","Forrest City","Marion","Harrison","Malvern","Camden"
+  ],
+  California: [
+    "Los Angeles","San Diego","San Jose","San Francisco","Fresno","Sacramento","Long Beach","Oakland","Bakersfield","Anaheim",
+    "Riverside","Stockton","Irvine","Chula Vista","Fremont","San Bernardino","Modesto","Fontana","Oxnard","Moreno Valley",
+    "Huntington Beach","Glendale","Santa Clarita","Garden Grove","Santa Rosa","Oceanside","Ontario","Rancho Cucamonga","Elk Grove","Corona"
+  ],
+  Colorado: [
+    "Denver","Colorado Springs","Aurora","Fort Collins","Lakewood","Thornton","Arvada","Westminster","Pueblo","Greeley",
+    "Centennial","Boulder","Longmont","Loveland","Grand Junction","Broomfield","Castle Rock","Commerce City","Parker","Littleton",
+    "Brighton","Northglenn","Englewood","Lafayette","Erie","Wheat Ridge","Fountain","Golden","Evans","Louisville"
+  ],
+  Connecticut: [
+    "Bridgeport","New Haven","Stamford","Hartford","Waterbury","Norwalk","Danbury","New Britain","Bristol","Meriden",
+    "West Haven","Milford","Middletown","Norwich","Shelton","Torrington","Naugatuck","New London","Ansonia","Derby",
+    "Groton","Stratford","Trumbull","East Hartford","Manchester","Fairfield","Enfield","Southington","West Hartford","Hamden"
+  ],
+  Delaware: [
+    "Wilmington","Dover","Newark","Middletown","Smyrna","Milford","Seaford","Georgetown","Elsmere","New Castle",
+    "Millsboro","Laurel","Harrington","Camden","Claymont","Selbyville","Bridgeville","Milton","Rehoboth Beach","Lewes",
+    "Delmar","Ocean View","Dagsboro","Bethany Beach","Fenwick Island","Greenwood","Houston","Blades","Ellendale","Frankford"
+  ],
+  Florida: [
+    "Jacksonville","Miami","Tampa","Orlando","St. Petersburg","Hialeah","Port St. Lucie","Tallahassee","Cape Coral","Fort Lauderdale",
+    "Pembroke Pines","Hollywood","Gainesville","Miramar","Coral Springs","Palm Bay","West Palm Beach","Clearwater","Spring Hill","Lakeland",
+    "Miami Gardens","Pompano Beach","Davie","Boca Raton","Sunrise","Deltona","Plantation","Palm Coast","Fort Myers","Melbourne"
+  ],
+  Georgia: [
+    "Atlanta","Augusta","Columbus","Macon","Savannah","Athens","Sandy Springs","Roswell","Johns Creek","Albany",
+    "Warner Robins","Alpharetta","Marietta","Valdosta","Smyrna","Brookhaven","Dunwoody","Peachtree Corners","Gainesville","Newnan",
+    "Rome","Milton","Hinesville","Douglasville","Kennesaw","LaGrange","Statesboro","Lawrenceville","Dalton","Canton"
+  ],
+  Hawaii: [
+    "Honolulu","East Honolulu","Pearl City","Hilo","Waipahu","Kailua","Kaneohe","Ewa Gentry","Mililani Town","Kahului",
+    "Kapolei","Kihei","Makakilo","Wahiawa","Wailuku","Lahaina","Ewa Beach","Royal Kunia","Halawa","Aiea",
+    "Waimalu","Kalaoa","Ocean Pointe","Hawaiian Paradise Park","Kula","Napili-Honokowai","Kaneohe Station","Wailea","Puhi","Papaikou"
+  ]
 };
+
 
 const listEl = document.getElementById("list");
 const selectedEl = document.getElementById("selected-state");
 
-function renderList(items, type = "states") {
+function renderList(items, type="states") {
   listEl.innerHTML = "";
   listEl.className = type === "states" ? "states-grid" : "towns-grid";
-
-  if (items.length === 0) {
-    listEl.innerHTML = "<li style='grid-column: 1 / -1; text-align:center; color:#888; padding:32px;'>No major cities listed for this state yet.</li>";
-    return;
-  }
-
   items.forEach(item => {
     const li = document.createElement("li");
     li.textContent = item;
-    if (type === "states") {
-      li.addEventListener("click", () => selectState(item));
-    }
-    // You can later add city click handlers here if you want to go deeper
+    li.addEventListener("click", () => {
+      if(type==="states") selectState(item);
+    });
     listEl.appendChild(li);
   });
 }
 
 function selectState(stateName) {
-  selectedEl.innerHTML = `<div class="keyword-bubble">${stateName}<span onclick="resetState(event)">&times;</span></div>`;
-  const cities = towns[stateName] || []];
-  renderList(cities, "towns");
+  selectedEl.innerHTML = `<div class="keyword-bubble">${stateName}<span onclick="resetState()">x</span></div>`;
+  if(towns[stateName]) renderList(towns[stateName], "towns");
+  else renderList([], "towns");
 }
 
-function resetState(e) {
-  if (e) e.stopPropagation();
+function resetState() {
   selectedEl.innerHTML = "";
   renderList(states, "states");
 }
 
-// Initial render
-renderList(states, "states");
+renderList(states);
+
 </script>
+
 </body>
 </html>
