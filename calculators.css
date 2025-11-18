@@ -378,10 +378,13 @@
 /* Section heading */
 #real-estate-calculators h2 {
   text-align: center;
+  width: 100%;              /* ensures it spans full width */
+  display: block;           /* guarantee centering works */
   font-weight: 700;
   margin-bottom: 40px;
   font-size: 25px;
 }
+
 
 /* Main wrapper (NO SCROLLING) */
 .table-wrap {
