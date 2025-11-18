@@ -26,7 +26,7 @@ html, body {
 ================================== */
 .uni-content-tile {
   width: 100%;
-  background-color: #fbf8f5;
+  background-color: #f7f1ed;
   border-radius: 40px;
   max-width: 1200px;
   margin: 0 auto 60px;
@@ -67,7 +67,7 @@ html, body {
 ================================== */
 .uni-toggle-wrapper {
   display: inline-flex;
-  background-color: #f9ede4;
+  background-color: #f7f1ed;
   border-radius: 45px;
   padding: 5px;
   margin-bottom: 35px;
