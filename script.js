@@ -209,9 +209,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // ⭐ FIX: flow loads → then scripts run → THEN animations start
     loadHTML("flow", "flow.html").then(() => {
       setTimeout(() => {
+
+        // ⭐ FIX: fetch chat container AFTER flow.html is loaded
+        const chatEl = document.getElementById("uix-chat-messages");
+        if (chatEl) window.uixChat = chatEl;
+
         initFlowGraphics();
         startChat();
-      }, 50); // tiny delay ensures injected scripts finish
+
+      }, 50);
     }),
 
     loadHTML("market", "market.html"),
