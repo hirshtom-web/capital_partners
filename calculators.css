@@ -1,4 +1,21 @@
 /* ---------------------- CALCULATOR SECTION ---------------------- */
+
+.calculator-title,
+.suite-title {
+  text-align: center;
+  font-size: 50px;
+  margin: 20px 0; /* optional spacing */
+}
+
+/* If you want a bit of spacing between them */
+.calculator-title {
+  margin-bottom: 10px;
+}
+
+.suite-title {
+  margin-top: 10px;
+}
+
 #calculatorSection {
   font-family: inherit;
   color: #1e0949; /* default dark text */
