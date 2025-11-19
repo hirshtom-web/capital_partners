@@ -181,13 +181,15 @@
 }
 
 /* ---------- TOGGLE SWITCH ---------- */
+/* Container for the switch */
 #calculatorSection .calc-switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 30px;
+  width: 40px;      /* smaller width */
+  height: 15px;     /* new height */
 }
 
+/* Hide default checkbox */
 #calculatorSection .calc-switch input {
   opacity: 0;
   width: 0;
@@ -195,34 +197,41 @@
   cursor: pointer;
 }
 
+/* The slider (background) */
 #calculatorSection .calc-slider {
   position: absolute;
   cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: #ccc;
   transition: 0.4s;
-  border-radius: 30px;
+  border-radius: 15px; /* half of height for round edges */
 }
 
+/* The knob / circle */
 #calculatorSection .calc-slider:before {
   position: absolute;
   content: "";
-  height: 24px;
-  width: 24px;
-  left: 3px;
-  bottom: 3px;
+  height: 12px;    /* smaller knob */
+  width: 12px;
+  left: 1.5px;    /* small padding inside track */
+  bottom: 1.5px;
   background-color: white;
   transition: 0.4s;
   border-radius: 50%;
 }
 
+/* Checked state */
 #calculatorSection .calc-switch input:checked + .calc-slider {
   background-color: #1e0949;
 }
 
 #calculatorSection .calc-switch input:checked + .calc-slider:before {
-  transform: translateX(30px);
+  transform: translateX(25px); /* slide distance = width - knob width - padding */
 }
+
 
 /* ---------- RESULTS ---------- */
 #calculatorSection #calcResultsContainer {
