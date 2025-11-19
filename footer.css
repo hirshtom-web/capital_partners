@@ -243,47 +243,52 @@ footer {
 /* Mobile Footer Collapsible */
 @media (max-width: 600px) {
   footer {
-    padding: 20px 15px; /* smaller padding */
+    padding: 20px 15px !important;
   }
 
   .footer-top {
-    display: flex;
-    flex-direction: column; /* stack columns vertically */
-    gap: 15px;
+    display: flex !important;
+    flex-direction: column !important; /* stack columns vertically */
+    gap: 15px !important;
+    width: 100% !important;
   }
 
   .footer-column {
-    margin-bottom: 15px; /* space between categories */
+    margin-bottom: 15px !important; /* space between categories */
+    width: 100% !important;
   }
 
   .footer-column h4 {
-    font-size: 13px;      /* slightly bigger for readability */
-    font-weight: 600;
-    margin-bottom: 8px;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    margin-bottom: 8px !important;
     cursor: default;
   }
 
   .footer-column ul {
-    margin: 0;
-    padding-left: 10px;   /* indent links */
+    margin: 0 !important;
+    padding-left: 10px !important;
+    display: block !important;
   }
 
   .footer-column li {
-    margin-bottom: 6px;
+    margin-bottom: 6px !important;
   }
 
   .footer-column a {
-    font-size: 12px;
-    color: #dbdbdb;
-    text-decoration: none;
+    font-size: 12px !important;
+    color: #dbdbdb !important;
+    text-decoration: none !important;
   }
 
   .footer-column a:hover {
-    color: #fff;
+    color: #fff !important;
   }
 
   /* Social icons / country selector adjustments */
-  .social-icons, .country-selector, .privacy {
-    margin-top: 10px;
+  .social-icons,
+  .country-selector,
+  .privacy {
+    margin-top: 10px !important;
   }
 }
