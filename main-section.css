@@ -28,16 +28,10 @@
 
 /* Gradient text for AI-powered class */
 .ai-powered {
-  background: linear-gradient(
-    90deg,
-    #ffb0b0,
-    #6d00ef
-  );
+  background: linear-gradient(90deg, #ffb0b0, #6d00ef);
   background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
-  /* Extra slow movement for a premium feel */
   animation: sideSwipe 40s ease-in-out infinite;
 }
 
