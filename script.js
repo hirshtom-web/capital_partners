@@ -43,142 +43,93 @@ document.addEventListener("DOMContentLoaded", () => {
     if (header) header.classList.remove("header--blue", "header--white");
   }
 
-// ====================
-// Setup header + mobile menu
-// ====================
-function setupHeaderMenu() {
-  const header = document.getElementById("header");
-  const body = document.body;
-  const isHome = window.location.pathname === "/" ||
-                 window.location.pathname.endsWith("index.html");
+  // ====================
+  // Setup header + mobile menu
+  // ====================
+  function setupHeaderMenu() {
+    const header = document.getElementById("header");
+    const body = document.body;
+    const isHome = window.location.pathname === "/" ||
+                   window.location.pathname.endsWith("index.html");
 
-  // Header color
-  if (header) {
-    header.classList.toggle("header--blue", isHome);
-    header.classList.toggle("header--white", !isHome);
-  }
+    // Header color
+    if (header) {
+      header.classList.toggle("header--blue", isHome);
+      header.classList.toggle("header--white", !isHome);
+    }
 
-  // Menu toggle and mobile menu
-  const menuToggle = document.getElementById("hamburger");
-  const mobileMenu = document.getElementById("mobile-menu");
+    const menuToggle = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobile-menu");
 
-  if (menuToggle && mobileMenu) {
-    // Reset classes
-    menuToggle.classList.remove("active");
-    mobileMenu.classList.remove("active");
-    body.classList.remove("menu-open");
+    if (menuToggle && mobileMenu) {
+      menuToggle.classList.remove("active");
+      mobileMenu.classList.remove("active");
+      body.classList.remove("menu-open");
 
-    // Toggle on click
-    menuToggle.addEventListener("click", () => {
-      menuToggle.classList.toggle("active"); // hamburger animation
-      mobileMenu.classList.toggle("active"); // slide menu
-      body.classList.toggle("menu-open", mobileMenu.classList.contains("active"));
-    });
-  }
+      menuToggle.addEventListener("click", () => {
+        menuToggle.classList.toggle("active");
+        mobileMenu.classList.toggle("active");
+        body.classList.toggle("menu-open", mobileMenu.classList.contains("active"));
+      });
+    }
 
-  // Mobile submenu toggle
-  if (mobileMenu) {
-    mobileMenu.querySelectorAll("li").forEach(item => {
-      const link = item.querySelector("a");
-      const submenu = item.querySelector(".submenu-mobile");
+    // Mobile submenu logic
+    if (mobileMenu) {
+      mobileMenu.querySelectorAll("li").forEach(item => {
+        const link = item.querySelector("a");
+        const submenu = item.querySelector(".submenu-mobile");
 
-      if (link && submenu) {
-        link.addEventListener("click", e => {
-          e.preventDefault();
+        if (link && submenu) {
+          link.addEventListener("click", e => {
+            e.preventDefault();
 
-          // Close other open submenus
-          mobileMenu.querySelectorAll("li.expanded").forEach(openItem => {
-            if (openItem !== item) openItem.classList.remove("expanded");
+            mobileMenu.querySelectorAll("li.expanded").forEach(openItem => {
+              if (openItem !== item) openItem.classList.remove("expanded");
+            });
+
+            item.classList.toggle("expanded");
           });
+        }
+      });
+    }
 
-          item.classList.toggle("expanded");
-        });
-      }
+    const openServices = document.getElementById("open-services");
+    const servicesSubmenu = document.getElementById("services-submenu");
+    const backLinks = document.querySelectorAll(".mobile-submenu .back-link");
+
+    if (openServices && servicesSubmenu) {
+      openServices.addEventListener("click", e => {
+        e.preventDefault();
+        servicesSubmenu.classList.add("active");
+      });
+    }
+
+    backLinks.forEach(btn => {
+      btn.addEventListener("click", e => {
+        e.preventDefault();
+        servicesSubmenu.classList.remove("active");
+      });
     });
   }
 
-  // Optional services submenu
-  const openServices = document.getElementById("open-services");
-  const servicesSubmenu = document.getElementById("services-submenu");
-  const backLinks = document.querySelectorAll(".mobile-submenu .back-link");
+  setupHeaderMenu();
 
-  if (openServices && servicesSubmenu) {
-    openServices.addEventListener("click", e => {
-      e.preventDefault();
-      servicesSubmenu.classList.add("active");
+  // ================================
+  // Freeze scroll on desktop submenu hover
+  // ================================
+  if (window.innerWidth > 768) {
+    document.querySelectorAll("nav > div").forEach(item => {
+      item.addEventListener("mouseenter", () => {
+        document.body.classList.add("submenu-open");
+      });
+      item.addEventListener("mouseleave", () => {
+        document.body.classList.remove("submenu-open");
+      });
     });
   }
 
-  backLinks.forEach(btn => {
-    btn.addEventListener("click", e => {
-      e.preventDefault();
-      servicesSubmenu.classList.remove("active");
-    });
-  });
-}
-
-// Run setup
-setupHeaderMenu();
-
-
-// ================================
-// Freeze scroll on DESKTOP submenu hover
-// ================================
-if (window.innerWidth > 768) {   // prevents mobile conflicts
-  document.querySelectorAll("nav > div").forEach(item => {
-    item.addEventListener("mouseenter", () => {
-      document.body.classList.add("submenu-open");
-    });
-
-    item.addEventListener("mouseleave", () => {
-      document.body.classList.remove("submenu-open");
-    });
-  });
-}
-
-
   // ====================
-  // Tabs initialization
-  // Handles both "old" tabs and new Investors/Homebuyers/Developers
-  // ====================
-
-document.addEventListener('DOMContentLoaded', () => {
-  const toggleButtons = document.querySelectorAll('.uni-toggle-btn');
-  const panels = document.querySelectorAll('.uni-panel');
-  const container = document.querySelector('.uni-content-tile'); // wrapper for title, buttons, and panels
-
-  // Map each button to a background color
-  const bgColors = [
-    '#f8f7f5', // Investors
-    '#d6eaf8', // Homebuyers
-    '#fdebd0'  // Developers
-  ];
-
-  // Add smooth transition to container
-  if (container) container.style.transition = 'background-color 0.5s ease';
-
-  toggleButtons.forEach((btn, index) => {
-    btn.addEventListener('click', () => {
-      // Remove active from all buttons
-      toggleButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      // Show corresponding panel, hide others
-      panels.forEach(p => p.classList.remove('active'));
-      const panel = document.getElementById(btn.dataset.tab);
-      if (panel) panel.classList.add('active');
-
-      // Change container background
-      if (container) container.style.backgroundColor = bgColors[index] || '#fff';
-    });
-  });
-
-  // Activate the first tab by default
-  if (toggleButtons[0]) toggleButtons[0].click();
-});
-
-  // ====================
-  // Populate real estate keyword suggestions
+  // Real estate keyword suggestions
   // ====================
   function populateREKeywords() {
     const keywords = [
@@ -193,9 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const shuffle = arr => arr.sort(() => Math.random() - 0.5);
     const list = shuffle([...keywords]);
+
     const container = document.getElementById("re-container");
     if (!container) return;
-
     container.innerHTML = "";
 
     const row1 = document.createElement("div");
@@ -300,14 +251,11 @@ document.addEventListener('DOMContentLoaded', () => {
       typing.remove();
       uixAddMessage(msg);
       uixIndex++;
-      if (uixIndex >= uixMessages.length) uixIndex = 0; // loop
+      if (uixIndex >= uixMessages.length) uixIndex = 0;
       setTimeout(uixNextMessage, 500 + Math.random() * 800);
     }, 1200 + Math.random() * 800);
   }
 
-  // ====================
-  // Keyword Chat popup
-  // ====================
   function showKeywordChat() {
     const overlay = document.createElement("div");
     overlay.className = "uix-overlay";
@@ -328,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ====================
-  // Main execution
+  // Load sections
   // ====================
   const preloader = document.getElementById("preloader");
   const MIN_TIME = 800;
@@ -344,30 +292,35 @@ document.addEventListener('DOMContentLoaded', () => {
     loadHTML("main-section", "main-section.html"),
     loadHTML("trusted-by", "https://hirshtom-web.github.io/capital_partners/trusted-by.html"),
     loadHTML("property-slide", "property-slide.html"),
-   loadHTML("tabs", "tabs.html").then(() => {
-    const toggleButtons = document.querySelectorAll('.uni-toggle-btn');
-    const panels = document.querySelectorAll('.uni-panel');
-    const container = document.querySelector('.uni-content-tile'); // wrapper for title, buttons, panels
 
-    const bgColors = ['#f8f7f5', '#d6eaf8', '#fdebd0']; // colors for each tab
-    if (container) container.style.transition = 'background-color 0.5s ease';
+    // Tabs with gradient background
+    loadHTML("tabs", "tabs.html").then(() => {
+      const toggleButtons = document.querySelectorAll('.uni-toggle-btn');
+      const panels = document.querySelectorAll('.uni-panel');
+      const container = document.querySelector('.uni-content-tile');
 
-    toggleButtons.forEach((btn, index) => {
-      btn.addEventListener('click', () => {
-        toggleButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+      const bgGradients = [
+        'linear-gradient(90deg, #f8e8e8 0%, #dcc7f4 100%)',
+        'linear-gradient(90deg, #d6eaf8 0%, #bcdff0 100%)',
+        'linear-gradient(90deg, #fdebd0 0%, #f8d7a6 100%)'
+      ];
 
-        panels.forEach(p => p.classList.remove('active'));
-        const panel = document.getElementById(btn.dataset.tab);
-        if (panel) panel.classList.add('active');
+      if (container) container.style.transition = 'background 0.5s ease';
 
-        if (container) container.style.backgroundColor = bgColors[index] || '#fff';
+      toggleButtons.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+          toggleButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          panels.forEach(p => p.classList.remove('active'));
+          document.getElementById(btn.dataset.tab)?.classList.add('active');
+
+          container.style.background = bgGradients[index];
+        });
       });
-    });
 
-    // Activate first tab by default
-    if (toggleButtons[0]) toggleButtons[0].click();
-}),
+      if (toggleButtons[0]) toggleButtons[0].click();
+    }),
 
     loadHTML("flow", "flow.html").then(() => {
       setTimeout(() => {
@@ -378,6 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
         uixNextMessage();
       }, 50);
     }),
+
     loadHTML("market", "market.html"),
     loadHTML("footer", "footer.html"),
     Promise.resolve().then(populateREKeywords)
@@ -399,4 +353,3 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
-
