@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Property Slider - Unique</title>
+<style>
+body {
+  margin: 0;
+  padding: 50px 0;
+  font-family: Arial, sans-serif;
+  background: #f8f7f5;
+  display: flex;
+  justify-content: center;
+}
+
+/* ---------- SLIDER CONTAINER ---------- */
+.unique-slider-container {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
+
+/* ---------- VIEWPORT WRAPPER ---------- */
+.unique-slider-viewport {
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 30px 0;
+  position: relative;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.unique-slider-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- SLIDER TRACK ---------- */
+.unique-slider-track {
+  display: flex;
+  gap: 30px;
+  transition: transform 0.4s ease;
+  overflow: visible;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+/* ---------- PROPERTY CARD ---------- */
+.unique-property-card {
+  flex: 0 0 360px;
+  height: 480px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  overflow: visible;
+  position: relative;
+  padding: 15px;
+  transition: transform 0.3s ease, box-shadow 0.4s ease;
+}
+
+.unique-property-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+/* ---------- LOGO ---------- */
+.unique-property-logo {
+  height: 50px;
+  position: absolute;
+  top: 35px;
+  left: 30px;
+  width: auto;
+}
+
+.unique-property-logo img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ---------- IMAGE ---------- */
+.unique-property-img {
+  width: 95%;
+  height: 200px;
+  margin: 100px auto 30px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.unique-property-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.unique-property-card:hover .unique-property-img img {
+  transform: scale(1.05);
+}
+
+/* ---------- TEXT ---------- */
+.unique-property-title {
+  font-size: 30px;
+  font-weight: 600;
+  margin: 10px 10px 5px;
+  text-align: left;
+}
+
+.unique-property-location {
+  font-size: 14px;
+  color: #555;
+  text-align: left;
+  margin: 10px 10px 5px;
+}
+
+.unique-property-date {
+  font-size: 12px;
+  color: #888;
+  text-align: left;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+/* ---------- KEYWORDS BUBBLES ---------- */
+.unique-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: flex-start;
+  margin-left: 10px;
+  margin-top: 30px;
+}
+
+.unique-keyword {
+  background-color: #eaf2ff;
+  color: #2662d9;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.unique-keyword:hover {
+  background-color: #d0e3ff;
+}
+
+/* ---------- ARROWS ---------- */
+.unique-slider-arrows {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+  margin-left: 45px;
+  justify-content: flex-start;
+}
+
+.unique-arrow {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #2662d9;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px;
+  color: #2662d9;
+  transition: background 0.3s, color 0.3s;
+}
+
+.unique-arrow:hover {
+  background: #2662d9;
+  color: #fff;
+}
+
+.unique-slider-container::before,
+.unique-slider-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ---------- RESPONSIVE ---------- */
+/* ---------- RESPONSIVE ---------- */
+/* ---------- RESPONSIVE (TABLET & MOBILE) ---------- */
+@media (max-width: 768px) {
+
+  /* Smaller card, less vertical spacing */
+  .unique-property-card {
+    flex: 0 0 260px;
+    height: auto;
+    padding: 12px;
+  }
+
+  /* Reduce logo size + pull image upward */
+  .unique-property-logo {
+    height: 32px;
+    top: 18px;
+    left: 18px;
+  }
+
+  /* Less gap between logo and image */
+  .unique-property-img {
+    margin: 70px auto 20px; /* was 100px */
+    height: 150px;
+  }
+
+  /* Text sizes */
+  .unique-property-title {
+    font-size: 1.15rem;
+    margin-top: 5px;
+  }
+  .unique-property-location {
+    font-size: 0.9rem;
+  }
+  .unique-property-date {
+    font-size: 0.75rem;
+  }
+
+  /* Keywords */
+  .unique-keywords {
+    margin-top: 18px; /* closer */
+  }
+}
+
+/* ---------- EXTRA SMALL PHONES ---------- */
+@media (max-width: 480px) {
+
+  .unique-property-card {
+    flex: 0 0 190px;
+    padding: 10px;
+  }
+
+  .unique-property-logo {
+    height: 26px;
+    top: 15px;
+    left: 15px;
+  }
+
+  .unique-property-img {
+    margin: 60px auto 15px; /* tighter */
+    height: 120px;
+  }
+
+  .unique-property-title {
+    font-size: 1rem;
+  }
+  .unique-property-location {
+    font-size: 0.78rem;
+  }
+
+  .unique-keyword {
+    font-size: 0.62rem;
+    padding: 2px 4px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<div class="unique-slider-container">
+  <div class="unique-slider-viewport">
+    <div class="unique-slider-track">
+      <!-- Card 1 -->
+      <div class="unique-property-card">
+        <div class="unique-property-logo">
+          <img src="https://static.wixstatic.com/shapes/1799ca_6882f38a3f804ac3979532dd02a3ece3.svg" alt="Logo">
+        </div>
+        <div class="unique-property-img">
+          <img src="https://static.wixstatic.com/media/1799ca_edd479bd24fa4e80ba5472144fbb1ea9~mv2.jpg" alt="Property">
+        </div>
+        <div class="unique-property-title">Faena</div>
+        <div class="unique-property-location">Miami, FL</div>
+        <div class="unique-property-date">Q3 2027</div>
+        <div class="unique-keywords">
+          <div class="unique-keyword">Luxury</div>
+          <div class="unique-keyword">Pool</div>
+          <div class="unique-keyword">Downtown</div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="unique-property-card">
+        <div class="unique-property-logo">
+          <img src="https://static.wixstatic.com/media/1799ca_82bc655eaf594647908d3d5053bcae7b~mv2.png" alt="Logo">
+        </div>
+        <div class="unique-property-img">
+          <img src="https://static.wixstatic.com/media/1799ca_9c239b8b5f014f3db432b6923d813a1d~mv2.jpg" alt="Property">
+        </div>
+        <div class="unique-property-title">Cipriani</div>
+        <div class="unique-property-location">Phoenix, AZ</div>
+        <div class="unique-property-date">Q1 2028</div>
+        <div class="unique-keywords">
+          <div class="unique-keyword">Family</div>
+          <div class="unique-keyword">Garden</div>
+          <div class="unique-keyword">Quiet</div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="unique-property-card">
+        <div class="unique-property-logo">
+          <img src="https://static.wixstatic.com/shapes/1799ca_fcfbfa149b6248d794374227c29cadab.svg" alt="Logo">
+        </div>
+        <div class="unique-property-img">
+          <img src="https://static.wixstatic.com/media/1799ca_6a6371ac3a9f4d2f9e1c14394f0f8b3d~mv2.jpg" alt="Property">
+        </div>
+        <div class="unique-property-title">Dolce Vita</div>
+        <div class="unique-property-location">Orlando, FL</div>
+        <div class="unique-property-date">Q4 2027</div>
+        <div class="unique-keywords">
+          <div class="unique-keyword">Modern</div>
+          <div class="unique-keyword">Balcony</div>
+          <div class="unique-keyword">City View</div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="unique-property-card">
+        <div class="unique-property-logo">
+          <img src="https://static.wixstatic.com/shapes/1799ca_6882f38a3f804ac3979532dd02a3ece3.svg" alt="Logo">
+        </div>
+        <div class="unique-property-img">
+          <img src="https://static.wixstatic.com/media/1799ca_710d6b07b99a4d44aec9360313f8f420~mv2.jpg" alt="Property">
+        </div>
+        <div class="unique-property-title">Jem Residences</div>
+        <div class="unique-property-location">Charlotte, NC</div>
+        <div class="unique-property-date">Q2 2028</div>
+        <div class="unique-keywords">
+          <div class="unique-keyword">Luxury</div>
+          <div class="unique-keyword">Gym</div>
+          <div class="unique-keyword">Rooftop</div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="unique-property-card">
+        <div class="unique-property-logo">
+          <img src="https://static.wixstatic.com/shapes/1799ca_6882f38a3f804ac3979532dd02a3ece3.svg" alt="Logo">
+        </div>
+        <div class="unique-property-img">
+          <img src="https://static.wixstatic.com/media/1799ca_e95287a3f0d24e0d8c5b573bdd653cd7~mv2.jpg" alt="Property">
+        </div>
+        <div class="unique-property-title">Villa Miami</div>
+        <div class="unique-property-location">Los Angeles, CA</div>
+        <div class="unique-property-date">Q3 2028</div>
+        <div class="unique-keywords">
+          <div class="unique-keyword">Pool</div>
+          <div class="unique-keyword">Beachfront</div>
+          <div class="unique-keyword">Modern</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Slider arrows -->
+  <div class="unique-slider-arrows">
+    <div class="unique-arrow" id="unique-prev">&#8592;</div>
+    <div class="unique-arrow" id="unique-next">&#8594;</div>
+  </div>
+</div>
+
+<script>
+const uniqueTrack = document.querySelector('.unique-slider-track');
+const uniquePrev = document.getElementById('unique-prev');
+const uniqueNext = document.getElementById('unique-next');
+const uniqueCardWidth = 360 + 30; // card width + gap
+let uniqueIndex = 0;
+
+const visibleCards = 3;
+const maxIndex = uniqueTrack.children.length - visibleCards;
+
+uniqueNext.addEventListener('click', () => {
+  if (uniqueIndex < maxIndex) {
+    uniqueIndex++;
+    uniqueTrack.style.transform = `translateX(-${uniqueCardWidth * uniqueIndex}px)`;
+  }
+});
+
+uniquePrev.addEventListener('click', () => {
+  if (uniqueIndex > 0) {
+    uniqueIndex--;
+    uniqueTrack.style.transform = `translateX(-${uniqueCardWidth * uniqueIndex}px)`;
+  }
+});
+
+const uniqueSlider = document.querySelector('.unique-slider-viewport');
+let isUniqueDown = false;
+let startXUnique;
+let scrollLeftUnique;
+
+uniqueSlider.addEventListener('mousedown', e => {
+  isUniqueDown = true;
+  startXUnique = e.pageX - uniqueSlider.offsetLeft;
+  scrollLeftUnique = uniqueSlider.scrollLeft;
+});
+uniqueSlider.addEventListener('mouseleave', () => isUniqueDown = false);
+uniqueSlider.addEventListener('mouseup', () => isUniqueDown = false);
+uniqueSlider.addEventListener('mousemove', e => {
+  if(!isUniqueDown) return;
+  e.preventDefault();
+  const x = e.pageX - uniqueSlider.offsetLeft;
+  const walk = (x - startXUnique) * 2;
+  uniqueSlider.scrollLeft = scrollLeftUnique - walk;
+});
+
+// Touch events
+uniqueSlider.addEventListener('touchstart', e => startXUnique = e.touches[0].pageX - uniqueSlider.offsetLeft);
+uniqueSlider.addEventListener('touchmove', e => {
+  const x = e.touches[0].pageX - uniqueSlider.offsetLeft;
+  uniqueSlider.scrollLeft -= (x - startXUnique) * 2;
+  startXUnique = x;
+});
+</script>
+
+</body>
+</html>
