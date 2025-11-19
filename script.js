@@ -43,9 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (header) header.classList.remove("header--blue", "header--white");
   }
 
-  // ====================
-  // Setup header + mobile menu
-  // ====================
+// ====================
+// Setup header + mobile menu
+// ====================
 function setupHeaderMenu() {
   const header = document.getElementById("header");
   const body = document.body;
@@ -77,22 +77,27 @@ function setupHeaderMenu() {
   }
 
   // Mobile submenu toggle
-  mobileMenu.querySelectorAll("li").forEach(item => {
-    const link = item.querySelector("a");
-    const submenu = item.querySelector(".submenu-mobile");
+  if (mobileMenu) {
+    mobileMenu.querySelectorAll("li").forEach(item => {
+      const link = item.querySelector("a");
+      const submenu = item.querySelector(".submenu-mobile");
 
-    if (link && submenu) {
-      link.addEventListener("click", e => {
-        e.preventDefault(); // prevent default link
-        // Close other open submenus
-        mobileMenu.querySelectorAll("li.expanded")
-                  .forEach(openItem => { if (openItem !== item) openItem.classList.remove("expanded"); });
-        item.classList.toggle("expanded"); // toggle current
-      });
-    }
-  });
+      if (link && submenu) {
+        link.addEventListener("click", e => {
+          e.preventDefault();
 
-  // Optional: special services submenu
+          // Close other open submenus
+          mobileMenu.querySelectorAll("li.expanded").forEach(openItem => {
+            if (openItem !== item) openItem.classList.remove("expanded");
+          });
+
+          item.classList.toggle("expanded");
+        });
+      }
+    });
+  }
+
+  // Optional services submenu
   const openServices = document.getElementById("open-services");
   const servicesSubmenu = document.getElementById("services-submenu");
   const backLinks = document.querySelectorAll(".mobile-submenu .back-link");
@@ -108,6 +113,25 @@ function setupHeaderMenu() {
     btn.addEventListener("click", e => {
       e.preventDefault();
       servicesSubmenu.classList.remove("active");
+    });
+  });
+}
+
+// Run setup
+setupHeaderMenu();
+
+
+// ================================
+// Freeze scroll on DESKTOP submenu hover
+// ================================
+if (window.innerWidth > 768) {   // prevents mobile conflicts
+  document.querySelectorAll("nav > div").forEach(item => {
+    item.addEventListener("mouseenter", () => {
+      document.body.classList.add("submenu-open");
+    });
+
+    item.addEventListener("mouseleave", () => {
+      document.body.classList.remove("submenu-open");
     });
   });
 }
