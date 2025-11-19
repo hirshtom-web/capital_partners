@@ -157,16 +157,14 @@ html {
           <span class="calc-input-label">Rent ($/mo)</span>
         </div>
 
-       <div id="calculatorSection">
-  <div class="calc-switch-wrapper">
-    <label class="calc-switch">
-      <input type="checkbox">
-      <span class="calc-slider"></span>
-    </label>
-    <span class="calc-switch-label">Add financing</span>
-  </div>
-</div>
-
+        <!-- CASH / FINANCING TOGGLE -->
+        <div class="calc-toggle-section">
+          <label class="calc-switch">
+            <input type="checkbox" id="cashFinancingToggle">
+            <span class="calc-slider"></span>
+          </label>
+          <span>Add Financing</span>
+        </div>
 
         <!-- Hidden criteria -->
         <div id="additionalCriteria" class="calc-hidden-criteria">
@@ -606,8 +604,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: "trusted-by", url: "https://hirshtom-web.github.io/capital_partners/trusted-by.html" },
     { id: "property-slide", url: "property-slide.html" },
     { id: "tabs", url: "tabs.html" },
-    { id: "articles", url: "articles.html" }
-    { id: "disclaimer", url: "disclaimer.html" }
     { id: "footer", url: "footer.html" }
   ];
 
