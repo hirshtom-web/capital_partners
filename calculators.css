@@ -181,23 +181,13 @@
 }
 
 /* ---------- TOGGLE SWITCH ---------- */
-/* Container holding switch + label */
-#calculatorSection .calc-switch-wrapper {
-  display: flex;
-  align-items: center;  /* vertically center text with switch */
-  justify-content: flex-start; /* align everything to left */
-  gap: 8px; /* spacing between switch and text */
-}
-
-/* Switch size */
 #calculatorSection .calc-switch {
   position: relative;
   display: inline-block;
-  width: 40px;   /* smaller width */
-  height: 15px;  /* smaller height */
+  width: 60px;
+  height: 30px;
 }
 
-/* Checkbox hidden */
 #calculatorSection .calc-switch input {
   opacity: 0;
   width: 0;
@@ -205,58 +195,34 @@
   cursor: pointer;
 }
 
-/* Slider */
 #calculatorSection .calc-slider {
   position: absolute;
   cursor: pointer;
   top: 0; left: 0; right: 0; bottom: 0;
   background-color: #ccc;
   transition: 0.4s;
-  border-radius: 15px;
+  border-radius: 30px;
 }
 
-/* Knob */
 #calculatorSection .calc-slider:before {
   position: absolute;
   content: "";
-  height: 12px;
-  width: 12px;
-  left: 1.5px;
-  bottom: 1.5px;
+  height: 24px;
+  width: 24px;
+  left: 3px;
+  bottom: 3px;
   background-color: white;
   transition: 0.4s;
   border-radius: 50%;
 }
 
-/* Checked state */
 #calculatorSection .calc-switch input:checked + .calc-slider {
   background-color: #1e0949;
 }
 
 #calculatorSection .calc-switch input:checked + .calc-slider:before {
-  transform: translateX(25px);
+  transform: translateX(30px);
 }
-
-/* Label text next to switch */
-#calculatorSection .calc-switch-label {
-  font-size: 12px; /* small text */
-  color: #111;
-}
-.calc-switch-wrapper {
-    display: flex;
-    align-items: center; /* vertically center the switch and label */
-    justify-content: flex-start; /* left-align everything */
-    gap: 10px; /* space between switch and label */
-    margin: 10px 0;
-}
-
-.calc-switch-label {
-    text-align: left; /* ensure the text itself is left-aligned */
-    font-size: 1rem;
-    color: #000;
-}
-
-
 
 /* ---------- RESULTS ---------- */
 #calculatorSection #calcResultsContainer {
