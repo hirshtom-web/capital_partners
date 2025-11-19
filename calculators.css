@@ -181,15 +181,23 @@
 }
 
 /* ---------- TOGGLE SWITCH ---------- */
-/* Container for the switch */
+/* Container holding switch + label */
+#calculatorSection .calc-switch-wrapper {
+  display: flex;
+  align-items: center;  /* vertically center text with switch */
+  justify-content: flex-start; /* align everything to left */
+  gap: 8px; /* spacing between switch and text */
+}
+
+/* Switch size */
 #calculatorSection .calc-switch {
   position: relative;
   display: inline-block;
-  width: 40px;      /* smaller width */
-  height: 15px;     /* new height */
+  width: 40px;   /* smaller width */
+  height: 15px;  /* smaller height */
 }
 
-/* Hide default checkbox */
+/* Checkbox hidden */
 #calculatorSection .calc-switch input {
   opacity: 0;
   width: 0;
@@ -197,26 +205,23 @@
   cursor: pointer;
 }
 
-/* The slider (background) */
+/* Slider */
 #calculatorSection .calc-slider {
   position: absolute;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 0; left: 0; right: 0; bottom: 0;
   background-color: #ccc;
   transition: 0.4s;
-  border-radius: 15px; /* half of height for round edges */
+  border-radius: 15px;
 }
 
-/* The knob / circle */
+/* Knob */
 #calculatorSection .calc-slider:before {
   position: absolute;
   content: "";
-  height: 12px;    /* smaller knob */
+  height: 12px;
   width: 12px;
-  left: 1.5px;    /* small padding inside track */
+  left: 1.5px;
   bottom: 1.5px;
   background-color: white;
   transition: 0.4s;
@@ -229,7 +234,13 @@
 }
 
 #calculatorSection .calc-switch input:checked + .calc-slider:before {
-  transform: translateX(25px); /* slide distance = width - knob width - padding */
+  transform: translateX(25px);
+}
+
+/* Label text next to switch */
+#calculatorSection .calc-switch-label {
+  font-size: 12px; /* small text */
+  color: #111;
 }
 
 
