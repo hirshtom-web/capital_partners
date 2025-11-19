@@ -98,7 +98,7 @@ html, body {
 ================================== */
 .uni-panel {
   display: none;
-  background: #f8f7f5;
+  background: transparent;
   border-radius: 18px;
   max-width: 92%;
   margin: 0 auto;
