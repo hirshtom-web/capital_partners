@@ -1,18 +1,44 @@
-<script src="transition.js" defer></script>
 <script defer>
 document.addEventListener('DOMContentLoaded', () => {
   // ----------------------------
-  // Footer collapsible columns
+  // Footer collapsible columns (accordion style)
   // ----------------------------
   if (window.innerWidth <= 600) {
-    const footerColumns = document.querySelectorAll('.footer-column h4');
-    footerColumns.forEach(header => {
-      header.style.cursor = 'pointer';
-      const ul = header.nextElementSibling;
+    const footerColumns = document.querySelectorAll('.footer-column');
+    
+    footerColumns.forEach(column => {
+      const header = column.querySelector('h4');
+      const ul = column.querySelector('ul');
+      
+      // Add arrow
+      const arrow = document.createElement('span');
+      arrow.textContent = '▼'; // closed arrow
+      arrow.style.float = 'right';
+      arrow.style.transition = 'transform 0.3s';
+      header.appendChild(arrow);
+
       ul.style.display = 'none'; // collapsed by default
+      header.style.cursor = 'pointer';
 
       header.addEventListener('click', () => {
-        ul.style.display = ul.style.display === 'block' ? 'none' : 'block';
+        // Close all other columns
+        footerColumns.forEach(col => {
+          const otherUl = col.querySelector('ul');
+          const otherArrow = col.querySelector('h4 span');
+          if (col !== column) {
+            otherUl.style.display = 'none';
+            otherArrow.style.transform = 'rotate(0deg)';
+          }
+        });
+
+        // Toggle this column
+        if (ul.style.display === 'block') {
+          ul.style.display = 'none';
+          arrow.style.transform = 'rotate(0deg)';
+        } else {
+          ul.style.display = 'block';
+          arrow.style.transform = 'rotate(180deg)'; // point up
+        }
       });
     });
   }
@@ -40,16 +66,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 350);
   };
 
-  // ----------------------------
-  // Country selector logic
-  // ----------------------------
+  // Country
   if (countrySelector && countryPopup) {
     countrySelector.addEventListener('click', (e) => {
       e.stopPropagation();
       if (countryPopup.style.display === 'block') {
         closePopup(countryPopup);
       } else {
-        closePopup(privacyPopup); // close other popup
+        closePopup(privacyPopup);
         openPopup(countryPopup);
       }
     });
@@ -67,9 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ----------------------------
-  // Privacy popup logic
-  // ----------------------------
+  // Privacy
   if (privacyTrigger && privacyPopup) {
     privacyTrigger.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -88,9 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ----------------------------
   // Close popups on outside click or ESC
-  // ----------------------------
   document.addEventListener('click', () => {
     closePopup(countryPopup);
     closePopup(privacyPopup);
@@ -103,7 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Stop propagation inside popups
   countryPopup?.addEventListener('click', e => e.stopPropagation());
   privacyPopup?.addEventListener('click', e => e.stopPropagation());
 });
