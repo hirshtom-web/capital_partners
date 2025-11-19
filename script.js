@@ -344,7 +344,31 @@ document.addEventListener('DOMContentLoaded', () => {
     loadHTML("main-section", "main-section.html"),
     loadHTML("trusted-by", "https://hirshtom-web.github.io/capital_partners/trusted-by.html"),
     loadHTML("property-slide", "property-slide.html"),
-    loadHTML("tabs", "tabs.html").then(() => initTabs()),
+   loadHTML("tabs", "tabs.html").then(() => {
+    const toggleButtons = document.querySelectorAll('.uni-toggle-btn');
+    const panels = document.querySelectorAll('.uni-panel');
+    const container = document.querySelector('.uni-content-tile'); // wrapper for title, buttons, panels
+
+    const bgColors = ['#f8f7f5', '#d6eaf8', '#fdebd0']; // colors for each tab
+    if (container) container.style.transition = 'background-color 0.5s ease';
+
+    toggleButtons.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        toggleButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        panels.forEach(p => p.classList.remove('active'));
+        const panel = document.getElementById(btn.dataset.tab);
+        if (panel) panel.classList.add('active');
+
+        if (container) container.style.backgroundColor = bgColors[index] || '#fff';
+      });
+    });
+
+    // Activate first tab by default
+    if (toggleButtons[0]) toggleButtons[0].click();
+}),
+
     loadHTML("flow", "flow.html").then(() => {
       setTimeout(() => {
         const chatEl = document.getElementById("uix-chat-messages");
