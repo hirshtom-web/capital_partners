@@ -1,4 +1,6 @@
-/* Main Section */
+/* ----------------------------- */
+/* MAIN SECTION                  */
+/* ----------------------------- */
 .main-section {
   background-color: #1e0949;
   color: white;
@@ -6,7 +8,9 @@
   text-align: center;
 }
 
-/* Hero Heading */
+/* ----------------------------- */
+/* HERO HEADING                  */
+/* ----------------------------- */
 .hero-title {
   font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
   font-weight: 600;
@@ -52,7 +56,74 @@
   height: auto;
 }
 
-/* Responsive Styles */
+/* ----------------------------- */
+/* SIDE FLOATING CLUSTERS        */
+/* ----------------------------- */
+.side-cluster {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 180px;
+  pointer-events: none;
+  z-index: 1; /* behind text */
+}
+
+.left-cluster {
+  left: -220px;
+}
+
+.right-cluster {
+  right: -220px;
+}
+
+/* SVG (larger, floats above) */
+.cluster-svg {
+  width: 180px;
+  height: auto;
+  filter: drop-shadow(0px 8px 16px rgba(0,0,0,0.15));
+  animation: float 5s ease-in-out infinite;
+}
+
+/* Image under the SVG */
+.cluster-img {
+  width: 110px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 18px;
+  position: absolute;
+  bottom: -40px;
+  left: 35px;
+  transform: rotate(-3deg);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.28);
+  animation: float-small 6s ease-in-out infinite;
+}
+
+/* ----------------------------- */
+/* FLOAT ANIMATION               */
+/* ----------------------------- */
+@keyframes float {
+  0%   { transform: translateY(-50%) translateX(0); }
+  50%  { transform: translateY(-55%) translateX(5px); }
+  100% { transform: translateY(-50%) translateX(0); }
+}
+
+@keyframes float-small {
+  0%   { transform: rotate(-3deg) translateY(0); }
+  50%  { transform: rotate(-3deg) translateY(-6px); }
+  100% { transform: rotate(-3deg) translateY(0); }
+}
+
+/* ----------------------------- */
+/* RESPONSIVE STYLES             */
+/* ----------------------------- */
+@media (max-width: 1100px) {
+  .side-cluster {
+    transform: translateY(-50%) scale(.8);
+  }
+  .left-cluster { left: -150px; }
+  .right-cluster { right: -150px; }
+}
+
 @media (max-width: 768px) {
   .hero-title {
     font-size: 48px;
@@ -64,6 +135,10 @@
     display: block;
     margin: 10px auto 0;
     width: 70px;
+  }
+
+  .side-cluster {
+    display: none; /* hide clusters for smaller screens */
   }
 }
 
@@ -78,4 +153,3 @@
     width: 40px;
   }
 }
-
