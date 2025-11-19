@@ -7,6 +7,15 @@
   padding: 60px 20px; /* added horizontal padding for small screens */
   text-align: center;
 }
+.hero-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; /* ensures it fills viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* hides overflow from floating clusters */
+}
 
 /* ----------------------------- */
 /* HERO HEADING                  */
@@ -49,6 +58,7 @@
   width: 100px;
   height: auto;
 }
+
 
 /* ----------------------------- */
 /* SIDE FLOATING CLUSTERS        */
