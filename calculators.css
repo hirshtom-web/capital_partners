@@ -242,6 +242,20 @@
   font-size: 12px; /* small text */
   color: #111;
 }
+.calc-switch-wrapper {
+    display: flex;
+    align-items: center; /* vertically center the switch and label */
+    justify-content: flex-start; /* left-align everything */
+    gap: 10px; /* space between switch and label */
+    margin: 10px 0;
+}
+
+.calc-switch-label {
+    text-align: left; /* ensure the text itself is left-aligned */
+    font-size: 1rem;
+    color: #000;
+}
+
 
 
 /* ---------- RESULTS ---------- */
