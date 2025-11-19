@@ -240,50 +240,34 @@ footer {
 }
 
 /* Mobile Footer Adjustments */
+/* Mobile Footer Collapsible */
 @media (max-width: 900px) {
-  footer {
-    padding: 10px 10px;
+  .footer-column ul {
+    display: none;        /* hide links initially */
+    margin-top: 5px;
   }
 
-  .footer-top {
-    grid-template-columns: 1fr; /* stack columns vertically */
-    gap: 10px;
-  }
-
-  .footer-column {
-    margin-bottom: 10px; /* spacing between categories */
+  .footer-column.active ul {
+    display: block;       /* show links when active */
   }
 
   .footer-column h4 {
-    font-weight: 600;        /* slightly bolder */
-    font-size: 13px;         /* slightly bigger than links */
-    margin-bottom: 5px;      /* spacing before links */
-    cursor: default;
-    position: static;        /* remove absolute positioning/arrow */
-    padding: 0;
+    cursor: pointer;      /* show it's clickable */
+    position: relative;
   }
 
-  .footer-column ul {
-    display: block;          /* show links directly */
-    margin: 0;
-    padding: 0;
-    gap: 2px;                /* spacing between links */
+  /* Optional arrow indicator */
+  .footer-column h4::after {
+    content: '▼';
+    font-size: 10px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
   }
 
-  .footer-column li {
-    margin-bottom: 8px;      /* 2px more than default */
-    margin-left: 10px;       /* spacing from title */
-  }
-
-  .footer-column a {
-    font-size: 12px;
-    color: #dbdbdb;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 2px;      /* spacing between links */
-  }
-
-  .footer-column a:hover {
-    color: #fff;
+  .footer-column.active h4::after {
+    transform: translateY(-50%) rotate(180deg);
   }
 }
