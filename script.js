@@ -142,28 +142,11 @@ if (window.innerWidth > 768) {   // prevents mobile conflicts
   // Handles both "old" tabs and new Investors/Homebuyers/Developers
   // ====================
  function initTabs() {
-  // Generic tab buttons
-  const tabButtons = document.querySelectorAll(".tab-button");
-  const tabContents = document.querySelectorAll(".tab-content");
-
-  tabButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const target = btn.dataset.target;
-
-      tabContents.forEach(c => c.classList.remove("active"));
-      tabButtons.forEach(b => b.classList.remove("active"));
-
-      document.getElementById(target)?.classList.add("active");
-      btn.classList.add("active");
-    });
-  });
-
-  // New uni-toggle buttons for Investors/Homebuyers/Developers
   const uniButtons = document.querySelectorAll(".uni-toggle-btn");
   const uniPanels = document.querySelectorAll(".uni-panel");
-  const container = document.querySelector(".uni-section-shell"); // container to change background
+  const wrapper = document.querySelector(".uni-section-shell"); // wrapper container
 
-  // Map each button to a background color
+  // Background colors for each tab
   const bgColors = [
     "#f8f7f5", // first tab
     "#d6eaf8", // second tab
@@ -171,22 +154,30 @@ if (window.innerWidth > 768) {   // prevents mobile conflicts
     "#e8f8f5"  // fourth tab
   ];
 
+  // Add smooth transition to wrapper
+  if (wrapper) {
+    wrapper.style.transition = "background-color 0.5s ease";
+  }
+
   uniButtons.forEach((btn, index) => {
     btn.addEventListener("click", () => {
-      uniPanels.forEach(p => p.classList.remove("active"));
+      // Remove active from all buttons
       uniButtons.forEach(b => b.classList.remove("active"));
-
-      document.getElementById(btn.dataset.tab)?.classList.add("active");
       btn.classList.add("active");
 
-      // Change container background
-      if (container) {
-        container.style.backgroundColor = bgColors[index] || "#fff";
+      // Show corresponding panel, hide others
+      uniPanels.forEach(p => p.classList.remove("active"));
+      const panel = document.getElementById(btn.dataset.tab);
+      if (panel) panel.classList.add("active");
+
+      // Change background of wrapper
+      if (wrapper) {
+        wrapper.style.backgroundColor = bgColors[index] || "#fff";
       }
     });
   });
 
-  // Optionally, activate first uni-toggle by default
+  // Activate first tab by default
   if (uniButtons[0]) uniButtons[0].click();
 }
 
