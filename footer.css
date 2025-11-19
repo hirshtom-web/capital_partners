@@ -248,13 +248,13 @@ footer {
 
   .footer-top {
     display: flex !important;
-    flex-direction: column !important; /* stack columns vertically */
+    flex-direction: column !important;
     gap: 15px !important;
     width: 100% !important;
   }
 
   .footer-column {
-    margin-bottom: 15px !important; /* space between categories */
+    margin-bottom: 15px !important;
     width: 100% !important;
   }
 
@@ -285,7 +285,6 @@ footer {
     color: #fff !important;
   }
 
-  /* Social icons / country selector adjustments */
   .social-icons,
   .country-selector,
   .privacy {
