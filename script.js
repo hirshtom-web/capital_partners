@@ -141,46 +141,41 @@ if (window.innerWidth > 768) {   // prevents mobile conflicts
   // Tabs initialization
   // Handles both "old" tabs and new Investors/Homebuyers/Developers
   // ====================
- function initTabs() {
-  const uniButtons = document.querySelectorAll(".uni-toggle-btn");
-  const uniPanels = document.querySelectorAll(".uni-panel");
-  const wrapper = document.querySelector(".uni-section-shell"); // wrapper container
 
-  // Background colors for each tab
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleButtons = document.querySelectorAll('.uni-toggle-btn');
+  const panels = document.querySelectorAll('.uni-panel');
+  const container = document.querySelector('.uni-content-tile'); // wrapper for title, buttons, and panels
+
+  // Map each button to a background color
   const bgColors = [
-    "#f8f7f5", // first tab
-    "#d6eaf8", // second tab
-    "#fdebd0", // third tab
-    "#e8f8f5"  // fourth tab
+    '#f8f7f5', // Investors
+    '#d6eaf8', // Homebuyers
+    '#fdebd0'  // Developers
   ];
 
-  // Add smooth transition to wrapper
-  if (wrapper) {
-    wrapper.style.transition = "background-color 0.5s ease";
-  }
+  // Add smooth transition to container
+  if (container) container.style.transition = 'background-color 0.5s ease';
 
-  uniButtons.forEach((btn, index) => {
-    btn.addEventListener("click", () => {
+  toggleButtons.forEach((btn, index) => {
+    btn.addEventListener('click', () => {
       // Remove active from all buttons
-      uniButtons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
+      toggleButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
 
       // Show corresponding panel, hide others
-      uniPanels.forEach(p => p.classList.remove("active"));
+      panels.forEach(p => p.classList.remove('active'));
       const panel = document.getElementById(btn.dataset.tab);
-      if (panel) panel.classList.add("active");
+      if (panel) panel.classList.add('active');
 
-      // Change background of wrapper
-      if (wrapper) {
-        wrapper.style.backgroundColor = bgColors[index] || "#fff";
-      }
+      // Change container background
+      if (container) container.style.backgroundColor = bgColors[index] || '#fff';
     });
   });
 
-  // Activate first tab by default
-  if (uniButtons[0]) uniButtons[0].click();
-}
-
+  // Activate the first tab by default
+  if (toggleButtons[0]) toggleButtons[0].click();
+});
 
   // ====================
   // Populate real estate keyword suggestions
