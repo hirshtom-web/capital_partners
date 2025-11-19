@@ -141,39 +141,55 @@ if (window.innerWidth > 768) {   // prevents mobile conflicts
   // Tabs initialization
   // Handles both "old" tabs and new Investors/Homebuyers/Developers
   // ====================
-  function initTabs() {
-    // Generic tab buttons
-    const tabButtons = document.querySelectorAll(".tab-button");
-    const tabContents = document.querySelectorAll(".tab-content");
+ function initTabs() {
+  // Generic tab buttons
+  const tabButtons = document.querySelectorAll(".tab-button");
+  const tabContents = document.querySelectorAll(".tab-content");
 
-    tabButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const target = btn.dataset.target;
+  tabButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const target = btn.dataset.target;
 
-        tabContents.forEach(c => c.classList.remove("active"));
-        tabButtons.forEach(b => b.classList.remove("active"));
+      tabContents.forEach(c => c.classList.remove("active"));
+      tabButtons.forEach(b => b.classList.remove("active"));
 
-        document.getElementById(target)?.classList.add("active");
-        btn.classList.add("active");
-      });
+      document.getElementById(target)?.classList.add("active");
+      btn.classList.add("active");
     });
+  });
 
-    // New uni-toggle buttons for Investors/Homebuyers/Developers
-    const uniButtons = document.querySelectorAll(".uni-toggle-btn");
-    const uniPanels = document.querySelectorAll(".uni-panel");
+  // New uni-toggle buttons for Investors/Homebuyers/Developers
+  const uniButtons = document.querySelectorAll(".uni-toggle-btn");
+  const uniPanels = document.querySelectorAll(".uni-panel");
+  const container = document.querySelector(".uni-section-shell"); // container to change background
 
-    uniButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const target = btn.dataset.tab;
+  // Map each button to a background color
+  const bgColors = [
+    "#f8f7f5", // first tab
+    "#d6eaf8", // second tab
+    "#fdebd0", // third tab
+    "#e8f8f5"  // fourth tab
+  ];
 
-        uniPanels.forEach(p => p.classList.remove("active"));
-        uniButtons.forEach(b => b.classList.remove("active"));
+  uniButtons.forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+      uniPanels.forEach(p => p.classList.remove("active"));
+      uniButtons.forEach(b => b.classList.remove("active"));
 
-        document.getElementById(target)?.classList.add("active");
-        btn.classList.add("active");
-      });
+      document.getElementById(btn.dataset.tab)?.classList.add("active");
+      btn.classList.add("active");
+
+      // Change container background
+      if (container) {
+        container.style.backgroundColor = bgColors[index] || "#fff";
+      }
     });
-  }
+  });
+
+  // Optionally, activate first uni-toggle by default
+  if (uniButtons[0]) uniButtons[0].click();
+}
+
 
   // ====================
   // Populate real estate keyword suggestions
