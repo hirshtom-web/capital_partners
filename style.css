@@ -103,8 +103,8 @@ a {
 /* SVG next to text */
 .hero-title .machine-svg {
   position: absolute;
-  bottom: -10px;
-  right: 22%;
+  bottom: 5px;       /* -10 + 15px up = 5px */
+  right: calc(22% - 60px);  /* move 60px further right */
   width: 100px;
   height: auto;
 }
