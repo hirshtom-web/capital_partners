@@ -15,11 +15,12 @@ footer {
 .footer-top {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 20px;
+  gap: 20px;         /* desktop spacing */
   width: 100%;
   padding: 0 0 30px 0;
   box-sizing: border-box;
 }
+
 
 /* Bottom Section (buttons, privacy, etc.) */
 .footer-section {
@@ -243,72 +244,64 @@ footer {
 
 /* Mobile Footer Adjustments */
 /* Mobile Footer Accordion */
-@media (max-width: 600px){
-.footer-top {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 15px !important;
-}
-
+/* Desktop styles (default) */
 .footer-column {
   width: 100%;
   border-bottom: 1px solid #333;
 }
 
-/* Hide lists by default */
 .footer-column ul {
-  display: none;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  padding-left: 0;
+  list-style: none;
   margin: 0;
+  padding: 0;
 }
 
-/* Add arrow to h4 */
 .footer-column h4 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
+  cursor: default;  /* desktop doesn’t need pointer */
   padding: 10px 0;
   font-size: 14px;
 }
 
-/* Arrow rotation when active */
-.footer-column.active h4 .arrow {
-  transform: rotate(180deg);
-}
-
-/* Show expanded list */
-.footer-column.active ul {
-  display: block;
-  max-height: 1000px; /* large enough for content */
-  padding-top: 10px;
-}
-
-/* Style for arrow */
 .footer-column h4 .arrow {
-  transition: transform 0.3s ease;
-  font-size: 12px;
-}
-/* Style for Material Symbol arrow */
-.footer-column h4 .arrow {
-  font-variation-settings: "wght" 400; /* optional weight */
-  transition: transform 0.3s ease;
-  font-size: 18px;
-}
-
-/* Rotate arrow when active */
-.footer-column.active h4 .arrow {
-  transform: rotate(180deg);
-}
-    .arrow {
   font-family: 'Material Symbols Outlined';
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  font-size: 18px; /* adjust size */
+  font-size: 18px;
   display: inline-block;
   transition: transform 0.3s ease;
 }
 
+/* ===== Mobile styles ===== */
+@media (max-width: 600px){
+  .footer-top {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;  /* vertical spacing between columns */
+  }
+
+  .footer-column h4 {
+    cursor: pointer;  /* make clickable on mobile */
+  }
+
+  /* Collapse lists by default */
+  .footer-column ul {
+    display: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  /* Show when active */
+  .footer-column.active ul {
+    display: block;
+    max-height: 1000px; /* large enough for content */
+    padding-top: 10px;
+  }
+
+  /* Rotate arrow when active */
+  .footer-column.active h4 .arrow {
+    transform: rotate(180deg);
+  }
 }
