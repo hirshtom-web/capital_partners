@@ -78,3 +78,50 @@
     width: 40px;
   }
 }
+/* Hero Container */
+.hero-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Side Images */
+.hero-side-img {
+  width: 100px;
+  height: 150px;
+  object-fit: cover; /* crop to fill */
+  border-radius: 20px;
+  position: absolute;
+  animation: float 3s ease-in-out infinite;
+}
+
+.hero-side-img.left {
+  left: -120px; /* adjust distance from the hero */
+}
+
+.hero-side-img.right {
+  right: -120px;
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .hero-side-img.left {
+    left: -80px;
+  }
+  .hero-side-img.right {
+    right: -80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-side-img {
+    display: none; /* hide on small screens */
+  }
+}
