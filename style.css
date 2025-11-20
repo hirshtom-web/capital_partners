@@ -104,7 +104,7 @@ a {
 .hero-title .machine-svg {
   position: absolute;
   bottom: 5px;       /* -10 + 15px up = 5px */
-  right: calc(22% - 60px);  /* move 60px further right */
+  right: calc(22% - 180px);  /* move 180px further right */
   width: 100px;
   height: auto;
 }
