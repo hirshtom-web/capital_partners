@@ -66,7 +66,7 @@ a {
   text-align: center;
   position: relative; /* keep it relative for the SVG */
   z-index: 2;
-  margin: 0;
+  margin-top: -40px; /* adjust if needed */
 }
 
 .hero-title .machine-svg {
