@@ -240,54 +240,63 @@ footer {
 }
 
 /* Mobile Footer Adjustments */
-/* Mobile Footer Collapsible */
-@media (max-width: 600px) {
-  footer {
-    padding: 20px 15px !important;
-  }
+/* Mobile Footer Accordion */
+.footer-top {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 15px !important;
+}
 
-  .footer-top {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 15px !important;
-    width: 100% !important;
-  }
+.footer-column {
+  width: 100%;
+  border-bottom: 1px solid #333;
+}
 
-  .footer-column {
-    margin-bottom: 15px !important;
-    width: 100% !important;
-  }
+/* Hide lists by default */
+.footer-column ul {
+  display: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding-left: 0;
+  margin: 0;
+}
 
-  .footer-column h4 {
-    font-size: 13px !important;
-    font-weight: 600 !important;
-    margin-bottom: 8px !important;
-    cursor: default;
-  }
+/* Add arrow to h4 */
+.footer-column h4 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px 0;
+  font-size: 14px;
+}
 
-  .footer-column ul {
-    margin: 0 !important;
-    padding-left: 10px !important;
-    display: block !important;
-  }
+/* Arrow rotation when active */
+.footer-column.active h4 .arrow {
+  transform: rotate(180deg);
+}
 
-  .footer-column li {
-    margin-bottom: 6px !important;
-  }
+/* Show expanded list */
+.footer-column.active ul {
+  display: block;
+  max-height: 1000px; /* large enough for content */
+  padding-top: 10px;
+}
 
-  .footer-column a {
-    font-size: 12px !important;
-    color: #dbdbdb !important;
-    text-decoration: none !important;
-  }
+/* Style for arrow */
+.footer-column h4 .arrow {
+  transition: transform 0.3s ease;
+  font-size: 12px;
+}
+/* Style for Material Symbol arrow */
+.footer-column h4 .arrow {
+  font-variation-settings: "wght" 400; /* optional weight */
+  transition: transform 0.3s ease;
+  font-size: 18px;
+}
 
-  .footer-column a:hover {
-    color: #fff !important;
-  }
-
-  .social-icons,
-  .country-selector,
-  .privacy {
-    margin-top: 10px !important;
-  }
+/* Rotate arrow when active */
+.footer-column.active h4 .arrow {
+  transform: rotate(180deg);
 }
