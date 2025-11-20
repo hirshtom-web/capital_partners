@@ -1,20 +1,20 @@
 <script defer>
 document.addEventListener('DOMContentLoaded', () => {
-  const footerColumns = document.querySelectorAll('.footer-column');
+  const footerColumns   = document.querySelectorAll('.footer-column');
   const countrySelector = document.getElementById('countrySelector');
   const countryPopup    = document.getElementById('countryPopup');
   const privacyTrigger  = document.getElementById('privacyTrigger');
   const privacyPopup    = document.getElementById('privacyPopup');
   const savePrivacy     = document.getElementById('savePrivacy');
 
-  // ----------------------------
-  // Footer accordion for mobile
-  // ----------------------------
+  // ------------------------------------------------
+  // Footer accordion (mobile)
+  // ------------------------------------------------
   const initFooterAccordion = () => {
     footerColumns.forEach(col => {
       const header = col.querySelector('h4');
-      const ul = col.querySelector('ul');
-      const arrow = col.querySelector('.arrow');
+      const ul     = col.querySelector('ul');
+      const arrow  = col.querySelector('.arrow');
 
       if (window.innerWidth <= 600) {
         ul.style.display = 'none';
@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
               c.classList.remove('active');
             }
           });
+
           if (ul.style.display === 'block') {
             ul.style.display = 'none';
             arrow.style.transform = 'rotate(0deg)';
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         };
       } else {
-        ul.style.display = 'block'; // desktop always shows
+        ul.style.display = 'block';
         arrow.style.transform = 'rotate(0deg)';
         col.classList.remove('active');
       }
@@ -49,9 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initFooterAccordion();
   window.addEventListener('resize', initFooterAccordion);
 
-  // ----------------------------
-  // Popup helper functions
-  // ----------------------------
+  // ------------------------------------------------
+  // Popup helpers
+  // ------------------------------------------------
   const openPopup = (popup) => {
     if (!popup) return;
     popup.style.display = 'block';
@@ -63,67 +64,91 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.innerWidth <= 900) popup.classList.remove('open');
     setTimeout(() => {
       if (!popup.classList.contains('open')) popup.style.display = 'none';
-    }, 350);
+    }, 300);
   };
 
-  // ----------------------------
+  // ------------------------------------------------
   // Country popup
-  // ----------------------------
+  // ------------------------------------------------
   if (countrySelector && countryPopup) {
-    countrySelector.addEventListener('click', e => {
+    countrySelector.addEventListener('click', (e) => {
       e.stopPropagation();
-      countryPopup.style.display === 'block'
-        ? closePopup(countryPopup)
-        : (closePopup(privacyPopup), openPopup(countryPopup));
+      const isOpen = countryPopup.style.display === 'block';
+      closePopup(privacyPopup);
+      isOpen ? closePopup(countryPopup) : openPopup(countryPopup);
     });
 
     document.querySelectorAll('.country-option').forEach(opt => {
-      opt.addEventListener('click', () => {
-        const img = opt.querySelector('img')?.src;
+      opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const img  = opt.querySelector('img')?.src;
         const text = opt.textContent.trim();
-        const selImg = countrySelector.querySelector('img');
+        const selImg  = countrySelector.querySelector('img');
         const selText = countrySelector.querySelector('.country-link');
+
         if (selImg) selImg.src = img;
         if (selText) selText.textContent = text;
+
         closePopup(countryPopup);
       });
     });
   }
 
-  // ----------------------------
+  // ------------------------------------------------
   // Privacy popup
-  // ----------------------------
+  // ------------------------------------------------
   if (privacyTrigger && privacyPopup) {
-    privacyTrigger.addEventListener('click', e => {
+    privacyTrigger.addEventListener('click', (e) => {
       e.stopPropagation();
-      privacyPopup.style.display === 'block'
-        ? closePopup(privacyPopup)
-        : (closePopup(countryPopup), openPopup(privacyPopup));
+      const isOpen = privacyPopup.style.display === 'block';
+      closePopup(countryPopup);
+      isOpen ? closePopup(privacyPopup) : openPopup(privacyPopup);
     });
 
-    savePrivacy?.addEventListener('click', () => {
-      const selected = document.querySelector('input[name="privacy"]:checked');
-      if (selected) console.log('Saved privacy option:', selected.value);
-      closePopup(privacyPopup);
-    });
+    if (savePrivacy) {
+      savePrivacy.addEventListener('click', () => {
+        const selected = document.querySelector('input[name="privacy"]:checked');
+        if (selected) console.log("Saved privacy option:", selected.value);
+        closePopup(privacyPopup);
+      });
+    }
   }
 
-  // ----------------------------
-  // Close popups on outside click or ESC
-  // ----------------------------
-  document.addEventListener('click', () => {
-    closePopup(countryPopup);
-    closePopup(privacyPopup);
+  // ------------------------------------------------
+  // Close when clicking outside
+  // ------------------------------------------------
+  document.addEventListener('click', (e) => {
+    // country
+    if (
+      countryPopup &&
+      !countryPopup.contains(e.target) &&
+      !countrySelector.contains(e.target)
+    ) {
+      closePopup(countryPopup);
+    }
+
+    // privacy
+    if (
+      privacyPopup &&
+      !privacyPopup.contains(e.target) &&
+      !privacyTrigger.contains(e.target)
+    ) {
+      closePopup(privacyPopup);
+    }
   });
 
-  document.addEventListener('keydown', e => {
+  // ------------------------------------------------
+  // ESC close
+  // ------------------------------------------------
+  document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closePopup(countryPopup);
       closePopup(privacyPopup);
     }
   });
 
-  countryPopup?.addEventListener('click', e => e.stopPropagation());
-  privacyPopup?.addEventListener('click', e => e.stopPropagation());
+  // prevent closing when clicking inside popup itself
+  countryPopup?.addEventListener('click', (e) => e.stopPropagation());
+  privacyPopup?.addEventListener('click', (e) => e.stopPropagation());
 });
 </script>
