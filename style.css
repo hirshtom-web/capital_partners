@@ -120,13 +120,41 @@ a {
     font-size: 48px;
   }
 
-  .machine-svg {
+  @media (max-width: 768px) {
+  .hero-title .machine-svg {
+    position: absolute;   /* stays positioned over the hero */
+    bottom: -5px;         /* adjust as needed */
+    right: 50%;           /* center it horizontally */
+    transform: translateX(50%); /* fine-tune centering */
     width: 70px;
-    position: static;
-    margin: 10px auto 0;
   }
 }
 
+@media (max-width: 480px) {
+  .hero-title .machine-svg {
+    width: 40px;
+    bottom: -5px;
+  
+  }
+}
+   
+@media (max-width: 1200px) {
+  .hero-title { font-size: 80px; }
+}
+
+@media (max-width: 992px) {
+  .hero-title { font-size: 70px; }
+}
+
+@media (max-width: 768px) {
+  .hero-title { font-size: 60px; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 50px; }
+}
+}
+   
 /* Left image adjustments */
 .hero-img.left-img {
   width: 120px;             /* slightly bigger */
