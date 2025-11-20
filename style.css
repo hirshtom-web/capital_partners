@@ -20,24 +20,23 @@ a {
 ================================== */
 .button-wrapper {
   display: flex;
-  justify-content: center; /* centers horizontally */
-  align-items: center;     /* centers vertically, optional if you want vertical centering */
-  margin: 20px 20px;          /* keeps spacing from other elements */
-   margin-bottom: 40px;
-}
-.hero-container {
-  position: relative;
-  display: flex;
   justify-content: center;
   align-items: center;
-  margin: 80px 0;
-  min-height: 300px; /* ensure it’s tall enough for side images */
+  margin: 20px 20px;
+  margin-bottom: 40px;
 }
 
+.hero-container {
+  position: relative;
+  margin: 80px 0;
+  min-height: 300px;
+}
+
+/* --- Side images --- */
 .hero-side-wrapper {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%); /* stays fixed and stable */
+  transform: translateY(-50%);
 }
 
 .hero-side-wrapper.left { left: -120px; }
@@ -51,12 +50,13 @@ a {
   animation: float 3s ease-in-out infinite;
 }
 
-
+/* Floating animation */
 @keyframes float {
-  0%, 100% { transform: translateY(-50%) translateY(0); }
-  50% { transform: translateY(-50%) translateY(-15px); }
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-15px); }
 }
 
+/* --- Hero Title --- */
 .hero-title {
   font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
   font-weight: 600;
@@ -64,11 +64,16 @@ a {
   font-size: 100px;
   line-height: 1.05;
   text-align: center;
-  position: relative; /* keep it relative for the SVG */
+  position: relative;
   z-index: 2;
-  margin-top: -40px; /* adjust if needed */
+  margin-top: -40px; /* adjust to visually align images */
 }
 
+.hero-title .line {
+  display: block;
+}
+
+/* Machine SVG */
 .hero-title .machine-svg {
   position: absolute;
   bottom: -10px;
@@ -77,15 +82,16 @@ a {
   height: auto;
 }
 
+/* ---------- Mobile ---------- */
 @media (max-width: 768px) {
-  .hero-side-img { display: none; }
-  .hero-title { font-size: 48px; }
+  .hero-side-wrapper { display: none; } /* hide image wrappers */
+  .hero-title { font-size: 48px; margin-top: 20px; }
 
   .hero-title .machine-svg {
     width: 70px;
-    bottom: -5px;
-    right: 50%;
-    transform: translateX(50%);
+    position: static;
+    display: block;
+    margin: 10px auto 0;
   }
 }
 
@@ -98,7 +104,6 @@ a {
 
   .hero-title .machine-svg {
     width: 40px;
-    bottom: -5px;
   }
 }
 
