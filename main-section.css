@@ -4,8 +4,9 @@
   justify-content: center;
   align-items: center;
   margin: 80px 0;
-  min-height: 300px; /* ensures side images are visible */
+  min-height: 300px; /* ensure it’s tall enough for side images */
 }
+
 
 .hero-side-img {
   width: 100px;
