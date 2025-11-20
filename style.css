@@ -34,20 +34,23 @@ a {
   min-height: 300px; /* ensure it’s tall enough for side images */
 }
 
+.hero-side-wrapper {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%); /* stays fixed and stable */
+}
+
+.hero-side-wrapper.left { left: -120px; }
+.hero-side-wrapper.right { right: -120px; }
+
 .hero-side-img {
   width: 100px;
   height: 150px;
   object-fit: cover;
   border-radius: 20px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1;
   animation: float 3s ease-in-out infinite;
 }
 
-.hero-side-img.left { left: -120px; }
-.hero-side-img.right { right: -120px; }
 
 @keyframes float {
   0%, 100% { transform: translateY(-50%) translateY(0); }
