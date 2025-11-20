@@ -243,6 +243,7 @@ footer {
 
 /* Mobile Footer Adjustments */
 /* Mobile Footer Accordion */
+@media (max-width: 600px){
 .footer-top {
   display: flex !important;
   flex-direction: column !important;
@@ -301,4 +302,5 @@ footer {
 /* Rotate arrow when active */
 .footer-column.active h4 .arrow {
   transform: rotate(180deg);
+}
 }
