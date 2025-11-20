@@ -7,7 +7,6 @@
   min-height: 300px; /* ensure it’s tall enough for side images */
 }
 
-
 .hero-side-img {
   width: 100px;
   height: 150px;
@@ -35,10 +34,20 @@
   font-size: 100px;
   line-height: 1.05;
   text-align: center;
-  position: relative;
+  position: relative; /* keep it relative for the SVG */
   z-index: 2;
   margin: 0;
 }
+
+/* Machine SVG inside title */
+.hero-title .machine-svg {
+  position: absolute; /* absolute relative to hero-title */
+  bottom: -10px; /* a bit below the text */
+  right: 22%;
+  width: 100px;
+  height: auto;
+}
+
 
 .hero-title .line { display: block; }
 
@@ -54,14 +63,6 @@
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
-}
-
-.hero-title .machine-svg {
-  width: 100px;
-  height: auto;
-  position: absolute;
-  bottom: 7px;
-  right: 22%;
 }
 
 @media (max-width: 1024px) {
