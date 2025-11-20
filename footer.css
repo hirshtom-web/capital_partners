@@ -242,14 +242,6 @@ footer {
   vertical-align: middle;
 }
 
-/* Mobile Footer Adjustments */
-/* Mobile Footer Accordion */
-/* Desktop styles (default) */
-.footer-column {
-  width: 100%;
-  border-bottom: 1px solid #333;
-}
-
 .footer-column ul {
   list-style: none;
   margin: 0;
@@ -265,16 +257,19 @@ footer {
   font-size: 14px;
 }
 
+/* Desktop: hide arrows */
 .footer-column h4 .arrow {
-  font-family: 'Material Symbols Outlined';
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  font-size: 18px;
-  display: inline-block;
-  transition: transform 0.3s ease;
+  display: none; /* hide on desktop */
 }
 
 /* ===== Mobile styles ===== */
-@media (max-width: 600px){
+@media (max-width: 600px) {
+    /* Desktop styles (default) */
+.footer-column {
+  width: 100%;
+  border-bottom: 0.5px solid #999;
+}
+
   .footer-top {
     display: flex;
     flex-direction: column;
@@ -285,6 +280,15 @@ footer {
     cursor: pointer;  /* make clickable on mobile */
   }
 
+  /* Show arrows on mobile */
+  .footer-column h4 .arrow {
+    display: inline-block;
+    font-family: 'Material Symbols Outlined';
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-size: 18px;
+    transition: transform 0.3s ease;
+  }
+
   /* Collapse lists by default */
   .footer-column ul {
     display: none;
@@ -293,7 +297,7 @@ footer {
     transition: max-height 0.3s ease;
   }
 
-  /* Show when active */
+  /* Show list when active */
   .footer-column.active ul {
     display: block;
     max-height: 1000px; /* large enough for content */
