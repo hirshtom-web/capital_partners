@@ -127,6 +127,24 @@ a {
   }
 }
 
+/* Left image adjustments */
+.hero-img.left-img {
+  width: 120px;             /* slightly bigger */
+  height: 160px;
+  transform: rotate(-5deg); /* slight tilt */
+  margin-top: -20px;        /* adjust vertical position */
+  margin-left: -10px;       /* adjust horizontal if needed */
+}
+
+/* Right image adjustments */
+.hero-img.right-img {
+  width: 90px;              /* slightly smaller */
+  height: 140px;
+  transform: rotate(8deg);  /* slight tilt */
+  margin-top: 10px;         /* adjust vertical */
+  margin-right: -15px;      /* adjust horizontal */
+}
+
 
 /* ==================================
    TRUSTED SECTION
