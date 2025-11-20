@@ -18,6 +18,10 @@ a {
 /* ===============================
    Hero section
 ================================== */
+/* ===============================
+   HERO SECTION (FINAL WORKING)
+================================== */
+
 .button-wrapper {
   display: flex;
   justify-content: center;
@@ -26,23 +30,31 @@ a {
   margin-bottom: 40px;
 }
 
-.hero-container {
-  position: relative;
+/* --- NEW HERO SECTION --- */
+.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 80px 0;
-  min-height: 300px;
+  background: #1e0949;
+  position: relative;
+  gap: 40px;
 }
 
-/* --- Side images --- */
-.hero-side-wrapper {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+/* 3 columns */
+.hero-col {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.hero-side-wrapper.left { left: -120px; }
-.hero-side-wrapper.right { right: -120px; }
+.hero-col.center {
+  flex: 2;
+}
 
-.hero-side-img {
+/* --- IMAGES --- */
+.hero-img {
   width: 100px;
   height: 150px;
   object-fit: cover;
@@ -50,13 +62,13 @@ a {
   animation: float 3s ease-in-out infinite;
 }
 
-/* Floating animation */
+/* Floating effect */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-15px); }
+  50% { transform: translateY(-15px); }
 }
 
-/* --- Hero Title --- */
+/* --- TITLE --- */
 .hero-title {
   font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
   font-weight: 600;
@@ -65,15 +77,30 @@ a {
   line-height: 1.05;
   text-align: center;
   position: relative;
-  z-index: 2;
-  margin-top: -40px; /* adjust to visually align images */
+  margin: 0;
+  z-index: 5;
 }
 
 .hero-title .line {
   display: block;
 }
 
-/* Machine SVG */
+/* Gradient animation */
+.ai-powered {
+  background: linear-gradient(90deg, #ffb0b0, #6d00ef);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: sideSwipe 40s ease-in-out infinite;
+}
+
+@keyframes sideSwipe {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* SVG next to text */
 .hero-title .machine-svg {
   position: absolute;
   bottom: -10px;
@@ -82,28 +109,21 @@ a {
   height: auto;
 }
 
-/* ---------- Mobile ---------- */
+/* --- MOBILE --- */
 @media (max-width: 768px) {
-  .hero-side-wrapper { display: none; } /* hide image wrappers */
-  .hero-title { font-size: 48px; margin-top: 20px; }
+  .hero-col.left,
+  .hero-col.right {
+    display: none;
+  }
 
-  .hero-title .machine-svg {
+  .hero-title {
+    font-size: 48px;
+  }
+
+  .machine-svg {
     width: 70px;
     position: static;
-    display: block;
     margin: 10px auto 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 50px;
-    padding: 0 20px;
-    margin-top: 60px;
-  }
-
-  .hero-title .machine-svg {
-    width: 40px;
   }
 }
 
