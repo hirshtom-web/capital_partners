@@ -1,127 +1,94 @@
-/* Main Section */
+/* ---------- MAIN SECTION ---------- */
 .main-section {
   background-color: #1e0949;
   color: white;
-  padding: 60px 20px; /* added horizontal padding for small screens */
+  padding: 60px 20px; /* horizontal padding for small screens */
   text-align: center;
 }
 
-/* Hero Heading */
-.hero-title {
-  font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
-  font-weight: 600;
-  color: #fef7f2;
-  line-height: 1.05;
-  margin: 80px 0 0;
-  font-size: 100px;
-  text-align: center;
-  position: relative;
-}
-
-.hero-title .line {
-  display: block;
-}
-
-/* Gradient text for AI-powered class */
-.ai-powered {
-  background: linear-gradient(
-    90deg,
-    #ffb0b0,
-    #6d00ef
-  );
-  background-size: 400% 400%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  /* Extra slow movement for a premium feel */
-  animation: sideSwipe 40s ease-in-out infinite;
-}
-
-@keyframes sideSwipe {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Machine SVG positioning */
-.hero-title .machine-svg {
-  position: absolute;
-  bottom: 7px;
-  right: 22%;
-  width: 100px;
-  height: auto;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 48px;
-    line-height: 1.1;
-  }
-
-  .hero-title .machine-svg {
-    position: static;
-    display: block;
-    margin: 10px auto 0;
-    width: 70px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 50px; /* smaller font for very small screens */
-    padding: 0 20px;
-    margin-top: 60px; /* slightly less top margin */
-  }
-
-  .hero-title .machine-svg {
-    width: 40px;
-  }
-}
-/* Hero Container */
+/* ---------- HERO CONTAINER ---------- */
 .hero-container {
   position: relative;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  margin: 80px 0;
 }
 
-/* Side Images */
+/* ---------- SIDE IMAGES ---------- */
 .hero-side-img {
   width: 100px;
   height: 150px;
   object-fit: cover; /* crop to fill */
   border-radius: 20px;
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1; /* behind hero text */
   animation: float 3s ease-in-out infinite;
 }
 
-.hero-side-img.left {
-  left: -120px; /* adjust distance from the hero */
-}
+.hero-side-img.left { left: -120px; }
+.hero-side-img.right { right: -120px; }
 
-.hero-side-img.right {
-  right: -120px;
-}
-
-/* Floating Animation */
+/* Floating animation */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+  0%, 100% { transform: translateY(-50%) translateY(0px); }
+  50% { transform: translateY(-50%) translateY(-15px); }
 }
 
-/* Responsive Adjustments */
+/* ---------- HERO TITLE ---------- */
+.hero-title {
+  font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
+  font-weight: 600;
+  color: #fef7f2;
+  font-size: 100px;
+  line-height: 1.05;
+  text-align: center;
+  position: relative;
+  z-index: 2; /* above side images */
+  margin: 0;
+}
+
+.hero-title .line { display: block; }
+
+/* Gradient text */
+.ai-powered {
+  background: linear-gradient(90deg, #ffb0b0, #6d00ef);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: sideSwipe 40s ease-in-out infinite;
+}
+
+@keyframes sideSwipe {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Machine SVG */
+.hero-title .machine-svg {
+  width: 100px;
+  height: auto;
+  position: absolute;
+  bottom: 7px;
+  right: 22%;
+}
+
+/* ---------- RESPONSIVE ---------- */
 @media (max-width: 1024px) {
-  .hero-side-img.left {
-    left: -80px;
-  }
-  .hero-side-img.right {
-    right: -80px;
-  }
+  .hero-side-img.left { left: -80px; }
+  .hero-side-img.right { right: -80px; }
 }
 
 @media (max-width: 768px) {
-  .hero-side-img {
-    display: none; /* hide on small screens */
-  }
+  .hero-side-img { display: none; }
+  .hero-title { font-size: 48px; }
+  .machine-svg { width: 70px; position: static; margin: 10px auto 0; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 50px; padding: 0 20px; margin-top: 60px; }
+  .machine-svg { width: 40px; }
 }
