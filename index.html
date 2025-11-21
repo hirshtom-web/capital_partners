@@ -148,4 +148,91 @@ html {
 
 
 </body>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  async function loadFooter() {
+    const footerContainer = document.getElementById('footer');
+    if (!footerContainer) return;
+
+    try {
+      const response = await fetch('footer.html'); // your footer file
+      if (!response.ok) throw new Error('Footer load failed: ' + response.status);
+      footerContainer.innerHTML = await response.text();
+      initFooter(); // call your JS to initialize accordion, popups, etc.
+    } catch (err) {
+      console.error(err);
+      footerContainer.innerHTML = '<p>Failed to load footer</p>';
+    }
+  }
+
+  loadFooter();
+
+  function initFooter() {
+    const columns = document.querySelectorAll('.footer-column');
+    columns.forEach(col => {
+      const header = col.querySelector('h4');
+      if (!header) return;
+
+      header.addEventListener('click', () => {
+        columns.forEach(c => { if (c !== col) c.classList.remove('active'); });
+        col.classList.toggle('active');
+      });
+    });
+
+    // Country popup
+    const countrySelector = document.getElementById('countrySelector');
+    const countryPopup = document.getElementById('countryPopup');
+    if (countrySelector && countryPopup) {
+      countrySelector.addEventListener('click', e => {
+        e.stopPropagation();
+        countryPopup.style.display = countryPopup.style.display === 'block' ? 'none' : 'block';
+      });
+      document.querySelectorAll('.country-option').forEach(opt => {
+        opt.addEventListener('click', e => {
+          const selImg = countrySelector.querySelector('img');
+          const selText = countrySelector.querySelector('.country-link');
+          if (selImg) selImg.src = opt.querySelector('img').src;
+          if (selText) selText.textContent = opt.textContent.trim();
+          countryPopup.style.display = 'none';
+        });
+      });
+    }
+
+    // Privacy popup
+    const privacyTrigger = document.getElementById('privacyTrigger');
+    const privacyPopup = document.getElementById('privacyPopup');
+    if (privacyTrigger && privacyPopup) {
+      privacyTrigger.addEventListener('click', e => {
+        e.stopPropagation();
+        privacyPopup.style.display = privacyPopup.style.display === 'block' ? 'none' : 'block';
+      });
+      const saveBtn = document.getElementById('savePrivacy');
+      if (saveBtn) {
+        saveBtn.addEventListener('click', () => {
+          const selected = document.querySelector('input[name="privacy"]:checked');
+          console.log('Saved privacy:', selected?.value);
+          privacyPopup.style.display = 'none';
+        });
+      }
+    }
+
+    // Close popups on outside click
+    document.addEventListener('click', e => {
+      if (countryPopup && !countryPopup.contains(e.target) && !countrySelector.contains(e.target))
+        countryPopup.style.display = 'none';
+      if (privacyPopup && !privacyPopup.contains(e.target) && !privacyTrigger.contains(e.target))
+        privacyPopup.style.display = 'none';
+    });
+
+    // ESC key closes popups
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        if (countryPopup) countryPopup.style.display = 'none';
+        if (privacyPopup) privacyPopup.style.display = 'none';
+      }
+    });
+  }
+});
+</script>
+
 </html>
