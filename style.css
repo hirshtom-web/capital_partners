@@ -1014,12 +1014,12 @@ footer {
   to {opacity: 1; transform: translateY(0);}
 }
 
-/* ================= Mobile Footer Accordion ================= */
+
 /* ================= Mobile Footer Accordion ================= */
 @media (max-width: 600px) {
   /* easy control variables */
   :root {
-    --footer-gap-mobile: 10px; /* vertical space between categories */
+    --footer-gap-mobile: 10px; /* space between categories */
     --accordion-padding: 10px;  /* left/right padding for header and links */
     --accordion-link-gap: 5px;  /* spacing between links inside a category */
   }
@@ -1038,7 +1038,7 @@ footer {
     cursor: pointer;
     padding-left: var(--accordion-padding);
     padding-right: var(--accordion-padding);
-    margin-bottom: 0; /* remove extra space below header */
+    margin: 0; /* remove extra margin */
   }
 
   .footer-column h4 .arrow {
@@ -1050,18 +1050,19 @@ footer {
     max-height: 0;
     overflow: hidden;
     margin: 0;
-    padding-left: var(--accordion-padding); /* align sub-items with header */
+    padding-left: var(--accordion-padding); /* align links with header */
     padding-top: 0;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.3s ease, padding-top 0.3s ease;
   }
 
+  /* Active accordion */
   .footer-column.active ul {
-    max-height: 999px;
-    padding-top: 5px; /* small space between header and first item */
+    max-height: 500px; /* enough for content but prevents blocking scroll */
+    padding-top: 5px;
   }
 
   .footer-column ul li {
-    margin-bottom: var(--accordion-link-gap); /* spacing between links */
+    margin-bottom: var(--accordion-link-gap);
   }
 
   .footer-column.active h4 .arrow {
@@ -1072,12 +1073,11 @@ footer {
     border-bottom: none;
   }
 
-  /* Responsive popups on mobile */
+  /* Fix popups on mobile */
   .country-popup,
   .privacy-popup {
     bottom: auto !important;
     top: -10px;
-    right: 0;
     left: 50%;
     transform: translate(-50%, -10px);
     width: auto;
