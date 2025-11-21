@@ -1015,11 +1015,12 @@ footer {
 }
 
 /* ================= Mobile Footer Accordion ================= */
+/* ================= Mobile Footer Accordion ================= */
 @media (max-width: 600px) {
   /* easy control variables */
   :root {
-    --footer-gap-mobile: 10px; /* space between categories */
-    --accordion-padding: 10px;  /* left/right padding */
+    --footer-gap-mobile: 10px; /* vertical space between categories */
+    --accordion-padding: 10px;  /* left/right padding for header and links */
     --accordion-link-gap: 5px;  /* spacing between links inside a category */
   }
 
@@ -1037,6 +1038,7 @@ footer {
     cursor: pointer;
     padding-left: var(--accordion-padding);
     padding-right: var(--accordion-padding);
+    margin-bottom: 0; /* remove extra space below header */
   }
 
   .footer-column h4 .arrow {
@@ -1048,13 +1050,14 @@ footer {
     max-height: 0;
     overflow: hidden;
     margin: 0;
-    padding-left: var(--accordion-padding); /* align list with header */
+    padding-left: var(--accordion-padding); /* align sub-items with header */
+    padding-top: 0;
     transition: max-height 0.3s ease;
   }
 
   .footer-column.active ul {
     max-height: 999px;
-    padding-top: 5px; /* space between header and first item */
+    padding-top: 5px; /* small space between header and first item */
   }
 
   .footer-column ul li {
@@ -1075,12 +1078,6 @@ footer {
     bottom: auto !important;
     top: -10px;
     right: 0;
-    left: 0;
-    margin: 0 auto;
-  }
-
-  .country-popup,
-  .privacy-popup {
     left: 50%;
     transform: translate(-50%, -10px);
     width: auto;
