@@ -738,6 +738,7 @@ a {
 
 /* ================= Footer Wrapper for Desktop ================= */
 /* ================= Footer Wrapper for Desktop ================= */
+/* ================= Footer Wrapper for Desktop ================= */
 .footer-wrapper {
   max-width: 1400px;
   margin: 0 auto;
@@ -863,12 +864,14 @@ footer {
   min-width: 180px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform: translateY(-10px);
 }
 
 .country-popup.open {
   opacity: 1;
   pointer-events: auto;
+  transform: translateY(0);
 }
 
 .country-option {
@@ -943,13 +946,15 @@ footer {
   width: 230px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
   font-size: 12px;
+  transform: translateY(-10px);
 }
 
 .privacy-popup.open {
   opacity: 1;
   pointer-events: auto;
+  transform: translateY(0);
 }
 
 .privacy-popup h4 {
@@ -1011,6 +1016,13 @@ footer {
 
 /* ================= Mobile Footer Accordion ================= */
 @media (max-width: 600px) {
+  /* easy control variables */
+  :root {
+    --footer-gap-mobile: 10px; /* space between categories */
+    --accordion-padding: 10px;  /* left/right padding */
+    --accordion-link-gap: 5px;  /* spacing between links inside a category */
+  }
+
   .footer-wrapper {
     padding: 0 10px;
   }
@@ -1018,11 +1030,13 @@ footer {
   .footer-top {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: var(--footer-gap-mobile); /* vertical spacing between columns */
   }
 
   .footer-column h4 {
     cursor: pointer;
+    padding-left: var(--accordion-padding);
+    padding-right: var(--accordion-padding);
   }
 
   .footer-column h4 .arrow {
@@ -1033,14 +1047,18 @@ footer {
     display: block;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
-    padding-left: 0;
     margin: 0;
+    padding-left: var(--accordion-padding); /* align list with header */
+    transition: max-height 0.3s ease;
   }
 
   .footer-column.active ul {
-    max-height: 999px; /* animated height controlled via JS is better */
-    padding-top: 5px;
+    max-height: 999px;
+    padding-top: 5px; /* space between header and first item */
+  }
+
+  .footer-column ul li {
+    margin-bottom: var(--accordion-link-gap); /* spacing between links */
   }
 
   .footer-column.active h4 .arrow {
@@ -1055,63 +1073,22 @@ footer {
   .country-popup,
   .privacy-popup {
     bottom: auto !important;
-    top: -10px; /* popup above trigger */
+    top: -10px;
     right: 0;
     left: 0;
     margin: 0 auto;
   }
-}
-.country-popup,
-.privacy-popup {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  transform: translateY(-10px); /* slightly above when hidden */
-  z-index: 9999;
-}
 
-.country-popup.open,
-.privacy-popup.open {
-  display: block !important;
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-/* Mobile adjustments */
-@media (max-width: 600px) {
   .country-popup,
   .privacy-popup {
-    top: auto !important;
-    bottom: auto !important;
     left: 50%;
-    transform: translate(-50%, -10px); /* centered horizontally */
+    transform: translate(-50%, -10px);
     width: auto;
     min-width: 180px;
   }
 
   .country-popup.open,
   .privacy-popup.open {
-    transform: translate(-50%, 0); /* smooth slide down */
-  }
-}
-@media (max-width: 600px) {
-  .footer-column h4 {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-}
-@media (max-width: 600px) {
-  .footer-top {
-    gap: -10px; /* bigger space between accordion sections */
-  }
-
-  .footer-column ul li {
-    margin-bottom: 5px; /* slightly bigger spacing between links inside a category */
-  }
-
-  .footer-column.active ul {
-    padding-top: 5px; /* space between header and first item */
+    transform: translate(-50%, 0);
   }
 }
