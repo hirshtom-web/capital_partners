@@ -143,52 +143,42 @@ html {
 <div id="tabs"></div>
 <div id="flow"></div>
 <div id="pro-slider"></div>
-<div id="footer"></div>
-
 
 
 </body>
   <script>
 document.addEventListener('DOMContentLoaded', () => {
-  async function loadFooter() {
-    const footerContainer = document.getElementById('footer');
-    if (!footerContainer) return;
+  const footerContainer = document.getElementById('footer');
+  if (!footerContainer) return;
 
+  async function loadFooter() {
     try {
-      const response = await fetch('footer.html'); // your footer file
+      const response = await fetch('footer.html');
       if (!response.ok) throw new Error('Footer load failed: ' + response.status);
       footerContainer.innerHTML = await response.text();
-      initFooter(); // call your JS to initialize accordion, popups, etc.
+
+      // Call footer initialization **after content is injected**
+      initFooter();
     } catch (err) {
       console.error(err);
       footerContainer.innerHTML = '<p>Failed to load footer</p>';
     }
   }
 
-  loadFooter();
-
   function initFooter() {
-    const columns = document.querySelectorAll('.footer-column');
-    columns.forEach(col => {
-      const header = col.querySelector('h4');
-      if (!header) return;
+    // Now these elements exist because the footer is loaded
+    const countrySelector = footerContainer.querySelector('#countrySelector');
+    const countryPopup = footerContainer.querySelector('#countryPopup');
+    const privacyTrigger = footerContainer.querySelector('#privacyTrigger');
+    const privacyPopup = footerContainer.querySelector('#privacyPopup');
 
-      header.addEventListener('click', () => {
-        columns.forEach(c => { if (c !== col) c.classList.remove('active'); });
-        col.classList.toggle('active');
-      });
-    });
-
-    // Country popup
-    const countrySelector = document.getElementById('countrySelector');
-    const countryPopup = document.getElementById('countryPopup');
     if (countrySelector && countryPopup) {
       countrySelector.addEventListener('click', e => {
         e.stopPropagation();
         countryPopup.style.display = countryPopup.style.display === 'block' ? 'none' : 'block';
       });
-      document.querySelectorAll('.country-option').forEach(opt => {
-        opt.addEventListener('click', e => {
+      footerContainer.querySelectorAll('.country-option').forEach(opt => {
+        opt.addEventListener('click', () => {
           const selImg = countrySelector.querySelector('img');
           const selText = countrySelector.querySelector('.country-link');
           if (selImg) selImg.src = opt.querySelector('img').src;
@@ -198,18 +188,15 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Privacy popup
-    const privacyTrigger = document.getElementById('privacyTrigger');
-    const privacyPopup = document.getElementById('privacyPopup');
     if (privacyTrigger && privacyPopup) {
       privacyTrigger.addEventListener('click', e => {
         e.stopPropagation();
         privacyPopup.style.display = privacyPopup.style.display === 'block' ? 'none' : 'block';
       });
-      const saveBtn = document.getElementById('savePrivacy');
+      const saveBtn = footerContainer.querySelector('#savePrivacy');
       if (saveBtn) {
         saveBtn.addEventListener('click', () => {
-          const selected = document.querySelector('input[name="privacy"]:checked');
+          const selected = footerContainer.querySelector('input[name="privacy"]:checked');
           console.log('Saved privacy:', selected?.value);
           privacyPopup.style.display = 'none';
         });
@@ -232,7 +219,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  loadFooter();
 });
+
 </script>
 
 </html>
