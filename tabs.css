@@ -160,6 +160,7 @@ html, body {
 /* ===============================
    LIST STYLES
 ================================== */
+/* Style the list */
 .uni-list {
   list-style: none;
   padding: 0;
@@ -167,22 +168,42 @@ html, body {
 }
 
 .uni-list li {
-  margin-bottom: 13px;
-  font-size: 15px;
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  line-height: 1.6;
+  align-items: center;
+  gap: 10px; /* space between bubble and text */
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #333;
 }
 
-.uni-list li img {
-  width: 32px;       /* consistent size without breaking layout */
-  height: 32px;
-  object-fit: contain;
-  margin-right: 12px;
-  vertical-align: middle;
-  flex-shrink: 0;
+/* Circle bubble with checkmark */
+.uni-list li::before {
+  content: "✓";               /* checkmark symbol */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;                /* size of the bubble */
+  height: 24px;
+  border-radius: 50%;         /* makes it a circle */
+  background-color: #6a3fd1;  /* bubble color (purple example) */
+  color: #fff;                 /* checkmark color */
+  font-size: 14px;
+  flex-shrink: 0;              /* prevent shrinking */
 }
+
+/* Optional: different colors for each tab */
+#investors .uni-list li::before {
+  background-color: #6327e5;
+}
+
+#homebuyers .uni-list li::before {
+  background-color: #ff6b6b;
+}
+
+#developers .uni-list li::before {
+  background-color: #1dd1a1;
+}
+
 
 /* ===============================
    ANIMATIONS
