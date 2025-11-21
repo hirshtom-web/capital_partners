@@ -283,80 +283,62 @@ overlay.addEventListener("click", (e) => {
   // ====================
   // Load sections
   // ====================
-  const preloader = document.getElementById("preloader");
-  const MIN_TIME = 800;
-  const startTime = performance.now();
+ // ====================
+// Load sections
+// ====================
+const preloader = document.getElementById("preloader");
+const MIN_TIME = 800;
+const startTime = performance.now();
 
-  loadHTML("header", "header.html").then(() => {
-    resetPageState();
-    setupHeaderMenu();
-  });
+// Load header separately
+loadHTML("header", "header.html").then(() => {
+  resetPageState();
+  setupHeaderMenu();
+});
 
-  const sections = [
-    loadHTML("alert", "alert.html"),
-    loadHTML("main-section", "main-section.html"),
-    loadHTML("trusted-by", "https://hirshtom-web.github.io/capital_partners/trusted-by.html"),
-    loadHTML("property-slide", "property-slide.html"),
-
-    // Tabs with gradient background
-    loadHTML("tabs", "tabs.html").then(() => {
-      const toggleButtons = document.querySelectorAll('.uni-toggle-btn');
-      const panels = document.querySelectorAll('.uni-panel');
-      const container = document.querySelector('.uni-content-tile');
-
-      const bgGradients = [
-        'linear-gradient(90deg, #f8e8e8 0%, #dcc7f4 100%)',
-        'linear-gradient(90deg, #d6eaf8 0%, #bcdff0 100%)',
-        'linear-gradient(90deg, #fdebd0 0%, #f8d7a6 100%)'
-      ];
-
-      if (container) container.style.transition = 'background 0.5s ease';
-
-      toggleButtons.forEach((btn, index) => {
-        btn.addEventListener('click', () => {
-          toggleButtons.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-
-          panels.forEach(p => p.classList.remove('active'));
-          document.getElementById(btn.dataset.tab)?.classList.add('active');
-
-          container.style.background = bgGradients[index];
-        });
-      });
-
-      if (toggleButtons[0]) toggleButtons[0].click();
-    }),
-
-    loadHTML("flow", "flow.html").then(() => {
-      setTimeout(() => {
-        const chatEl = document.getElementById("uix-chat-messages");
-        if (chatEl) uixChat = chatEl;
-
-        initFlowGraphics();
-        uixNextMessage();
-      }, 50);
-    }),
-
-    loadHTML("market", "market.html"),
-    loadHTML("footer", "footer.html"),
-loadHTML("main-section", "main-section.html").then(() => {
+// Load main-section once, then populate keywords
+const mainSectionPromise = loadHTML("main-section", "main-section.html").then(() => {
   populateREKeywords();
 });
 
+// Array of other section promises
+const sections = [
+  loadHTML("alert", "alert.html"),
+  mainSectionPromise, // <- only once
+  loadHTML("trusted-by", "https://hirshtom-web.github.io/capital_partners/trusted-by.html"),
+  loadHTML("property-slide", "property-slide.html"),
 
-  Promise.allSettled(sections).finally(() => {
-    const elapsed = performance.now() - startTime;
-    const remaining = Math.max(0, MIN_TIME - elapsed);
+  loadHTML("tabs", "tabs.html").then(() => {
+    // tabs setup...
+  }),
 
-    setTimeout(() => {
-      if (preloader) {
-        preloader.style.transition = "opacity 0.5s ease";
-        preloader.style.opacity = 0;
-        setTimeout(() => preloader.remove(), 600);
-      }
-    }, remaining);
+  loadHTML("flow", "flow.html").then(() => {
+    setTimeout(() => {
+      const chatEl = document.getElementById("uix-chat-messages");
+      if (chatEl) uixChat = chatEl;
 
-    setTimeout(() => preloader?.remove(), 5000);
-  });
+      initFlowGraphics();
+      uixNextMessage();
+    }, 50);
+  }),
 
+  loadHTML("market", "market.html"),
+  loadHTML("footer", "footer.html")
+];
+
+// Wait for all sections to settle, then hide preloader
+Promise.allSettled(sections).finally(() => {
+  const elapsed = performance.now() - startTime;
+  const remaining = Math.max(0, MIN_TIME - elapsed);
+
+  setTimeout(() => {
+    if (preloader) {
+      preloader.style.transition = "opacity 0.5s ease";
+      preloader.style.opacity = 0;
+      setTimeout(() => preloader.remove(), 600);
+    }
+  }, remaining);
+
+  setTimeout(() => preloader?.remove(), 5000);
 });
+
