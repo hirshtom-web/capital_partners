@@ -1104,7 +1104,7 @@ footer {
 }
 @media (max-width: 600px) {
   .footer-top {
-    gap: 10px; /* bigger space between accordion sections */
+    gap: -10px; /* bigger space between accordion sections */
   }
 
   .footer-column ul li {
