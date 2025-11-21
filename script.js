@@ -176,10 +176,11 @@ document.addEventListener("DOMContentLoaded", () => {
     container.appendChild(row2);
     container.style.opacity = 1;
 
-    document.querySelectorAll(".re-phrase, .re-other").forEach(el => {
-      el.addEventListener("click", showKeywordChat);
-    });
-  }
+document.getElementById("re-container")?.addEventListener("click", (e) => {
+  const target = e.target.closest(".re-phrase, .re-other");
+  if (target) showKeywordChat();
+});
+
 
   // ====================
   // Flow graphics animation
@@ -270,10 +271,14 @@ document.addEventListener("DOMContentLoaded", () => {
     uixIndex = 0;
     uixNextMessage();
 
-    overlay.addEventListener("click", (e) => {
-      if (e.target === overlay) overlay.remove();
-    });
-  }
+overlay.addEventListener("click", (e) => {
+  // Close only if the click is outside the popup
+  const popup = overlay.querySelector(".uix-chat-popup");
+  if (!popup.contains(e.target)) {
+    overlay.remove();
+  }
+});
+
 
   // ====================
   // Load sections
@@ -334,8 +339,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadHTML("market", "market.html"),
     loadHTML("footer", "footer.html"),
-    Promise.resolve().then(populateREKeywords)
-  ];
+loadHTML("main-section", "main-section.html").then(() => {
+  populateREKeywords();
+});
+
 
   Promise.allSettled(sections).finally(() => {
     const elapsed = performance.now() - startTime;
