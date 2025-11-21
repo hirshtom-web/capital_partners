@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   // ====================
-  // Load external HTML into container
+  // Load external HTML into container, with script execution
   // ====================
-  async function loadHTML(id, url) {
+  async function loadHTML(id, url, callback) {
     const container = document.getElementById(id);
     if (!container) return;
 
@@ -13,16 +13,26 @@ document.addEventListener("DOMContentLoaded", () => {
       const html = await res.text();
       container.innerHTML = html;
 
-      // Execute inline scripts
-      container.querySelectorAll("script").forEach(oldScript => {
+      // Execute inline and external scripts sequentially
+      const scripts = Array.from(container.querySelectorAll("script"));
+      for (const oldScript of scripts) {
         const newScript = document.createElement("script");
-        if (oldScript.src) newScript.src = oldScript.src;
-        else newScript.textContent = oldScript.textContent;
-        container.appendChild(newScript);
+        if (oldScript.src) {
+          await new Promise((resolve, reject) => {
+            newScript.src = oldScript.src;
+            newScript.onload = resolve;
+            newScript.onerror = reject;
+            document.head.appendChild(newScript);
+          });
+        } else {
+          newScript.textContent = oldScript.textContent;
+          document.head.appendChild(newScript);
+        }
         oldScript.remove();
-      });
+      }
 
       container.style.opacity = 1;
+      if (callback) callback();
     } catch (err) {
       console.warn(`❌ SECTION FAILED: ${id} ->`, err);
       container.style.opacity = 1;
@@ -31,184 +41,32 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ====================
-  // Reset header/menu state
+  // Footer popups (country/privacy)
   // ====================
-  function resetPageState() {
-    document.body.classList.remove("menu-open");
-    document.querySelectorAll(".mobile-menu, .mobile-menu .expanded")
-            .forEach(el => el.classList.remove("active", "expanded"));
-    document.querySelectorAll("#services-submenu.active")
-            .forEach(el => el.classList.remove("active"));
-    const header = document.getElementById("header");
-    if (header) header.classList.remove("header--blue", "header--white");
-  }
+  function initFooterPopups() {
+    const countryBtn = document.querySelector(".footer-country-btn");
+    const privacyBtn = document.querySelector(".footer-privacy-btn");
 
-  // ====================
-  // Setup header + mobile menu
-  // ====================
-  function setupHeaderMenu() {
-    const header = document.getElementById("header");
-    const body = document.body;
-    const isHome = window.location.pathname === "/" ||
-                   window.location.pathname.endsWith("index.html");
-
-    // Header color
-    if (header) {
-      header.classList.toggle("header--blue", isHome);
-      header.classList.toggle("header--white", !isHome);
+    function togglePopup(popup) {
+      if (!popup) return;
+      popup.classList.toggle("active");
     }
 
-    const menuToggle = document.getElementById("hamburger");
-    const mobileMenu = document.getElementById("mobile-menu");
+    if (countryBtn) countryBtn.addEventListener("click", () => togglePopup(document.getElementById("country-popup")));
+    if (privacyBtn) privacyBtn.addEventListener("click", () => togglePopup(document.getElementById("privacy-popup")));
 
-    if (menuToggle && mobileMenu) {
-      menuToggle.classList.remove("active");
-      mobileMenu.classList.remove("active");
-      body.classList.remove("menu-open");
-
-      menuToggle.addEventListener("click", () => {
-        menuToggle.classList.toggle("active");
-        mobileMenu.classList.toggle("active");
-        body.classList.toggle("menu-open", mobileMenu.classList.contains("active"));
-      });
-    }
-
-    // Mobile submenu logic
-    if (mobileMenu) {
-      mobileMenu.querySelectorAll("li").forEach(item => {
-        const link = item.querySelector("a");
-        const submenu = item.querySelector(".submenu-mobile");
-
-        if (link && submenu) {
-          link.addEventListener("click", e => {
-            e.preventDefault();
-
-            mobileMenu.querySelectorAll("li.expanded").forEach(openItem => {
-              if (openItem !== item) openItem.classList.remove("expanded");
-            });
-
-            item.classList.toggle("expanded");
-          });
-        }
-      });
-    }
-
-    const openServices = document.getElementById("open-services");
-    const servicesSubmenu = document.getElementById("services-submenu");
-    const backLinks = document.querySelectorAll(".mobile-submenu .back-link");
-
-    if (openServices && servicesSubmenu) {
-      openServices.addEventListener("click", e => {
-        e.preventDefault();
-        servicesSubmenu.classList.add("active");
-      });
-    }
-
-    backLinks.forEach(btn => {
-      btn.addEventListener("click", e => {
-        e.preventDefault();
-        servicesSubmenu.classList.remove("active");
-      });
-    });
-  }
-
-  setupHeaderMenu();
-
-  // ================================
-  // Freeze scroll on desktop submenu hover
-  // ================================
-  if (window.innerWidth > 768) {
-    document.querySelectorAll("nav > div").forEach(item => {
-      item.addEventListener("mouseenter", () => {
-        document.body.classList.add("submenu-open");
-      });
-      item.addEventListener("mouseleave", () => {
-        document.body.classList.remove("submenu-open");
-      });
-    });
-  }
-
-  // ====================
-  // Real estate keyword suggestions
-  // ====================
-  function populateREKeywords() {
-    const keywords = [
-      "Looking for a new condo", "Want to refinance my home", "Buying my first property",
-      "Exploring investment options", "Selling my house", "Finding a real estate agent",
-      "Interested in luxury homes", "Looking for office space", "Seeking mortgage advice",
-      "Relocating to a new city", "Need property valuation", "Investing in rental properties",
-      "Building a new home", "Checking current market trends", "Finding foreclosed properties",
-      "Upsizing my home", "Downsizing after retirement", "Interested in vacation homes",
-      "Want to co-invest", "Looking for real estate partnerships"
-    ];
-
-    const shuffle = arr => arr.sort(() => Math.random() - 0.5);
-    const list = shuffle([...keywords]);
-
-    const container = document.getElementById("re-container");
-    if (!container) return;
-    container.innerHTML = "";
-
-    const row1 = document.createElement("div");
-    row1.className = "re-row";
-    list.slice(0, 3).forEach(text => {
-      const d = document.createElement("div");
-      d.className = "re-phrase";
-      d.textContent = text;
-      row1.appendChild(d);
-    });
-
-    const row2 = document.createElement("div");
-    row2.className = "re-row";
-    list.slice(3, 6).forEach(text => {
-      const d = document.createElement("div");
-      d.className = "re-phrase";
-      d.textContent = text;
-      row2.appendChild(d);
-    });
-
-    const other = document.createElement("div");
-    other.className = "re-other";
-    other.textContent = "It's something else...";
-    row2.appendChild(other);
-
-    container.appendChild(row1);
-    container.appendChild(row2);
-    container.style.opacity = 1;
-
-    document.querySelectorAll(".re-phrase, .re-other").forEach(el => {
-      el.addEventListener("click", showKeywordChat);
-    });
-  }
-
-  // ====================
-  // Flow graphics animation
-  // ====================
-  function initFlowGraphics() {
-    const line = document.querySelector('.uix-growth-line');
-    const percentEl = document.getElementById('uix-percent');
-    if (!line || !percentEl) return;
-
-    line.style.strokeDashoffset = 0;
-
-    let current = 0;
-    const target = 42.7;
-    const duration = 2000;
-    const increment = target / (duration / 20);
-
-    const counter = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        current = target;
-        clearInterval(counter);
+    document.body.addEventListener("click", (e) => {
+      if (!e.target.closest(".footer-popup") && !e.target.closest(".footer-country-btn") && !e.target.closest(".footer-privacy-btn")) {
+        document.querySelectorAll(".footer-popup.active").forEach(p => p.classList.remove("active"));
       }
-      percentEl.textContent = `+${current.toFixed(1)}%`;
-    }, 20);
+    });
   }
 
   // ====================
-  // Chat module
+  // Chat popup for keywords
   // ====================
+  let uixChat = null;
+  let uixIndex = 0;
   const uixMessages = [
     {text: "Hello! How can I help you today?", side: "left"},
     {text: "Hi! I want to check my pre-approval.", side: "right"},
@@ -217,9 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
     {text: "Please provide your info.", side: "left"},
     {text: "Done! Submitted.", side: "right"},
   ];
-
-  let uixChat = null;
-  let uixIndex = 0;
 
   function uixAddMessage(msg) {
     if (!uixChat) return;
@@ -276,71 +131,86 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ====================
-  // Load sections
+  // Real estate keywords
+  // ====================
+  function populateREKeywords() {
+    const keywords = [
+      "Looking for a new condo", "Want to refinance my home", "Buying my first property",
+      "Exploring investment options", "Selling my house", "Finding a real estate agent",
+      "Interested in luxury homes", "Looking for office space", "Seeking mortgage advice",
+      "Relocating to a new city", "Need property valuation", "Investing in rental properties",
+      "Building a new home", "Checking current market trends", "Finding foreclosed properties",
+      "Upsizing my home", "Downsizing after retirement", "Interested in vacation homes",
+      "Want to co-invest", "Looking for real estate partnerships"
+    ];
+
+    const shuffle = arr => arr.sort(() => Math.random() - 0.5);
+    const list = shuffle([...keywords]);
+
+    const container = document.getElementById("re-container");
+    if (!container) return;
+    container.innerHTML = "";
+
+    const row1 = document.createElement("div");
+    row1.className = "re-row";
+    list.slice(0, 3).forEach(text => {
+      const d = document.createElement("div");
+      d.className = "re-phrase";
+      d.textContent = text;
+      row1.appendChild(d);
+    });
+
+    const row2 = document.createElement("div");
+    row2.className = "re-row";
+    list.slice(3, 6).forEach(text => {
+      const d = document.createElement("div");
+      d.className = "re-phrase";
+      d.textContent = text;
+      row2.appendChild(d);
+    });
+
+    const other = document.createElement("div");
+    other.className = "re-other";
+    other.textContent = "It's something else...";
+    row2.appendChild(other);
+
+    container.appendChild(row1);
+    container.appendChild(row2);
+    container.style.opacity = 1;
+
+    document.querySelectorAll(".re-phrase, .re-other").forEach(el => {
+      el.addEventListener("click", showKeywordChat);
+    });
+  }
+
+  // ====================
+  // Main section loader
   // ====================
   const preloader = document.getElementById("preloader");
   const MIN_TIME = 800;
   const startTime = performance.now();
 
-  loadHTML("header", "header.html").then(() => {
-    resetPageState();
-    setupHeaderMenu();
-  });
+  async function loadSections() {
+    // Load each section sequentially
+    await loadHTML("header", "header.html", () => { setupHeaderMenu(); });
+    await loadHTML("alert", "alert.html");
+    await loadHTML("main-section", "main-section.html");
+    await loadHTML("trusted-by", "https://hirshtom-web.github.io/capital_partners/trusted-by.html");
+    await loadHTML("property-slide", "property-slide.html");
+    await loadHTML("tabs", "tabs.html", () => { /* Tab setup logic */ });
+    await loadHTML("flow", "flow.html", () => { /* Flow graphics + chat setup */ });
+    await loadHTML("market", "market.html");
 
-  const sections = [
-    loadHTML("alert", "alert.html"),
-    loadHTML("main-section", "main-section.html"),
-    loadHTML("trusted-by", "https://hirshtom-web.github.io/capital_partners/trusted-by.html"),
-    loadHTML("property-slide", "property-slide.html"),
+    // Footer MUST be last
+    await loadHTML("footer", "footer.html", () => {
+      initFooterPopups();
+    });
 
-    // Tabs with gradient background
-    loadHTML("tabs", "tabs.html").then(() => {
-      const toggleButtons = document.querySelectorAll('.uni-toggle-btn');
-      const panels = document.querySelectorAll('.uni-panel');
-      const container = document.querySelector('.uni-content-tile');
+    populateREKeywords();
 
-      const bgGradients = [
-        'linear-gradient(90deg, #f8e8e8 0%, #dcc7f4 100%)',
-        'linear-gradient(90deg, #d6eaf8 0%, #bcdff0 100%)',
-        'linear-gradient(90deg, #fdebd0 0%, #f8d7a6 100%)'
-      ];
-
-      if (container) container.style.transition = 'background 0.5s ease';
-
-      toggleButtons.forEach((btn, index) => {
-        btn.addEventListener('click', () => {
-          toggleButtons.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-
-          panels.forEach(p => p.classList.remove('active'));
-          document.getElementById(btn.dataset.tab)?.classList.add('active');
-
-          container.style.background = bgGradients[index];
-        });
-      });
-
-      if (toggleButtons[0]) toggleButtons[0].click();
-    }),
-
-    loadHTML("flow", "flow.html").then(() => {
-      setTimeout(() => {
-        const chatEl = document.getElementById("uix-chat-messages");
-        if (chatEl) uixChat = chatEl;
-
-        initFlowGraphics();
-        uixNextMessage();
-      }, 50);
-    }),
-
-    loadHTML("market", "market.html"),
-    loadHTML("footer", "footer.html"),
-    Promise.resolve().then(populateREKeywords)
-  ];
-
-  Promise.allSettled(sections).finally(() => {
+    // Remove preloader
     const elapsed = performance.now() - startTime;
     const remaining = Math.max(0, MIN_TIME - elapsed);
-
     setTimeout(() => {
       if (preloader) {
         preloader.style.transition = "opacity 0.5s ease";
@@ -348,8 +218,8 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => preloader.remove(), 600);
       }
     }, remaining);
+  }
 
-    setTimeout(() => preloader?.remove(), 5000);
-  });
+  loadSections();
 
 });
