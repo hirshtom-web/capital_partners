@@ -275,7 +275,7 @@ footer {
   .footer-top {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* vertical spacing */
+    gap: 15px;
   }
 
   .footer-column h4 {
@@ -283,37 +283,30 @@ footer {
   }
 
   .footer-column h4 .arrow {
-    display: inline-block; /* show arrows on mobile */
+    display: inline-block;
+    transition: transform 0.3s ease;
   }
 
   /* Collapse lists by default */
   .footer-column ul {
-    display: none;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
-    padding-left: 0;
-    margin: 0;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    padding: 0;
   }
 
   /* Expand active column */
   .footer-column.active ul {
-    display: block;
-    max-height: 1000px;
-    padding-top: 5px; /* slightly reduced spacing */
+    max-height: 1000px; /* large enough to fit content */
+    padding-top: 5px;
   }
 
   /* Rotate arrow */
   .footer-column.active h4 .arrow {
     transform: rotate(180deg);
   }
-
-  /* Remove divider under columns */
-  .footer-column {
-    border-bottom: none;
-  }
 }
-  
+
   </style>
 </head>
   <body>
@@ -527,46 +520,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const savePrivacy     = document.getElementById('savePrivacy');
 
     // --------- Accordion (mobile) ---------
-    const initFooterAccordion = () => {
-      const columns = document.querySelectorAll('.footer-column');
-      columns.forEach(col => {
-        const header = col.querySelector('h4');
-        const ul     = col.querySelector('ul');
-        const arrow  = col.querySelector('.arrow');
-        if (!header || !ul || !arrow) return;
+const initFooterAccordion = () => {
+  const columns = document.querySelectorAll('.footer-column');
+  columns.forEach(col => {
+    const header = col.querySelector('h4');
+    if (!header) return;
 
-        if (window.innerWidth <= 600) {
-          ul.style.display = 'none';
-          header.style.cursor = 'pointer';
-          header.onclick = () => {
-            columns.forEach(c => {
-              if (c !== col) {
-                c.querySelector('ul')?.style.setProperty('display', 'none');
-                c.querySelector('.arrow')?.style.setProperty('transform', 'rotate(0deg)');
-                c.classList.remove('active');
-              }
-            });
-
-            if (ul.style.display === 'block') {
-              ul.style.display = 'none';
-              arrow.style.transform = 'rotate(0deg)';
-              col.classList.remove('active');
-            } else {
-              ul.style.display = 'block';
-              arrow.style.transform = 'rotate(180deg)';
-              col.classList.add('active');
-            }
-          };
-        } else {
-          ul.style.display = 'block';
-          arrow.style.transform = 'rotate(0deg)';
-          col.classList.remove('active');
-        }
+    header.onclick = () => {
+      // collapse other columns
+      columns.forEach(c => {
+        if (c !== col) c.classList.remove('active');
       });
-    };
 
-    initFooterAccordion();
-    window.addEventListener('resize', initFooterAccordion);
+      // toggle current column
+      col.classList.toggle('active');
+    };
+  });
+};
+
+// call it initially and on resize
+initFooterAccordion();
+window.addEventListener('resize', initFooterAccordion);
+
 
     // --------- Popup helpers ---------
     const openPopup = popup => {
