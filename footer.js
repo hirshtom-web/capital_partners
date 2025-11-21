@@ -1,5 +1,5 @@
-<script defer>
-document.addEventListener('DOMContentLoaded', () => {
+// Footer setup function
+function initFooter() {
   const footerColumns   = document.querySelectorAll('.footer-column');
   const countrySelector = document.getElementById('countrySelector');
   const countryPopup    = document.getElementById('countryPopup');
@@ -7,9 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const privacyPopup    = document.getElementById('privacyPopup');
   const savePrivacy     = document.getElementById('savePrivacy');
 
-  // ------------------------------------------------
   // Footer accordion (mobile)
-  // ------------------------------------------------
   const initFooterAccordion = () => {
     footerColumns.forEach(col => {
       const header = col.querySelector('h4');
@@ -50,9 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFooterAccordion();
   window.addEventListener('resize', initFooterAccordion);
 
-  // ------------------------------------------------
   // Popup helpers
-  // ------------------------------------------------
   const openPopup = (popup) => {
     if (!popup) return;
     popup.style.display = 'block';
@@ -67,9 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 300);
   };
 
-  // ------------------------------------------------
   // Country popup
-  // ------------------------------------------------
   if (countrySelector && countryPopup) {
     countrySelector.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -94,9 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ------------------------------------------------
   // Privacy popup
-  // ------------------------------------------------
   if (privacyTrigger && privacyPopup) {
     privacyTrigger.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -114,32 +106,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ------------------------------------------------
-  // Close when clicking outside
-  // ------------------------------------------------
+  // Close on outside click
   document.addEventListener('click', (e) => {
-    // country
-    if (
-      countryPopup &&
-      !countryPopup.contains(e.target) &&
-      !countrySelector.contains(e.target)
-    ) {
+    if (countryPopup && !countryPopup.contains(e.target) && !countrySelector.contains(e.target)) {
       closePopup(countryPopup);
     }
-
-    // privacy
-    if (
-      privacyPopup &&
-      !privacyPopup.contains(e.target) &&
-      !privacyTrigger.contains(e.target)
-    ) {
+    if (privacyPopup && !privacyPopup.contains(e.target) && !privacyTrigger.contains(e.target)) {
       closePopup(privacyPopup);
     }
   });
 
-  // ------------------------------------------------
-  // ESC close
-  // ------------------------------------------------
+  // Close on ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closePopup(countryPopup);
@@ -147,8 +124,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // prevent closing when clicking inside popup itself
+  // Prevent closing when clicking inside popup
   countryPopup?.addEventListener('click', (e) => e.stopPropagation());
   privacyPopup?.addEventListener('click', (e) => e.stopPropagation());
+}
+
+// Call this **after footer HTML is loaded**
+loadHTML("footer", "footer.html").then(() => {
+  initFooter(); // initialize footer behaviors
 });
-</script>
