@@ -737,10 +737,11 @@ a {
 
 
 /* ================= Footer Wrapper for Desktop ================= */
+/* ================= Footer Wrapper for Desktop ================= */
 .footer-wrapper {
-  max-width: 1400px; /* adjust as needed */
-  margin: 0 auto;    /* center content */
-  padding: 0 40px;   /* desktop side margins */
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
   width: 100%;
 }
 
@@ -751,14 +752,14 @@ footer {
   flex-direction: column;
   box-sizing: border-box;
   background: #130328;
-  padding: 100px 0; /* top/bottom padding */
+  padding: 100px 0;
 }
 
 /* ================= Top Section (6 Columns) ================= */
 .footer-top {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 40px;         /* desktop spacing between columns */
+  gap: 40px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -771,17 +772,17 @@ footer {
 .footer-column h4 {
   font-weight: 500;
   font-size: 14px;
-  margin-bottom: 6px;  /* space to links */
+  margin-bottom: 6px;
   color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: default;      /* desktop default */
+  cursor: default;
   padding: 10px 0;
 }
 
 .footer-column h4 .arrow {
-  display: none;        /* hide arrows on desktop */
+  display: none;
   font-family: 'Material Symbols Outlined';
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   font-size: 18px;
@@ -792,10 +793,13 @@ footer {
   list-style: none;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  max-height: none; /* desktop default */
+  transition: max-height 0.3s ease;
 }
 
 .footer-column li {
-  margin-bottom: 6px;   /* spacing between links */
+  margin-bottom: 6px;
 }
 
 .footer-column a {
@@ -850,8 +854,6 @@ footer {
 
 .country-popup {
   position: absolute;
-  bottom: 30px;
-  left: 0;
   background-color: #130328;
   border: 0.3px solid #fff;
   border-radius: 8px;
@@ -859,7 +861,14 @@ footer {
   padding: 10px;
   z-index: 100;
   min-width: 180px;
-  animation: fadeIn 0.2s ease;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.country-popup.open {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .country-option {
@@ -925,8 +934,6 @@ footer {
 
 .privacy-popup {
   position: absolute;
-  bottom: 30px;
-  right: 0;
   background-color: #130328;
   border: 0.3px solid #fff;
   border-radius: 8px;
@@ -934,8 +941,15 @@ footer {
   padding: 12px 16px;
   z-index: 200;
   width: 230px;
-  animation: fadeIn 0.2s ease;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
   font-size: 12px;
+}
+
+.privacy-popup.open {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .privacy-popup h4 {
@@ -998,13 +1012,13 @@ footer {
 /* ================= Mobile Footer Accordion ================= */
 @media (max-width: 600px) {
   .footer-wrapper {
-    padding: 0 10px; /* mobile side margins */
+    padding: 0 10px;
   }
 
   .footer-top {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* vertical spacing */
+    gap: 15px;
   }
 
   .footer-column h4 {
@@ -1012,12 +1026,11 @@ footer {
   }
 
   .footer-column h4 .arrow {
-    display: inline-block; /* show arrows on mobile */
+    display: inline-block;
   }
 
-  /* Collapse lists by default */
   .footer-column ul {
-    display: none;
+    display: block;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
@@ -1025,49 +1038,26 @@ footer {
     margin: 0;
   }
 
-  /* Expand active column */
   .footer-column.active ul {
-    display: block;
-    max-height: 1000px;
-    padding-top: 5px; /* slightly reduced spacing */
+    max-height: 999px; /* animated height controlled via JS is better */
+    padding-top: 5px;
   }
 
-  /* Rotate arrow */
   .footer-column.active h4 .arrow {
     transform: rotate(180deg);
   }
 
-  /* Remove divider under columns */
   .footer-column {
     border-bottom: none;
   }
-}
-/* ========================================================= */
-/* FIX POPUPS SO JS CAN DISPLAY THEM */
-/* ========================================================= */
 
-.country-popup,
-.privacy-popup {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .20s ease;
-}
-
-/* When JS adds .open → make popup visible */
-.country-popup.open,
-.privacy-popup.open {
-  display: block !important;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-@media (max-width: 600px) {
+  /* Responsive popups on mobile */
   .country-popup,
   .privacy-popup {
     bottom: auto !important;
-    top: 30px !important;   /* popup appears below the trigger */
+    top: -10px; /* popup above trigger */
     right: 0;
     left: 0;
-    margin-top: 10px;
+    margin: 0 auto;
   }
 }
