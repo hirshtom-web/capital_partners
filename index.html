@@ -328,7 +328,7 @@ html {
 </footer>
   
 </body>
-  <script>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
 
   const countrySelector = document.getElementById("countrySelector");
@@ -336,7 +336,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const privacyTrigger = document.getElementById("privacyTrigger");
   const privacyPopup = document.getElementById("privacyPopup");
 
-  // Country selector
+  // =================== COUNTRY SELECTOR POPUP ===================
   if (countrySelector && countryPopup) {
     countrySelector.addEventListener("click", e => {
       e.stopPropagation();
@@ -352,7 +352,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Privacy popup
+  // =================== PRIVACY POPUP ===================
   if (privacyTrigger && privacyPopup) {
     privacyTrigger.addEventListener("click", e => {
       e.stopPropagation();
@@ -366,7 +366,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Outside click closes popups
+  // =================== OUTSIDE CLICK ===================
   document.addEventListener("click", e => {
     if (countryPopup && !countryPopup.contains(e.target) && !countrySelector.contains(e.target)) {
       countryPopup.classList.remove("open");
@@ -376,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Escape closes popups
+  // =================== ESCAPE CLOSE ===================
   document.addEventListener("keydown", e => {
     if (e.key === "Escape") {
       if (countryPopup) countryPopup.classList.remove("open");
@@ -384,7 +384,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // ======================= MOBILE ACCORDION =======================
+  document.querySelectorAll(".footer-column h4").forEach(header => {
+    header.addEventListener("click", () => {
+      // Only for mobile
+      if (window.innerWidth > 600) return;
+
+      const column = header.parentElement;
+
+      // Close all others
+      document.querySelectorAll(".footer-column").forEach(c => {
+        if (c !== column) c.classList.remove("active");
+      });
+
+      // Toggle this one
+      column.classList.toggle("active");
+    });
+  });
+
 });
 </script>
+
 
 </html>
