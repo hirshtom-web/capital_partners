@@ -849,7 +849,6 @@ footer {
 }
 
 .country-popup {
-  display: none;
   position: absolute;
   bottom: 30px;
   left: 0;
@@ -925,7 +924,6 @@ footer {
 }
 
 .privacy-popup {
-  display: none;
   position: absolute;
   bottom: 30px;
   right: 0;
@@ -1043,4 +1041,22 @@ footer {
   .footer-column {
     border-bottom: none;
   }
+}
+/* ========================================================= */
+/* FIX POPUPS SO JS CAN DISPLAY THEM */
+/* ========================================================= */
+
+.country-popup,
+.privacy-popup {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .20s ease;
+}
+
+/* When JS adds .open → make popup visible */
+.country-popup.open,
+.privacy-popup.open {
+  display: block !important;
+  opacity: 1;
+  pointer-events: auto;
 }
