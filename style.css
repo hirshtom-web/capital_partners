@@ -734,6 +734,27 @@ a {
     width: 90%;
   }
 }
+/* —— STICKY STACK EFFECT —— */
+
+.flow-section-shell {
+  position: relative;
+}
+
+/* Each tile becomes a sticky card */
+.uix-tile {
+  position: sticky;
+  top: 50vh;                 /* freeze at mid-screen */
+  transform: translateY(-50%);
+  margin-bottom: 80px;     /* space between tiles */
+  z-index: 1;               /* default; override per tile */
+  border-radius: 40px;      /* keep your existing shape */
+}
+
+/* Give each tile a stacking order */
+.uix-tile:nth-child(1) { z-index: 1; }
+.uix-tile:nth-child(2) { z-index: 2; }
+.uix-tile:nth-child(3) { z-index: 3; }
+.uix-tile:nth-child(4) { z-index: 4; }
 
 
 /* ================= Footer Wrapper for Desktop ================= */
