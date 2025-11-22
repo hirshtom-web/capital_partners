@@ -734,37 +734,6 @@ a {
     width: 90%;
   }
 }
-/* —— STICKY STACK EFFECT —— */
-/* Container holds all tiles */
-/* —— STICKY STACK EFFECT —— */
-.flow-section-shell {
-  position: relative;
-}
-
-/* Sticky tile base */
-.uix-tile {
-  position: sticky;
-  top: 50vh;               /* freeze at middle */
-  transform: translateY(-50%) scale(0.96);  /* basic shrink */
-  transition: transform 0.4s ease, opacity 0.4s ease;
-  opacity: 0.6;
-  margin-bottom: 200px;    /* spacing between tiles */
-  border-radius: 40px;
-  z-index: 1;              /* default */
-}
-
-/* Higher tiles stack above lower ones */
-.uix-tile:nth-child(1) { z-index: 1; }
-.uix-tile:nth-child(2) { z-index: 2; }
-.uix-tile:nth-child(3) { z-index: 3; }
-.uix-tile:nth-child(4) { z-index: 4; }
-
-/* The tile currently centered on screen */
-.uix-tile.is-active {
-  transform: translateY(-50%) scale(1);
-  opacity: 1;
-}
-
 
 
 
