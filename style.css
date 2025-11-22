@@ -156,23 +156,26 @@ a {
 }
 /* Base image styling */
 .hero-img {
-  display: inline-block;
+  display: block;               /* images as block inside floated columns */
   transform-origin: center center;
 }
 
-/* Keep left/right columns as they were */
-.hero-col.left,
+/* Left and right columns */
+.hero-col.left {
+  float: left;                  /* keep left image on left */
+  overflow: visible;            /* show tilt */
+}
+
 .hero-col.right {
-  display: inline-block;   /* preserves original left/right layout */
-  vertical-align: top;
-  overflow: visible;       /* make rotation visible */
+  float: right;                 /* keep right image on right */
+  overflow: visible;
 }
 
 /* Left image adjustments */
 .hero-img.left-img {
   width: 180px;
   height: 240px;
-  transform: rotate(-12deg); /* slightly increased tilt to make it visible */
+  transform: rotate(-12deg);    /* tilt left */
   margin-top: -20px;
   margin-left: -10px;
 }
@@ -181,10 +184,18 @@ a {
 .hero-img.right-img {
   width: 135px;
   height: 210px;
-  transform: rotate(12deg);  /* slightly increased tilt */
+  transform: rotate(12deg);     /* tilt right */
   margin-top: 10px;
   margin-right: -15px;
 }
+
+/* Optional: clear floats if needed */
+.hero-section::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
 
 
 /* ==================================
