@@ -736,42 +736,36 @@ a {
 }
 /* —— STICKY STACK EFFECT —— */
 /* Container holds all tiles */
+/* —— STICKY STACK EFFECT —— */
 .flow-section-shell {
   position: relative;
-  scroll-snap-type: y mandatory; /* optional */
 }
 
-/* Stacking order */
+/* Sticky tile base */
+.uix-tile {
+  position: sticky;
+  top: 50vh;               /* freeze at middle */
+  transform: translateY(-50%) scale(0.96);  /* basic shrink */
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  opacity: 0.6;
+  margin-bottom: 200px;    /* spacing between tiles */
+  border-radius: 40px;
+  z-index: 1;              /* default */
+}
+
+/* Higher tiles stack above lower ones */
 .uix-tile:nth-child(1) { z-index: 1; }
 .uix-tile:nth-child(2) { z-index: 2; }
 .uix-tile:nth-child(3) { z-index: 3; }
 .uix-tile:nth-child(4) { z-index: 4; }
 
-/* Base tile behavior */
-.uix-tile {
-  position: sticky;
-  top: 50vh;
-  scroll-snap-align: center; /* optional */
-  --offset: 0px;
-
-  /* merged transform (sticky + parallax + scale) */
-  transform: translateY(calc(-50% + var(--offset))) scale(0.96);
-
-  opacity: 0.6;
-  box-shadow: 0 0 0 rgba(0,0,0,0);
-
-  transition:
-    transform 0.4s ease,
-    opacity 0.4s ease,
-    box-shadow 0.4s ease;
-}
-
-/* Active tile */
+/* The tile currently centered on screen */
 .uix-tile.is-active {
-  transform: translateY(calc(-50% + var(--offset))) scale(1);
+  transform: translateY(-50%) scale(1);
   opacity: 1;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
 }
+
+
 
 
 /* ================= Footer Wrapper for Desktop ================= */
