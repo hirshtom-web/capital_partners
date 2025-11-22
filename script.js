@@ -353,3 +353,23 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+document.addEventListener("scroll", () => {
+  const tiles = document.querySelectorAll(".uix-tile");
+  const vh = window.innerHeight;
+
+  tiles.forEach(tile => {
+    const rect = tile.getBoundingClientRect();
+    const tileMid = rect.top + rect.height / 2;
+    const screenMid = vh / 2;
+
+    /* 1 — Parallax offset */
+    const percent = rect.top / vh;
+    tile.style.setProperty("--offset", `${percent * -40}px`);
+
+    /* 2 — Active tile detection */
+    const isActive = Math.abs(tileMid - screenMid) < 200;
+    tile.classList.toggle("is-active", isActive);
+  });
+});
+
