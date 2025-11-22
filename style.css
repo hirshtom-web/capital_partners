@@ -735,26 +735,43 @@ a {
   }
 }
 /* —— STICKY STACK EFFECT —— */
-
+/* Container holds all tiles */
 .flow-section-shell {
   position: relative;
+  scroll-snap-type: y mandatory; /* optional */
 }
 
-/* Each tile becomes a sticky card */
-.uix-tile {
-  position: sticky;
-  top: 50vh;                 /* freeze at mid-screen */
-  transform: translateY(-50%);
-  margin-bottom: 80px;     /* space between tiles */
-  z-index: 1;               /* default; override per tile */
-  border-radius: 40px;      /* keep your existing shape */
-}
-
-/* Give each tile a stacking order */
+/* Stacking order */
 .uix-tile:nth-child(1) { z-index: 1; }
 .uix-tile:nth-child(2) { z-index: 2; }
 .uix-tile:nth-child(3) { z-index: 3; }
 .uix-tile:nth-child(4) { z-index: 4; }
+
+/* Base tile behavior */
+.uix-tile {
+  position: sticky;
+  top: 50vh;
+  scroll-snap-align: center; /* optional */
+  --offset: 0px;
+
+  /* merged transform (sticky + parallax + scale) */
+  transform: translateY(calc(-50% + var(--offset))) scale(0.96);
+
+  opacity: 0.6;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+/* Active tile */
+.uix-tile.is-active {
+  transform: translateY(calc(-50% + var(--offset))) scale(1);
+  opacity: 1;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+}
 
 
 /* ================= Footer Wrapper for Desktop ================= */
