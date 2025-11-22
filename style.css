@@ -154,48 +154,24 @@ a {
   .hero-title { font-size: 50px; }
 }
 }
-/* Base image styling */
-.hero-img {
-  display: block;               /* images as block inside floated columns */
-  transform-origin: center center;
-}
-
-/* Left and right columns */
-.hero-col.left {
-  float: left;                  /* keep left image on left */
-  overflow: visible;            /* show tilt */
-}
-
-.hero-col.right {
-  float: right;                 /* keep right image on right */
-  overflow: visible;
-}
 
 /* Left image adjustments */
 .hero-img.left-img {
-  width: 180px;
+  width: 180px;             /* slightly bigger */
   height: 240px;
-  transform: rotate(-12deg);    /* tilt left */
-  margin-top: -20px;
-  margin-left: -10px;
+  transform: rotate(-8deg); /* slight tilt */
+  margin-top: -20px;        /* adjust vertical position */
+  margin-left: -10px;       /* adjust horizontal if needed */
 }
 
 /* Right image adjustments */
 .hero-img.right-img {
-  width: 135px;
+  width: 135px;              /* slightly smaller */
   height: 210px;
-  transform: rotate(12deg);     /* tilt right */
-  margin-top: 10px;
-  margin-right: -15px;
+  transform: rotate(6deg);  /* slight tilt */
+  margin-top: 10px;         /* adjust vertical */
+  margin-right: -15px;      /* adjust horizontal */
 }
-
-/* Optional: clear floats if needed */
-.hero-section::after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
 
 
 /* ==================================
