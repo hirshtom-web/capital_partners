@@ -353,3 +353,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+document.addEventListener("scroll", () => {
+  const tiles = document.querySelectorAll(".uix-tile");
+  const mid = window.innerHeight / 2;
+
+  tiles.forEach(tile => {
+    const rect = tile.getBoundingClientRect();
+    const tileMid = rect.top + rect.height / 2;
+    const isActive = Math.abs(tileMid - mid) < 200;
+
+    tile.classList.toggle("is-active", isActive);
+  });
+});
+
