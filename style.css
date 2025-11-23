@@ -375,7 +375,7 @@ a {
 /* Tiles inside */
 .uix-tile {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1300px;
   background-color: #f8f7f5; /* tile color */
   border-radius: 40px;
   margin: 0 auto 80px; /* top: 0, bottom: 80px */
