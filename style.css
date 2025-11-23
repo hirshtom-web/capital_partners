@@ -1,1103 +1,304 @@
-/* ===============================
-   GLOBAL
-================================== */
 * {
   box-sizing: border-box;
 }
-body {
-  font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
+
+html, body {
   margin: 0;
-  background: #1e0949;
-  color: #fff;
-}
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* ===============================
-   Hero section
-================================== */
-/* ===============================
-   HERO SECTION (FINAL WORKING)
-================================== */
-
-.button-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 20px;
-  margin-bottom: 40px;
-}
-
-/* --- NEW HERO SECTION --- */
-.hero-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 80px 0;
-  background: #1e0949;
-  position: relative;
-  gap: 40px;
-}
-
-/* 3 columns */
-.hero-col {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero-col.center {
-  flex: 2;
-}
-
-/* --- IMAGES --- */
-.hero-img {
-  width: 100px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 20px;
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Floating effect */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-}
-
-/* --- TITLE --- */
-.hero-title {
-  font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
-  font-weight: 600;
-  color: #fef7f2;
-  font-size: 100px;
-  line-height: 1.05;
-  text-align: center;
-  position: relative;
-  margin: 0;
-  z-index: 5;
-}
-
-.hero-title .line {
-  display: block;
-}
-
-/* Gradient animation */
-.ai-powered {
-  background: linear-gradient(90deg, #ffb0b0, #6d00ef);
-  background-size: 400% 400%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: sideSwipe 40s ease-in-out infinite;
-}
-
-@keyframes sideSwipe {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* SVG next to text */
-.hero-title .machine-svg {
-  position: absolute;
-  bottom: 10px;
-  right: calc(22% - 210px);  /* move 210px further right */
-  width: 100px;
-  height: auto;
-}
-
-/* --- MOBILE --- */
-@media (max-width: 768px) {
-  .hero-col.left,
-  .hero-col.right {
-    display: none;
-  }
-
-  .hero-title {
-    font-size: 48px;
-  }
-
-  @media (max-width: 768px) {
-  .hero-title .machine-svg {
-    position: absolute;   /* stays positioned over the hero */
-    bottom: -5px;         /* adjust as needed */
-    right: 50%;           /* center it horizontally */
-    transform: translateX(50%); /* fine-tune centering */
-    width: 70px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-title .machine-svg {
-    width: 40px;
-    bottom: -5px;
-  
-  }
-}
-   
-@media (max-width: 1200px) {
-  .hero-title { font-size: 80px; }
-}
-
-@media (max-width: 992px) {
-  .hero-title { font-size: 70px; }
-}
-
-@media (max-width: 768px) {
-  .hero-title { font-size: 60px; }
-}
-
-@media (max-width: 480px) {
-  .hero-title { font-size: 50px; }
-}
-}
-
-/* Left image adjustments */
-.hero-img.left-img {
-  width: 180px;             /* slightly bigger */
-  height: 240px;
-  transform: rotate(-8deg); /* slight tilt */
-  margin-top: -20px;        /* adjust vertical position */
-  margin-left: -10px;       /* adjust horizontal if needed */
-}
-
-/* Right image adjustments */
-.hero-img.right-img {
-  width: 135px;              /* slightly smaller */
-  height: 210px;
-  transform: rotate(6deg);  /* slight tilt */
-  margin-top: 10px;         /* adjust vertical */
-  margin-right: -15px;      /* adjust horizontal */
-}
-
-
-
-/* ==================================
-   TRUSTED SECTION
-================================== */
-.trusted-section {
-  width: 100%;
-  background: #1e0949;
-  padding: 50px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-.trusted-text {
-  color: #fff;
-  font-size: 20px;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.logo-slider {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-/* fading edges */
-.logo-slider::before,
-.logo-slider::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 100px;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-}
-.logo-slider::before {
-  left: 0;
-  background: linear-gradient(to right, #1e0949 0%, transparent 100%);
-}
-.logo-slider::after {
-  right: 0;
-  background: linear-gradient(to left, #1e0949 0%, transparent 100%);
-}
-
-.logo-container {
-  overflow: hidden;
-  width: 100%;
-  padding: 0 50px; /* equal space on left & right */
-  box-sizing: border-box;
-}
-
-.logo-track {
-  display: flex;
-  width: calc(200% - 100px); /* double content minus container padding */
-  animation: scrollLogos 20s linear infinite;
-}
-
-.logo-track img {
-  height: 60px;
-  margin-right: 30px; /* spacing between logos */
-}
-
-.logo {
-  height: 100px;
-  object-fit: contain;
-  flex-shrink: 0;
-  filter: brightness(0) saturate(100%) invert(98%) sepia(6%) saturate(276%) hue-rotate(324deg) brightness(106%) contrast(100%);
-}
-
-/* seamless animation */
-@keyframes scrollLogos {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } /* scroll half because we duplicated logos */
-}
-
-/* Responsive tweaks */
-@media (max-width: 768px) {
-  .trusted-text { font-size: 16px; margin-bottom: 25px; }
-  .logo-track { gap: 30px; animation: scrollLogos 25s linear infinite; }
-  .logo { height: 80px; }
-  .logo-slider::before,
-  .logo-slider::after { width: 60px; }
-}
-
-@media (max-width: 480px) {
-  .trusted-text { font-size: 14px; margin-bottom: 20px; }
-  .logo-track { gap: 20px; animation: scrollLogos 30s linear infinite; }
-  .logo { height: 60px; }
-  .logo-slider::before,
-  .logo-slider::after { width: 40px; }
-}
-
-/* ===============================
-   KEYWORDS SECTION FIXED
-================================== */
-.re-container-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* center everything */
-  gap: 12px;
-  text-align: center;
-  width: 100%;
+  padding: 0;
   overflow-x: hidden;
-  padding: 0 15px;
-  box-sizing: border-box;
-}
-
-.re-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
   width: 100%;
+  font-family: 'Plus Jakarta Sans', 'Rubik', sans-serif;
+  background: #1e0949;
+  color: #000;
 }
 
-/* Each row */
-.re-row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  width: 100%;
-}
-
-/* Keyword items */
-.re-phrase,
-.re-other {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 0 0 auto;   /* prevent stretching */
-  border-radius: 8px;
-  padding: 6px 12px;
-  font-family: Arial, sans-serif;
-  font-size: 12px;
-  white-space: nowrap;
-  cursor: pointer;
-  box-sizing: border-box;
-  max-width: 100%;
-  transition: all 0.2s ease;
-}
-
-.re-phrase {
-  border: 1px solid white;
-  background: transparent;
-  color: white;
-}
-
-.re-phrase:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-.re-other {
-  border: none;
-  font-style: italic;
-  color: white;
-}
-
-@media (max-width: 768px) {
-  .re-phrase,
-  .re-other {
-    font-size: 11px;
-    padding: 5px 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .re-phrase,
-  .re-other {
-    font-size: 10px;
-    padding: 4px 8px;
-  }
-}
-
-/* ===============================
-   FLOW SECTION
-================================== */
-
-/* =============================== */
-/* UNIVERSAL UNI-CONTENT TILE      */
-/* =============================== */
-
-/* =============================== */
-/* UNIVERSAL UNI-CONTENT TILE      */
-/* =============================== */
 /* ===============================
    SECTION AREA
 ================================== */
-.flow-section-shell {
-  background-color: #fff; /* white background */
-  padding: 0 0 80px 0;    /* top: 0, bottom: 80px */
-  margin: 0;              /* remove extra margins if any */
-}
-
-/* Tiles inside */
-.uix-tile {
-  width: 100%;
-  max-width: 1200px;
-  background-color: #f8f7f5; /* tile color */
-  border-radius: 40px;
-  margin: 0 auto 80px; /* top: 0, bottom: 80px */
-  padding: 60px 40px;
-  box-sizing: border-box;
-}
-
-
-
-/* =============================== */
-/* UNIVERSAL UNI-CONTENT TILE      */
-/* =============================== */
-
-.uix-tile {
-  color: #111;
-  display: flex;
-  gap: 20px;
-  box-sizing: border-box;
-  min-height: 500px;
-}
-
-
-/* =============================== */
-/* LEFT COLUMN (BOTH MODULES)      */
-/* =============================== */
-
-.uix-left {
-  width: 40%;
+.uni-section-shell {
   background-color: #fff;
-  border-radius: 20px;
-  position: relative;
-  overflow-x: hidden;   /* keeps clean sides */
-  overflow-y: visible;  /* allows the chat to scroll upward */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* =============================== */
-/* CHART MODULE                    */
-/* =============================== */
-
-.uix-chart {
-  width: 90%;
-  position: relative;
-  border-radius: 20px;
-  padding: 0px;
-  background: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.uix-chart svg {
-  width: 100%;
-  height: 250px;
-  display: block;
-  overflow: visible;
-}
-
-.uix-grid-line {
-  stroke: #fafafa;
-  stroke-width: 0.5;
-}
-
-.uix-track-line {
-  stroke: #e0e0e0;
-  stroke-width: 2;
-  fill: none;
-}
-
-.uix-growth-line {
-  stroke: url(#lineGradient);
-  stroke-width: 2;
-  fill: none;
-  stroke-linecap: round;
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  transition: stroke-dashoffset 2s ease-out;
-}
-
-.uix-top-right {
-  position: absolute;
-  top: 105px;
-  right: 0px;
-  width: 65px;
-  height: 35px;
-  background: #00c853;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  font-weight: bold;
-  color: #fff;
-}
-
-.uix-year-label {
-  font-size: 5px;
-  fill: #888888;
-}
-
-.uix-mid-label {
-  font-size: 8px;
-  font-weight: bold;
-  fill: #000000;
-  text-anchor: middle;
-}
-
-/* =============================== */
-/* IPHONE CHAT MODULE              */
-/* =============================== */
-
-.uix-phone {
-  width: 65%;
-  aspect-ratio: 11/19;
-  background: #fefefe;
-  border-radius: 40px;
-  box-shadow: 0 15px 25px rgba(0,0,0,0.15);
-  position: absolute;
-  bottom: -30%;
-  display: flex;
-  flex-direction: column;
-  padding: 10px 15px;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.uix-phone-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  position: absolute;
-  top: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-}
-
-.uix-phone-time {
-  font-size: 8px;
-  color: #888;
-  position: absolute;
-  top: 70px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-}
-
-.uix-chat-wrapper {
-  flex: 1;
-  margin-top: 80px;
-  overflow: hidden;
-  position: relative;
-}
-
-.uix-chat-messages {
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease;
-}
-
-.uix-chat-bubble {
-  max-width: 70%;
-  padding: 10px 15px;
-  border-radius: 20px;
-  margin: 8px 0;
-  font-size: 12px;
-  line-height: 1.4;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
-}
-
-.uix-left-bubble {
-  background-color: #e9e9eb;
-  align-self: flex-start;
   color: #111;
-}
-
-.uix-right-bubble {
-  background-color: #1a8bfe;
-  color: #fff;
-  align-self: flex-end;
-}
-
-.uix-typing {
-  width: 40px;
-  height: 20px;
-  border-radius: 10px;
-  background-color: #e9e9eb;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3px;
-  margin: 8px 0;
-  opacity: 0.7;
-}
-
-.uix-typing-left {
-  align-self: flex-start;
-}
-
-.uix-typing-right {
-  align-self: flex-end;
-}
-
-.uix-dot {
-  width: 5px;
-  height: 5px;
-  background-color: #888;
-  border-radius: 50%;
-  animation: uix-blink 1s infinite;
-}
-
-.uix-dot:nth-child(2) { animation-delay: 0.2s; }
-.uix-dot:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes uix-blink {
-  0%, 80%, 100% { opacity: 0; }
-  40% { opacity: 1; }
-}
-
-.uix-top-fade {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 30px;
-  background: linear-gradient(to bottom, #fefefe, transparent);
-  pointer-events: none;
-}
-
-/* =============================== */
-/* RIGHT COLUMN                    */
-/* =============================== */
-
-.uix-right {
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 120px;
-  box-sizing: border-box;
-  text-align: left;
-}
-
-.uix-pill {
-  display: inline-block;
-  background-color: #eee6ff;
-  color: #a162f7;
-  font-weight: 600;
-  font-size: 10px;
-  padding: 4px 10px;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  max-width: fit-content;
-  white-space: nowrap;
-}
-
-.uix-title {
-  font-size: 28px;
-  font-weight: 700;
-  margin: 0;
-}
-
-.uix-btn {
-  background-color: #e2d1ff;
-  color: #a162f7;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 30px;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.3s ease;
-  margin-top: 20px;
-  align-self: flex-start;
-}
-
-.uix-right:hover .uix-btn {
-  opacity: 1;
-  transform: translateY(0);
+  padding: 80px 0 20px 0; 
+  position: relative;
 }
 
 /* ===============================
-   MOBILE RESPONSIVE - VERTICAL STACK
+   CONTENT TILE
 ================================== */
-@media (max-width: 868px) {  /* you can adjust breakpoint: 868px or 768px */
-  .uix-tile {
-    flex-direction: column;      /* <<< THIS IS THE KEY: stack vertically */
-    padding: 40px 20px;          /* reduce horizontal padding on mobile */
-    min-height: auto;            /* remove fixed height on mobile */
-    gap: 40px;                   /* space between top/bottom parts */
-  }
+.uni-content-tile {
+  position: relative;
+  transition: background 0.5s ease;
+  border-radius: 40px;
+  padding: 60px 40px;
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  text-align: center;
+  color: #111;
 
-  /* Both left and right columns become full-width and reorder */
-  .uix-left,
-  .uix-right {
-    width: 100% !important;      /* full width on mobile */
-    padding: 0;                  /* remove extra padding from right column */
-  }
-
-  /* TEXT / RIGHT COLUMN - now appears FIRST (on top) */
-  .uix-right {
-    order: 1;                    /* put text on top */
-    padding: 0 20px 40px 20px;   /* comfortable mobile padding */
-    align-items: center;         /* center everything nicely */
-    text-align: center;          /* center text */
-  }
-
-  .uix-title {
-    font-size: 24px;             /* slightly smaller title on mobile */
-  }
-
-  .uix-pill {
-    font-size: 11px;
-  }
-
-  /* VISUAL / LEFT COLUMN - now appears SECOND (below text) */
-  .uix-left {
-    order: 2;                    /* put phone/chart below text */
-    min-height: 400px;           /* give it some height so phone isn't squashed */
-  }
-
-  /* Phone mockup adjustments for mobile */
-  .uix-phone {
-    width: 80%;                  /* larger phone on mobile for better visibility */
-    max-width: 320px;            /* don't let it get too huge */
-    bottom: -20%;                /* adjust positioning */
-  }
-
-  /* If you have the chart version too */
-  .uix-chart {
-    width: 100%;
-  }
-  .uix-chart svg {
-    height: 200px;               /* slightly smaller chart on mobile */
-  }
+  /* Base fading white background */
+  background: radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.95) 45%,
+      rgba(255, 255, 255, 0.70) 65%,
+      rgba(255, 255, 255, 0.40) 80%,
+      rgba(255, 255, 255, 0) 100%
+  );
+  backdrop-filter: blur(10px);
 }
 
-/* Optional: even smaller phones (iPhone SE etc.) */
-@media (max-width: 480px) {
-  .uix-tile {
+/* Colored glow overlays via pseudo-elements */
+.uni-content-tile.investors-active::before,
+.uni-content-tile.homebuyers-active::before,
+.uni-content-tile.developers-active::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Tab-specific glows */
+.uni-content-tile.investors-active::before {
+  background: radial-gradient(
+    circle at center,
+    rgba(106, 63, 209, 0.20) 0%, 
+    rgba(106, 63, 209, 0.10) 55%,
+    rgba(106, 63, 209, 0) 90%
+  );
+}
+
+.uni-content-tile.homebuyers-active::before {
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 107, 107, 0.20) 0%,
+    rgba(255, 107, 107, 0.10) 55%,
+    rgba(255, 107, 107, 0) 90%
+  );
+}
+
+.uni-content-tile.developers-active::before {
+  background: radial-gradient(
+    circle at center,
+    rgba(29, 209, 161, 0.20) 0%,
+    rgba(29, 209, 161, 0.10) 55%,
+    rgba(29, 209, 161, 0) 90%
+  );
+}
+
+@media (max-width: 800px) {
+  .uni-content-tile {
+    max-width: 100%;
+    border-radius: 0;
+    margin: 0;
     padding: 30px 15px;
   }
-  .uix-right {
-    padding: 0 15px 30px 15px;
-  }
-  .uix-title {
-    font-size: 22px;
-  }
-  .uix-phone {
-    width: 90%;
-  }
 }
 
-
-
-/* ================= Footer Wrapper for Desktop ================= */
-/* ================= Footer Wrapper for Desktop ================= */
-/* ================= Footer Wrapper for Desktop ================= */
-.footer-wrapper {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 40px;
-  width: 100%;
+/* ===============================
+   HEADINGS & TEXT
+================================== */
+.uni-heading-xl {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  line-height: 1.4;
+  color: #111;
 }
 
-/* ================= Footer Container ================= */
-footer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  background: #130328;
-  padding: 100px 0;
-}
-
-/* ================= Top Section (6 Columns) ================= */
-.footer-top {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 40px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* ================= Footer Columns ================= */
-.footer-column {
-  width: 100%;
-}
-
-.footer-column h4 {
-  font-weight: 500;
-  font-size: 14px;
-  margin-bottom: 6px;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: default;
-  padding: 10px 0;
-}
-
-.footer-column h4 .arrow {
-  display: none;
-  font-family: 'Material Symbols Outlined';
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+.uni-subtitle {
   font-size: 18px;
-  transition: transform 0.3s ease;
+  color: #333;
+  margin-bottom: 35px;
+  line-height: 1.6;
 }
 
-.footer-column ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  max-height: none; /* desktop default */
-  transition: max-height 0.3s ease;
+/* ===============================
+   TOGGLE BUTTONS
+================================== */
+.uni-toggle-wrapper {
+  display: inline-flex;
+  background-color: #f7f1ed;
+  border-radius: 45px;
+  padding: 5px;
+  margin-bottom: 35px;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
-.footer-column li {
-  margin-bottom: 6px;
+.uni-toggle-btn {
+  border: none;
+  background-color: #f7f1ed;
+  color: #000;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  padding: 9px 25px;
+  border-radius: 45px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.footer-column a {
-  color: #dbdbdb;
-  text-decoration: none;
-  font-size: 12px;
+.uni-toggle-btn.active {
+  background-color: #fff;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+}
+
+/* ===============================
+   PANELS (Tab Content)
+================================== */
+.uni-panel {
+  position: relative;
+  display: none;
+  border-radius: 30px;
+  max-width: 92%;
+  margin: 0 auto;
+  padding: 40px 35px;
+  color: #111;
+  text-align: left;
+  animation: fadeUp 0.4s ease;
+
+  /* Transparent panel */
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.uni-panel.active {
   display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: color 0.2s;
 }
 
-.footer-column a:hover {
-  color: #fff;
-}
-
-/* ================= Bottom Section ================= */
-.footer-section {
-  padding: 20px 0;
+/* Two-column layout */
+.uni-panel-inner {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  width: 100%;
-  box-sizing: border-box;
-  margin-top: 50px;
-  border-top: 0.25px solid #9999;
+  justify-content: space-between;
+  gap: 38px;
+  flex-wrap: nowrap;
 }
 
-/* ================= Country Selector ================= */
-.flag {
-  width: 21px;
-  height: 13px;
-  border-radius: 2px;
+.uni-panel-text {
+  flex: 1 1 60%;
+}
+
+.uni-panel-image {
+  flex: 1 1 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.uni-panel-image img {
+  width: 100%;
+  max-width: 380px;
+  border-radius: 18px;
   object-fit: cover;
 }
 
-.country-selector {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
+/* ===============================
+   PANEL TEXT STYLES
+================================== */
+.uni-panel h3 {
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 15px;
 }
 
-.country-link {
-  font-size: 12px;
-  color: #fff;
-  text-decoration: none;
-  margin-left: 8px;
+.uni-panel p {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 25px;
+  line-height: 1.7;
 }
 
-.country-popup {
-  position: absolute;
-  background-color: #130328;
-  border: 0.3px solid #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  padding: 10px;
-  z-index: 100;
-  min-width: 180px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  transform: translateY(-10px);
+/* ===============================
+   LIST STYLES
+================================== */
+.uni-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.country-popup.open {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-.country-option {
+.uni-list li {
   display: flex;
   align-items: center;
-  padding: 6px 8px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
-  transition: background 0.2s;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #333;
 }
 
-.country-option:hover {
-  background-color: #333;
-}
-
-.country-option img {
-  width: 20px;
-  height: 13px;
-  margin-right: 8px;
-  border-radius: 2px;
-}
-
-/* ================= Social Icons ================= */
-.social-icons a {
-  margin-right: 10px;
-  margin-top: 6px;
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-}
-
-.social-icons a img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  filter: brightness(0) invert(1);
-  transition: transform 0.2s;
-}
-
-.social-icons a:hover img {
-  transform: scale(1.1);
-}
-
-/* ================= Privacy Section ================= */
-.privacy {
+.uni-list li::before {
+  content: "✓";
   display: flex;
   align-items: center;
-  font-size: 12px;
-  margin-left: auto;
-  margin-right: 15px;
-  color: #fff;
-  cursor: pointer;
-  position: relative;
-}
-
-.privacy-icon {
-  width: 20px;
-  height: 20px;
-  margin-left: 5px;
-}
-
-.privacy-popup {
-  position: absolute;
-  background-color: #130328;
-  border: 0.3px solid #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  padding: 12px 16px;
-  z-index: 200;
-  width: 230px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  font-size: 12px;
-  transform: translateY(-10px);
-}
-
-.privacy-popup.open {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-.privacy-popup h4 {
-  margin: 0 0 10px;
-  font-size: 13px;
-  color: #fff;
-}
-
-.privacy-option {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-  cursor: pointer;
-}
-
-.privacy-option input {
-  margin-right: 8px;
-}
-
-.privacy-popup button {
-  background-color: #4e2b9a;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-  font-size: 12px;
-  margin-top: 8px;
-}
-
-.privacy-popup button:hover {
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
   background-color: #6a3fd1;
-}
-
-/* ================= Copyright ================= */
-.copyright {
-  font-size: 12px;
   color: #fff;
+  font-size: 14px;
+  flex-shrink: 0;
 }
 
-/* ================= Bubble ================= */
-.hiring-bubble {
+/* Optional: different colors for each tab */
+#investors .uni-list li::before {
   background-color: #6327e5;
-  color: #fff;
-  font-size: 7px;
-  font-weight: 400;
-  padding: 2px 4px;
-  border-radius: 4px;
-  margin-left: 5px;
-  display: inline-block;
-  vertical-align: middle;
 }
 
-/* ================= Fade Animation ================= */
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(10px);}
-  to {opacity: 1; transform: translateY(0);}
+#homebuyers .uni-list li::before {
+  background-color: #ff6b6b;
 }
 
+#developers .uni-list li::before {
+  background-color: #1dd1a1;
+}
 
-/* ================= Mobile Footer Accordion ================= */
-@media (max-width: 600px) {
-  /* easy control variables */
-  :root {
-    --footer-gap-mobile: 10px; /* space between categories */
-    --accordion-padding: 10px;  /* left/right padding for header and links */
-    --accordion-link-gap: 5px;  /* spacing between links inside a category */
-  }
+/* ===============================
+   ANIMATIONS
+================================== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-  .footer-wrapper {
-    padding: 0 10px;
-  }
-
-  .footer-top {
-    display: flex;
+/* ===============================
+   RESPONSIVE
+================================== */
+@media (max-width: 900px) {
+  .uni-panel-inner {
     flex-direction: column;
-    gap: var(--footer-gap-mobile); /* vertical spacing between columns */
+    align-items: center;
   }
 
-  .footer-column h4 {
-    cursor: pointer;
-    padding-left: var(--accordion-padding);
-    padding-right: var(--accordion-padding);
-    margin: 0; /* remove extra margin */
+  .uni-panel-text,
+  .uni-panel-image {
+    flex: 1 1 100%;
   }
 
-  .footer-column h4 .arrow {
-    display: inline-block;
-    transition: transform 0.3s ease;
+  .uni-panel-image img {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .uni-heading-xl {
+    font-size: 22px;
   }
 
-  .footer-column ul {
-    list-style: none;
-    margin: 0;
-    padding-left: var(--accordion-padding); /* align links with header */
-    padding-top: 0;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.3s ease, padding-top 0.3s ease;
+  .uni-toggle-btn {
+    font-size: 14px;
+    padding: 8px 16px;
   }
 
-  /* Active accordion: expand dynamically without freezing scroll */
-  .footer-column.active ul {
-    max-height: 999px; /* large enough for all links */
-    padding-top: 5px;
+  .uni-panel {
+    padding: 25px 20px;
   }
 
-  .footer-column ul li {
-    margin-bottom: var(--accordion-link-gap);
-  }
-
-  .footer-column.active h4 .arrow {
-    transform: rotate(180deg);
-  }
-
-  .footer-column {
-    border-bottom: none;
-  }
-
-  /* Popups fixed: hide completely when closed to prevent scroll blocking */
-  .country-popup,
-  .privacy-popup {
-    position: absolute;
-    display: none;        /* hide fully when closed */
-    opacity: 0;
-    pointer-events: none;
-    bottom: auto !important;
-    top: -10px;
-    left: 50%;
-    transform: translate(-50%, -10px);
-    width: auto;
-    min-width: 180px;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-    z-index: 9999;
-  }
-
-  .country-popup.open,
-  .privacy-popup.open {
-    display: block;       /* show when open */
-    opacity: 1;
-    pointer-events: auto;
-    transform: translate(-50%, 0);
+  .uni-list li img {
+    width: 24px;
+    height: 24px;
   }
 }
