@@ -200,9 +200,8 @@ a {
 
 /* Hide on mobile */
 @media (max-width: 800px) {
-  .hero-img.right-img,
-  .hero-overlay {
-    display: none;
+   .hero-col.right {
+    display: none; 
   }
 }
 
