@@ -68,3 +68,21 @@
     </div>
   </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const tile = document.querySelector(".uni-content-tile");
+  const buttons = document.querySelectorAll(".uni-toggle-btn");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      tile.classList.remove("investors-active", "homebuyers-active", "developers-active");
+
+      const target = btn.getAttribute("data-tab");  /* ← FIX HERE */
+      if (target === "investors") tile.classList.add("investors-active");
+      if (target === "homebuyers") tile.classList.add("homebuyers-active");
+      if (target === "developers") tile.classList.add("developers-active");
+    });
+  });
+});
+</script>
