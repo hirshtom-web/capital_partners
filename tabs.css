@@ -22,9 +22,10 @@ html, body {
 }
 
 /* ===============================
-   CONTENT TILE
+   CONTENT TILE (MAIN CONTAINER)
 ================================== */
 .uni-content-tile {
+  position: relative;
   width: 100%;
   background-color: #f8f7f5;
   border-radius: 40px;
@@ -33,6 +34,50 @@ html, body {
   padding: 60px 40px;
   text-align: center;
   color: #111;
+  overflow: hidden; /* important for glow */
+}
+
+/* GLOW LAYER (BASE) */
+.uni-content-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  transition: background 0.5s ease;
+  background: radial-gradient(
+    circle at center,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0) 100%
+  );
+}
+
+/* Glow styles per tab */
+.uni-content-tile.investors-active::before {
+  background: radial-gradient(
+    circle at center,
+    rgba(106, 63, 209, 0.25) 0%,
+    rgba(106, 63, 209, 0.10) 55%,
+    rgba(106, 63, 209, 0) 90%
+  );
+}
+
+.uni-content-tile.homebuyers-active::before {
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 107, 107, 0.25) 0%,
+    rgba(255, 107, 107, 0.10) 55%,
+    rgba(255, 107, 107, 0) 90%
+  );
+}
+
+.uni-content-tile.developers-active::before {
+  background: radial-gradient(
+    circle at center,
+    rgba(29, 209, 161, 0.25) 0%,
+    rgba(29, 209, 161, 0.10) 55%,
+    rgba(29, 209, 161, 0) 90%
+  );
 }
 
 @media (max-width: 800px) {
@@ -107,18 +152,17 @@ html, body {
   text-align: left;
   animation: fadeUp 0.4s ease;
 
-  /* New fading white background */
+  /* Neutral soft white fade background */
   background: radial-gradient(
-      circle at center,
-      rgba(255, 255, 255, 0.95) 45%,
-      rgba(255, 255, 255, 0.70) 65%,
-      rgba(255, 255, 255, 0.40) 80%,
-      rgba(255, 255, 255, 0) 100%
+    circle at center,
+    rgba(255,255,255,0.95) 45%,
+    rgba(255,255,255,0.70) 65%,
+    rgba(255,255,255,0.40) 80%,
+    rgba(255,255,255,0) 100%
   );
   
   backdrop-filter: blur(10px);
 }
-
 
 .uni-panel.active {
   display: block;
@@ -150,48 +194,6 @@ html, body {
   border-radius: 18px;
   object-fit: cover;
 }
-#investors.uni-panel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-
-  background: radial-gradient(
-    circle at center,
-    rgba(106, 63, 209, 0.20) 0%, 
-    rgba(106, 63, 209, 0.10) 55%,
-    rgba(106, 63, 209, 0) 90%
-  );
-}
-#homebuyers.uni-panel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-
-  background: radial-gradient(
-    circle at center,
-    rgba(255, 107, 107, 0.20) 0%,
-    rgba(255, 107, 107, 0.10) 55%,
-    rgba(255, 107, 107, 0) 90%
-  );
-}
-#developers.uni-panel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-
-  background: radial-gradient(
-    circle at center,
-    rgba(29, 209, 161, 0.20) 0%,
-    rgba(29, 209, 161, 0.10) 55%,
-    rgba(29, 209, 161, 0) 90%
-  );
-}
 
 /* ===============================
    PANEL TEXT STYLES
@@ -214,7 +216,6 @@ html, body {
 /* ===============================
    LIST STYLES
 ================================== */
-/* Style the list */
 .uni-list {
   list-style: none;
   padding: 0;
@@ -224,28 +225,28 @@ html, body {
 .uni-list li {
   display: flex;
   align-items: center;
-  gap: 10px; /* space between bubble and text */
+  gap: 10px;
   margin-bottom: 10px;
   font-size: 14px;
   color: #333;
 }
 
-/* Circle bubble with checkmark */
+/* Default check bubble */
 .uni-list li::before {
-  content: "✓";               /* checkmark symbol */
+  content: "✓";
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;                /* size of the bubble */
+  width: 24px;
   height: 24px;
-  border-radius: 50%;         /* makes it a circle */
-  background-color: #6a3fd1;  /* bubble color (purple example) */
-  color: #fff;                 /* checkmark color */
+  border-radius: 50%;
+  background-color: #6a3fd1;
+  color: #fff;
   font-size: 14px;
-  flex-shrink: 0;              /* prevent shrinking */
+  flex-shrink: 0;
 }
 
-/* Optional: different colors for each tab */
+/* Tab-specific bubble colors */
 #investors .uni-list li::before {
   background-color: #6327e5;
 }
@@ -257,7 +258,6 @@ html, body {
 #developers .uni-list li::before {
   background-color: #1dd1a1;
 }
-
 
 /* ===============================
    ANIMATIONS
