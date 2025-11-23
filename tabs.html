@@ -73,16 +73,25 @@
 document.addEventListener("DOMContentLoaded", function () {
   const tile = document.querySelector(".uni-content-tile");
   const buttons = document.querySelectorAll(".uni-toggle-btn");
+  const panels = document.querySelectorAll(".uni-panel");
 
   buttons.forEach(btn => {
     btn.addEventListener("click", () => {
-      tile.classList.remove("investors-active", "homebuyers-active", "developers-active");
+      const tab = btn.getAttribute("data-tab");
 
-      const target = btn.getAttribute("data-tab");  /* ← FIX HERE */
-      if (target === "investors") tile.classList.add("investors-active");
-      if (target === "homebuyers") tile.classList.add("homebuyers-active");
-      if (target === "developers") tile.classList.add("developers-active");
+      // Toggle active button
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      // Toggle panel display
+      panels.forEach(p => p.classList.remove("active"));
+      document.getElementById(tab).classList.add("active");
+
+      // Toggle tile background glow
+      tile.classList.remove("investors-active", "homebuyers-active", "developers-active");
+      tile.classList.add(`${tab}-active`);
     });
   });
 });
+
 </script>
