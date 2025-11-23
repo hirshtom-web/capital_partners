@@ -166,7 +166,7 @@ a {
 
 /* Right image adjustments */
 .hero-img.right-img {
-  width: 220px;              /* slightly smaller */
+  width: 150px;              /* slightly smaller */
   height: auto;
   transform: rotate(6deg);  /* slight tilt */
   margin-top: 10px;         /* adjust vertical */
@@ -181,7 +181,7 @@ a {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 20px; /* optional */
+  border-radius: 0; /* optional */
 }
 
 /* Overlay SVG on top-left */
@@ -189,7 +189,7 @@ a {
   position: absolute;
   top: 0;       /* top of main image */
   left: 0;      /* left corner */
-  width: 100px; /* fixed width */
+  width: 70px; /* fixed width */
   height: auto;
   z-index: 10;  /* ensure on top */
 }
