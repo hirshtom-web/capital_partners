@@ -175,6 +175,7 @@ a {
   width: 150px;
   height: auto;
   border-radius: 20px; /* optional */
+  margin-right: -10px; /* moves it 10px to the right */
 }
 
 /* Overlay SVG */
