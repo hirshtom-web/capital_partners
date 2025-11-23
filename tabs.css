@@ -100,12 +100,13 @@ html, body {
    HEADINGS & TEXT
 ================================== */
 .uni-heading-xl {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 600;
   margin-bottom: 15px;
   line-height: 1.4;
   color: #111;
 }
+  
 
 .uni-subtitle {
   font-size: 18px;
