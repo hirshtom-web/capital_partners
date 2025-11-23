@@ -240,11 +240,11 @@ html, body {
 }
 
 .uni-panel-text {
-  flex: 1 1 60%;
+  flex: 1 1 30%; /* smaller text area */
 }
 
 .uni-panel-image {
-  flex: 1 1 35%;
+  flex: 1 1 70%; /* image takes 70% */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -252,8 +252,8 @@ html, body {
 
 .uni-panel-image img {
   width: 100%;
-  max-width: 380px;
-  border-radius: 18px;
+  max-width: 680px; /* optional limit */
+  border-radius: 0;
   object-fit: cover;
 }
 
