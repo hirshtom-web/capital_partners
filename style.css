@@ -198,10 +198,27 @@ a {
   100% { transform: translate(0, 0) rotate(0deg); }
 }
 
-/* Hide on mobile */
+/* Hero layout */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Columns */
+.hero-col {
+  flex: 1;
+}
+
+/* Right column with image hidden on mobile */
 @media (max-width: 800px) {
-   .hero-col.right {
-    display: none; 
+  .hero {
+    flex-direction: column; /* stack vertically */
+    text-align: center;     /* center text/title */
+  }
+  .hero-col.right {
+    display: none;          /* hide right image column */
   }
 }
 
