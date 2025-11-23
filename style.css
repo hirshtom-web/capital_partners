@@ -173,8 +173,8 @@ a {
   margin-right: -15px;      /* adjust horizontal */
 }
 .hero-col.right {
-  position: relative; /* necessary for absolute positioning of overlay */
-  display: inline-block; 
+  position: relative; /* Required for absolute positioning */
+  display: inline-block;
 }
 
 .hero-img.right-img {
@@ -184,17 +184,15 @@ a {
   border-radius: 20px; /* optional */
 }
 
-/* Overlay SVG */
+/* Overlay SVG on top-left */
 .hero-overlay {
   position: absolute;
-  top: 0;               /* align to top of image */
-  left: 15%;            /* 15% from left inside image */
-  width: auto;
-  max-width: 120px;     /* adjust size */
+  top: 0;       /* top of main image */
+  left: 0;      /* left corner */
+  width: 100px; /* fixed width */
   height: auto;
-  z-index: 5;
+  z-index: 10;  /* ensure on top */
 }
-
 
 /* ==================================
    TRUSTED SECTION
