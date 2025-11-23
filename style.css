@@ -496,13 +496,15 @@ a {
   border-radius: 40px;
   box-shadow: 0 15px 25px rgba(0,0,0,0.15);
   position: absolute;
-  bottom: -30%;
+  bottom: 0;              /* fixed anchor */
+  transform: translateY(30%); /* moves down without depending on parent height */
   display: flex;
   flex-direction: column;
   padding: 10px 15px;
   box-sizing: border-box;
   overflow: hidden;
 }
+
 
 .uix-phone-img {
   width: 40px;
