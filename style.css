@@ -493,7 +493,6 @@ a {
 .uix-phone {
   width: 65%;
   aspect-ratio: 11/19;
-  min-height: calc(65vw * 19 / 11); /* 👈 fixes sliding */
   background: #fefefe;
   border-radius: 40px;
   box-shadow: 0 15px 25px rgba(0,0,0,0.15);
@@ -502,9 +501,9 @@ a {
   display: flex;
   flex-direction: column;
   padding: 10px 15px;
-  overflow: hidden; /* stops vertical pushing */
+  box-sizing: border-box;
+  overflow: hidden;
 }
-
 
 /* CHAT WRAPPER */
 .uix-chat-wrapper {
