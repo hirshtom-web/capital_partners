@@ -114,35 +114,96 @@ html, body {
   line-height: 1.6;
 }
 
+
 /* ===============================
-   TOGGLE BUTTONS
+   MODERN TAB BUTTONS
 ================================== */
+
 .uni-toggle-wrapper {
   display: inline-flex;
-  background-color: #f7f1ed;
-  border-radius: 45px;
-  padding: 5px;
-  margin-bottom: 35px;
-  gap: 6px;
-  flex-wrap: wrap;
+  background: rgba(247, 241, 237, 0.6);
+  border-radius: 50px;
+  padding: 8px;
+  gap: 10px;
+  backdrop-filter: blur(10px);
 }
 
+/* Base button */
 .uni-toggle-btn {
-  border: none;
-  background-color: #f7f1ed;
-  color: #000;
-  font-family: 'Rubik', sans-serif;
-  font-weight: 500;
-  font-size: 17px;
-  padding: 9px 25px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 26px 12px 22px;
+  font-size: 16px;
+  font-weight: 600;
   border-radius: 45px;
+  border: none;
+  background: rgba(255,255,255,0.6);
+  color: #111;
+
   cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: 
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.2s ease;
 }
 
+/* Soft bubble glow behind */
+.uni-toggle-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Icons inside buttons */
+.uni-toggle-btn .icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.8;
+}
+
+
+
+/* ----- TAB COLORS ----- */
+.uni-toggle-btn[data-tab="investors"]::before {
+  background: radial-gradient(circle at center,
+    rgba(106, 63, 209, 0.35),
+    rgba(106, 63, 209, 0.1),
+    transparent
+  );
+}
+
+.uni-toggle-btn[data-tab="homebuyers"]::before {
+  background: radial-gradient(circle at center,
+    rgba(255, 107, 107, 0.35),
+    rgba(255, 107, 107, 0.1),
+    transparent
+  );
+}
+
+.uni-toggle-btn[data-tab="developers"]::before {
+  background: radial-gradient(circle at center,
+    rgba(29, 209, 161, 0.35),
+    rgba(29, 209, 161, 0.1),
+    transparent
+  );
+}
+
+/* ACTIVE STATE */
 .uni-toggle-btn.active {
-  background-color: #fff;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  transform: translateY(-1px);
+}
+
+.uni-toggle-btn.active::before {
+  opacity: 1;
 }
 
 /* ===============================
