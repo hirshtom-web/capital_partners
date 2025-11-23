@@ -30,8 +30,9 @@ html, body {
 .uni-content-tile {
   position: relative;
   border-radius: 40px;
+  max-width: 1400px;  /* or whatever maximum width you want */
+  width: calc(100% - 80px); /* allows for 40px padding on each side */
   padding: 60px 40px;
-  max-width: 1400px;
   margin: 0 auto 40px;
   text-align: center;
   color: #111;
