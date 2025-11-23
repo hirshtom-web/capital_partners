@@ -30,7 +30,7 @@ html, body {
 .uni-content-tile {
   position: relative;
   border-radius: 40px;
-  padding: 60px 20px;
+  padding: 60px 40px;
   max-width: 1400px;
   margin: 0 auto 40px;
   text-align: center;
