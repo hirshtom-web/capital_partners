@@ -294,20 +294,23 @@ html, body {
 }
 
 .uni-list li::before {
-  content: "✓";
+  content: "";
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #6a3fd1;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background-color: #6a3fd1;
-  color: #fff;
-  font-size: 14px;
-  flex-shrink: 0;
+
+  /* Google-style clean checkmark */
+  mask: url("https://www.svgrepo.com/download/533266/check.svg") center/70% no-repeat;
+  -webkit-mask: url("https://www.svgrepo.com/download/533266/check.svg") center/70% no-repeat;
+  background-color: #ffffff;
+
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
 
-/* Optional: different colors for each tab */
 #investors .uni-list li::before {
   background-color: #6327e5;
 }
@@ -319,6 +322,7 @@ html, body {
 #developers .uni-list li::before {
   background-color: #1dd1a1;
 }
+
 
 /* ===============================
    ANIMATIONS
