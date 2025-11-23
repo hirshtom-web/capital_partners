@@ -1,25 +1,36 @@
 <div class="uni-section-shell">
   <div class="uni-content-tile">
-    <p class="uni-subtitle">Real-estate buying, simplyfied.</p>
+    <p class="uni-subtitle">Real-estate buying, simplified.</p>
 
-<div class="uni-toggle-wrapper">
+    <!-- TOGGLE BUTTONS -->
+    <div class="uni-toggle-wrapper">
 
-  <button class="uni-toggle-btn active" data-tab="investors">
-    Investors
-    <img class="icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png" alt="">
-  </button>
+      <button class="uni-toggle-btn active" data-tab="searching">
+        Searching
+        <img class="icon" src="https://cdn-icons-png.flaticon.com/512/622/622669.png">
+      </button>
 
-  <button class="uni-toggle-btn" data-tab="homebuyers">
-    Homebuyers
-    <img class="icon" src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="">
-  </button>
+      <button class="uni-toggle-btn" data-tab="offers">
+        Offers
+        <img class="icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png">
+      </button>
 
-  <button class="uni-toggle-btn" data-tab="developers">
-    Developers
-    <img class="icon" src="https://cdn-icons-png.flaticon.com/512/1248/1248637.png" alt="">
-  </button>
+      <button class="uni-toggle-btn" data-tab="contracts">
+        Contracts
+        <img class="icon" src="https://cdn-icons-png.flaticon.com/512/1250/1250615.png">
+      </button>
 
-</div>
+      <button class="uni-toggle-btn" data-tab="financing">
+        Financing
+        <img class="icon" src="https://cdn-icons-png.flaticon.com/512/1170/1170576.png">
+      </button>
+
+      <button class="uni-toggle-btn" data-tab="closing">
+        Closing
+        <img class="icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png">
+      </button>
+
+    </div>
 
 
     <!-- Panels -->
@@ -134,15 +145,13 @@ document.addEventListener("DOMContentLoaded", function () {
       buttons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
 
-      // Toggle panel display
+      // Toggle panels
       panels.forEach(p => p.classList.remove("active"));
       document.getElementById(tab).classList.add("active");
 
-      // Toggle tile background glow
-      tile.classList.remove("investors-active", "homebuyers-active", "developers-active");
-      tile.classList.add(`${tab}-active`);
+      // Background glow
+      tile.className = `uni-content-tile ${tab}-active`;
     });
   });
 });
-
 </script>
