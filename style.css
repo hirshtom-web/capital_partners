@@ -166,13 +166,34 @@ a {
 
 /* Right image adjustments */
 .hero-img.right-img {
-  width: 135px;              /* slightly smaller */
-  height: 210px;
+  width: 220px;              /* slightly smaller */
+  height: auto;
   transform: rotate(6deg);  /* slight tilt */
   margin-top: 10px;         /* adjust vertical */
   margin-right: -15px;      /* adjust horizontal */
 }
+.hero-col.right {
+  position: relative; /* necessary for absolute positioning of overlay */
+  display: inline-block; 
+}
 
+.hero-img.right-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 20px; /* optional */
+}
+
+/* Overlay SVG */
+.hero-overlay {
+  position: absolute;
+  top: 0;               /* align to top of image */
+  left: 15%;            /* 15% from left inside image */
+  width: auto;
+  max-width: 120px;     /* adjust size */
+  height: auto;
+  z-index: 5;
+}
 
 
 /* ==================================
