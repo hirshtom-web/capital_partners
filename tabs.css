@@ -361,3 +361,16 @@ html, body {
     height: 24px;
   }
 }
+
+/* FORCE LEFT ALIGNMENT FOR ALL TAB TEXT AREAS */
+.uni-content-tile,
+.uni-panel,
+.uni-panel-text,
+.uni-list li {
+  text-align: left !important;
+  direction: ltr !important;
+}
+
+.uni-list li {
+  justify-content: flex-start !important;
+}
