@@ -11,14 +11,13 @@ html, body {
   background: #1e0949;
   color: #000;
 }
-
 /* ===============================
    SECTION AREA
 ================================== */
 .uni-section-shell {
   background-color: #fff;
   color: #111;
-  padding: 80px 0 20px 0;
+  padding: 80px 0 20px 0; 
 }
 
 /* ===============================
@@ -30,10 +29,15 @@ html, body {
   border-radius: 40px;
   max-width: 1300px;
   margin: 0 auto 60px;
-  padding: 60px 0 60px 40px;
+  padding: 60px 0;
+  padding-left: 40px;
   text-align: center;
-  position: relative;
   color: #111;
+}
+
+/* ===============================
+
+  /* base fading white background */
   background: radial-gradient(
     circle at center,
     rgba(255, 255, 255, 0.9) 30%,
@@ -45,11 +49,9 @@ html, body {
 }
 
 /* Tab-specific colored glows */
-.uni-content-tile.searching-active::before,
-.uni-content-tile.offers-active::before,
-.uni-content-tile.contracts-active::before,
-.uni-content-tile.financing-active::before,
-.uni-content-tile.closing-active::before {
+.uni-content-tile.investors-active::before,
+.uni-content-tile.homebuyers-active::before,
+.uni-content-tile.developers-active::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -58,26 +60,66 @@ html, body {
   z-index: 1;
 }
 
-.uni-content-tile.searching-active::before {
-  background: radial-gradient(circle at center, rgba(106,63,209,0.35) 0%, rgba(106,63,209,0.15) 40%, rgba(106,63,209,0) 100%);
+.uni-content-tile.investors-active::before {
+  background: radial-gradient(circle at center,
+    rgba(106, 63, 209, 0.35) 0%,
+    rgba(106, 63, 209, 0.15) 40%,
+    rgba(106, 63, 209, 0) 100%);
 }
 
-.uni-content-tile.offers-active::before {
-  background: radial-gradient(circle at center, rgba(255,107,107,0.35) 0%, rgba(255,107,107,0.15) 40%, rgba(255,107,107,0) 100%);
+.uni-content-tile.homebuyers-active::before {
+  background: radial-gradient(circle at center,
+    rgba(255, 107, 107, 0.35) 0%,
+    rgba(255, 107, 107, 0.15) 40%,
+    rgba(255, 107, 107, 0) 100%);
 }
 
-.uni-content-tile.contracts-active::before {
-  background: radial-gradient(circle at center, rgba(29,209,161,0.35) 0%, rgba(29,209,161,0.15) 40%, rgba(29,209,161,0) 100%);
+.uni-content-tile.developers-active::before {
+  background: radial-gradient(circle at center,
+    rgba(29, 209, 161, 0.35) 0%,
+    rgba(29, 209, 161, 0.15) 40%,
+    rgba(29, 209, 161, 0) 100%);
 }
 
-.uni-content-tile.financing-active::before {
-  background: radial-gradient(circle at center, rgba(255,180,0,0.35) 0%, rgba(255,180,0,0.15) 40%, rgba(255,180,0,0) 100%);
+/* Make panels fully transparent */
+.uni-panel {
+  background: transparent;
+  backdrop-filter: none;
 }
 
-.uni-content-tile.closing-active::before {
-  background: radial-gradient(circle at center, rgba(0,150,255,0.35) 0%, rgba(0,150,255,0.15) 40%, rgba(0,150,255,0) 100%);
+
+@media (max-width: 800px) {
+  .uni-content-tile {
+    max-width: 100%;
+    border-radius: 0;
+    margin: 0;
+    padding: 30px 15px;
+  }
 }
 
+/* ===============================
+   HEADINGS & TEXT
+================================== */
+.uni-heading-xl {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 50px;
+  line-height: 1.4;
+  color: #111;
+}
+  
+
+.uni-subtitle {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 35px;
+  line-height: 1.6;
+}
+
+
+/* ===============================
+   MODERN TAB BUTTONS
+================================== */
 /* ===============================
    MODERN TAB BUTTONS
 ================================== */
@@ -96,61 +138,84 @@ html, body {
   font-weight: 500;
   border-radius: 40px;
   background: transparent;
-  border: 2px solid rgba(0,0,0,0.2);
+  border: 2px solid rgba(0,0,0,0.2); /* thin default border */
   color: #111;
   cursor: pointer;
-  transition: border-color 0.25s, color 0.25s, box-shadow 0.25s;
+  transition: border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
 }
-
 .uni-toggle-btn .icon {
   display: inline-block;
   width: 18px;
   height: 18px;
-  object-fit: contain;
+  object-fit: contain;   /* ensures SVG/images scale properly */
+  vertical-align: middle;
   flex-shrink: 0;
 }
 
+
+/* Active state: bold + thicker border */
 .uni-toggle-btn.active {
   font-weight: 700;
   border-width: 3px;
 }
 
 /* Active tab colors + glow */
-.uni-toggle-btn.active[data-tab="searching"] { border-color: #6a3fd1; box-shadow: 0 0 10px rgba(106,63,209,0.7); }
-.uni-toggle-btn.active[data-tab="offers"] { border-color: #ff6b6b; box-shadow: 0 0 10px rgba(255,107,107,0.7); }
-.uni-toggle-btn.active[data-tab="contracts"] { border-color: #1dd1a1; box-shadow: 0 0 10px rgba(29,209,161,0.7); }
-.uni-toggle-btn.active[data-tab="financing"] { border-color: #ffb400; box-shadow: 0 0 10px rgba(255,180,0,0.7); }
-.uni-toggle-btn.active[data-tab="closing"] { border-color: #0096ff; box-shadow: 0 0 10px rgba(0,150,255,0.7); }
+.uni-toggle-btn.active[data-tab="investors"] {
+  border-color: #6a3fd1;
+  box-shadow: 0 0 10px rgba(106,63,209,0.7);
+}
 
-.uni-toggle-btn:hover { border-color: currentColor; box-shadow: 0 0 6px rgba(0,0,0,0.1); }
+.uni-toggle-btn.active[data-tab="homebuyers"] {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 10px rgba(255,107,107,0.7);
+}
+
+.uni-toggle-btn.active[data-tab="developers"] {
+  border-color: #1dd1a1;
+  box-shadow: 0 0 10px rgba(29,209,161,0.7);
+}
+
+/* Optional: hover effect */
+.uni-toggle-btn:hover {
+  border-color: currentColor;
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
+}
+
 
 /* ===============================
-   PANELS
+   PANELS (Tab Content)
 ================================== */
+/* PANELS */
 .uni-panel {
-  display: none;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  color: #111;
   position: relative;
+  display: none;
+  width: 100%;        /* full width */
+  margin: 0;
+  padding: 0;         /* remove internal padding */
+  border-radius: 0;
+  color: #111;
   background: transparent;
   animation: fadeUp 0.4s ease;
 }
 
-.uni-panel.active { display: block; }
+.uni-panel.active {
+  display: block;
+}
 
 .uni-panel-inner {
+  width: 100%;        /* ensures full-width content */
+  max-width: none;
   display: flex;
-  align-items: flex-end; /* push content slightly down */
+  align-items: center;
   justify-content: space-between;
-  width: 100%;
-  gap: 20px;
+  gap: 0;
 }
+
 
 .uni-panel-text {
   flex: 1 1 50%;
 }
+
 
 .uni-panel-image {
   flex: 1 1 50%;
@@ -158,22 +223,44 @@ html, body {
   justify-content: center;
 }
 
+
 .uni-panel-image img {
   width: 100%;
   height: auto;
   object-fit: cover;
+  border-radius: 0;
 }
+
+
 
 /* ===============================
    PANEL TEXT STYLES
 ================================== */
-.uni-panel h3 { font-size: 24px; font-weight: 600; line-height: 1.4; margin-bottom: 15px; }
-.uni-panel p { font-size: 16px; color: #444; margin-bottom: 25px; line-height: 1.7; }
+.uni-panel h3 {
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 15px;
+}
+
+.uni-panel p {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 25px;
+  line-height: 1.7;
+}
 
 /* ===============================
    LIST STYLES
 ================================== */
-.uni-list { list-style: none; padding: 0; margin: 0; }
+
+.uni-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .uni-list li {
   display: flex;
   align-items: center;
@@ -181,68 +268,96 @@ html, body {
   margin-bottom: 10px;
   font-size: 14px;
   color: #333;
-  justify-content: flex-start;
 }
 
+/* Default list bubble */
 .uni-list li::before {
   content: "";
   width: 22px;
   height: 22px;
   border-radius: 50%;
+
+  /* Color is overridden by tab-specific rules below */
+  background-color: #6a3fd1;
+
+  /* Checkmark icon using mask */
+  mask: url("https://www.svgrepo.com/download/533266/check.svg") center/70% no-repeat;
+  -webkit-mask: url("https://www.svgrepo.com/download/533266/check.svg") center/70% no-repeat;
+
+  /* The visible check color */
+  background: #ffffff;
+
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  mask: url("https://www.svgrepo.com/download/533266/check.svg") center/70% no-repeat;
-  -webkit-mask: url("https://www.svgrepo.com/download/533266/check.svg") center/70% no-repeat;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
 
-/* List bubble colors by tab */
-#searching .uni-list li::before { background-color: #6a3fd1; }
-#offers .uni-list li::before { background-color: #ff6b6b; }
-#contracts .uni-list li::before { background-color: #1dd1a1; }
-#financing .uni-list li::before { background-color: #ffb400; }
-#closing .uni-list li::before { background-color: #0096ff; }
-
-/* ===============================
-   KEYWORD BUBBLES
-================================== */
-.uni-keyword {
-  display: inline-block;
-  padding: 6px 16px;
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 12px;
-  line-height: 1;
-  white-space: nowrap;
+/* Investors tab color */
+#investors .uni-list li::before {
+  background-color: #6327e5 !important;
 }
 
-.uni-keyword.searching { background: #6a3fd1; }
-.uni-keyword.offers { background: #ff6b6b; }
-.uni-keyword.contracts { background: #1dd1a1; }
-.uni-keyword.financing { background: #ffb400; }
-.uni-keyword.closing { background: #0096ff; }
+/* Homebuyers tab color */
+#homebuyers .uni-list li::before {
+  background-color: #ff6b6b !important;
+}
+
+/* Developers tab color */
+#developers .uni-list li::before {
+  background-color: #1dd1a1 !important;
+}
+
+/* OPTIONAL: If you now also have FINANCING tab */
+#financing .uni-list li::before {
+  background-color: #ffb400 !important;
+}
+
+
 
 /* ===============================
    ANIMATIONS
 ================================== */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 /* ===============================
    RESPONSIVE
 ================================== */
 @media (max-width: 900px) {
-  .uni-panel-inner { flex-direction: column; align-items: center; }
-  .uni-panel-text, .uni-panel-image { flex: 1 1 100%; }
-  .uni-panel-image img { max-width: 100%; }
+  .uni-panel-inner {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .uni-panel-text,
+  .uni-panel-image {
+    flex: 1 1 100%;
+  }
+
+  .uni-panel-image img {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 600px) {
-  .uni-heading-xl { font-size: 22px; }
-  .uni-toggle-btn { font-size: 14px; padding: 8px 16px; }
-  .uni-panel { padding: 25px 20px; }
-  .uni-list li img { width: 24px; height: 24px; }
+  .uni-heading-xl {
+    font-size: 22px;
+  }
+
+  .uni-toggle-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .uni-panel {
+    padding: 25px 20px;
+  }
+
+  .uni-list li img {
+    width: 24px;
+    height: 24px;
+  }
 }
