@@ -113,9 +113,10 @@ body {
 }
 
 .property-grid-wrapper.map-layout {
-  width: 50%;
-  float: right;
+  flex: 1;
+  max-width: 50%;
 }
+
 
 /* Grid wrapper */
 .property-grid-wrapper {
