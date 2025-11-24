@@ -472,3 +472,75 @@ body {
     grid-template-columns: 1fr !important;
   }
 }
+
+
+
+    /* --- Mobile Floating Buttons --- */
+    @media (max-width: 768px) {
+      .mobile-actions {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        gap: 12px;
+        z-index: 1000;
+      }
+      .mobile-actions button {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: none;
+        background: #ff1c7c;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      .mobile-actions button:hover {
+        background: #e60070;
+      }
+
+      .filters-bar, .view-toggle {
+        display: none !important;
+      }
+
+      .main-content.grid-only #map,
+      .main-content.map-only .property-grid-wrapper {
+        display: none !important;
+      }
+
+      .main-content.grid-only .property-grid-wrapper {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+
+      .mobile-filters-popup {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1500;
+      }
+      .mobile-filters-popup .popup-content {
+        background: #fff;
+        border-radius: 16px;
+        padding: 20px;
+        width: 90%;
+        max-width: 400px;
+        position: relative;
+      }
+      .mobile-filters-popup .close-popup {
+        position: absolute;
+        top: 10px;
+        right: 14px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+      }
+    }
