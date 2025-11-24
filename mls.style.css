@@ -27,7 +27,6 @@ body {
   margin: 0 auto;
 }
 
-/* ---------------- VIEW TOGGLE ---------------- */
 .view-toggle {
   display: flex;
   gap: 10px;
@@ -38,11 +37,11 @@ body {
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 6px 10px;
+  padding: 6px 14px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 6px;
   transition: all 0.3s;
 }
 
@@ -51,10 +50,17 @@ body {
   color: #ff1c7c;
 }
 
+
 .view-toggle button:hover {
   background: #ffe6f0;
   border-color: #ff1c7c;
 }
+.view-toggle button i {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
 
 /* ---------------- MAIN CONTENT ---------------- */
 .main-content {
@@ -197,13 +203,15 @@ body {
   direction: rtl;
 }
 
-.search-wrapper i {
-  position: absolute;
-  left: 14px;
-  stroke: #ff1c7c;
-  width: 18px;
-  height: 18px;
+/* ONLY style icons inside .search-wrapper */
+.search-wrapper > i {
+    position: absolute;
+    left: 14px;
+    stroke: #ff1c7c;
+    width: 18px;
+    height: 18px;
 }
+
 
 /* Active filters tags */
 .active-filters {
