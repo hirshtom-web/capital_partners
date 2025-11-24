@@ -166,7 +166,7 @@ html, body {
 }
 
 .uni-toggle-btn.active[data-tab="homebuyers"] {
-  border-color: #ff6b6b;
+  border-color: #f8f7f5;
   box-shadow: 0 0 10px rgba(255,107,107,0.7);
 }
 
