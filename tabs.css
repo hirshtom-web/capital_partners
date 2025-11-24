@@ -210,41 +210,21 @@ html, body {
 /* ===============================
    PANELS (Tab Content)
 ================================== */
-.uni-panel {
-  position: relative;
-  display: none;
-  border-radius: 30px;
-  max-width: 92%;
-  margin: 0 auto;
-  padding: 40px 35px;
-  color: #111;
-  text-align: left;
-  animation: fadeUp 0.4s ease;
-
-  /* Transparent panel */
-  background: transparent;
-  backdrop-filter: none;
-}
-
-.uni-panel.active {
-  display: block;
-}
-
-/* Two-column layout */
 .uni-panel-inner {
   display: flex;
-  align-items: center;
+  align-items: center;     /* centers text + image vertically */
   justify-content: space-between;
-  gap: 38px;
+  gap: 0;                  /* remove extra spacing between halves */
   flex-wrap: nowrap;
 }
 
 .uni-panel-text {
-  flex: 1 1 30%; /* smaller text area */
+  flex: 1 1 50%;
+  padding-left: 40px;      /* add just a bit of left spacing */
 }
 
 .uni-panel-image {
-  flex: 1 1 70%; /* image takes 70% */
+  flex: 1 1 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -252,10 +232,11 @@ html, body {
 
 .uni-panel-image img {
   width: 100%;
-  max-width: 680px; /* optional limit */
-  border-radius: 0;
+  max-width: none;
   object-fit: cover;
+  border-radius: 0;
 }
+
 
 /* ===============================
    PANEL TEXT STYLES
