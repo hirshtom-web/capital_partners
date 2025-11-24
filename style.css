@@ -175,7 +175,7 @@ a {
   width: 200px;
   height: auto;
   border-radius: 20px; /* optional */
-  margin-right: -20px; /* moves it 20px to the right */
+  margin-right: -30px; /* moves it 20px to the right */
 }
 
 /* Overlay SVG */
@@ -183,7 +183,7 @@ a {
   position: absolute;
   top: 0;
   left: 0;
-  width: 40px;
+  width: 55px;
   height: auto;
   z-index: 10;
   animation: floatSoft 6s ease-in-out infinite alternate;
