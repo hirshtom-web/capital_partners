@@ -34,6 +34,16 @@ html, body {
   text-align: center;
   color: #111;
 }
+.uni-content-tile:first-of-type {
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 0, 85, 0.2) 20%,   /* bright center */
+    rgba(255, 255, 255, 1) 100%  /* fades to white at edges */
+  );
+  color: #111;
+  position: relative;  /* ensures ::before pseudo-elements layer correctly */
+  overflow: hidden;
+}
 
 /* ===============================
 
