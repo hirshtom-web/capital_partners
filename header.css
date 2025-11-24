@@ -281,7 +281,7 @@ nav > div:hover .submenu {
 /* ===============================
    MOBILE MENU CLEAN STYLING
 ================================== */
-/* MOBILE MENU BASE */
+/* MOBILE MENU */
 .mobile-menu {
   display: none;
   flex-direction: column;
@@ -290,7 +290,7 @@ nav > div:hover .submenu {
   left: 0;
   width: 100%;
   max-height: 0;
-  overflow: hidden;
+  overflow-y: auto;
   background: #1e0949;
   transition: max-height 0.35s ease;
   z-index: 9999;
@@ -298,10 +298,10 @@ nav > div:hover .submenu {
 
 .mobile-menu.active {
   display: flex;
-  max-height: 100vh; /* covers full screen below header */
+  max-height: 100vh;
 }
 
-/* MENU LINKS */
+/* Menu Links */
 .mobile-menu li a {
   padding: 16px 20px;
   font-size: 18px;
@@ -312,23 +312,12 @@ nav > div:hover .submenu {
   text-decoration: none;
 }
 
-/* Google-style arrows */
-.mobile-menu .arrow {
-  transition: transform 0.3s ease;
-  font-size: 16px;
-}
-
-/* Rotate arrow when submenu open */
-.menu-link.active > a .arrow {
-  transform: rotate(90deg);
-}
-
 /* Submenu hidden by default */
 .submenu-mobile {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.35s ease;
-  background: #2b0c5e; /* darker background for submenu */
+  background: #2b0c5e;
 }
 
 .submenu-mobile li a {
@@ -336,9 +325,24 @@ nav > div:hover .submenu {
   font-size: 16px;
 }
 
-/* Expand submenu when active */
+/* Submenu active */
 .submenu-mobile.active {
-  max-height: 500px; /* enough for submenu */
+  max-height: 500px;
+}
+
+/* Arrows */
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.menu-link.active > a .arrow {
+  transform: rotate(90deg);
+}
+
+/* Prevent body scroll when menu open */
+body.menu-open {
+  overflow: hidden;
+  height: 100vh;
 }
 
 /* ===============================
