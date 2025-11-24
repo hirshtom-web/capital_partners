@@ -374,3 +374,32 @@ html, body {
 .uni-list li {
   justify-content: flex-start !important;
 }
+
+/* ==========================================
+   KEYWORD BUBBLE ABOVE TITLES
+========================================== */
+.uni-keyword {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 15px;
+  line-height: 1;
+  white-space: nowrap;
+  text-align: left;
+}
+
+/* Colors per slide */
+.uni-keyword.searching   { background: #6a3fd1; }
+.uni-keyword.offers      { background: #ff6b6b; }
+.uni-keyword.contracts   { background: #1dd1a1; }
+.uni-keyword.financing   { background: #ffb400; }
+.uni-keyword.closing     { background: #0096ff; }
+
+/* Ensure LEFT alignment everywhere */
+.uni-panel-text,
+.uni-panel-text * {
+  text-align: left !important;
+}
