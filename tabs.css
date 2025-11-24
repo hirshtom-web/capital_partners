@@ -254,6 +254,7 @@ html, body {
 /* ===============================
    LIST STYLES
 ================================== */
+
 .uni-list {
   list-style: none;
   padding: 0;
@@ -269,35 +270,49 @@ html, body {
   color: #333;
 }
 
+/* Default list bubble */
 .uni-list li::before {
   content: "";
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background-color: #6a3fd1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
-  /* Google-style clean checkmark */
+  /* Color is overridden by tab-specific rules below */
+  background-color: #6a3fd1;
+
+  /* Checkmark icon using mask */
   mask: url("https://www.svgrepo.com/download/533266/check.svg") center/70% no-repeat;
   -webkit-mask: url("https://www.svgrepo.com/download/533266/check.svg") center/70% no-repeat;
-  background-color: #ffffff;
+
+  /* The visible check color */
+  background: #ffffff;
 
   box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Investors tab color */
 #investors .uni-list li::before {
-  background-color: #6327e5;
+  background-color: #6327e5 !important;
 }
 
+/* Homebuyers tab color */
 #homebuyers .uni-list li::before {
-  background-color: #ff6b6b;
+  background-color: #ff6b6b !important;
 }
 
+/* Developers tab color */
 #developers .uni-list li::before {
-  background-color: #1dd1a1;
+  background-color: #1dd1a1 !important;
 }
+
+/* OPTIONAL: If you now also have FINANCING tab */
+#financing .uni-list li::before {
+  background-color: #ffb400 !important;
+}
+
 
 
 /* ===============================
