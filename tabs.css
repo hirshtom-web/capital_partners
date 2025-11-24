@@ -29,7 +29,8 @@ html, body {
   border-radius: 40px;
   max-width: 1300px;
   margin: 0 auto 60px;
-  padding: 60px 40px;
+  padding: 60px 0;
+  padding-left: 40px;
   text-align: center;
   color: #111;
 }
@@ -239,8 +240,8 @@ html, body {
 
 .uni-panel-text {
   flex: 1 1 50%;
-  padding-left: 40px;    /* small left-only spacing */
 }
+
 
 .uni-panel-image {
   flex: 1 1 50%;
