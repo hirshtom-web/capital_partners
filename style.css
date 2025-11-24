@@ -938,6 +938,7 @@ footer {
   border-radius: 4px;
   cursor: pointer;
   font-size: 12px;
+  color: #fff;
   transition: background 0.2s;
 }
 
