@@ -214,9 +214,9 @@ html, body {
 .uni-panel {
   position: relative;
   display: none;
-  width: 100%;
+  width: 100%;        /* full width */
   margin: 0;
-  padding: 40px 0;
+  padding: 0;         /* remove internal padding */
   border-radius: 0;
   color: #111;
   background: transparent;
@@ -227,32 +227,35 @@ html, body {
   display: block;
 }
 
-/* 50/50 Layout */
 .uni-panel-inner {
+  width: 100%;        /* ensures full-width content */
+  max-width: none;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 38px;
-  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 0;
 }
+
 
 .uni-panel-text {
   flex: 1 1 50%;
-  padding-right: 40px; /* SAFE padding */
+  padding-left: 40px;    /* small left-only spacing */
 }
 
 .uni-panel-image {
   flex: 1 1 50%;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
+
 .uni-panel-image img {
   width: 100%;
+  height: auto;
   object-fit: cover;
   border-radius: 0;
 }
+
 
 
 /* ===============================
