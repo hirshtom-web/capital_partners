@@ -281,65 +281,66 @@ nav > div:hover .submenu {
 /* ===============================
    MOBILE MENU CLEAN STYLING
 ================================== */
+/* MOBILE MENU BASE */
 .mobile-menu {
-  display: none;                 
+  display: none;
   flex-direction: column;
   position: fixed;
+  top: 60px; /* header height */
   left: 0;
-  right: 0;
-  background: #1e0949;  /* default blue background */
-  overflow: hidden;
+  width: 100%;
   max-height: 0;
+  overflow: hidden;
+  background: #1e0949;
   transition: max-height 0.35s ease;
   z-index: 9999;
-  list-style: none;      /* remove bullets */
-  padding-left: 0;       /* remove default padding */
-  margin: 0;             /* remove default margin */
 }
-.mobile-menu.active,
-.mobile-submenu.active {
-  top: 80px;
-  height: calc(100vh - 80px);
-}
-
 
 .mobile-menu.active {
   display: flex;
-  max-height: 1000px;
+  max-height: 100vh; /* covers full screen below header */
 }
 
-.mobile-menu > li > a {
-  padding: 14px 20px;
-  color: #ffffff;        /* white text on blue */
-  font-size: 20px;       /* menu category font size */
+/* MENU LINKS */
+.mobile-menu li a {
+  padding: 16px 20px;
+  font-size: 18px;
+  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-decoration: none;
 }
 
-/* Arrow styling on right */
-.mobile-menu .menu-link .arrow {
-  transition: transform 0.3s;
-  margin-left: auto;
+/* Google-style arrows */
+.mobile-menu .arrow {
+  transition: transform 0.3s ease;
+  font-size: 16px;
 }
 
-.mobile-menu .menu-link.active .arrow {
+/* Rotate arrow when submenu open */
+.menu-link.active > a .arrow {
   transform: rotate(90deg);
 }
 
 /* Submenu hidden by default */
-.mobile-menu .submenu-mobile {
+.submenu-mobile {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease;
-  padding-left: 10px;
-  margin: 0;
+  transition: max-height 0.35s ease;
+  background: #2b0c5e; /* darker background for submenu */
 }
 
-.mobile-menu .submenu-mobile.active {
-  max-height: 500px;
+.submenu-mobile li a {
+  padding-left: 36px;
+  font-size: 16px;
 }
+
+/* Expand submenu when active */
+.submenu-mobile.active {
+  max-height: 500px; /* enough for submenu */
+}
+
 /* ===============================
    SLIDING MOBILE SUBMENU (NEW)
 ================================== */
