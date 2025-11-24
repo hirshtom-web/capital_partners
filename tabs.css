@@ -143,6 +143,15 @@ html, body {
   cursor: pointer;
   transition: border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
 }
+.uni-toggle-btn .icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;   /* ensures SVG/images scale properly */
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
 
 /* Active state: bold + thicker border */
 .uni-toggle-btn.active {
