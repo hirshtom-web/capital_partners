@@ -28,6 +28,7 @@ html, body {
   background-color: #f8f7f5;
   border-radius: 40px;
   max-width: 1300px;
+  margin: 0 auto 60px;
   padding: 60px 0;
   padding-left: 60px;
   text-align: center;
