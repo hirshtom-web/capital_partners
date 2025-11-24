@@ -235,34 +235,79 @@
     </div>
   </div>
   
+  <!-- --- Mobile Floating Actions --- -->
+<div class="mobile-actions">
+  <button id="mobile-filters-btn"><i data-feather="filter"></i></button>
+  <button id="mobile-toggle-map-btn"><i data-feather="map"></i></button>
+</div>
+
+<!-- --- Mobile Filters Popup --- -->
+<div class="mobile-filters-popup" id="mobile-filters-popup">
+  <div class="popup-content">
+    <button class="close-popup">&times;</button>
+    <div class="filters-dropdowns">
+      <!-- replicate your dropdown filters here -->
+      <label><input type="checkbox" value="Tel Aviv"> Tel Aviv</label>
+      <label><input type="checkbox" value="Herzliya"> Herzliya</label>
+      <label><input type="checkbox" value="Jerusalem"> Jerusalem</label>
+    </div>
+  </div>
+</div>
+  
   <script>
   feather.replace();
 
   const mainContent = document.querySelector('.main-content');
-const propertyGridWrapper = document.querySelector('.property-grid-wrapper');
+  const propertyGridWrapper = document.querySelector('.property-grid-wrapper');
 
-document.querySelectorAll('.view-toggle button').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.view-toggle button').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+  document.querySelectorAll('.view-toggle button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.view-toggle button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
 
-    const view = btn.dataset.view;
-    mainContent.classList.remove('grid-only', 'map-only');
-    propertyGridWrapper.classList.remove('map-layout');
+      const view = btn.dataset.view;
+      mainContent.classList.remove('grid-only', 'map-only');
+      propertyGridWrapper.classList.remove('map-layout');
 
-    if (view === 'grid') {
-      mainContent.classList.add('grid-only');
-    } else if (view === 'map') {
+      if (view === 'grid') {
+        mainContent.classList.add('grid-only');
+      } else if (view === 'map') {
+        mainContent.classList.add('map-only');
+        propertyGridWrapper.classList.add('map-layout');
+      } else if (view === 'both') {
+        propertyGridWrapper.classList.add('map-layout');
+      }
+
+      feather.replace();
+    });
+  });
+
+  // --- Mobile Actions ---
+  const filtersBtn = document.getElementById('mobile-filters-btn');
+  const toggleMapBtn = document.getElementById('mobile-toggle-map-btn');
+  const filtersPopup = document.getElementById('mobile-filters-popup');
+  const closePopup = filtersPopup.querySelector('.close-popup');
+
+  filtersBtn.addEventListener('click', () => {
+    filtersPopup.style.display = 'flex';
+  });
+
+  closePopup.addEventListener('click', () => {
+    filtersPopup.style.display = 'none';
+  });
+
+  toggleMapBtn.addEventListener('click', () => {
+    if(mainContent.classList.contains('grid-only')){
+      mainContent.classList.remove('grid-only');
       mainContent.classList.add('map-only');
-      propertyGridWrapper.classList.add('map-layout');
-    } else if (view === 'both') {
-      propertyGridWrapper.classList.add('map-layout');
+      toggleMapBtn.innerHTML = '<i data-feather="grid"></i>';
+    } else {
+      mainContent.classList.remove('map-only');
+      mainContent.classList.add('grid-only');
+      toggleMapBtn.innerHTML = '<i data-feather="map"></i>';
     }
-
-    // Ensure feather icons stay visible
     feather.replace();
   });
-});
 </script>
   
 </body>
