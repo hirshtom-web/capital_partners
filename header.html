@@ -91,44 +91,51 @@
   </div>
 
 </header>
-
-<!-- Main Mobile Menu -->
+<nav>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+   <!-- MOBILE MENU -->
 <ul class="mobile-menu" id="mobile-menu">
-
-  <li class="menu-item" data-submenu="services-submenu">
-    <a href="#" class="menu-link" id="open-services">
-      Services <span class="arrow">▶</span>
-    </a>
+  <li class="menu-link">
+    <a href="#">Home <span class="arrow">▶</span></a>
   </li>
 
-  <li><a href="#">About</a></li>
-  <li><a href="#">Contact</a></li>
+  <li class="menu-link has-submenu">
+    <a href="#">Buy <span class="arrow">▶</span></a>
+    <ul class="submenu-mobile">
+      <li><a href="#">Residential</a></li>
+      <li><a href="#">Commercial</a></li>
+      <li><a href="#">Luxury</a></li>
+      <li><a href="#">Property Mgmt</a></li>
+      <li><a href="#">Tenant Portal</a></li>
+      <li><a href="#">Reports</a></li>
+    </ul>
+  </li>
 
+  <li class="menu-link has-submenu">
+    <a href="#">Manage <span class="arrow">▶</span></a>
+    <ul class="submenu-mobile">
+      <li><a href="#">Property Mgmt</a></li>
+      <li><a href="#">Tenant Portal</a></li>
+      <li><a href="#">Reports</a></li>
+    </ul>
+  </li>
+
+  <li class="menu-link has-submenu">
+    <a href="#">Services <span class="arrow">▶</span></a>
+    <ul class="submenu-mobile">
+      <li><a href="#">Consulting</a></li>
+      <li><a href="#">Valuation</a></li>
+      <li><a href="#">Marketing</a></li>
+    </ul>
+  </li>
+
+  <li class="menu-link"><a href="#">Developers</a></li>
+  <li class="menu-link"><a href="#">Company</a></li>
+  <li class="menu-link"><a href="#" class="btn-bubble">Let's Go!</a></li>
 </ul>
 
-<!-- Sliding Submenu -->
-<ul class="mobile-submenu" id="services-submenu">
-
-  <li class="back">
-    <a href="#" class="back-link">◀ Back</a>
-  </li>
-
-  <li>
-    <a href="calculators.html">
-      <span class="submenu-icon">🧮</span> Calculators
-    </a>
-  </li>
-
-  <li>
-    <a href="#">
-      <span class="submenu-icon">💡</span> Service 2
-    </a>
-  </li>
-
-  <li>
-    <a href="#">
-      <span class="submenu-icon">⚙️</span> Service 3
-    </a>
-  </li>
-
-</ul>
+  </nav>
