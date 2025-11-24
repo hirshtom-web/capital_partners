@@ -210,29 +210,46 @@ html, body {
 /* ===============================
    PANELS (Tab Content)
 ================================== */
+/* PANELS */
+.uni-panel {
+  position: relative;
+  display: none;
+  width: 100%;
+  margin: 0;
+  padding: 40px 0;
+  border-radius: 0;
+  color: #111;
+  background: transparent;
+  animation: fadeUp 0.4s ease;
+}
+
+.uni-panel.active {
+  display: block;
+}
+
+/* 50/50 Layout */
 .uni-panel-inner {
   display: flex;
-  align-items: center;     /* centers text + image vertically */
   justify-content: space-between;
-  gap: 0;                  /* remove extra spacing between halves */
+  align-items: center;
+  gap: 38px;
   flex-wrap: nowrap;
 }
 
 .uni-panel-text {
   flex: 1 1 50%;
-  padding-left: 40px;      /* add just a bit of left spacing */
+  padding-right: 40px; /* SAFE padding */
 }
 
 .uni-panel-image {
   flex: 1 1 50%;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .uni-panel-image img {
   width: 100%;
-  max-width: none;
   object-fit: cover;
   border-radius: 0;
 }
