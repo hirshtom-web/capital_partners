@@ -102,11 +102,6 @@ body {
   border-radius: 16px;
 }
 
-/* View toggles for grid/map */
-.main-content.grid-only .property-grid-wrapper {
-  display: block;
-  width: 100%;
-}
 
 .main-content.map-only .property-grid-wrapper {
   display: none;
@@ -115,6 +110,23 @@ body {
 .property-grid-wrapper.map-layout {
   flex: 1;
   max-width: 50%;
+}
+
+/* Hide map and expand grid to full width */
+.main-content.grid-only #map {
+  display: none;
+}
+
+
+.main-content.grid-only .property-grid-wrapper {
+  flex: 1 1 100%;
+  max-width: 100%;
+  display: block; /* Ensure it's visible and takes full width */
+}
+
+
+.main-content.grid-only .property-grid {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 
