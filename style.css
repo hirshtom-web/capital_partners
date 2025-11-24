@@ -172,10 +172,10 @@ a {
 /* Main Image */
 .hero-img.right-img {
   display: block;
-  width: 150px;
+  width: 200px;
   height: auto;
   border-radius: 20px; /* optional */
-  margin-right: -10px; /* moves it 10px to the right */
+  margin-right: -20px; /* moves it 20px to the right */
 }
 
 /* Overlay SVG */
