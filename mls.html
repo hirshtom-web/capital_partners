@@ -7,16 +7,17 @@
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=trending_up" />
-  
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
   <!-- CSS -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="header.css">
   <link rel="stylesheet" href="alert.css">
   <link rel="stylesheet" href="mls.style.css">
 
-  
-  <!-- JS Scripts (deferred so page loads first) -->
+  <!-- JS Scripts -->
   <script src="js/include.js" defer></script>
   <script src="js/ui.js" defer></script>
   <script src="js/charts.js" defer></script>
@@ -25,11 +26,13 @@
   <script src="js/slider.js" defer></script>
   <script src="js/map.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://unpkg.com/feather-icons"></script>
-  <script src="script.js" defer></script>
+
+  <!-- Feather Icons (only ONE!) -->
   <script src="https://unpkg.com/feather-icons"></script>
 
+  <script src="script.js" defer></script>
 </head>
+
 
 <body>
   
@@ -232,5 +235,10 @@
       </div>
     </div>
   </div>
+  
+  <script>
+  feather.replace();
+</script>
+
 </body>
 </html>
