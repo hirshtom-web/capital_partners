@@ -251,6 +251,14 @@ html, body {
   line-height: 1.7;
 }
 
+/* LEFT-ALIGN ONLY THE MAIN TEXT (TITLE, SUBTITLE, PARAGRAPH) */
+.uni-panel-text h4.mini-title,
+.uni-panel-text h3,
+.uni-panel-text p {
+    text-align: left;
+}
+
+
 /* ===============================
    LIST STYLES
 ================================== */
