@@ -760,6 +760,10 @@ body.menu-open {
     padding-left: 0 !important;
     margin-left: 0 !important;
   }
+   .mobile-menu {
+    padding-top: 20px; /* space from top */
+}
+
 
   /* ===============================
      SUBMENU HIDDEN UNTIL CLICKED
@@ -776,20 +780,35 @@ body.menu-open {
 
   /* ===============================
      OPTIONAL: "Let's Go!" button style at bottom
-  =============================== */
-  .mobile-menu .btn-bubble {
-    display: block;
-    width: 100px;       /* adjust width */
-    height: 40px;       /* adjust height */
-    margin: 20px auto;  /* center horizontally and some space from top */
+.mobile-menu-buttons {
+    display: flex;
+    justify-content: center; /* center buttons horizontally */
+    gap: 10px;               /* space between buttons */
+    margin-top: 30px;        /* push them further down */
+}
+
+.mobile-menu-buttons .btn-bubble {
+    width: 100px;
+    height: 40px;
     text-align: center;
-    line-height: 40px;  /* vertical centering */
+    line-height: 40px;
     border-radius: 8px;
-    background-color: #ff6b6b; /* pink color */
+    background-color: #ff6b6b;
     color: #fff;
     font-weight: 600;
     text-decoration: none;
-  }
+    white-space: nowrap;
+}
+
+.mobile-menu-buttons .btn-text {
+    display: inline-block;
+    text-decoration: none;
+    color: #ff6b6b; /* match bubble color */
+    font-weight: 600;
+    line-height: 40px; /* vertically align with bubble */
+}
+
+
 body.menu-open { overflow: hidden; }
 
 
