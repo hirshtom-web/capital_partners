@@ -317,50 +317,33 @@ html, body {
   gap: 10px;
   margin-bottom: 10px;
   font-size: 14px;
-  color: #333;
+  color: #333; /* text color */
 }
 
-/* Default list bubble */
+/* List bubble with checkmark */
 .uni-list li::before {
   content: "";
   width: 22px;
   height: 22px;
   border-radius: 50%;
 
-  /* Color is overridden by tab-specific rules below */
-  background-color: #6a3fd1;
-
-  /* Checkmark icon using mask */
-  mask: url("https://www.svgrepo.com/download/533266/check.svg") center/70% no-repeat;
+  /* Single color bubble for all tabs */
+  background-color: #000000; /* black bubble */
+  
+  /* Mask for checkmark */
   -webkit-mask: url("https://www.svgrepo.com/download/533266/check.svg") center/70% no-repeat;
+  mask: url("https://www.svgrepo.com/download/533266/check.svg") center/70% no-repeat;
+  
+  -webkit-mask-composite: destination-in; /* ensures proper masking in Safari */
+  mask-composite: intersect;
 
-  /* The visible check color */
-  background: #ffffff;
-
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  color: #f1e6ff; /* checkmark color inside the bubble */
+  
   display: inline-flex;
   align-items: center;
   justify-content: center;
-}
 
-/* Investors tab color */
-#investors .uni-list li::before {
-  background-color: #6327e5 !important;
-}
-
-/* Homebuyers tab color */
-#homebuyers .uni-list li::before {
-  background-color: #ff6b6b !important;
-}
-
-/* Developers tab color */
-#developers .uni-list li::before {
-  background-color: #1dd1a1 !important;
-}
-
-/* OPTIONAL: If you now also have FINANCING tab */
-#financing .uni-list li::before {
-  background-color: #ffb400 !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
 
 
