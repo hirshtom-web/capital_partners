@@ -29,11 +29,11 @@ html, body {
   border-radius: 40px;
   max-width: 1300px;
   margin: 0 auto 60px;
-  padding: 60px 0 0 60px;   /* 🔥 removed bottom padding */
+  padding: 60px 0; /* ← left padding removed */
   text-align: center;
   color: #111;
-  display: flex;            /* 🔥 makes the tile a flex column */
-  flex-direction: column;   /* 🔥 so the panel can sit at bottom */
+  display: flex;
+  flex-direction: column;
 }
 
 /* PANEL — no padding added, just pushed to the bottom */
@@ -147,35 +147,29 @@ html, body {
   justify-content: center;
 }
 
+/* Google-style pill buttons */
 .uni-toggle-btn {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 22px;
-  font-size: 16px;
-  font-weight: 500;
-  border-radius: 40px;
-  background: transparent;
-  border: 2px solid rgba(0,0,0,0.2); /* thin default border */
-  color: #111;
-  cursor: pointer;
-  transition: border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
-}
-.uni-toggle-btn .icon {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  object-fit: contain;   /* ensures SVG/images scale properly */
-  vertical-align: middle;
-  flex-shrink: 0;
+  gap: 8px;
+
+  padding: 8px 18px;
+  font-size: 15px;
+
+  border-radius: 8px;        /* <-- rounded */
+  border: 1px solid #ccc;    /* <-- thinner frame */
+  background: #fff;
+  color: #222;
+
+  transition: all 0.25s ease;
 }
 
-
-/* Active state: bold + thicker border */
+/* active */
 .uni-toggle-btn.active {
-  font-weight: 700;
-  border-width: 3px;
+  font-weight: 600;
+  border-width: 2px;
 }
+
 
 /* Active tab colors + glow */
 .uni-toggle-btn.active[data-tab="investors"] {
@@ -234,8 +228,16 @@ html, body {
 
 
 .uni-panel-text {
-  flex: 1 1 50%;
+  padding-left: 60px;  /* desktop */
 }
+
+@media (max-width: 800px) {
+  .uni-panel-text {
+    padding-left: 20px; /* mobile */
+  }
+}
+
+
 
 
 .uni-panel-image {
@@ -299,48 +301,31 @@ html, body {
   color: #333;
 }
 
-/* Default list bubble */
 .uni-list li::before {
   content: "";
   width: 22px;
   height: 22px;
   border-radius: 50%;
 
-  /* Color is overridden by tab-specific rules below */
-  background-color: #6a3fd1;
+  /* Use color for the bubble, separate from the mask check */
+  background-color: currentColor;
 
-  /* Checkmark icon using mask */
   mask: url("https://www.svgrepo.com/download/533266/check.svg") center/70% no-repeat;
   -webkit-mask: url("https://www.svgrepo.com/download/533266/check.svg") center/70% no-repeat;
 
-  /* The visible check color */
-  background: #ffffff;
-
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
 
-/* Investors tab color */
-#investors .uni-list li::before {
-  background-color: #6327e5 !important;
-}
 
-/* Homebuyers tab color */
-#homebuyers .uni-list li::before {
-  background-color: #ff6b6b !important;
-}
+#investors .uni-list li::before { color: #6327e5; }
+#homebuyers .uni-list li::before { color: #ff6b6b; }
+#developers .uni-list li::before { color: #1dd1a1; }
+#financing .uni-list li::before { color: #ffb400; }
 
-/* Developers tab color */
-#developers .uni-list li::before {
-  background-color: #1dd1a1 !important;
-}
-
-/* OPTIONAL: If you now also have FINANCING tab */
-#financing .uni-list li::before {
-  background-color: #ffb400 !important;
-}
 
 
 
@@ -388,5 +373,26 @@ html, body {
   .uni-list li img {
     width: 24px;
     height: 24px;
+  }
+}
+@media (max-width: 600px) {
+  .uni-toggle-wrapper {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 8px;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+
+    scrollbar-width: none; 
+  }
+
+  .uni-toggle-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .uni-toggle-btn {
+    flex-shrink: 0;  
+    min-width: 80px; /* prevents buttons from shrinking too small */
   }
 }
