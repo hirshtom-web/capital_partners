@@ -286,6 +286,17 @@ html, body {
   color: #111;
   margin-bottom: 15px;
 }
+.keyword-bubble {
+  display: inline-block;
+  padding: 6px 12px;          /* top/bottom and left/right */
+  border-radius: 20px;         /* makes it pill-shaped */
+  background-color: #f1e6ff;   /* bubble background */
+  color: #000;                 /* text color */
+  font-size: 16px;
+  font-weight: 500;
+  margin-right: 8px;           /* space between bubble and next text */
+  vertical-align: middle;
+}
 
 .uni-panel p {
   font-size: 16px;
