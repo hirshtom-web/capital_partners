@@ -287,15 +287,15 @@ html, body {
   margin-bottom: 15px;
 }
 .keyword-bubble {
-  display: inline-block;
-  padding: 6px 12px;          /* top/bottom and left/right */
-  border-radius: 20px;         /* makes it pill-shaped */
-  background-color: #f1e6ff;   /* bubble background */
-  color: #000;                 /* text color */
-  font-size: 16px;
-  font-weight: 500;
-  margin-right: 8px;           /* space between bubble and next text */
-  vertical-align: middle;
+    display: inline-block;    /* keeps the pill shape */
+    padding: 6px 12px;        /* top/bottom, left/right */
+    border-radius: 20px;      /* pill shape */
+    background-color: #f1e6ff;
+    color: #000;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 15px 0;       /* bottom spacing only, no left margin */
+    vertical-align: middle;
 }
 
 .uni-panel p {
@@ -308,6 +308,7 @@ html, body {
 /* LEFT-ALIGN ONLY THE MAIN TEXT (TITLE, SUBTITLE, PARAGRAPH) */
 .uni-panel-text h4.mini-title,
 .uni-panel-text h3,
+.keyword-bubble,
 .uni-panel-text p {
     text-align: left;
 }
@@ -317,48 +318,29 @@ html, body {
    LIST STYLES
 ================================== */
 
+/* ------------------------- */
+/* CHECKMARK LIST             */
+/* ------------------------- */
 .uni-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    list-style: none;       /* remove default bullets */
+    padding-left: 0;        /* no extra padding */
+    margin: 0;
 }
 
 .uni-list li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: #333; /* text color */
+    position: relative;
+    padding-left: 28px;     /* space for checkmark */
+    margin-bottom: 10px;
 }
 
-/* List bubble with checkmark */
 .uni-list li::before {
-  content: "";
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-
-  /* Single color bubble for all tabs */
-  background-color: #000000; /* black bubble */
-  
-  /* Mask for checkmark */
-  -webkit-mask: url("https://www.svgrepo.com/download/533266/check.svg") center/70% no-repeat;
-  mask: url("https://www.svgrepo.com/download/533266/check.svg") center/70% no-repeat;
-  
-  -webkit-mask-composite: destination-in; /* ensures proper masking in Safari */
-  mask-composite: intersect;
-
-  color: #f1e6ff; /* checkmark color inside the bubble */
-  
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    content: '✔';           /* checkmark character */
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #6c63ff;         /* checkmark color */
+    font-weight: bold;
 }
-
-
 
 /* ===============================
    ANIMATIONS
