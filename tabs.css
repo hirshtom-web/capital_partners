@@ -140,64 +140,84 @@ html, body {
 /* ===============================
    MODERN TAB BUTTONS
 ================================== */
-
+/* Toggle wrapper */
 .uni-toggle-wrapper {
   display: flex;
   gap: 10px;
   justify-content: center;
 }
 
+/* Desktop buttons */
 .uni-toggle-btn {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 22px;
-  font-size: 16px;
+  justify-content: space-between; /* text left, icon right */
+  width: 170px;
+  height: 50px;
+
+  padding: 0 20px;   /* left/right spacing for text & icon */
+  font-size: 20px;
   font-weight: 500;
-  border-radius: 40px;
-  background: transparent;
-  border: 2px solid rgba(0,0,0,0.2); /* thin default border */
-  color: #111;
+
+  background-color: #f1e6ff;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+
   cursor: pointer;
-  transition: border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  transition: background 0.25s ease;
 }
+
+/* Icon bubble on the right */
 .uni-toggle-btn .icon {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  object-fit: contain;   /* ensures SVG/images scale properly */
-  vertical-align: middle;
+  width: 25px;
+  height: 25px;
+  background-color: #000;   /* black bubble */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+
+  /* Icon color same as button background */
+  color: #f1e6ff;
 }
 
-
-/* Active state: bold + thicker border */
+/* Hover & active state */
+.uni-toggle-btn:hover,
 .uni-toggle-btn.active {
-  font-weight: 700;
-  border-width: 3px;
+  background-color: #e5d6fc;
 }
 
-/* Active tab colors + glow */
-.uni-toggle-btn.active[data-tab="investors"] {
-  border-color: #6a3fd1;
-  box-shadow: 0 0 10px rgba(106,63,209,0.7);
+/* MOBILE: horizontal scroll */
+@media (max-width: 800px) {
+  .uni-toggle-wrapper {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 8px;
+    gap: 10px;
+    -webkit-overflow-scrolling: touch; /* smooth scroll iOS */
+    scrollbar-width: none;
+  }
+  .uni-toggle-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .uni-toggle-btn {
+    flex-shrink: 0;
+    width: 150px; /* slightly smaller on mobile */
+    height: 45px;
+    font-size: 18px;
+    padding: 0 16px;
+  }
+
+  .uni-toggle-btn .icon {
+    width: 22px;
+    height: 22px;
+  }
 }
 
-.uni-toggle-btn.active[data-tab="homebuyers"] {
-  border-color: #f8f7f5;
-  box-shadow: 0 0 10px rgba(255,107,107,0.7);
-}
-
-.uni-toggle-btn.active[data-tab="developers"] {
-  border-color: #1dd1a1;
-  box-shadow: 0 0 10px rgba(29,209,161,0.7);
-}
-
-/* Optional: hover effect */
-.uni-toggle-btn:hover {
-  border-color: currentColor;
-  box-shadow: 0 0 6px rgba(0,0,0,0.1);
-}
 
 
 /* ===============================
