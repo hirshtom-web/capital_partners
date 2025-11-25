@@ -712,23 +712,23 @@ body.menu-open {
 
 @media (max-width: 480px) {
 
-  /* Container */
+  /* HAMBURGER (small version) */
   #hamburger.menu-toggle {
-    width: 24px;      /* smaller */
-    height: 18px;     /* smaller */
+    width: 24px;
+    height: 18px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     cursor: pointer;
     position: relative;
     z-index: 9999;
-    padding: 0;       /* remove extra desktop padding */
+    padding: 0;
   }
 
-  /* Lines */
+  /* Hamburger lines */
   #hamburger.menu-toggle span {
     width: 100%;
-    height: 2px;      /* thinner */
+    height: 2px;
     background: #fff;
     border-radius: 2px;
     transition:
@@ -736,7 +736,7 @@ body.menu-open {
       opacity 0.25s ease;
   }
 
-  /* OPEN STATE (scaled down distances) */
+  /* Open animation */
   #hamburger.menu-toggle.active span:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
   }
@@ -750,7 +750,7 @@ body.menu-open {
     transform: translateY(-7px) rotate(-45deg);
   }
 
-  /* Remove bullets everywhere */
+  /* MOBILE MENU RESET — prevents bullets + indent */
   .mobile-menu,
   .mobile-menu li {
     list-style: none !important;
@@ -758,13 +758,13 @@ body.menu-open {
     margin-left: 0 !important;
   }
 
-  /* Hide submenu by default */
+  /* Submenus hidden until clicked */
   .submenu-mobile {
     display: none;
     padding-left: 20px;
   }
 
-  /* Show submenu when expanded */
+  /* Submenu open state */
   li.expanded > .submenu-mobile {
     display: block;
   }
