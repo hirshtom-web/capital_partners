@@ -162,7 +162,7 @@ html, body {
 
   background-color: transparent; /* no background */
   color: #000;
-  border: 0.5px solid #000;      /* thin frame */
+  border: 0px;
   border-radius: 8px;
 
   cursor: pointer;
@@ -186,7 +186,7 @@ html, body {
 /* Hover & active state */
 .uni-toggle-btn:hover,
 .uni-toggle-btn.active {
-  border-width: 1px;         /* thicker frame */
+  border-width: 1px;      
   background-color: transparent; /* still no background */
 }
 
