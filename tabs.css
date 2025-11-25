@@ -29,12 +29,13 @@ html, body {
   border-radius: 40px;
   max-width: 1300px;
   margin: 0 auto 60px;
-  padding: 60px 0 0 60px;   /* 🔥 removed bottom padding */
+  padding: 60px 0 0 0;   /* left padding removed */
   text-align: center;
   color: #111;
-  display: flex;            /* 🔥 makes the tile a flex column */
-  flex-direction: column;   /* 🔥 so the panel can sit at bottom */
+  display: flex;
+  flex-direction: column;
 }
+
 
 /* PANEL — no padding added, just pushed to the bottom */
 .uni-panel.active {
@@ -398,5 +399,11 @@ html, body {
 @media (max-width: 400px) {
   .uni-heading-xl {
   font-size: 16px;
+}
+
+.uni-panel.active {
+  display: block;
+  margin-top: auto; 
+  padding-left: 20px; 
 }
 }
