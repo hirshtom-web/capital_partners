@@ -23,22 +23,17 @@ html, body {
 /* ===============================
    CONTENT TILE
 ================================== */
-/* CONTENT TILE — keep your left gap only here */
 .uni-content-tile {
   width: 100%;
   background-color: #f8f7f5;
   border-radius: 40px;
   max-width: 1300px;
   margin: 0 auto 60px;
-
-  padding: 60px 0;
-  padding-left: 60px; /* ← your left gap stays here */
-
+  padding: 60px 0 0 60px;   /* 🔥 removed bottom padding */
   text-align: center;
   color: #111;
-
-  display: flex;
-  flex-direction: column; /* allows bottom alignment */
+  display: flex;            /* 🔥 makes the tile a flex column */
+  flex-direction: column;   /* 🔥 so the panel can sit at bottom */
 }
 
 /* PANEL — no padding added, just pushed to the bottom */
@@ -223,7 +218,10 @@ html, body {
 
 .uni-panel.active {
   display: block;
+  margin-top: auto;     /* 🔥 pushes the panel to the BOTTOM */
+  padding-left: 60px;   /* 🔥 keeps your left gap */
 }
+
 
 .uni-panel-inner {
   width: 100%;        /* ensures full-width content */
