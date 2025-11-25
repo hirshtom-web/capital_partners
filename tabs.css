@@ -410,3 +410,9 @@ html, body {
     height: 24px;
   }
 }
+
+@media (max-width: 400px) {
+  .uni-heading-xl {
+  font-size: 16px;
+}
+}
