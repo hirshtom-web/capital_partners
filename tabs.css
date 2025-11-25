@@ -140,6 +140,7 @@ html, body {
 /* ===============================
    MODERN TAB BUTTONS
 ================================== */
+
 /* Toggle wrapper */
 .uni-toggle-wrapper {
   display: flex;
@@ -156,16 +157,16 @@ html, body {
   height: 50px;
 
   padding: 0 20px;   /* left/right spacing for text & icon */
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
 
-  background-color: #f1e6ff;
+  background-color: transparent; /* no background */
   color: #000;
-  border: none;
+  border: 0.5px solid #000;      /* thin frame */
   border-radius: 8px;
 
   cursor: pointer;
-  transition: background 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 /* Icon bubble on the right */
@@ -179,14 +180,14 @@ html, body {
   justify-content: center;
   flex-shrink: 0;
 
-  /* Icon color same as button background */
-  color: #f1e6ff;
+  color: #f1e6ff; /* icon color same as previous button background */
 }
 
 /* Hover & active state */
 .uni-toggle-btn:hover,
 .uni-toggle-btn.active {
-  background-color: #e5d6fc;
+  border-width: 1px;         /* thicker frame */
+  background-color: transparent; /* still no background */
 }
 
 /* MOBILE: horizontal scroll */
