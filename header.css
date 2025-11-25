@@ -710,60 +710,62 @@ body.menu-open {
 }
 
 
-@media (max-width: 480px){
-/* Container */
-.hamburger {
-  width: 24px;      /* smaller */
-  height: 18px;     /* smaller */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-  position: relative;
-  z-index: 9999;
-}
+@media (max-width: 480px) {
 
+  /* Container */
+  #hamburger.menu-toggle {
+    width: 24px;      /* smaller */
+    height: 18px;     /* smaller */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    position: relative;
+    z-index: 9999;
+    padding: 0;       /* remove extra desktop padding */
+  }
 
-/* Lines */
-.hamburger span {
-  width: 100%;
-  height: 2px;   /* thinner */
-  background: #fff;
-  border-radius: 2px;
-  transition:
-    transform 0.35s cubic-bezier(0.4, 0.0, 0.2, 1),
-    opacity 0.25s ease;
-  position: relative;
-}
+  /* Lines */
+  #hamburger.menu-toggle span {
+    width: 100%;
+    height: 2px;      /* thinner */
+    background: #fff;
+    border-radius: 2px;
+    transition:
+      transform 0.35s cubic-bezier(0.4, 0.0, 0.2, 1),
+      opacity 0.25s ease;
+  }
 
+  /* OPEN STATE (scaled down distances) */
+  #hamburger.menu-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
 
-/* OPEN STATE */
-.hamburger.active span:nth-child(1) {
-  transform: translateY(6px) rotate(45deg);
-}
+  #hamburger.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
 
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-  transform: scaleX(0);
-}
+  #hamburger.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
 
-.hamburger.active span:nth-child(3) {
-  transform: translateY(-6px) rotate(-45deg);
-}
+  /* Remove bullets everywhere */
+  .mobile-menu,
+  .mobile-menu li {
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
 
-.mobile-menu,
-.mobile-menu li {
-  list-style: none !important;
-  padding-left: 0 !important;
-  margin-left: 0 !important;
-}
-   .submenu-mobile {
-  display: none;
-  padding-left: 20px;
-}
+  /* Hide submenu by default */
+  .submenu-mobile {
+    display: none;
+    padding-left: 20px;
+  }
 
-li.expanded > .submenu-mobile {
-  display: block;
-}
-
+  /* Show submenu when expanded */
+  li.expanded > .submenu-mobile {
+    display: block;
+  }
 }
