@@ -237,6 +237,12 @@ html, body {
 .uni-panel-text {
     text-align: left !important;
 }
+/* Consistent left padding for ALL text */
+.uni-panel-text {
+    padding-left: 60px;   /* <— adjust this number to your liking */
+    margin-top: -20px;    /* <— moves the whole text block 20px higher */
+}
+
 
 
 
@@ -298,6 +304,17 @@ html, body {
 .uni-panel-text p {
     text-align: left;
 }
+/* Reduce spacing between mini title and h3 */
+.uni-panel-text .mini-title {
+    margin-bottom: 8px;  /* previously too big — now tighter */
+}
+
+
+.uni-panel-text h3 {
+    margin-top: 2px;
+    margin-bottom: 12px;
+}
+
 
 
 /* ===============================
