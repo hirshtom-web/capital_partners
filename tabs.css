@@ -234,6 +234,10 @@ html, body {
 .uni-panel-text {
   flex: 1 1 50%;
 }
+.uni-panel-text {
+    text-align: left !important;
+}
+
 
 
 .uni-panel-image {
@@ -262,13 +266,22 @@ html, body {
   color: #111;
   margin-bottom: 15px;
 }
-.mini-title {
-    border-radius: 20px;
-    background-color: #f1e6ff;
-    color: #000;
-    font-size: 16px;
-    font-weight: 500;
+
+.mini-title,
+.keyword-bubble {
+    display: inline-block;
+    padding: 6px 14px;
+    background: #f1e6ff;
+    color: #4a2e8e;         /* softer purple text */
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 999px;   /* perfect pill shape */
+    letter-spacing: 0.3px;
+    margin-bottom: 15px;
+    text-align: left;       /* ensures no centering */
+    white-space: nowrap;    /* keeps it short */
 }
+
 
 
 .uni-panel p {
@@ -304,14 +317,17 @@ CHECKMARK LIST
 }
 
 .uni-list li::before {
-    content: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Google_2015_logo.svg/32px-Google_2015_logo.svg.png'); /* example small Google icon */
+    content: "";
+    background-image: url('https://fonts.gstatic.com/s/i/materialiconsrounded/check_circle_outline/v15/24px.svg');
+    background-size: cover;
+    width: 20px;
+    height: 20px;
     position: absolute;
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 18px;
-    height: 18px;
 }
+
 
 
 /* ===============================
