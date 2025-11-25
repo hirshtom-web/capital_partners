@@ -130,17 +130,17 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between; /* text left, icon right */
-  width: 170px;
-  height: 50px;
+  width: 100px;
+  height: 40px;
 
-  padding: 0 20px;   /* left/right spacing for text & icon */
-  font-size: 16px;
+  padding: 0 12px;   /* left/right spacing for text & icon */
+  font-size: 12px;
   font-weight: 500;
 
   background-color: transparent; /* no background */
   color: #000;
   border: 0px;
-  border-radius: 8px;
+  border-radius: 10px;
 
   cursor: pointer;
   transition: all 0.25s ease;
@@ -148,8 +148,8 @@ html, body {
 
 /* Icon bubble on the right */
 .uni-toggle-btn .icon {
-  width: 25px;
-  height: 25px;
+  width: 12px;
+  height: 12px;
   background-color: #000;   /* black bubble */
   border-radius: 50%;
   display: flex;
@@ -184,10 +184,10 @@ html, body {
 
   .uni-toggle-btn {
     flex-shrink: 0;
-    width: 120px; /* slightly smaller on mobile */
+    width: 100px; /* slightly smaller on mobile */
     height: 40px;
-    font-size: 12px;
-    padding: 0 16px;
+    font-size: 10px;
+    padding: 0 12px;
   }
 
   .uni-toggle-btn .icon {
@@ -262,18 +262,12 @@ html, body {
   color: #111;
   margin-bottom: 15px;
 }
-.keyword-bubble {
-    display: inline-block;
-    padding: 6px 12px;
+.mini-title {
     border-radius: 20px;
     background-color: #f1e6ff;
     color: #000;
     font-size: 16px;
     font-weight: 500;
-    margin: 0 0 15px 0;
-    vertical-align: middle;
-
-    text-align: left;   /* left align text */
 }
 
 
