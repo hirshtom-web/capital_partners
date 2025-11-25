@@ -710,7 +710,7 @@ body.menu-open {
 }
 
 
-@media (max-width: 480px)
+@media (max-width: 480px){
 /* Container */
 .hamburger {
   width: 24px;      /* smaller */
@@ -751,3 +751,19 @@ body.menu-open {
   transform: translateY(-6px) rotate(-45deg);
 }
 
+.mobile-menu,
+.mobile-menu li {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+   .submenu-mobile {
+  display: none;
+  padding-left: 20px;
+}
+
+li.expanded > .submenu-mobile {
+  display: block;
+}
+
+}
