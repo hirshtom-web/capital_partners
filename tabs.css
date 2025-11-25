@@ -23,17 +23,30 @@ html, body {
 /* ===============================
    CONTENT TILE
 ================================== */
+/* CONTENT TILE — keep your left gap only here */
 .uni-content-tile {
   width: 100%;
   background-color: #f8f7f5;
   border-radius: 40px;
   max-width: 1300px;
   margin: 0 auto 60px;
+
   padding: 60px 0;
-  padding-left: 60px;
+  padding-left: 60px; /* ← your left gap stays here */
+
   text-align: center;
   color: #111;
+
+  display: flex;
+  flex-direction: column; /* allows bottom alignment */
 }
+
+/* PANEL — no padding added, just pushed to the bottom */
+.uni-panel.active {
+  margin-top: auto;  /* ← pushes it to bottom */
+}
+
+
 .uni-content-tile:first-of-type {
   background: radial-gradient(
     circle at center,
