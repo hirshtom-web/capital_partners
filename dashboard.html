@@ -271,6 +271,65 @@ tr:last-child td {
   .top-bar-right input {
     width: 100%;
   }
+  /* MINI CARDS NEW UX STYLE */
+.info-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin: 25px 0;
+}
+
+.info-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px 22px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.info-card h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e0949;
+  margin-bottom: 4px;
+}
+
+/* TWO-IN-A-ROW WRAPPER */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.info-box {
+  flex: 1;
+}
+
+.info-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #888;
+  margin-bottom: 2px;
+}
+
+.info-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e0949;
+}
+
+/* LEASE STATUS */
+.lease-status {
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: -4px;
+}
+
+.lease-warning { color: #e67e22; }
+.lease-danger { color: #d90000; }
+
 }
 </style>
 </head>
@@ -400,16 +459,114 @@ tr:last-child td {
   <!-- Expenses Table -->
   <div class="table-wrapper">
     <h3>Expenses</h3>
-    <table id="expensesTable">
-      <thead>
-        <tr>
-          <th>Expense Name</th>
-          <th>Amount ($)</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+  <div class="info-card">
+    <h4>Tenant Information</h4>
+
+    <!-- 1: NAME -->
+    <div class="info-row">
+      <div class="info-box">
+        <div class="info-label">Name</div>
+        <div class="info-value">John Doe</div>
+      </div>
+    </div>
+
+    <!-- 2: OCCUPATION + JOB TYPE -->
+    <div class="info-row">
+      <div class="info-box">
+        <div class="info-label">Occupation</div>
+        <div class="info-value">Nurse</div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-label">Employment</div>
+        <div class="info-value">Full-Time</div>
+      </div>
+    </div>
+
+    <!-- 3: CONTACT -->
+    <div class="info-row">
+      <div class="info-box">
+        <div class="info-label">Contact</div>
+        <div class="info-value">555-321-9876</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- LEASE INFORMATION -->
+  <div class="info-card">
+    <h4>Lease Information</h4>
+
+    <!-- DATES (Start & End) -->
+    <div class="info-row">
+      <div class="info-box">
+        <div class="info-label">Lease Start</div>
+        <div class="info-value">2024-06-01</div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-label">Lease End</div>
+        <div class="info-value">2025-06-01</div>
+      </div>
+    </div>
+
+    <!-- STATUS -->
+    <div class="lease-status lease-warning">3 months to go</div>
+    <!-- OR -->
+    <!-- <div class="lease-status lease-danger">Less than 60 days!</div> -->
+
+    <!-- DEPOSIT + LAST MONTH -->
+    <div class="info-row">
+      <div class="info-box">
+        <div class="info-label">Deposit Held</div>
+        <div class="info-value">$1,500</div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-label">Last Month Paid</div>
+        <div class="info-value">Yes</div>
+      </div>
+    </div>
+
+    <!-- PET FEE -->
+    <div class="info-row">
+      <div class="info-box">
+        <div class="info-label">Pet Fee</div>
+        <div class="info-value">$200</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- PAYMENT INFORMATION -->
+  <div class="info-card">
+    <h4>Payment Information</h4>
+
+    <!-- AMOUNT -->
+    <div class="info-row">
+      <div class="info-box">
+        <div class="info-label">Amount</div>
+        <div class="info-value">$2,500</div>
+      </div>
+    </div>
+
+    <!-- TYPE + METHOD -->
+    <div class="info-row">
+      <div class="info-box">
+        <div class="info-label">Type</div>
+        <div class="info-value">Rent</div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-label">Payment Method</div>
+        <div class="info-value">Bank Transfer</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
 
     <h4>Add Expense</h4>
     <form id="expenseForm">
