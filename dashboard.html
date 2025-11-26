@@ -7,265 +7,92 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-}
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+body { background:#f5f5f5; min-height:100vh; }
 
-body {
-  display: flex;
-  background-color: #f5f5f5;
-  min-height: 100vh;
-}
-
-/* SIDEBAR */
+/* DESKTOP SIDEBAR */
 .sidebar {
-  width: 70px;                     /* collapsed width */
-  background: #ffffff;
-  color: #1e0949;
-  padding: 20px 12px;
-  border-radius: 20px;
-  margin: 20px;
-  height: calc(100vh - 40px);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-
-  overflow: hidden;
+  width: 70px;
+  background:#fff;
+  color:#1e0949;
+  padding:20px 12px;
+  border-radius:20px;
+  margin:20px;
+  height:calc(100vh - 40px);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  position:fixed;
+  top:0; left:0;
   transition: width 0.25s ease;
-  z-index: 1000; /* above content */
+  z-index:1000;
 }
+.sidebar:hover { width:250px; }
 
-.sidebar:hover {
-  width: 250px;
-}
+.logo { display:flex; justify-content:center; margin-bottom:20px; }
+.logo img { width:50px; transition: opacity 0.2s ease; }
 
-/* logo centered when collapsed */
-.logo {
-  display: flex;
-  justify-content: center;
-}
-
-.logo img {
-  width: 50px;
-  transition: opacity 0.2s ease;
-}
-
-/* LINKS */
 .sidebar a {
-  color: #1e0949;
-  font-weight: 600;
-  padding: 12px 14px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  text-decoration: none;
-  white-space: nowrap;
-  overflow: hidden;
+  color:#1e0949; font-weight:600; padding:12px 14px;
+  border-radius:12px; display:flex; align-items:center; gap:14px;
+  text-decoration:none; white-space:nowrap; overflow:hidden;
 }
+.sidebar a:hover { background:rgba(30,9,73,0.07); }
 
-.sidebar a:hover {
-  background: rgba(30, 9, 73, 0.07);
-}
+.sidebar span.label { opacity:0; transition:opacity 0.25s ease; }
+.sidebar:hover span.label { opacity:1; }
 
-/* ICONS */
-.material-symbols-outlined {
-  font-size: 22px;
-  min-width: 24px;
-}
-
-/* TEXT HIDDEN IN COLLAPSED MODE */
-.sidebar span.label {
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-
-.sidebar:hover span.label {
-  opacity: 1;
-}
+.material-symbols-outlined { font-size:22px; min-width:24px; }
 
 /* MAIN CONTENT */
-.main {
-  flex: 1;
-  padding: 30px 40px;
-  margin-left: 90px;
-  transition: margin-left 0.25s ease;
-}
-
-.sidebar:hover ~ .main {
-  margin-left: 270px;
-}
+.main { margin-left:90px; padding:30px 40px; transition: margin-left 0.25s ease; }
+.sidebar:hover ~ .main { margin-left:270px; }
 
 /* TOP BAR */
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.top-bar-left h1 {
-  font-size: 17px;
-  color: #1e0949;
-  font-weight: 700;
-  white-space: nowrap;
-  margin-bottom: 25px;
-  margin-top: 22px;
-}
-
-.top-bar-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.top-bar-right input {
-  padding: 10px 15px;
-  border-radius: 12px;
-  border: 1px solid #ccc;
-  outline: none;
-  width: 250px;
-  background-color: #fff;
-}
-
-.icon {
-  font-size: 24px;
-  cursor: pointer;
-  color: #1e0949;
-}
-
-.profile-img {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  cursor: pointer;
-}
+.top-bar { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+.top-bar-left h1 { font-size:17px; color:#1e0949; font-weight:700; }
+.hamburger { display:none; font-size:28px; cursor:pointer; color:#1e0949; }
 
 /* CARDS */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  margin-bottom: 50px;
-}
-
-.card {
-  background: #fff;
-  padding: 25px 20px;
-  border-radius: 12px;
-}
-
-.card h3 {
-  font-size: 12px;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #1e0949;
-}
-
-.card p {
-  font-size: 17px;
-  font-weight: 700;
-  color: #1e0949;
-}
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; margin-bottom:50px; }
+.card { background:#fff; padding:25px 20px; border-radius:12px; }
+.card h3 { font-size:12px; font-weight:600; color:#1e0949; margin-bottom:8px; }
+.card p { font-size:17px; font-weight:700; color:#1e0949; }
 
 /* TABLE */
-.table-wrapper {
-  background: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-}
+.table-wrapper { background:#fff; padding:20px; border-radius:12px; margin-bottom:20px; }
+table { width:100%; border-collapse:collapse; }
+th,td { padding:12px 15px; border-bottom:1px solid #eee; font-size:12px; text-align:left; }
+th { font-weight:600; color:#1e0949; }
+tr:last-child td { border-bottom:none; }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th, td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #eee;
-  text-align: left;
-  font-size: 12px;
-}
-
-th {
-  font-weight: 600;
-  color: #1e0949;
-}
-
-tr:last-child td {
-  border-bottom: none;
-  font-size: 12px;
-}
-
-/* FOOTNOTE */
-.last-update {
-  margin-top: 25px;
-  color: #888;
-  font-size: 12px;
-}
-
-/* HAMBURGER (MOBILE) */
-.hamburger {
-  display: none;
-  font-size: 28px;
-  cursor: pointer;
-  color: #1e0949;
-}
-
-/* MOBILE SIDEBAR POPUP */
+/* MOBILE SIDEBAR */
 .mobile-sidebar {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 250px;
-  height: 100%;
-  background: #ffffff;
-  z-index: 1500;
-  padding: 20px;
-  flex-direction: column;
-  gap: 10px;
-  overflow-y: auto;
-  box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+  display:none;
+  position:fixed;
+  top:0; left:-300px;
+  width:250px; height:100%;
+  background:#fff; z-index:1500;
+  padding:20px; flex-direction:column; gap:10px;
+  overflow-y:auto;
+  transition:left 0.3s ease;
+  box-shadow:2px 0 8px rgba(0,0,0,0.2);
+}
+.mobile-sidebar a { color:#1e0949; font-weight:600; padding:12px 14px; border-radius:12px; display:flex; align-items:center; gap:14px; text-decoration:none; }
+.mobile-sidebar a:hover { background:rgba(30,9,73,0.07); }
+
+/* OVERLAY */
+.overlay {
+  display:none;
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  background:rgba(0,0,0,0.4); z-index:1400;
 }
 
-.mobile-sidebar a {
-  color: #1e0949;
-  font-weight: 600;
-  padding: 12px 14px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  text-decoration: none;
-}
-
-.mobile-sidebar a:hover {
-  background: rgba(30, 9, 73, 0.07);
-}
-
-/* MOBILE RESPONSIVE */
-@media(max-width: 768px) {
-  .sidebar {
-    display: none;
-  }
-
-  .hamburger {
-    display: block;
-  }
-
-  .main {
-    margin-left: 0;
-    padding: 20px;
-  }
+/* RESPONSIVE */
+@media(max-width:768px){
+  .sidebar { display:none; }
+  .hamburger { display:block; }
+  .main { margin-left:0; padding:20px; }
 }
 </style>
 </head>
@@ -273,9 +100,7 @@ tr:last-child td {
 
 <!-- DESKTOP SIDEBAR -->
 <div class="sidebar">
-  <div class="logo">
-    <img src="https://static.wixstatic.com/shapes/1799ca_1fcb784a27804f16bc60e16c6a0dfcef.svg">
-  </div>
+  <div class="logo"><img src="https://static.wixstatic.com/shapes/1799ca_1fcb784a27804f16bc60e16c6a0dfcef.svg"></div>
   <a href="#"><span class="material-symbols-outlined">dashboard</span><span class="label">Dashboard</span></a>
   <a href="#"><span class="material-symbols-outlined">apartment</span><span class="label">Properties</span></a>
   <a href="#"><span class="material-symbols-outlined">people</span><span class="label">Tenants</span></a>
@@ -284,9 +109,9 @@ tr:last-child td {
   <a href="#"><span class="material-symbols-outlined">settings</span><span class="label">Settings</span></a>
 </div>
 
-<!-- MOBILE HAMBURGER -->
+<!-- TOP BAR -->
 <div class="top-bar">
-  <span class="hamburger material-symbols-outlined" onclick="toggleMobileSidebar()">menu</span>
+  <span class="hamburger material-symbols-outlined" onclick="openMobileSidebar()">menu</span>
   <h1>Welcome Back</h1>
 </div>
 
@@ -299,6 +124,7 @@ tr:last-child td {
   <a href="#"><span class="material-symbols-outlined">analytics</span>Analytics</a>
   <a href="#"><span class="material-symbols-outlined">settings</span>Settings</a>
 </div>
+<div class="overlay" id="overlay" onclick="closeMobileSidebar()"></div>
 
 <!-- MAIN CONTENT -->
 <div class="main" id="dashboard">
@@ -311,9 +137,17 @@ tr:last-child td {
 </div>
 
 <script>
-function toggleMobileSidebar() {
-  const sidebar = document.getElementById('mobileSidebar');
-  sidebar.style.display = sidebar.style.display === 'flex' ? 'none' : 'flex';
+const mobileSidebar = document.getElementById('mobileSidebar');
+const overlay = document.getElementById('overlay');
+
+function openMobileSidebar(){
+  mobileSidebar.style.left = '0';
+  overlay.style.display = 'block';
+}
+
+function closeMobileSidebar(){
+  mobileSidebar.style.left = '-300px';
+  overlay.style.display = 'none';
 }
 </script>
 
