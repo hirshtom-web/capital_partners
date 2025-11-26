@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Real Estate Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">  
-
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 <style>
 * {
   margin: 0;
@@ -23,7 +22,7 @@ body {
 
 /* SIDEBAR */
 .sidebar {
-  width: 70px;                     
+  width: 70px;                     /* collapsed width */
   background: #ffffff;
   color: #1e0949;
   padding: 20px 12px;
@@ -33,16 +32,19 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  position: fixed;     
+
+  position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
+
   overflow: hidden;
   transition: width 0.25s ease;
+  z-index: 1000; /* above content */
 }
 
 .sidebar:hover {
-  width: 250px;   
+  width: 250px;
 }
 
 /* logo centered when collapsed */
@@ -74,15 +76,10 @@ body {
   background: rgba(30, 9, 73, 0.07);
 }
 
-.sidebar a.active {
-  background: rgba(30,9,73,0.15);
-  font-weight: 700;
-}
-
 /* ICONS */
 .material-symbols-outlined {
   font-size: 22px;
-  min-width: 24px; 
+  min-width: 24px;
 }
 
 /* TEXT HIDDEN IN COLLAPSED MODE */
@@ -95,26 +92,16 @@ body {
   opacity: 1;
 }
 
-/* SHIFT MAIN CONTENT WHEN SIDEBAR EXPANDS */
-.main-container {
+/* MAIN CONTENT */
+.main {
   flex: 1;
+  padding: 30px 40px;
   margin-left: 90px;
   transition: margin-left 0.25s ease;
 }
 
-.sidebar:hover ~ .main-container {
+.sidebar:hover ~ .main {
   margin-left: 270px;
-}
-
-/* MAIN PANEL */
-.main {
-  flex: 1;
-  padding: 30px 40px;
-  display: none;
-}
-
-.main.active {
-  display: block;
 }
 
 /* TOP BAR */
@@ -188,21 +175,12 @@ body {
   color: #1e0949;
 }
 
-/* TABLE TITLE */
-.table-title {
-  font-size: 17px;
-  color: #1e0949;
-  font-weight: 700;
-  margin-bottom: 25px;
-  margin-top: 15px;
-}
-
 /* TABLE */
 .table-wrapper {
   background: #fff;
   padding: 20px;
   border-radius: 12px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 table {
@@ -227,240 +205,115 @@ tr:last-child td {
   font-size: 12px;
 }
 
-/* FORM STYLES */
-form {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 15px;
-}
-
-form input, form select {
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  outline: none;
-}
-
-form button {
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: none;
-  background: #1e0949;
-  color: white;
-  cursor: pointer;
-}
-
-/* LEASE STATUS */
-.lease-status {
-  font-size: 11px;
-  font-weight: 700;
-  margin-top: -4px;
-}
-
-.lease-warning { color: #e67e22; }
-.lease-danger { color: #d90000; }
-
-/* INFO CARD */
-.info-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 20px 22px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-bottom: 20px;
-}
-
-.info-card h4 {
-  font-size: 16px;
-  font-weight: 700;
-  color: #1e0949;
-  margin-bottom: 4px;
-}
-
-.info-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.info-box {
-  flex: 1;
-}
-
-.info-label {
-  font-size: 11px;
-  font-weight: 600;
+/* FOOTNOTE */
+.last-update {
+  margin-top: 25px;
   color: #888;
-  margin-bottom: 2px;
+  font-size: 12px;
 }
 
-.info-value {
-  font-size: 14px;
-  font-weight: 700;
+/* HAMBURGER (MOBILE) */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
   color: #1e0949;
 }
 
-/* ACTION BUTTONS */
-.action-buttons {
-  display: flex;
-  flex-wrap: wrap;
+/* MOBILE SIDEBAR POPUP */
+.mobile-sidebar {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background: #ffffff;
+  z-index: 1500;
+  padding: 20px;
+  flex-direction: column;
   gap: 10px;
-  margin-top: 20px;
+  overflow-y: auto;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.2);
 }
 
-.action-buttons button {
-  padding: 10px 15px;
-  border-radius: 8px;
-  border: none;
-  background: #1e0949;
-  color: white;
-  cursor: pointer;
+.mobile-sidebar a {
+  color: #1e0949;
+  font-weight: 600;
+  padding: 12px 14px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
 }
 
-/* RESPONSIVE */
+.mobile-sidebar a:hover {
+  background: rgba(30, 9, 73, 0.07);
+}
+
+/* MOBILE RESPONSIVE */
 @media(max-width: 768px) {
-  .top-bar {
-    flex-direction: column;
-    gap: 15px;
-    align-items: flex-start;
+  .sidebar {
+    display: none;
   }
-  .top-bar-right input {
-    width: 100%;
+
+  .hamburger {
+    display: block;
   }
-  .cards {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+
+  .main {
+    margin-left: 0;
+    padding: 20px;
   }
 }
 </style>
 </head>
 <body>
 
+<!-- DESKTOP SIDEBAR -->
 <div class="sidebar">
   <div class="logo">
     <img src="https://static.wixstatic.com/shapes/1799ca_1fcb784a27804f16bc60e16c6a0dfcef.svg">
   </div>
-
-  <a href="#" class="active" onclick="switchTab('dashboard')"><span class="material-symbols-outlined">dashboard</span><span class="label">Dashboard</span></a>
-  <a href="#" onclick="switchTab('income')"><span class="material-symbols-outlined">select_all</span><span class="label">Income</span></a>
-  <a href="#" onclick="switchTab('expenses')"><span class="material-symbols-outlined">paid</span><span class="label">Expenses</span></a>
+  <a href="#"><span class="material-symbols-outlined">dashboard</span><span class="label">Dashboard</span></a>
+  <a href="#"><span class="material-symbols-outlined">apartment</span><span class="label">Properties</span></a>
+  <a href="#"><span class="material-symbols-outlined">people</span><span class="label">Tenants</span></a>
+  <a href="#"><span class="material-symbols-outlined">paid</span><span class="label">Revenue</span></a>
+  <a href="#"><span class="material-symbols-outlined">analytics</span><span class="label">Analytics</span></a>
+  <a href="#"><span class="material-symbols-outlined">settings</span><span class="label">Settings</span></a>
 </div>
 
-<div class="main-container">
-  
-  <!-- DASHBOARD TAB -->
-  <div class="main active" id="dashboard">
-    <div class="top-bar">
-      <div class="top-bar-left"><h1>Welcome Back</h1></div>
-      <div class="top-bar-right">
-        <span class="material-symbols-outlined icon">notifications</span>
-        <img class="profile-img" src="https://i.pravatar.cc/35" alt="">
-      </div>
-    </div>
+<!-- MOBILE HAMBURGER -->
+<div class="top-bar">
+  <span class="hamburger material-symbols-outlined" onclick="toggleMobileSidebar()">menu</span>
+  <h1>Welcome Back</h1>
+</div>
 
-    <div class="cards">
-      <div class="card"><h3>Total Properties</h3><p>128</p></div>
-      <div class="card"><h3>Active Tenants</h3><p>342</p></div>
-      <div class="card"><h3>Revenue (Monthly)</h3><p>$84,500</p></div>
-      <div class="card"><h3>New Leads</h3><p>27</p></div>
-    </div>
+<!-- MOBILE SIDEBAR -->
+<div class="mobile-sidebar" id="mobileSidebar">
+  <a href="#"><span class="material-symbols-outlined">dashboard</span>Dashboard</a>
+  <a href="#"><span class="material-symbols-outlined">apartment</span>Properties</a>
+  <a href="#"><span class="material-symbols-outlined">people</span>Tenants</a>
+  <a href="#"><span class="material-symbols-outlined">paid</span>Revenue</a>
+  <a href="#"><span class="material-symbols-outlined">analytics</span>Analytics</a>
+  <a href="#"><span class="material-symbols-outlined">settings</span>Settings</a>
+</div>
 
-    <div class="table-title">Recent Transactions</div>
-    <div class="table-wrapper">
-      <table>
-        <thead>
-          <tr><th>Property</th><th>Tenant</th><th>Rent ($)</th><th>Status</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Sunset Villa</td><td>John Doe</td><td>2500</td><td>Paid</td></tr>
-          <tr><td>Oceanview Apt</td><td>Jane Smith</td><td>1800</td><td>Pending</td></tr>
-          <tr><td>Downtown Loft</td><td>Michael Lee</td><td>3200</td><td>Paid</td></tr>
-          <tr><td>Green Acres</td><td>Lisa Wong</td><td>2100</td><td>Late</td></tr>
-        </tbody>
-      </table>
-    </div>
+<!-- MAIN CONTENT -->
+<div class="main" id="dashboard">
+  <div class="cards">
+    <div class="card"><h3>Total Properties</h3><p>128</p></div>
+    <div class="card"><h3>Active Tenants</h3><p>342</p></div>
+    <div class="card"><h3>Revenue (Monthly)</h3><p>$84,500</p></div>
+    <div class="card"><h3>New Leads</h3><p>27</p></div>
   </div>
-
-  <!-- INCOME TAB -->
-  <div class="main" id="income">
-    <div class="top-bar">
-      <div class="top-bar-left"><h1>Finance: Income & Expenses</h1></div>
-      <div class="top-bar-right">
-        <span class="material-symbols-outlined icon">notifications</span>
-        <img class="profile-img" src="https://i.pravatar.cc/35" alt="">
-      </div>
-    </div>
-
-    <div class="cards">
-      <div class="card"><h3>Total Income</h3><p id="totalIncome">$0</p></div>
-      <div class="card"><h3>Total Expenses</h3><p id="totalExpenses">$0</p></div>
-      <div class="card"><h3>Net Total</h3><p id="netTotal">$0</p></div>
-    </div>
-
-    <div class="table-wrapper">
-      <h3>Income</h3>
-      <table id="incomeTable">
-        <thead>
-          <tr>
-            <th>Tenant</th><th>Lease Info</th><th>Amount ($)</th><th>Type</th>
-            <th>Payment Method</th><th>Lease Start</th><th>Lease End</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-
-      <h4>Add Income</h4>
-      <form id="incomeForm">
-        <input type="text" placeholder="Tenant Name" id="incomeTenant" required>
-        <select id="incomeType">
-          <option value="Rent">Rent</option>
-          <option value="Late Fee">Late Fee</option>
-          <option value="Bad Check">Bad Check</option>
-          <option value="Other">Other</option>
-        </select>
-        <input type="number" placeholder="Amount" id="incomeAmount" required>
-        <button type="submit">Add Income</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- EXPENSES TAB -->
-  <div class="main" id="expenses">
-    <div class="top-bar">
-      <div class="top-bar-left"><h1>Expenses Overview</h1></div>
-      <div class="top-bar-right">
-        <span class="material-symbols-outlined icon">notifications</span>
-        <img class="profile-img" src="https://i.pravatar.cc/35" alt="">
-      </div>
-    </div>
-
-    <div class="table-wrapper">
-      <h3>Expenses</h3>
-      <form id="expenseForm">
-        <select id="expenseType">
-          <option value="RE Taxes">RE Taxes</option>
-          <option value="Mortgage">Mortgage</option>
-          <option value="Insurance">Insurance</option>
-          <option value="HOA">HOA</option>
-          <option value="Other">Other</option>
-        </select>
-        <input type="number" placeholder="Amount" id="expenseAmount" required>
-        <input type="date" id="expenseDate" required>
-        <button type="submit">Add Expense</button>
-      </form>
-    </div>
-  </div>
-
 </div>
 
 <script>
-function switchTab(tabId){
-  document.querySelectorAll(".main").forEach(t => t.classList.remove("active"));
-  document.getElementById(tabId).classList.add("active");
-  document.querySelectorAll(".sidebar a").forEach(a => a.classList.remove("active"));
-  document.querySelector('.sidebar a[onclick="switchTab(\''+tabId+'\')"]').classList.add("active");
+function toggleMobileSidebar() {
+  const sidebar = document.getElementById('mobileSidebar');
+  sidebar.style.display = sidebar.style.display === 'flex' ? 'none' : 'flex';
 }
 </script>
 
